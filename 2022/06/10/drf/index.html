@@ -573,7 +573,61 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">redis缓存穿透</span><br><span class="line"><span class="code">    你所要查询的key并不存在于redis缓存中，这时又有大连的请求查询这个key，就会使得数据库负载过大，就像是穿过了缓存直接击中数据库，很容易把数据库给打挂了</span></span><br><span class="line"><span class="code">    解决方案：</span></span><br><span class="line"><span class="code">        第一种方法呢就是数据库查询不到的key直接保存在redis中，再次查询数据库的时候，缓存层直接返回空</span></span><br><span class="line"><span class="code">        第二种方法就涉及到了一个叫布隆过滤器的东西，本质上是一个二进制数组，以空间换时间，以低内存空间解决缓存穿透的问题，将所有存在的key提前存入布隆过滤器，在请求进入缓存之前，布隆过滤器进行拦截，若不存在直接返回空</span></span><br><span class="line"><span class="code">        </span></span><br><span class="line"><span class="code">redis缓存击穿</span></span><br><span class="line"><span class="code">    某一个热点的key失效了，大量的请求直接到达数据库</span></span><br><span class="line"><span class="code">    解决方法：</span></span><br><span class="line"><span class="code">        第一种设置永不过期</span></span><br><span class="line"><span class="code">        第二种就是加互斥锁，互斥锁就是同一时刻只有一个线程能够进行访问，加了互斥锁之后第一个访问完后，缓存中的数据将会被重建，之后直接从缓存中取就可以了</span></span><br><span class="line"><span class="code">        </span></span><br><span class="line"><span class="code">redis缓存雪崩</span></span><br><span class="line"><span class="code">    可能是redis宕机了，也可能是有很多key设置了统一过期时间</span></span><br><span class="line"><span class="code">    解决方案：</span></span><br><span class="line"><span class="code">        第一种构建高可用的Redis缓存：搭建Redis集群，提高Redis的容灾性</span></span><br><span class="line"><span class="code">        第二种使用熔断机制：对存储层增加限流措施，当请求超出限制时，对其提供降级措施，例如：当请求到达一定阈值，直接返回“系统繁忙“等提示，防止过多的请求到达数据库上，这样可以保证一部分用户还可以使用，其他用户多刷新几次也能得到结果</span></span><br></pre></td></tr></tbody></table></figure>
+                <h3 id="什么是restful规范"><a href="#什么是restful规范" class="headerlink" title="什么是restful规范"></a>什么是restful规范</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">RESTful是一种定义Web API接口的设计风格，尤其适用于前后端分离的应用模式中。 </span><br><span class="line">数据的安全保障：url链接一般都采用https协议进行传输(数据交互中安全性) 接口特性表现：一看就知道是个api接口，用api关键字标识接口url：https://api.baidu.com </span><br><span class="line">多数据版本共存：在url链接中标识数据版本https://api.baidu.com/v1 </span><br><span class="line">数据即是资源，均使用名词（可复数），尽量不要出现动词 资源操作由请求方式决定（method）：提供请求方式来标识增删改查动作 过滤，通过在url上传参的形式传递搜索条件:例如url后面?=搜索，分页，游标</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="查找模板的顺序"><a href="#查找模板的顺序" class="headerlink" title="查找模板的顺序"></a>查找模板的顺序</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">优先查找根目录下：template</span><br><span class="line">根据app的注册顺序去每个app的template目录中查找</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="drf组件提供的功能"><a href="#drf组件提供的功能" class="headerlink" title="drf组件提供的功能"></a>drf组件提供的功能</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1、免除csrf认证</span><br><span class="line">2、视图（1.APIView、2.ListAPIview、3.ListModelMixin）</span><br><span class="line">3、权限</span><br><span class="line">4、认证</span><br><span class="line">5、解析器</span><br><span class="line">6、筛选器</span><br><span class="line">7、分页</span><br><span class="line">8、序列化和数据校验：</span><br><span class="line"><span class="code">    可以对queryset进行序列化，也可以对用户提交的数据进行校验</span></span><br><span class="line"><span class="code">    source：无需加括号，在源码内部会去判断是否可以执行，可执行自动加括号</span></span><br><span class="line"><span class="code">    SerializerMethodField定义钩子方法</span></span><br><span class="line"><span class="code">9、渲染器：把json数据渲染到drf自己的页面上</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="drf继承过哪些视图类，之间的区别"><a href="#drf继承过哪些视图类，之间的区别" class="headerlink" title="drf继承过哪些视图类，之间的区别"></a>drf继承过哪些视图类，之间的区别</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1、APIview</span><br><span class="line"><span class="code">    遵循了CBV模式，功能多但是需要自己写的代码也多</span></span><br><span class="line"><span class="code">    提供了免除csrf认证，版本处理、认证、权限、节流、解析器、筛选器、分页、序列化、渲染器</span></span><br><span class="line"><span class="code"></span></span><br><span class="line">2、ListAPIView,RetrieveAPIView,CreateAPIView,UpdateAPIView,DestroyAPIView</span><br><span class="line"><span class="code">    第二种则在第一种的基础上，封装了许多我们需要自己的写的代码，许多功能的实现只需要给专属的变量名赋值就可以实现该功能</span></span><br><span class="line"><span class="code">    </span></span><br><span class="line"><span class="code">3、GenericViewSet、ListModelMixin,RetrieveModelMixin,CreateModelMixin,UpdateModelMixin,DestroyModelMixin</span></span><br><span class="line"><span class="code">    第三种则重构了APIView中的as_view()方法，结合请求方法和不同Mixin类的方法名从而进行执行不同的功能。与前面两种最主要的区别是url路由中as_view()方法中需要传值。</span></span><br><span class="line"><span class="code">     目前使用的主要目的是把第二种的bug(查询全部数据的功能和查询单个数据的功能无法在一个类中实现)实现在一个类中</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="GenericAPIView视图类的作用"><a href="#GenericAPIView视图类的作用" class="headerlink" title="GenericAPIView视图类的作用"></a>GenericAPIView视图类的作用</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">作用：GenericAPIView主要为drf内部帮助我们提供增删查改的类，提供了执行流程和功能，我们在使用drf内置类做增删查改时，就可以通过自定义静态字段（类变量）或重写方法（get<span class="emphasis">_queryset、get_</span>serializer<span class="emphasis">_class）来做一些更高级的定制</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="drf版本的实现过程"><a href="#drf版本的实现过程" class="headerlink" title="drf版本的实现过程"></a>drf版本的实现过程</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">drf自带的版本类"DEFAULT<span class="emphasis">_VERSIONING_</span>CLASS": "rest<span class="emphasis">_framework.versioning.URLPathVersioning",</span></span><br><span class="line"><span class="emphasis">允许出现的版本"ALLOWED_</span>VERSIONS": ['v1', 'v2'],</span><br><span class="line">如果没有传版本，可以使用默认版本</span><br><span class="line"><span class="code">     default_version = api_settings.DEFAULT_VERSION</span></span><br><span class="line"><span class="code">设置url中获取版本的变量，默认是version</span></span><br><span class="line"><span class="code">     version_param = api_settings.VERSION_PARAM</span></span><br><span class="line"><span class="code">     </span></span><br><span class="line"><span class="code">过程：</span></span><br><span class="line"><span class="code">    当前端传来请求，执行了as_view()方法，如果设置了全局版本或者进入了设置了版本的功能函数，则会先执行APIview类中dispatch方法，之后再执行initial方法，然后进入self.determine_version方法，里面会先判断是否有versioning_class，如果没有就返回(None,None)，代表没有版本，有则执行versioning_class(URLPathVersioning)类中的determine_version方法，他会返回版本，里面会判断，如果获取到version为空则返回默认版本，并且还要判断是否存在允许出现的版本列表中，返回版本后再把版本号和版本分类分别赋值给request.version和request.versioning_scheme</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="drf组件认证的实现过程"><a href="#drf组件认证的实现过程" class="headerlink" title="drf组件认证的实现过程"></a>drf组件认证的实现过程</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">当用户进行登录的时候，运行了登录类的as<span class="emphasis">_view()方法，</span></span><br><span class="line"><span class="emphasis"> 1、进入了APIView类的dispatch方法</span></span><br><span class="line"><span class="emphasis"> 2、执行了self.initialize_</span>request这个方法，是重定义request，并且得到了自己定义的认证类对象</span><br><span class="line"> 3、执行self.initial方法中的self.perform<span class="emphasis">_authentication，里面运行了user方法</span></span><br><span class="line"><span class="emphasis"> 4、再执行了user方法里面的self._</span>authenticate()方法</span><br><span class="line"> 5、然后执行了自己定义的类中的authenticate方法，自己定义的类继承了BaseAuthentication类，里面有  authenticate方法，如果自己定义的类中没有authenticate方法会报错。</span><br><span class="line"> 6、把从authenticate方法得到的user和auth赋值给user和auth方法</span><br><span class="line"> 7、这两个方法把user和auth的值赋值给了request.user：是登录用户的对象,request.auth：是认证的信息字典</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="drf组件权限的实现过程？"><a href="#drf组件权限的实现过程？" class="headerlink" title="drf组件权限的实现过程？"></a>drf组件权限的实现过程？</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">当用户执行一个业务的时候，运行了as<span class="emphasis">_view方法</span></span><br><span class="line"><span class="emphasis">1、进入了APIView类的dispatch方法</span></span><br><span class="line"><span class="emphasis">2、进入self.initial方法中的self.check_</span>permissions(request)方法</span><br><span class="line">3、里面执行了for循环，把每个权限类实例化对象，</span><br><span class="line">4、执行自己定义的权限类里面的has<span class="emphasis">_permission方法，里面会判断request.user是否存在</span></span><br><span class="line"><span class="emphasis">5、不存在就返回False，存在就返回True</span></span><br><span class="line"><span class="emphasis">6、之后执行self.permission_</span>denied报错方法，返回的是False就报错，可以自定义报错信息，在has<span class="emphasis">_permission方法中写message = {"status": False, "error": "登录成功之后才能评论"}，就实现了自定义报错</span></span><br><span class="line"><span class="emphasis">7、如果返回的是True就让他进入功能</span></span><br></pre></td></tr></tbody></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
                 
@@ -601,7 +655,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/06/10/Redis%E7%BC%93%E5%AD%98/">http://example.com/2022/06/10/Redis%E7%BC%93%E5%AD%98/</a>
+                    <a href="http://example.com/2022/06/10/drf/">http://example.com/2022/06/10/drf/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -681,7 +735,7 @@
         repo: '',
         owner: '',
         admin: null,
-        id: '2022-06-10T19-06-44',
+        id: '2022-06-10T19-30-38',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -705,7 +759,7 @@
 <script src="/libs/gitment/gitment.js"></script>
 <script>
 var gitment = new Gitment({
-    id: 'Fri Jun 10 2022 19:06:44 GMT+0800',
+    id: 'Fri Jun 10 2022 19:30:38 GMT+0800',
     owner: '',
     repo: '',
     oauth: {
@@ -730,8 +784,8 @@ gitment.render('gitment-content');
 
 <script type="text/javascript">
     disqus_config = function () {
-        this.page.url = 'http://example.com/2022/06/10/Redis%E7%BC%93%E5%AD%98/';
-        this.page.identifier = '/2022/06/10/Redis%E7%BC%93%E5%AD%98/';
+        this.page.url = 'http://example.com/2022/06/10/drf/';
+        this.page.identifier = '/2022/06/10/drf/';
         this.page.title = '';
     };
     let disqus_shortname = '';
@@ -760,48 +814,12 @@ gitment.render('gitment-content');
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
-            <div class="card">
-                <a href="/2022/06/10/mysql%E9%87%8D%E7%82%B9/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
-                        
-                        <span class="card-title"></span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-10
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            祈安
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Current&nbsp;<i class="far fa-dot-circle"></i>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
             </div>
             <div class="card">
-                <a href="/2022/06/10/Redis%E7%BC%93%E5%AD%98/">
+                <a href="/2022/06/10/drf/">
                     <div class="card-image">
                         
                         
@@ -829,6 +847,43 @@ gitment.render('gitment-content');
                     </div>
                 </div>
 
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/06/10/Django/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        
+                        <span class="card-title"></span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-10
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            祈安
+                            
+                        </span>
+                    </div>
+                </div>
                 
             </div>
         </div>
