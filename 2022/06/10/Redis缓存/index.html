@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello World, 且听风吟">
+    <meta name="keywords" content="且听风吟">
     <meta name="description" content="welcome to my word">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Hello World | 且听风吟</title>
+    <title>且听风吟</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -419,12 +419,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hello World</h1>
+                    <h1 class="description center-align post-title"></h1>
                 </div>
             </div>
         </div>
@@ -552,7 +552,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2022-06-08
+                    2022-06-10
                 </div>
                 
 
@@ -573,19 +573,8 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></tbody></table></figure>
+                <figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">redis缓存穿透</span><br><span class="line"><span class="code">    你所要查询的key并不存在于redis缓存中，这时又有大连的请求查询这个key，就会使得数据库负载过大，就像是穿过了缓存直接击中数据库，很容易把数据库给打挂了</span></span><br><span class="line"><span class="code">    解决方案：</span></span><br><span class="line"><span class="code">        第一种方法呢就是数据库查询不到的key直接保存在redis中，再次查询数据库的时候，缓存层直接返回空</span></span><br><span class="line"><span class="code">        第二种方法就涉及到了一个叫布隆过滤器的东西，本质上是一个二进制数组，以空间换时间，以低内存空间解决缓存穿透的问题，将所有存在的key提前存入布隆过滤器，在请求进入缓存之前，布隆过滤器进行拦截，若不存在直接返回空</span></span><br><span class="line"><span class="code">        </span></span><br><span class="line"><span class="code">redis缓存击穿</span></span><br><span class="line"><span class="code">    某一个热点的key失效了，大量的请求直接到达数据库</span></span><br><span class="line"><span class="code">    解决方法：</span></span><br><span class="line"><span class="code">        第一种设置永不过期</span></span><br><span class="line"><span class="code">        第二种就是加互斥锁，互斥锁就是同一时刻只有一个线程能够进行访问，加了互斥锁之后第一个访问完后，缓存中的数据将会被重建，之后直接从缓存中取就可以了</span></span><br><span class="line"><span class="code">        </span></span><br><span class="line"><span class="code">redis缓存雪崩</span></span><br><span class="line"><span class="code">    可能是redis宕机了，也可能是有很多key设置了统一过期时间</span></span><br><span class="line"><span class="code">    解决方案：</span></span><br><span class="line"><span class="code">        第一种构建高可用的Redis缓存：搭建Redis集群，提高Redis的容灾性</span></span><br><span class="line"><span class="code">        第二种使用熔断机制：对存储层增加限流措施，当请求超出限制时，对其提供降级措施，例如：当请求到达一定阈值，直接返回“系统繁忙“等提示，防止过多的请求到达数据库上，这样可以保证一部分用户还可以使用，其他用户多刷新几次也能得到结果</span></span><br></pre></td></tr></tbody></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></tbody></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></tbody></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></tbody></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 
                 
             </div>
@@ -612,7 +601,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/06/08/hello-world/">http://example.com/2022/06/08/hello-world/</a>
+                    <a href="http://example.com/2022/06/10/Redis%E7%BC%93%E5%AD%98/">http://example.com/2022/06/10/Redis%E7%BC%93%E5%AD%98/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -692,7 +681,7 @@
         repo: '',
         owner: '',
         admin: null,
-        id: '2022-06-08T17-46-47',
+        id: '2022-06-10T19-06-44',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -716,7 +705,7 @@
 <script src="/libs/gitment/gitment.js"></script>
 <script>
 var gitment = new Gitment({
-    id: 'Wed Jun 08 2022 17:46:47 GMT+0800',
+    id: 'Fri Jun 10 2022 19:06:44 GMT+0800',
     owner: '',
     repo: '',
     oauth: {
@@ -741,9 +730,9 @@ gitment.render('gitment-content');
 
 <script type="text/javascript">
     disqus_config = function () {
-        this.page.url = 'http://example.com/2022/06/08/hello-world/';
-        this.page.identifier = '/2022/06/08/hello-world/';
-        this.page.title = 'Hello World';
+        this.page.url = 'http://example.com/2022/06/10/Redis%E7%BC%93%E5%AD%98/';
+        this.page.identifier = '/2022/06/10/Redis%E7%BC%93%E5%AD%98/';
+        this.page.title = '';
     };
     let disqus_shortname = '';
 
@@ -776,13 +765,13 @@ gitment.render('gitment-content');
                 <i class="far fa-dot-circle"></i>&nbsp;Current
             </div>
             <div class="card">
-                <a href="/2022/06/08/hello-world/">
+                <a href="/2022/06/10/Redis%E7%BC%93%E5%AD%98/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title"></span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -793,7 +782,7 @@ gitment.render('gitment-content');
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-10
                             </span>
                         <span class="publish-author">
                             
@@ -814,13 +803,13 @@ gitment.render('gitment-content');
                 Current&nbsp;<i class="far fa-dot-circle"></i>
             </div>
             <div class="card">
-                <a href="/2022/06/08/hello-world/">
+                <a href="/2022/06/10/Redis%E7%BC%93%E5%AD%98/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title"></span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -831,7 +820,7 @@ gitment.render('gitment-content');
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-10
                             </span>
                         <span class="publish-author">
                             
