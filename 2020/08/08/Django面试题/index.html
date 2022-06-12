@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="redis缓存, 且听风吟">
+    <meta name="keywords" content="Django面试题, 且听风吟">
     <meta name="description" content="welcome to my word">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>redis缓存 | 且听风吟</title>
+    <title>Django面试题 | 且听风吟</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -419,12 +419,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">redis缓存</h1>
+                    <h1 class="description center-align post-title">Django面试题</h1>
                 </div>
             </div>
         </div>
@@ -540,8 +540,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/redis%E5%9F%BA%E7%A1%80/">
-                                <span class="chip bg-color">redis基础</span>
+                            <a href="/tags/Django%E7%9F%A5%E8%AF%86%E7%82%B9/">
+                                <span class="chip bg-color">Django知识点</span>
                             </a>
                         
                     </div>
@@ -552,8 +552,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/redis/" class="post-category">
-                                redis
+                            <a href="/categories/Django/" class="post-category">
+                                Django
                             </a>
                         
                     </div>
@@ -565,7 +565,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-08-10
+                    2020-08-08
                 </div>
                 
 
@@ -587,12 +587,79 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <span id="more"></span>
-<p>redis<strong>缓存穿透</strong></p>
-<p>你所要查询的key并不存在于redis缓存中，这时又有大连的请求查询这个key，就会使得数据库负载过大，就像是穿过了缓存直接击中数据库，很容易把数据库给打挂了<br>解决方案：<br>第一种方法呢就是数据库查询不到的key直接保存在redis中，再次查询数据库的时候，缓存层直接返回空<br>第二种方法就涉及到了一个叫布隆过滤器的东西，本质上是一个二进制数组，以空间换时间，以低内存空间解决缓存穿透的问题，将所有存在的key提前存入布隆过滤器，在请求进入缓存之前，布隆过滤器进行拦截，若不存在直接返回空</p>
-<p>redis<strong>缓存击穿</strong></p>
-<p>某一个热点的key失效了，大量的请求直接到达数据库<br>解决方法：<br>第一种设置永不过期<br>第二种就是加互斥锁，互斥锁就是同一时刻只有一个线程能够进行访问，加了互斥锁之后第一个访问完后，缓存中的数据将会被重建，之后直接从缓存中取就可以 </p>
-<p>redis<strong>缓存雪崩</strong></p>
-<p>可能是redis宕机了，也可能是有很多key设置了统一过期时间<br>解决方案：<br>第一种构建高可用的Redis缓存：搭建Redis集群，提高Redis的容灾性<br>第二种使用熔断机制：对存储层增加限流措施，当请求超出限制时，对其提供降级措施，例如：当请求到达一定阈值，直接返回“系统繁忙“等提示，防止过多的请求到达数据库上，这样可以保证一部分用户还可以使用，其他用户多刷新几次也能得到结果</p>
+
+
+<h3 id="Django的生命周期"><a href="#Django的生命周期" class="headerlink" title="Django的生命周期"></a>Django的生命周期</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1、当用户在浏览器输入url，此时浏览器会生成请求头和请求体随之发送给服务端。</span><br><span class="line">2、url经过Django中的wsgi时完成请求对象创建</span><br><span class="line">3、经过Django的中间件，到路由系统匹配路由</span><br><span class="line">4、完成匹配后进入相应的view视图，执行相关代码返回执行结果</span><br><span class="line">5、Django把客户端想要的数据作为字符串返回客户端</span><br><span class="line">6、客户端接收数据，再渲染到页面展现给用户</span><br></pre></td></tr></tbody></table></figure>
+
+<img src="https://s2.loli.net/2022/06/12/AK93GHI4SJM7afn.png" alt="image-20220603144648987" style="zoom:50%;">
+
+<h3 id="Django内置组件"><a href="#Django内置组件" class="headerlink" title="Django内置组件"></a>Django内置组件</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">admin，from，modelfrom，model</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="FBV和CBV"><a href="#FBV和CBV" class="headerlink" title="FBV和CBV"></a>FBV和CBV</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FBV:基于函数的视图函数</span><br><span class="line">CBV:基于类的视图函数</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="session和cookie"><a href="#session和cookie" class="headerlink" title="session和cookie"></a>session和cookie</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">区别：</span><br><span class="line"><span class="code">    cookie数据存放于客户的浏览器中，session的数据存于服务器中，cookie不是很安全，他人可以分析存放于本地的cookie并进行cookie欺骗，若从安全面考虑则应该使用session，session会在一定的时间内保存在服务器上。当访问量增多，会比较占用服务器的性能，所以建议将登陆信息等重要的信息存放在session中，其他信息则放在cookie中</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="HTTP请求常见的方式"><a href="#HTTP请求常见的方式" class="headerlink" title="HTTP请求常见的方式"></a>HTTP请求常见的方式</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1、opions 返回服务器针对特定资源所支持的HTML请求方法，允许客户端查看服务器性能</span><br><span class="line">2、Get 向特定资源发出请求</span><br><span class="line">3、post 向指定资源位置提交数据进行处理请求（提交表单，上传文件），又可能导致新的资源的建立或原有资源的修改</span><br><span class="line">4、put 向指定资源位置上传最新内容</span><br><span class="line">5、head</span><br><span class="line">6、delete</span><br><span class="line">7、trace</span><br><span class="line">8、connect</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="MVC和MTV模式"><a href="#MVC和MTV模式" class="headerlink" title="MVC和MTV模式"></a>MVC和MTV模式</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Django的MTV模式本质上和MVC是一样的，也是为了各组件间保持松耦合关系，只是定义上有些许不同。</span><br><span class="line">Django的MTV分别是指： </span><br><span class="line">   M 代表模型（Model）： 负责业务对象和数据库的关系映(ORM) </span><br><span class="line">   T 代表模板 (Template)：负责如何把页面展示给用户(html) </span><br><span class="line">   V 代表视图（View）： 负责业务逻辑，并在适当时候调用Model和Template。 </span><br><span class="line">   除了以上三层之外，还需要一个URL分发器，它的作用是将一个个URL的页面请求分发给不同的View处理，View再调用相应Model Template    优势：低耦合，开发快捷，部署方便，可重用性高，维护成本低。</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="ORM"><a href="#ORM" class="headerlink" title="ORM"></a>ORM</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">对象关系映射</span><br><span class="line">优点：ORM使得数据库的交互更加简单了，并且不用考虑开始的sql语句，实现快速开发</span><br><span class="line">缺陷:sql封装死了 有时候查询速度很慢</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="中间件的4种方法及应用场景"><a href="#中间件的4种方法及应用场景" class="headerlink" title="中间件的4种方法及应用场景"></a>中间件的4种方法及应用场景</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">自定义中间件必须继承MiddlewareMixin</span><br><span class="line">from django.utils.deprecation import MiddlewareMixin</span><br><span class="line">方法：</span><br><span class="line"><span class="code">    process_request</span></span><br><span class="line"><span class="code">    process_view</span></span><br><span class="line"><span class="code">    process_exception   view中出现错误执行该方法</span></span><br><span class="line"><span class="code">    process_response</span></span><br><span class="line"><span class="code">    process_template_responseprocess  函数中有render执行</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="什么是wsgi、uwsgi、uWSGI"><a href="#什么是wsgi、uwsgi、uWSGI" class="headerlink" title="什么是wsgi、uwsgi、uWSGI"></a>什么是wsgi、uwsgi、uWSGI</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">wsgi:</span><br><span class="line"><span class="code">    是web网关接口，是一套协议，用于接收用户请求并将请求进行初次封装，随即将请求交给web框架</span></span><br><span class="line"><span class="code">    实现wsgi协议的模块：</span></span><br><span class="line"><span class="code">        1、wsgiref：本质上就是编写一个socket服务端，用于接收用户请求（django）</span></span><br><span class="line"><span class="code">        2、werkzeug：本质上就是编写一个socket服务端，用于接收用户请求（flask）</span></span><br><span class="line"><span class="code"></span></span><br><span class="line">uwsgi:</span><br><span class="line"><span class="code">    与wsgi一样是一种通信协议，它是uWSGI服务器的独占协议，用于定义传输信息的类型</span></span><br><span class="line"><span class="code"></span></span><br><span class="line">uWSGI:</span><br><span class="line"><span class="code">    是一个web服务器，实现了wsgi协议，uWSGI协议，http协议</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>ORM中的方法</p>
+<figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1、model.表名.objects.all() 获取表中所有对象，结果是对象列表</span><br><span class="line">2、model.表名.objects.get(条件) 获取符合条件的对象</span><br><span class="line">3、model.表名.objects.filter(条件) 筛选所有符合条件的对象</span><br><span class="line">4、model.表名.objects.exclude(条件) 筛选所有不合符条件的对象</span><br><span class="line">5、model.表名.objects.all().values() 字典列表 values()括号内不指定则显示全部，若有指定则显示指定的</span><br><span class="line">6、model.表名.objects.all().values<span class="emphasis">_list() 元祖列表 括号内指定同上</span></span><br><span class="line"><span class="emphasis">7、model.表名.objects.all().order_</span>by('id') 按照ID升序</span><br><span class="line">8、model.表名.objects.all().order<span class="emphasis">_by('-id') 按ID降序</span></span><br><span class="line"><span class="emphasis">9、model.表名.objects.all().order_</span>by('a','-id') 先按a升序，a字段相同的按ID降序</span><br><span class="line">10、model.表名.objects.all().order<span class="emphasis">_by('-id').reverse() 对结果反转，reverse前必须排序，否则无效；或在model中表类下中的Meta中指定ordering=('id',) 注意逗号不能少</span></span><br><span class="line"><span class="emphasis">11、distinct() 去重</span></span><br><span class="line"><span class="emphasis">12、model.表名.objects.filter().exists() 判断列表是否有东西，返回true或false</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="ORM中三种能写sql语句的方法"><a href="#ORM中三种能写sql语句的方法" class="headerlink" title="ORM中三种能写sql语句的方法"></a>ORM中三种能写sql语句的方法</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1、execute 直接访问数据库，避开模型层</span><br><span class="line">2、extra </span><br><span class="line">3、raw for p in Person.objects.raw('SELECT <span class="emphasis">* FROM myapp_person')   print(p)</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="ORM批量处理数据"><a href="#ORM批量处理数据" class="headerlink" title="ORM批量处理数据"></a>ORM批量处理数据</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">插入数据：</span><br><span class="line"><span class="code">    创建一个对象列表，然后调用bulk_create方法，一次性将列表中的数据插入数据库</span></span><br><span class="line"><span class="code">    product_list_to_insert = list()</span></span><br><span class="line"><span class="code">    for x in range(10):</span></span><br><span class="line"><span class="code">        product_list_to_insert.append(Product(name='product name' + str(x),price=x))</span></span><br><span class="line"><span class="code">        Product.objects.bulk_create(product_list_to_insert)</span></span><br><span class="line"><span class="code">更新数据:先进行数据过滤，再调用update方法一次性更新</span></span><br><span class="line"><span class="code">    Product.objects.filter(name_contains='name').update(name='new name')</span></span><br><span class="line"><span class="code">删除数据：先进行数据过滤，然后再调用delete方法删除</span></span><br><span class="line"><span class="code">    Product.objects.filter(name_contains='name query').delete()</span></span><br><span class="line"><span class="code"></span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="CSRF实现机制"><a href="#CSRF实现机制" class="headerlink" title="CSRF实现机制"></a>CSRF实现机制</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、查看中间件是否启用，未启用则启动中间件</span><br><span class="line">2、post请求</span><br><span class="line">3、验证码</span><br><span class="line">4、表单中添加{% csrf<span class="emphasis">_token %}标签</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="Django中提供了runserver为什么不能用户来部署项目-runserver和uWSGI的区别"><a href="#Django中提供了runserver为什么不能用户来部署项目-runserver和uWSGI的区别" class="headerlink" title="Django中提供了runserver为什么不能用户来部署项目(runserver和uWSGI的区别)"></a>Django中提供了runserver为什么不能用户来部署项目(runserver和uWSGI的区别)</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1、runserver方法是调试Django时用到的运行方式，是Django自带的</span><br><span class="line">   WSGI server运行主要在测试和开发中使用，runserver开启的是单进程</span><br><span class="line">2、uWSGI是一个web服务器，实现了wsgi协议，uWSGI协议，http协议，它具有超快的性能，低内存占用和多app管理等优点，与nginx搭配可构成一个生产环境，能够将用户访问请求和应用app隔开，实现真正的部署</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="calss-Meta中原信息字段有哪些"><a href="#calss-Meta中原信息字段有哪些" class="headerlink" title="calss Meta中原信息字段有哪些"></a>calss Meta中原信息字段有哪些</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1、app<span class="emphasis">_label 应用场景：模型类不在默认的应用程序包下的models文件中，这时候需要指定你这个模型类是哪个应用程序的</span></span><br><span class="line"><span class="emphasis">2、db_</span>table 应用场景：用于指定自定义数据库表名</span><br><span class="line">3、db<span class="emphasis">_tablespace 应用场景：通过该字段指定模型对应的数据库表放在哪个数据库表空间</span></span><br><span class="line"><span class="emphasis">4、verbose_</span>name 应用场景：给模型类起名字，注释</span><br><span class="line">5、verbose<span class="emphasis">_name_</span>plural 应用场景：模型的复数形式是什么</span><br><span class="line">6、ordering 应用场景：对象返回的记录结果集是按哪个字段排序的</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="get和filter方法的区别"><a href="#get和filter方法的区别" class="headerlink" title="get和filter方法的区别"></a>get和filter方法的区别</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">输入参数：</span><br><span class="line"><span class="code">    get的参数只能是model中定义的字段，只支持严格匹配</span></span><br><span class="line"><span class="code">    filter的参数可以使字段，也可以是扩展的where查询关键字，如in like</span></span><br><span class="line"><span class="code">返回值：</span></span><br><span class="line"><span class="code">    get返回值是一个定义的model对象</span></span><br><span class="line"><span class="code">    filter返回值是一个新的queryset对象，然后可以对queryset再进行查询，再返回新的qureyset对象，支持链式操作，queryset是一个集合对象，支持迭代、遍历、切片等，但不同等于list</span></span><br><span class="line"><span class="code">异常：</span></span><br><span class="line"><span class="code">    get只有一条记录返回的时候才正常，也就是说明get查询的字段必须是主键或唯一约束的字段，其余的都会抛异常</span></span><br><span class="line"><span class="code">    filter有没有匹配记录都不会抛异常</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="http请求的执行流程"><a href="#http请求的执行流程" class="headerlink" title="http请求的执行流程"></a>http请求的执行流程</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1、域名解析</span><br><span class="line">2、建立连接</span><br><span class="line">3、接收请求 接收客户端访问某一资源的请求</span><br><span class="line"><span class="code">    单进程I/O   多进程I/O    复用I/O</span></span><br><span class="line"><span class="code">4、处理请求</span></span><br><span class="line"><span class="code">5、访问资源</span></span><br><span class="line"><span class="code">6、构建响应报文</span></span><br><span class="line"><span class="code">7、发送响应报文</span></span><br><span class="line"><span class="code">8、记录日志</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="select-related和prefetch-related的区别"><a href="#select-related和prefetch-related的区别" class="headerlink" title="select_related和prefetch_related的区别"></a>select_related和prefetch_related的区别</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">有外键关系存在时，可以很好的减少数据库的请求次数，减轻数据库的压力，提高性能</span><br><span class="line">select<span class="emphasis">_related通过表关系join关联查询，一次性获取所有数据，只进行一次sql查询</span></span><br><span class="line"><span class="emphasis">prefetch_</span>related分别查询每一个表，根据之间的关系进行处理，执行两次sql查询</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="Django中orm如何设置读写分离"><a href="#Django中orm如何设置读写分离" class="headerlink" title="Django中orm如何设置读写分离"></a>Django中orm如何设置读写分离</h4><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、手动设置：通过using(db<span class="emphasis">_name)来指定使用的数据库</span></span><br><span class="line"><span class="emphasis">2、自动读写分离：</span></span><br><span class="line"><span class="emphasis">    1、定义类</span></span><br><span class="line"><span class="emphasis">    2、配置settings文件，在其中指定DATEBASE</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="什么是RPC"><a href="#什么是RPC" class="headerlink" title="什么是RPC"></a>什么是RPC</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">定义：远程过程调用(RPC)是一种协议，程序可使用这种协议向网络中的另一台计算机上的程序请求服务</span><br><span class="line">1、RPC采用客户机/服务器模式，请求程序就是一个客户机，而服务提供程序就是一个服务器</span><br><span class="line">2、客户机调用进程发送一个有进程参数的调用信息到服务进程，等待应答。在服务端，进程保持睡眠状态直至调用信息到达，当第一个调用信息到达，服务器获得进程参数，计算结果，发送答复信息，继续等待下一个调用信息</span><br><span class="line">3、客户端调用进程接收答复信息，获得进程结果，调用继续执行</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="如何实现用户的登陆认证"><a href="#如何实现用户的登陆认证" class="headerlink" title="如何实现用户的登陆认证"></a>如何实现用户的登陆认证</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、cookie session</span><br><span class="line">2、token登陆成功后生成加密字符串</span><br><span class="line">3、JWT就是一种用户在登录后生成token并把token存放于前端，后端不需要维护用户的状态信息但是可以进行验证token有效性的认证及状态管理方式</span><br><span class="line">4、最后一步签名的过程其实是对头部以及负载的内容进行签名处理，防止内容被篡改，提高安全性</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="django-rest-framework框架中都有哪些组件"><a href="#django-rest-framework框架中都有哪些组件" class="headerlink" title="django rest framework框架中都有哪些组件"></a>django rest framework框架中都有哪些组件</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1、序列化组件：serializers 对queryset序列化以及对请求数据格式教研</span><br><span class="line">2、认证组件：写一个类并注册到认证类 在类的方法中编写认证逻辑</span><br><span class="line">3、权限组件：写一个类并注册到权限类 在类的方法中编写认证逻辑</span><br><span class="line">4、频率组件：写一个类并注册到频率类 在类的方法中编写认证逻辑</span><br><span class="line">5、渲染器：定义数据如何渲染至页面，在渲染器类中注册</span><br><span class="line">6、分页：对获取到的数据进行分页处理</span><br><span class="line"><span class="code">    1、基本分页：pagenumberpagination</span></span><br><span class="line"><span class="code">    2、偏移分页：limitoffsetpagination</span></span><br><span class="line"><span class="code">    3、游标分页：Cursorpagination</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="使用orm和原生sql的优缺点"><a href="#使用orm和原生sql的优缺点" class="headerlink" title="使用orm和原生sql的优缺点"></a>使用orm和原生sql的优缺点</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、orm的开发速度快，操作简单，但是执行速度较慢，在处理多表联查等复杂操作时orm语法会变得复杂</span><br><span class="line">2、sql开发速度慢，但是执行速度快，性能强</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="F、Q查询"><a href="#F、Q查询" class="headerlink" title="F、Q查询"></a>F、Q查询</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">F作用：两个字段之间做比较，专门取对象中某列值的操作</span><br><span class="line">Q作用：对对象进行复杂查询，支持特殊操作符运算来组合生成不同的Q对象</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="你能列举几个减少数据库查询次数的方法吗"><a href="#你能列举几个减少数据库查询次数的方法吗" class="headerlink" title="你能列举几个减少数据库查询次数的方法吗"></a>你能列举几个减少数据库查询次数的方法吗</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1、利用Django queryset的惰性和自带缓存的特性</span><br><span class="line"></span><br><span class="line">2、使用select<span class="emphasis">_related和prefetch_</span>related方法在数据库层面进行Join操作</span><br><span class="line"></span><br><span class="line">3、使用缓存</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="Django的模型继承有哪几种方式-它们有什么区别以及何时使用它们"><a href="#Django的模型继承有哪几种方式-它们有什么区别以及何时使用它们" class="headerlink" title="Django的模型继承有哪几种方式? 它们有什么区别以及何时使用它们?"></a>Django的模型继承有哪几种方式? 它们有什么区别以及何时使用它们?</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">1.</span> 抽象模型继承(abstract model)</span><br><span class="line"></span><br><span class="line"><span class="bullet">2.</span> 多表模型继承(multi-table inheritance)</span><br><span class="line"></span><br><span class="line"><span class="bullet">3.</span> 代理模型(proxy model)</span><br><span class="line"></span><br><span class="line">它们的区别如下:</span><br><span class="line"></span><br><span class="line"><span class="code">    1、Django不会为抽象模型在数据库中生成自己的数据表。父类Meta中的abstract=True也不会传递给子类。如果你发现多模型有很多共同字段时，需使用抽象模型继承。</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">    2、多表模型继承与抽象模型继承最大的区别在于Django也会为父类模型建立自己的数据表，同时隐式地在父类和子类之间建立一个一对一关系。</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">    3、如果我们只想改变某个模型的行为方法，而不是添加额外的字段或创建额外的数据表，我们就可以使用代理模型(proxy model)。设置一个代理模型，需要在子类模型Meta选项中设置proxy=True， Django不会为代理模型生成新的数据表</span></span><br></pre></td></tr></tbody></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                 
             </div>
@@ -619,7 +686,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2020/08/10/Redis%E7%BC%93%E5%AD%98/">http://example.com/2020/08/10/Redis%E7%BC%93%E5%AD%98/</a>
+                    <a href="http://example.com/2020/08/08/Django%E9%9D%A2%E8%AF%95%E9%A2%98/">http://example.com/2020/08/08/Django%E9%9D%A2%E8%AF%95%E9%A2%98/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -657,8 +724,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/redis%E5%9F%BA%E7%A1%80/">
-                                    <span class="chip bg-color">redis基础</span>
+                                <a href="/tags/Django%E7%9F%A5%E8%AF%86%E7%82%B9/">
+                                    <span class="chip bg-color">Django知识点</span>
                                 </a>
                             
                         </div>
@@ -703,7 +770,7 @@
         repo: '',
         owner: '',
         admin: null,
-        id: '2020-08-10T19-57-21',
+        id: '2020-08-08T14-27-33',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -727,7 +794,7 @@
 <script src="/libs/gitment/gitment.js"></script>
 <script>
 var gitment = new Gitment({
-    id: 'Mon Aug 10 2020 19:57:21 GMT+0800',
+    id: 'Sat Aug 08 2020 14:27:33 GMT+0800',
     owner: '',
     repo: '',
     oauth: {
@@ -752,9 +819,9 @@ gitment.render('gitment-content');
 
 <script type="text/javascript">
     disqus_config = function () {
-        this.page.url = 'http://example.com/2020/08/10/Redis%E7%BC%93%E5%AD%98/';
-        this.page.identifier = '/2020/08/10/Redis%E7%BC%93%E5%AD%98/';
-        this.page.title = 'redis缓存';
+        this.page.url = 'http://example.com/2020/08/08/Django%E9%9D%A2%E8%AF%95%E9%A2%98/';
+        this.page.identifier = '/2020/08/08/Django%E9%9D%A2%E8%AF%95%E9%A2%98/';
+        this.page.title = 'Django面试题';
     };
     let disqus_shortname = '';
 
@@ -782,10 +849,9 @@ gitment.render('gitment-content');
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
                 <a href="/2020/08/10/Redis%E7%BC%93%E5%AD%98/">
                     <div class="card-image">
@@ -803,9 +869,9 @@ gitment.render('gitment-content');
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-10
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-08-10
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -818,7 +884,6 @@ gitment.render('gitment-content');
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -837,13 +902,13 @@ gitment.render('gitment-content');
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/08/08/Django%E9%9D%A2%E8%AF%95%E9%A2%98/">
+                <a href="/2020/08/08/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="Django面试题">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="深浅拷贝">
                         
-                        <span class="card-title">Django面试题</span>
+                        <span class="card-title">深浅拷贝</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -860,8 +925,8 @@ gitment.render('gitment-content');
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Django/" class="post-category">
-                                    Django
+                            <a href="/categories/%E5%B0%8F%E7%9F%A5%E8%AF%86/" class="post-category">
+                                    小知识
                                 </a>
                             
                             
@@ -871,8 +936,8 @@ gitment.render('gitment-content');
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Django%E7%9F%A5%E8%AF%86%E7%82%B9/">
-                        <span class="chip bg-color">Django知识点</span>
+                    <a href="/tags/python%E5%9F%BA%E7%A1%80/">
+                        <span class="chip bg-color">python基础</span>
                     </a>
                     
                 </div>
