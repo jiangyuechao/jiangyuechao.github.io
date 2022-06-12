@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="ORM, 且听风吟">
+    <meta name="keywords" content="Django路由层, 且听风吟">
     <meta name="description" content="welcome to my word">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>ORM | 且听风吟</title>
+    <title>Django路由层 | 且听风吟</title>
     <link rel="icon" type="image/png" href="/source/images/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -312,12 +312,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">ORM</h1>
+                    <h1 class="description center-align post-title">Django路由层</h1>
                 </div>
             </div>
         </div>
@@ -433,8 +433,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Django%E4%B9%8BORM/">
-                                <span class="chip bg-color">Django之ORM</span>
+                            <a href="/tags/Django%E5%9F%BA%E7%A1%80/">
+                                <span class="chip bg-color">Django基础</span>
                             </a>
                         
                     </div>
@@ -458,7 +458,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-06-22
+                    2020-06-23
                 </div>
                 
 
@@ -481,13 +481,35 @@
             <div id="articleContent">
                 <span id="more"></span>
 
-<h3 id="ORM的概念"><a href="#ORM的概念" class="headerlink" title="ORM的概念"></a>ORM的概念</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> 什么是ORM？</span><br><span class="line">	关系映射对象</span><br><span class="line">    <span class="comment"># 不但在python中有，在其他语言中也有</span></span><br><span class="line"><span class="number">2.</span> 特点：</span><br><span class="line">	在操作数据库的时候，不用在写原生SQL语句</span><br><span class="line">    <span class="string">'''相对而言，执行效率低了'''</span></span><br><span class="line"><span class="number">3.</span> ORM书写的位置：</span><br><span class="line">	在models.py文件中</span><br><span class="line"><span class="number">4.</span> 如何使用？</span><br><span class="line">	类名    &gt;&gt;&gt;   表名</span><br><span class="line">     对象    &gt;&gt;&gt;   记录</span><br><span class="line">     属性    &gt;&gt;&gt;    字段</span><br><span class="line"> <span class="number">5.</span> 如何来创建表？</span><br><span class="line">	<span class="comment"># 创建一张表出来,必须继承models</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">User</span>(models.Model):</span><br><span class="line">    <span class="comment"># 组合索引，联合索引</span></span><br><span class="line">    <span class="comment"># id int primary key auto_increment</span></span><br><span class="line">    <span class="built_in">id</span> = models.IntegerField(primary_key=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># username, max_length必须写</span></span><br><span class="line">    username = models.CharField(max_length=<span class="number">32</span>)  <span class="comment"># varchar(32)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># password, orm支持自定义数据类型</span></span><br><span class="line">    password = models.CharField(max_length=<span class="number">32</span>)  <span class="comment"># char()</span></span><br><span class="line">    </span><br><span class="line"><span class="number">6.</span> 类写完之后，一定要执行数据库迁移命令，才能真正的创建出来数据表</span><br><span class="line">	<span class="string">'''</span></span><br><span class="line"><span class="string">		python36 manage.py makemigrations</span></span><br><span class="line"><span class="string">		python36 manage.py migrate</span></span><br><span class="line"><span class="string">	'''</span></span><br><span class="line">    <span class="comment"># 凡是跟数据相关的操作都要执行以上两句话</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 补充：ORM不能创建数据库，必须提前把库创建完成</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="路由层"><a href="#路由层" class="headerlink" title="路由层"></a>路由层</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> 路由匹配, urls.py中</span><br><span class="line"></span><br><span class="line"><span class="comment"># APPEND_SLASH = False 控制django是否自动加斜杠匹配</span></span><br><span class="line"></span><br><span class="line">url(<span class="string">r'^testadd/$'</span>, views.testadd)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 匹配规则：从上到下只要正则表达式匹配成功，就不会往下匹配了</span></span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">	get请求的传参方式？</span></span><br><span class="line"><span class="string">		http://127.0.0.1:8000/test/?a=1</span></span><br><span class="line"><span class="string">		http://127.0.0.1:8000/test/1</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></tbody></table></figure>
 
-<h3 id="字段的增删改查"><a href="#字段的增删改查" class="headerlink" title="字段的增删改查"></a>字段的增删改查</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> <span class="string">'''</span></span><br><span class="line"><span class="string">        如果你的表有主键，并且主键名也叫id，那么可以省略不写，自动创建</span></span><br><span class="line"><span class="string">        如果你的主键名不叫id，那么，就需要指定了</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="comment"># 创建一张表出来,必须继承models</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">User</span>(models.Model):</span><br><span class="line">    <span class="comment"># 组合索引，联合索引</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">        如果你的表有主键，并且主键名也叫id，那么可以省略不写，自动创建</span></span><br><span class="line"><span class="string">        如果你的主键名不叫id，那么，就需要指定了</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="comment"># id int primary key auto_increment</span></span><br><span class="line">    <span class="built_in">id</span> = models.IntegerField(primary_key=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># username, max_length必须写</span></span><br><span class="line">    username = models.CharField(max_length=<span class="number">32</span>)  <span class="comment"># varchar(32)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># password, orm支持自定义数据类型</span></span><br><span class="line">    password = models.CharField(max_length=<span class="number">32</span>)  <span class="comment"># char() </span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="无名分组和有名分组"><a href="#无名分组和有名分组" class="headerlink" title="无名分组和有名分组"></a>无名分组和有名分组</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 无名分组</span></span><br><span class="line">url(<span class="string">r'^test/(\d+)'</span>, views.test),</span><br><span class="line"><span class="comment"># 会把括号中匹配的数字当成位置参数传给视图函数</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 有名分组</span></span><br><span class="line">url(<span class="string">r'^test/(?P&lt;aaaa&gt;\d{2})$'</span>, views.test), <span class="comment"># # 会把括号中匹配的数字当成关键字参数传给视图函数</span></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 
-<h3 id="ORM数据的增删改查"><a href="#ORM数据的增删改查" class="headerlink" title="ORM数据的增删改查"></a>ORM数据的增删改查</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 增加数据</span></span><br><span class="line">    <span class="comment"># sql: insert into t1 ()...</span></span><br><span class="line">    <span class="comment"># ORM:</span></span><br><span class="line">    <span class="comment"># 第一种方式</span></span><br><span class="line">    <span class="comment"># res=models.User.objects.create(username='ly', password=123)</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">        返回值是当前插入的数据对象</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="comment"># print(res.username)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 第二种方式：</span></span><br><span class="line">    <span class="comment"># obj=models.User(username='ly1', password=123)</span></span><br><span class="line">    <span class="comment"># obj.save() # 这句话才是真正的操作数据</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 修改:第一种方式</span></span><br><span class="line">    <span class="comment"># sql:update db1 set username = '', password = '' where id=1 and ...</span></span><br><span class="line">    <span class="comment"># orm:</span></span><br><span class="line">    <span class="comment"># models.User.objects.filter(id=1).update(username='LY')</span></span><br><span class="line">    <span class="comment"># models.User.objects.filter(pk=1).update(username='LY')</span></span><br><span class="line"></span><br><span class="line">    <span class="string">'''返回值是影响的行数'''</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 第二种方式</span></span><br><span class="line">    <span class="comment"># res = models.User.objects.filter(pk=1).all()[0]</span></span><br><span class="line">    <span class="comment"># filter里面的条件是and关系</span></span><br><span class="line">    <span class="comment"># res = models.User.objects.filter(pk=1, username='aaaa11').first()  # [0]</span></span><br><span class="line">    <span class="comment"># res = models.User.objects.filter(pk=1).first()  # [0]</span></span><br><span class="line">    <span class="comment"># res = models.User.objects.filter(username='aaaa').filter(password=123).all()  # [0]</span></span><br><span class="line">    <span class="string">'''只要返回值是QuerySet对象，那么，就可以一直点queryset提供的方法'''</span></span><br><span class="line">    <span class="comment"># print(res) # &lt;QuerySet [&lt;User: User object&gt;]&gt;</span></span><br><span class="line">    <span class="comment"># print(res.username)</span></span><br><span class="line">    <span class="comment"># print(res.password)</span></span><br><span class="line">    <span class="comment"># res.username = 'aaaa'</span></span><br><span class="line">    <span class="comment"># res.save()</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 删除:delete from user where id = 1</span></span><br><span class="line">    models.User.objects.<span class="built_in">filter</span>(pk=<span class="number">1</span>).delete()</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="反向解析"><a href="#反向解析" class="headerlink" title="反向解析"></a>反向解析</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 反向解析其实就是通过一个路由的别名，可以得到该别名所在的这行路由的完整地址</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 路由是可以起别名的</span></span><br><span class="line"><span class="comment"># 反向解析</span></span><br><span class="line">url(<span class="string">r'^v1/v2/v3/v4/v5/test/'</span>, views.test, name=<span class="string">'test'</span>),</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> reverse</span><br><span class="line"><span class="comment"># 1. 后端反向解析</span></span><br><span class="line"><span class="built_in">print</span>(reverse(<span class="string">'test'</span>)) <span class="comment"># /test/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 带参数的反向解析</span></span><br><span class="line"><span class="comment"># 1. 后端反向解析</span></span><br><span class="line"><span class="built_in">print</span>(reverse(<span class="string">'test'</span>, args=(<span class="number">11111</span>, ))) <span class="comment"># /test/</span></span><br><span class="line"><span class="built_in">print</span>(reverse(<span class="string">'test'</span>, kwargs={<span class="string">'aaa'</span>: <span class="number">1111</span>})) <span class="comment"># /test/</span></span><br><span class="line"></span><br><span class="line"><span class="string">'''无名有名不能混合使用，可以单个多次使用'''</span></span><br><span class="line"><span class="comment"># url(r'^test/(\d+)/(\d+)/(\d+)/(\d+)', views.test, name='test'),</span></span><br><span class="line">    url(<span class="string">r'^test/(?P&lt;aaa&gt;\d+)/(?P&lt;bbb&gt;\d+)/(?P&lt;ccc&gt;\d+)/(\d+)'</span>, views.test, name=<span class="string">'test'</span>),</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 
-<h3 id="ORM创建表关系"><a href="#ORM创建表关系" class="headerlink" title="ORM创建表关系"></a>ORM创建表关系</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mysql是关系型数据库</span></span><br><span class="line"></span><br><span class="line">一对一：</span><br><span class="line">	<span class="string">'''外键字段建在任何一方都可以，但是，推荐建在使用频率比较高的一张表'''</span></span><br><span class="line">一对多</span><br><span class="line">	<span class="string">'''</span></span><br><span class="line"><span class="string">		外键字段建在多的一方</span></span><br><span class="line"><span class="string">	'''</span></span><br><span class="line">多对多</span><br><span class="line">	<span class="string">'''</span></span><br><span class="line"><span class="string">		外键字段不建在任何一张表，而是，建在第三张表中</span></span><br><span class="line"><span class="string">	'''</span></span><br><span class="line">eg：</span><br><span class="line">	</span><br><span class="line">	图书表</span><br><span class="line">    出版社表</span><br><span class="line">    作者表</span><br><span class="line">    作者详情表</span><br><span class="line">    </span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    	图书和出版社是一对多，图书是多，出版社是一</span></span><br><span class="line"><span class="string">    	图书和作者是多对多的关系</span></span><br><span class="line"><span class="string">    	作者和作者详情表是一对一</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 不常用的数据我们称之为冷数据，</span></span><br><span class="line">    <span class="comment"># 常用的数据我们称之为热数据</span></span><br><span class="line">    <span class="comment"># ORM创建表关系</span></span><br><span class="line">    <span class="comment"># 1. 先创建这张表的基础字段，</span></span><br><span class="line">    <span class="comment"># 2. 在回头创建外键字段</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 出版社表</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Book</span>(models.Model):</span><br><span class="line">    title = models.CharField(max_length=<span class="number">32</span>)</span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">        float</span></span><br><span class="line"><span class="string">        double</span></span><br><span class="line"><span class="string">        decimal(5, 2) 999999.99</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="comment"># decimal(8, 2)</span></span><br><span class="line">    price = models.DecimalField(max_digits=<span class="number">8</span>, decimal_places=<span class="number">2</span>)</span><br><span class="line">    <span class="comment"># publish_id = models.ForeignKey(to='Publish', to_field='id')</span></span><br><span class="line">    publish_id = models.ForeignKey(to=<span class="string">'Publish'</span>)  <span class="comment"># 如果关联的是id字段，那么可以省略不写</span></span><br><span class="line">    <span class="comment"># publish_id = models.ForeignKey(to=Publish)  # 如果关联的是id字段，那么可以省略不写</span></span><br><span class="line"></span><br><span class="line">    authors = models.ManyToManyField(to=<span class="string">'Author'</span>)</span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">        authors是一个虚拟字段，不会真正的在book表中创建出来这个字段</span></span><br><span class="line"><span class="string">        这个字段是关联第三张表的</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Publish</span>(models.Model):</span><br><span class="line">    addr = models.CharField(max_length=<span class="number">32</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 作者表</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Author</span>(models.Model):</span><br><span class="line">    name = models.CharField(max_length=<span class="number">128</span>)</span><br><span class="line"></span><br><span class="line">    author_detail = models.OneToOneField(to=<span class="string">'AuthorDetail'</span>)</span><br><span class="line"><span class="comment"># 作者详情表</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">AuthorDetail</span>(models.Model):</span><br><span class="line">    phone = models.CharField(max_length=<span class="number">32</span>)</span><br><span class="line">   </span><br></pre></td></tr></tbody></table></figure>
+<h3 id="路由分发"><a href="#路由分发" class="headerlink" title="路由分发"></a>路由分发</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 重点</span></span><br><span class="line">以后我们的django项目会越来越大，那么就会导致总路由文件会越来越大，就会非常难维护，我们会把总路由分开到不同的应用下面</span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">	django的每一个应用都支持有自己的</span></span><br><span class="line"><span class="string">		urls.py</span></span><br><span class="line"><span class="string">		templates</span></span><br><span class="line"><span class="string">		static</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 怎么样把这些应用串起来？就是使用路由分发。</span></span><br><span class="line"><span class="comment"># 使用路由分发一般都是多个应用</span></span><br><span class="line"></span><br><span class="line"> <span class="comment"># 路由分发</span></span><br><span class="line">    <span class="string">'''第一种方式'''</span></span><br><span class="line">    <span class="keyword">from</span> app01 <span class="keyword">import</span> urls <span class="keyword">as</span> app01_urls</span><br><span class="line">	<span class="keyword">from</span> app02 <span class="keyword">import</span> urls <span class="keyword">as</span> app02_urls</span><br><span class="line">    url(<span class="string">r'^app01/'</span>, include(app01_urls)),</span><br><span class="line">    url(<span class="string">r'^app02/'</span>, include(app02_urls)),</span><br><span class="line"> <span class="string">'''</span></span><br><span class="line"><span class="string"> 	强调：路由分发时，总路由第一个参数一定不能加$</span></span><br><span class="line"><span class="string"> '''</span></span><br><span class="line">	</span><br><span class="line">    <span class="comment"># 第二种方式</span></span><br><span class="line">	url(<span class="string">r'^app01/'</span>, include(<span class="string">'app01.urls'</span>)),</span><br><span class="line">    url(<span class="string">r'^app02/'</span>, include(<span class="string">'app02.urls'</span>)),</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="名称空间"><a href="#名称空间" class="headerlink" title="名称空间"></a>名称空间</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 当多个应用出现相同的别名时，反向解析就没办法识别了</span></span><br><span class="line">  url(<span class="string">r'^app01/'</span>, include(<span class="string">'app01.urls'</span>, namespace=<span class="string">'app01'</span>)),</span><br><span class="line">  url(<span class="string">r'^app02/'</span>, include(<span class="string">'app02.urls'</span>, namespace=<span class="string">'app02'</span>)),</span><br><span class="line"> </span><br><span class="line"> <span class="built_in">print</span>(reverse(<span class="string">'app01:index'</span>))</span><br><span class="line"> <span class="built_in">print</span>(reverse(<span class="string">'app02:index'</span>))</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="虚拟环境"><a href="#虚拟环境" class="headerlink" title="虚拟环境"></a>虚拟环境</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 针对不同的项目，创建出来一个新的python环境，类似于是一个新的python解释器</span></span><br></pre></td></tr></tbody></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -531,7 +553,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2020/06/22/Django%E7%AC%AC%E4%B8%89%E5%A4%A9/">http://example.com/2020/06/22/Django%E7%AC%AC%E4%B8%89%E5%A4%A9/</a>
+                    <a href="http://example.com/2020/06/23/Django%E7%AC%AC%E5%9B%9B%E5%A4%A9/">http://example.com/2020/06/23/Django%E7%AC%AC%E5%9B%9B%E5%A4%A9/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -569,8 +591,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Django%E4%B9%8BORM/">
-                                    <span class="chip bg-color">Django之ORM</span>
+                                <a href="/tags/Django%E5%9F%BA%E7%A1%80/">
+                                    <span class="chip bg-color">Django基础</span>
                                 </a>
                             
                         </div>
@@ -615,7 +637,7 @@
         repo: '',
         owner: '',
         admin: null,
-        id: '2020-06-22T20-02-44',
+        id: '2020-06-23T20-03-21',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -645,13 +667,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2020/06/23/Django%E7%AC%AC%E5%9B%9B%E5%A4%A9/">
+                <a href="/2020/08/08/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="Django路由层">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="深浅拷贝">
                         
-                        <span class="card-title">Django路由层</span>
+                        <span class="card-title">深浅拷贝</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -662,14 +684,14 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-23
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-08-08
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Django/" class="post-category">
-                                    Django
+                            <a href="/categories/%E5%B0%8F%E7%9F%A5%E8%AF%86/" class="post-category">
+                                    小知识
                                 </a>
                             
                             
@@ -679,8 +701,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Django%E5%9F%BA%E7%A1%80/">
-                        <span class="chip bg-color">Django基础</span>
+                    <a href="/tags/python%E5%9F%BA%E7%A1%80/">
+                        <span class="chip bg-color">python基础</span>
                     </a>
                     
                 </div>
@@ -694,13 +716,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/06/21/Django%E7%AC%AC%E4%BA%8C%E5%A4%A9/">
+                <a href="/2020/06/22/Django%E7%AC%AC%E4%B8%89%E5%A4%A9/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Django三板斧">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="ORM">
                         
-                        <span class="card-title">Django三板斧</span>
+                        <span class="card-title">ORM</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -711,7 +733,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-21
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-22
                             </span>
                         <span class="publish-author">
                             
@@ -728,8 +750,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Django%E5%9F%BA%E7%A1%80/">
-                        <span class="chip bg-color">Django基础</span>
+                    <a href="/tags/Django%E4%B9%8BORM/">
+                        <span class="chip bg-color">Django之ORM</span>
                     </a>
                     
                 </div>
