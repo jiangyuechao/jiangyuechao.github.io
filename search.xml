@@ -45,7 +45,32 @@
       
         <tags>
             
-            <tag> Django知识点 </tag>
+            <tag> Django </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>flask面试题</title>
+      <link href="/2020/08/08/flask%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+      <url>/2020/08/08/flask%E9%9D%A2%E8%AF%95%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[<span id="more"></span><h1 id="如何改变Flask的默认地址和端口"><a href="#如何改变Flask的默认地址和端口" class="headerlink" title="如何改变Flask的默认地址和端口"></a>如何改变Flask的默认地址和端口</h1><p>在应用程序上调用run方法时，可以通过将修改的值传递给主机和端口参数来更改Flask的默认主机和端口。</p><h1 id="使用Flask框架有什么好处"><a href="#使用Flask框架有什么好处" class="headerlink" title="使用Flask框架有什么好处"></a>使用Flask框架有什么好处</h1><p>1、 它具有内置的开发服务器。<br>2、 它具有大量的第三方扩展。<br>3、 它具有一个很小的API，并且可以由Web开发人员快速学习。<br>4、 它符合WSGI。<br>5、 它支持Unicode。</p><h1 id="SQLite数据库是否内置Flask"><a href="#SQLite数据库是否内置Flask" class="headerlink" title="SQLite数据库是否内置Flask"></a>SQLite数据库是否内置Flask</h1><p>1、SQLite是Python内置的。<br>2、要在Flask中使用数据库，我们不需要安装任何其他的Flask-Extension。<br>3、在视图内部，我们可以导入SQLite并编写SQL查询以与数据库进行交互。<br>4、Flask开发人员通常使用Flask-SQLAlchemy，它消除了编写复杂SQL查询的需要，并且支持与SQLite数据库进行交互的ORM。</p><h1 id="Flask框架中的模板引擎是什么意思"><a href="#Flask框架中的模板引擎是什么意思" class="headerlink" title="Flask框架中的模板引擎是什么意思"></a>Flask框架中的模板引擎是什么意思</h1><p>1、模板是一个包含两种类型的数据的文件，即静态和动态，在运行期间填充模板中的动态数据。<br>2、Flask利用Jinja2模板引擎，使开发人员可以使用带有占位符的HTML模板来创建动态数据。<br>3、通过使用Flask的render_template方法以及所需的参数和值，可以在运行时填充这些占位符。</p><h1 id="Django和Flask有什么区别？为什么要选择Flask"><a href="#Django和Flask有什么区别？为什么要选择Flask" class="headerlink" title="Django和Flask有什么区别？为什么要选择Flask"></a>Django和Flask有什么区别？为什么要选择Flask</h1><p>1、Django是一个使用Python编程语言创建的Web开发框架。<br>2、它是功能齐全的Web应用程序框架，具有许多内置功能，例如Admin后端和具有迁移功能的ORM。<br>3、它创建时间早，更成熟。<br>4、Flask适用于快速开发用例。<br>5、Flask更适合开发不需要大型代码库的轻量级Web应用程序。它易于开发微服务或无服务器应用程序。<br>5、与Django相比，Flask简单易学且API更少。<br>6、随着行业追随将微服务作为容器的一部分的趋势，将Flask保留在您的Web开发工具包中很实用</p><h1 id="Flask中的g对象是什么？它与会话对象有何不同"><a href="#Flask中的g对象是什么？它与会话对象有何不同" class="headerlink" title="Flask中的g对象是什么？它与会话对象有何不同"></a>Flask中的g对象是什么？它与会话对象有何不同</h1><p>1、Flask的g对象用作全局命名空间，用于在应用程序上下文中保存任何数据。<br>2、g对象不适用于在请求之间存储数据。从某种意义上说，字母g代表global。<br>3、在某些情况下，当您需要在应用程序上下文中保留全局变量，而不是创建全局变量时，最好使用g对象，因为Flask中的每个请求都有一个单独的g对象。<br>4、Flask的g对象使我们免于意外修改自定义全局变量。</p><h1 id="您可以通过哪些方式连接Flask中的数据库"><a href="#您可以通过哪些方式连接Flask中的数据库" class="headerlink" title="您可以通过哪些方式连接Flask中的数据库"></a>您可以通过哪些方式连接Flask中的数据库</h1><p>1、Flask可用于大多数RDB模式，例如PostgreSQL，SQLite和MySQL。<br>2、要连接数据库，我们必须使用Flask-SQLAlchemy扩展。它使开发过程中的数据库交互和管理变得容易，而无需编写原始SQL查询。<br>3、原始SQL查询容易受到SQL注入攻击。对于使用NoSQL数据存储（例如MongoDB），我们可以使用Flask-MongoEngine扩展</p><h1 id="Flask蓝图的作用"><a href="#Flask蓝图的作用" class="headerlink" title="Flask蓝图的作用"></a>Flask蓝图的作用</h1><p>蓝图Blueprint实现模块化的应用<br>book_bp = Blueprint(‘book’, name）创建蓝图对象  </p><p>蓝图中使用路由@book_bp.route(‘url’)<br>在另一.py文件里导入和注册蓝图   </p><p>from book import book_bp<br>app.register_blueprint(book_bp)</p><p>作用:<br>  1、将不同的功能模块化<br>  2、构建大型应用<br>  3、优化项目结构<br>  4、增强可读性,易于维护（跟Django的view功能相似）</p><h1 id="Flask框架默认session处理机制"><a href="#Flask框架默认session处理机制" class="headerlink" title="Flask框架默认session处理机制"></a>Flask框架默认session处理机制</h1><p>1、Flask的默认session利用了Werkzeug的SecureCookie，把信息做序列化(pickle)后编码(base64)，放到cookie里了。<br>2、过期时间是通过cookie的过期时间实现的。<br>3、为了防止cookie内容被篡改，session会自动打上一个叫session的hash串，这个串是经过session内容、SECRET_KEY计算出来的，看得出，这种设计虽然不能保证session里的内容不泄露，但至少防止了不被篡改</p><h1 id="列举HTTP请求中的状态码"><a href="#列举HTTP请求中的状态码" class="headerlink" title="列举HTTP请求中的状态码"></a>列举HTTP请求中的状态码</h1><p>404 请求的url地址不存在<br>503 访问限制有权限<br>200 访问成功<br>302 重定向</p><p>1xx —— 元数据<br>2xx —— 正确的响应<br>3xx —— 重定向<br>4xx —— 客户端错误<br>5xx —— 服务端错误<br>100 Continue。客户端应当继续发送请求。<br>200 OK。请求已成功,请求所希望的响应头或数据体将随此响应返回。<br>201 Created。请求成功,并且服务器创建了新的资源。<br>301 Moved Permanently。请求的网页已永久移动到新位置。 服务器返回此响应(对GET或HEAD请求的响应)时,会自动将请求者转到新位置。</p><p>302 Found。服务器目前从不同位置的网页响应请求,但请求者应继续使用原有位置来进行以后的请求。<br>400 Bad Request。服务器不理解请求的语法。<br>401 Unauthorized。请求要求身份验证。对于需要登录的网页,服务器可能返回此响应。<br>403 Forbidden。服务器拒绝请求。<br>404 Not Found。服务器找不到请求的网页。<br>500 Internal Server Error。服务器遇到错误,无法完成请求。</p><h1 id="Flask-WTF是什么？有什么特点？"><a href="#Flask-WTF是什么？有什么特点？" class="headerlink" title="Flask-WTF是什么？有什么特点？"></a>Flask-WTF是什么？有什么特点？</h1><p>1、Flask-wtf是一个用于表单处理,校验并提供csrf验证的功能的扩展库<br>2、Flask-wtf能把正表单免受CSRF&lt;跨站请求伪造&gt;的攻击<br>3、Flask-WTF 提供 FileField 来处理文件上传，它在表单提交后，自动从 flask.request.files 中抽取数据。FileField 的 data 属性是一个 </p><h1 id="SQLAlchemy如何执行原生SQL"><a href="#SQLAlchemy如何执行原生SQL" class="headerlink" title="SQLAlchemy如何执行原生SQL"></a>SQLAlchemy如何执行原生SQL</h1><p>两种SQLAlchemy可以执行原生sql的方式<br>第一种是通过session(会话)对象执行execute方法</p><p>session = scoped_session(SessionFactory)<br>session.execute(‘insert users(name) values(:value)’, params={‘value’: ‘thanlon’})</p><p>第二种是通过cursor(游标)对象执行execute方法。</p><p>conn = engine.raw_connection()<br>cursor = conn.cursor()<br>cursor.execute(‘select * from users’)</p><h1 id="DBUtils模块的作用"><a href="#DBUtils模块的作用" class="headerlink" title="DBUtils模块的作用"></a>DBUtils模块的作用</h1><p>作用:<br>    DBUtils模块的作用是实现数据库连接池，是为了解决“多线程情况下请求比较多时性能降低”的问题</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> flask </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> flask基础 </tag>
             
         </tags>
       
