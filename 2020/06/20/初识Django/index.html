@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="深浅拷贝, 且听风吟">
+    <meta name="keywords" content="初识Django, 且听风吟">
     <meta name="description" content="welcome to my word">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>深浅拷贝 | 且听风吟</title>
+    <title>初识Django | 且听风吟</title>
     <link rel="icon" type="image/png" href="/source/images/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -312,12 +312,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">深浅拷贝</h1>
+                    <h1 class="description center-align post-title">初识Django</h1>
                 </div>
             </div>
         </div>
@@ -433,8 +433,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/python%E5%9F%BA%E7%A1%80/">
-                                <span class="chip bg-color">python基础</span>
+                            <a href="/tags/Django%E5%9F%BA%E7%A1%80/">
+                                <span class="chip bg-color">Django基础</span>
                             </a>
                         
                     </div>
@@ -445,8 +445,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E5%B0%8F%E7%9F%A5%E8%AF%86/" class="post-category">
-                                小知识
+                            <a href="/categories/Django/" class="post-category">
+                                Django
                             </a>
                         
                     </div>
@@ -458,7 +458,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-08-08
+                    2020-06-20
                 </div>
                 
 
@@ -481,34 +481,30 @@
             <div id="articleContent">
                 <span id="more"></span>
 
+<h3 id="web应用概念"><a href="#web应用概念" class="headerlink" title="web应用概念"></a>web应用概念</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">http的默认端口号：<span class="number">80</span></span><br><span class="line">https的默认端口号：<span class="number">443</span></span><br><span class="line"></span><br><span class="line"><span class="number">1.</span> web应用是什么？</span><br><span class="line">	通过浏览器访问的应用都是</span><br><span class="line"><span class="number">2.</span> 软件开发模式：</span><br><span class="line">	服务端需要具备的特征：<span class="number">24</span>小时对外提供服务</span><br><span class="line">	C/S：client: 客户端， server: 服务端</span><br><span class="line">    B/S：browser: 浏览器，server：服务端</span><br><span class="line">    <span class="comment"># 本质上B/S架构也是C/S架构</span></span><br><span class="line"><span class="number">3.</span> Web应用程序的优点</span><br><span class="line">	<span class="number">1.</span> 只需要一个浏览器</span><br><span class="line">    <span class="number">2.</span> 节省资源</span><br><span class="line">    <span class="number">3.</span> 客户端不需要主动更新，服务端更新即可</span><br><span class="line"><span class="number">4.</span> Web应用程序的缺点</span><br><span class="line">	<span class="number">1.</span> 一旦服务端出现问题，客户端立马受影响</span><br><span class="line">    <span class="number">2.</span> 兼容性问题</span><br><span class="line"></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    	web框架：就是在固定的位置书写固定的代码</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    python中的三大主流框架：</span><br><span class="line">    	<span class="number">1.</span> Django框架：</span><br><span class="line">        	大而全，类似于航空母舰</span><br><span class="line">        <span class="number">2.</span> flask框架：</span><br><span class="line">        	小而精，依赖于第三方模块</span><br><span class="line">         <span class="number">3.</span> tornado框架：</span><br><span class="line">        	异步高性能框架</span><br><span class="line">    </span><br></pre></td></tr></tbody></table></figure>
 
-<h1 id="深浅拷贝"><a href="#深浅拷贝" class="headerlink" title="深浅拷贝"></a>深浅拷贝</h1><h3 id="一、深浅copy"><a href="#一、深浅copy" class="headerlink" title="一、深浅copy"></a><strong>一、深浅copy</strong></h3><p><strong>1、赋值运算</strong></p>
-<p><img src="https://s2.loli.net/2022/06/11/mkIqjbKXiYtL4a8.png" alt="image-20220611151019511"></p>
-<p><strong>注意</strong>：l2 = l1是一个指向，是赋值，和深浅copy无关</p>
-<p>2、浅<strong>copy</strong></p>
-<p>其实列表是一个个的槽位，每一个槽位存储的是该对象的内存地址</p>
-<p><img src="https://s2.loli.net/2022/06/11/B8zqfNFJuDi3XVc.png" alt="image-20220611151229683"></p>
-<p><img src="https://s2.loli.net/2022/06/11/XwmLQiN3YHOBUpy.png" alt="image-20220611151251385"></p>
-<p><strong>小结</strong>：</p>
-<p>浅copy：会在内存中新开辟一个空间，存放这个copy的列表，但是列表里面的内容还是沿用之前对象的内存地址</p>
-<p>3、深<strong>copy</strong></p>
-<p><img src="https://s2.loli.net/2022/06/11/JDp1vHY6wxAIURq.png" alt="image-20220611151433932"></p>
-<p><img src="https://s2.loli.net/2022/06/11/YKXF9luhUOfDaH7.png" alt="image-20220611151450570"></p>
-<p><strong>小结</strong>：</p>
-<p>深copy：会在内存中开辟新空间，将原列表以及列表里面的可变数据类型重新创建一份，不可变数据类型则沿用之前的。</p>
-<p><strong>为什么Python默认的拷贝方式是浅拷贝</strong>？</p>
-<p>时间角度：浅拷贝花费时间更少。</p>
-<p>空间角度：浅拷贝花费内存更少。</p>
-<p>效率角度：浅拷贝只拷贝顶层数据，一般情况下比深拷贝效率高。</p>
-<p><strong>总结</strong>：</p>
-<p>不可变对象在赋值时会开辟新空间。</p>
-<p>可变对象在赋值时，修改一个的值，另一个也会发生改变。</p>
-<p>深、浅拷贝对不可变对象拷贝时，不开辟新空间，相当于赋值操作。</p>
-<p>浅拷贝在拷贝时，只拷贝第一层中的引用，如果元素是可变对象，并且被修改，那么拷贝的对象也会发生变化。</p>
-<p>深拷贝在拷贝时，会逐层进行拷贝，直到所有的引用都是不可变对象为止。</p>
-<p>Python 有多种方式实现浅拷贝，copy模块的copy 函数 ，对象的 copy 函数 ，工厂方法，切片等。</p>
-<p>大多数情况下，编写程序时，都是使用浅拷贝，除非有特定的需求。</p>
-<p>浅拷贝的优点：拷贝速度快，占用空间少，拷贝效率高 </p>
+<h3 id="MVC和MTV模式"><a href="#MVC和MTV模式" class="headerlink" title="MVC和MTV模式"></a>MVC和MTV模式</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> MVC:</span><br><span class="line">    	M: model(跟数据打交道的)</span><br><span class="line">        V: View(视图， 页面)</span><br><span class="line">        C: controller(控制器，主要写逻辑的)</span><br><span class="line">        S:service (服务层)</span><br><span class="line"><span class="number">2.</span> MTV:</span><br><span class="line">    	M: model(模型层：跟数据相关的)</span><br><span class="line">        T:template(模板：html页面)  </span><br><span class="line">        V：view(主要写逻辑的)</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="django下载与安装"><a href="#django下载与安装" class="headerlink" title="django下载与安装"></a>django下载与安装</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> django的版本问题：</span><br><span class="line">	django1.x: 老项目再用</span><br><span class="line">    django2.x：新项目再用</span><br><span class="line">    django3.x：刚出来的</span><br><span class="line">    </span><br><span class="line"> <span class="comment"># 我们学习使用django1.x</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装django</span></span><br><span class="line">pip3 install django (最新版本)</span><br><span class="line">pip3 install django==<span class="number">1.1</span><span class="number">.29</span></span><br><span class="line"></span><br><span class="line">如何验证django是否安装成功？</span><br><span class="line"><span class="comment"># 在cmd中， 输入django-admin，如果有输出信息，就代表安装成功</span></span><br><span class="line">    </span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="创建django项目"><a href="#创建django项目" class="headerlink" title="创建django项目"></a>创建django项目</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''你可以提前切换到项目要保存的位置'''</span></span><br><span class="line"><span class="number">1.</span> 命令行创建</span><br><span class="line">	django-admin startproject 项目名</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> pycharm创建</span><br><span class="line">    </span><br><span class="line"><span class="number">3.</span> 命令行创建和pycharm创建的区别:</span><br><span class="line">     <span class="number">1.</span> pycharm创建：</span><br><span class="line">        	自动生成templates文件夹</span><br><span class="line">        settings.py文件：</span><br><span class="line">        	<span class="string">'''</span></span><br><span class="line"><span class="string">        		TEMPLATES = [</span></span><br><span class="line"><span class="string">                            {</span></span><br><span class="line"><span class="string">                                'BACKEND': 'django.template.backends.django.DjangoTemplates',</span></span><br><span class="line"><span class="string">                                'DIRS': [os.path.join(BASE_DIR, 'templates')]</span></span><br><span class="line"><span class="string">                                </span></span><br><span class="line"><span class="string">                                }</span></span><br><span class="line"><span class="string">        	'''</span></span><br><span class="line">     <span class="number">2.</span> 命令行创建：</span><br><span class="line">    		没有templates文件夹</span><br><span class="line">        settings.py文件：</span><br><span class="line">        	<span class="string">'''</span></span><br><span class="line"><span class="string">        		TEMPLATES = [</span></span><br><span class="line"><span class="string">    					{</span></span><br><span class="line"><span class="string">                            'BACKEND': 'django.template.backends.django.DjangoTemplates',</span></span><br><span class="line"><span class="string">                            'DIRS': [],</span></span><br><span class="line"><span class="string">                            }</span></span><br><span class="line"><span class="string">             ]</span></span><br><span class="line"><span class="string">        	'''</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="启动django项目"><a href="#启动django项目" class="headerlink" title="启动django项目"></a>启动django项目</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''前提：先切换到manage.py所在的文件夹下面'''</span></span><br><span class="line"><span class="number">1.</span> 命令行启动</span><br><span class="line">	python3 manage.py runserver</span><br><span class="line">    python3 manage.py runserver <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8080</span></span><br><span class="line">    python3 manage.py runserver <span class="number">8080</span></span><br><span class="line">    </span><br><span class="line">    <span class="string">'''django的默认端口号：8000'''</span></span><br><span class="line"><span class="number">2.</span> pycharm启动</span><br><span class="line">	点击pycharm绿色按钮</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="创建应用"><a href="#创建应用" class="headerlink" title="创建应用"></a>创建应用</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 应用：application  app</span></span><br><span class="line"></span><br><span class="line">我们刚刚创建的项目就类似于是一所大学，而创建的应用就类似于大学里面的二级学院</span><br><span class="line"></span><br><span class="line">eg：</span><br><span class="line">	用户模块  user</span><br><span class="line">    订单模块  order</span><br><span class="line">    收货地址管理 :address</span><br><span class="line">    ...</span><br><span class="line">    </span><br><span class="line">如何创建应用？</span><br><span class="line">	<span class="number">1.</span> 命令行创建</span><br><span class="line">    	<span class="comment"># python manage.py startapp 应用名</span></span><br><span class="line">        <span class="string">'''</span></span><br><span class="line"><span class="string">        	应用名：最好见名知意，就命名为：app01, app02...</span></span><br><span class="line"><span class="string">        '''</span></span><br><span class="line">        <span class="comment"># 一个django项目至少要有一个应用</span></span><br><span class="line">    <span class="number">2.</span> pycharm创建</span><br><span class="line">    	 Tools =&gt; run manage.py task</span><br><span class="line">    <span class="number">3.</span> 应用创建完成之后，第一件事去配置文件中注册应用</span><br><span class="line">    <span class="comment">###################################################</span></span><br><span class="line">        INSTALLED_APPS = [</span><br><span class="line">            <span class="string">'django.contrib.admin'</span>,</span><br><span class="line">            <span class="string">'django.contrib.auth'</span>,</span><br><span class="line">            <span class="string">'django.contrib.contenttypes'</span>,</span><br><span class="line">            <span class="string">'django.contrib.sessions'</span>,</span><br><span class="line">            <span class="string">'django.contrib.messages'</span>,</span><br><span class="line">            <span class="string">'django.contrib.staticfiles'</span>,</span><br><span class="line">            <span class="string">'app01'</span>,</span><br><span class="line">            <span class="string">'app02'</span></span><br><span class="line">    ]</span><br><span class="line">    <span class="comment">###################################################</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="主要文件介绍"><a href="#主要文件介绍" class="headerlink" title="主要文件介绍"></a>主要文件介绍</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">mysite1  <span class="comment"># 项目名</span></span><br><span class="line">    app01  <span class="comment"># 应用名</span></span><br><span class="line">        migrations <span class="comment"># 迁移数据库的时候，会把迁移记录保存到这里来</span></span><br><span class="line">        	__init__.py</span><br><span class="line">        admin.py   <span class="comment"># django自带的后台管理系统</span></span><br><span class="line">        apps.py    <span class="comment"># 忽略</span></span><br><span class="line">        models.py  <span class="comment"># 模型层，以后跟数据库相关的都在这个里面</span></span><br><span class="line">        tests.py   <span class="comment"># 测试脚本</span></span><br><span class="line">        views.py   <span class="comment"># view层，主要用来写逻辑的</span></span><br><span class="line">mysite1</span><br><span class="line">    __init__.py</span><br><span class="line">    settings.py   <span class="comment"># 整个django项目的全局配置文件</span></span><br><span class="line">    urls.py       <span class="comment"># 路由层，写的是路径与函数的对应关系</span></span><br><span class="line">    wsgi.py		  <span class="comment"># wsgiref服务器， WSGI协议，uwsgi服务器</span></span><br><span class="line">templates         <span class="comment"># 写html页面的地方</span></span><br><span class="line">db.sqlite3        <span class="comment"># django自带的小型数据库， mysql，oracle</span></span><br><span class="line">manage.py		  <span class="comment"># 启动文件，入口文件</span></span><br></pre></td></tr></tbody></table></figure>
+
+
+
+
+
+
+
+
+
+
+
 
                 
             </div>
@@ -535,7 +531,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2020/08/08/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/">http://example.com/2020/08/08/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/</a>
+                    <a href="http://example.com/2020/06/20/%E5%88%9D%E8%AF%86Django/">http://example.com/2020/06/20/%E5%88%9D%E8%AF%86Django/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -573,8 +569,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/python%E5%9F%BA%E7%A1%80/">
-                                    <span class="chip bg-color">python基础</span>
+                                <a href="/tags/Django%E5%9F%BA%E7%A1%80/">
+                                    <span class="chip bg-color">Django基础</span>
                                 </a>
                             
                         </div>
@@ -619,7 +615,7 @@
         repo: '',
         owner: '',
         admin: null,
-        id: '2020-08-08T14-27-33',
+        id: '2020-06-20T19-27-08',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -649,55 +645,6 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2020/08/08/Django%E9%9D%A2%E8%AF%95%E9%A2%98/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="Django面试题">
-                        
-                        <span class="card-title">Django面试题</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-08-08
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Django/" class="post-category">
-                                    Django
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Django/">
-                        <span class="chip bg-color">Django</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
                 <a href="/2020/06/21/Django%E7%AC%AC%E4%BA%8C%E5%A4%A9/">
                     <div class="card-image">
                         
@@ -714,8 +661,57 @@
                         
                     </div>
                     <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-21
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Django/" class="post-category">
+                                    Django
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Django%E5%9F%BA%E7%A1%80/">
+                        <span class="chip bg-color">Django基础</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Current&nbsp;<i class="far fa-dot-circle"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/06/20/%E5%88%9D%E8%AF%86Django/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="初识Django">
+                        
+                        <span class="card-title">初识Django</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-21
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-20
                             </span>
                         <span class="publish-author">
                             
@@ -729,6 +725,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     

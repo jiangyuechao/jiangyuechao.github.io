@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="深浅拷贝, 且听风吟">
+    <meta name="keywords" content="Django三板斧, 且听风吟">
     <meta name="description" content="welcome to my word">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>深浅拷贝 | 且听风吟</title>
+    <title>Django三板斧 | 且听风吟</title>
     <link rel="icon" type="image/png" href="/source/images/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -312,12 +312,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">深浅拷贝</h1>
+                    <h1 class="description center-align post-title">Django三板斧</h1>
                 </div>
             </div>
         </div>
@@ -433,8 +433,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/python%E5%9F%BA%E7%A1%80/">
-                                <span class="chip bg-color">python基础</span>
+                            <a href="/tags/Django%E5%9F%BA%E7%A1%80/">
+                                <span class="chip bg-color">Django基础</span>
                             </a>
                         
                     </div>
@@ -445,8 +445,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E5%B0%8F%E7%9F%A5%E8%AF%86/" class="post-category">
-                                小知识
+                            <a href="/categories/Django/" class="post-category">
+                                Django
                             </a>
                         
                     </div>
@@ -458,7 +458,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-08-08
+                    2020-06-21
                 </div>
                 
 
@@ -481,34 +481,28 @@
             <div id="articleContent">
                 <span id="more"></span>
 
+<h3 id="django三板斧"><a href="#django三板斧" class="headerlink" title="django三板斧"></a>django三板斧</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># django自动重启的现象叫‘热更新’</span></span><br><span class="line"><span class="comment"># 如果setting.py文件中DEBUG = False，则必须在ALLOWED_HOSTS = []中填写对应ip地址或者*号</span></span><br><span class="line"><span class="number">1.</span> HttpResponse</span><br><span class="line"><span class="number">2.</span> render</span><br><span class="line"><span class="number">3.</span> redirect</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">'123'</span>)</span><br><span class="line">    <span class="comment"># 暂且记忆返回值是字符串类型</span></span><br><span class="line">    <span class="comment"># return HttpResponse('hello django!')  # 返回给浏览器了</span></span><br><span class="line">    ctime = time.strftime(<span class="string">'%Y-%m-%d %X'</span>)</span><br><span class="line">    a = <span class="number">1</span></span><br><span class="line">    b = <span class="number">2</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">locals</span>())</span><br><span class="line">    <span class="comment"># return render(request, 'index.html', {'ctime11111':ctime, 'a':1, 'b':2})</span></span><br><span class="line">    <span class="comment"># return render(request, 'index.html', locals())</span></span><br><span class="line">    <span class="comment"># return redirect('http://www.baidu.com')</span></span><br><span class="line">    <span class="keyword">return</span> redirect(<span class="string">'/admin/'</span>)  <span class="comment"># ip+port/admin 括号内可跟链接地址，直接跳转</span></span><br></pre></td></tr></tbody></table></figure>
 
-<h1 id="深浅拷贝"><a href="#深浅拷贝" class="headerlink" title="深浅拷贝"></a>深浅拷贝</h1><h3 id="一、深浅copy"><a href="#一、深浅copy" class="headerlink" title="一、深浅copy"></a><strong>一、深浅copy</strong></h3><p><strong>1、赋值运算</strong></p>
-<p><img src="https://s2.loli.net/2022/06/11/mkIqjbKXiYtL4a8.png" alt="image-20220611151019511"></p>
-<p><strong>注意</strong>：l2 = l1是一个指向，是赋值，和深浅copy无关</p>
-<p>2、浅<strong>copy</strong></p>
-<p>其实列表是一个个的槽位，每一个槽位存储的是该对象的内存地址</p>
-<p><img src="https://s2.loli.net/2022/06/11/B8zqfNFJuDi3XVc.png" alt="image-20220611151229683"></p>
-<p><img src="https://s2.loli.net/2022/06/11/XwmLQiN3YHOBUpy.png" alt="image-20220611151251385"></p>
-<p><strong>小结</strong>：</p>
-<p>浅copy：会在内存中新开辟一个空间，存放这个copy的列表，但是列表里面的内容还是沿用之前对象的内存地址</p>
-<p>3、深<strong>copy</strong></p>
-<p><img src="https://s2.loli.net/2022/06/11/JDp1vHY6wxAIURq.png" alt="image-20220611151433932"></p>
-<p><img src="https://s2.loli.net/2022/06/11/YKXF9luhUOfDaH7.png" alt="image-20220611151450570"></p>
-<p><strong>小结</strong>：</p>
-<p>深copy：会在内存中开辟新空间，将原列表以及列表里面的可变数据类型重新创建一份，不可变数据类型则沿用之前的。</p>
-<p><strong>为什么Python默认的拷贝方式是浅拷贝</strong>？</p>
-<p>时间角度：浅拷贝花费时间更少。</p>
-<p>空间角度：浅拷贝花费内存更少。</p>
-<p>效率角度：浅拷贝只拷贝顶层数据，一般情况下比深拷贝效率高。</p>
-<p><strong>总结</strong>：</p>
-<p>不可变对象在赋值时会开辟新空间。</p>
-<p>可变对象在赋值时，修改一个的值，另一个也会发生改变。</p>
-<p>深、浅拷贝对不可变对象拷贝时，不开辟新空间，相当于赋值操作。</p>
-<p>浅拷贝在拷贝时，只拷贝第一层中的引用，如果元素是可变对象，并且被修改，那么拷贝的对象也会发生变化。</p>
-<p>深拷贝在拷贝时，会逐层进行拷贝，直到所有的引用都是不可变对象为止。</p>
-<p>Python 有多种方式实现浅拷贝，copy模块的copy 函数 ，对象的 copy 函数 ，工厂方法，切片等。</p>
-<p>大多数情况下，编写程序时，都是使用浅拷贝，除非有特定的需求。</p>
-<p>浅拷贝的优点：拷贝速度快，占用空间少，拷贝效率高 </p>
+<h3 id="静态文件配置"><a href="#静态文件配置" class="headerlink" title="静态文件配置"></a>静态文件配置</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">什么是静态文件</span><br><span class="line">	css, js, jq, bootstrap, img...</span><br><span class="line"> eg:</span><br><span class="line">    以登录功能为例</span><br><span class="line"> <span class="comment"># 静态文件的存储路径一般是static，默认是没有这个文件夹的，所以，需要我们自己手动创建出来这个文件夹</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在static文件夹中还可以继续根据不同的功能进行划分</span></span><br><span class="line">js</span><br><span class="line">css</span><br><span class="line">lib</span><br><span class="line">img</span><br><span class="line"></span><br><span class="line"><span class="comment"># http://127.0.0.1:8000/static/css/bootstrap.min.css不能访问是因为后盾没有开放可访问的路径</span></span><br><span class="line"></span><br><span class="line">{<span class="comment"># 动态引入 #}</span></span><br><span class="line">    {% load static %}</span><br><span class="line">    &lt;link rel=<span class="string">"stylesheet"</span> href=<span class="string">"{% static 'css/bootstrap-theme.min.css'%}"</span>&gt;</span><br><span class="line"></span><br><span class="line">STATIC_URL = <span class="string">'/aaaaa/'</span></span><br><span class="line"></span><br><span class="line">STATICFILES_DIRS = [</span><br><span class="line">    os.path.join(BASE_DIR, <span class="string">'static'</span>),  <span class="comment"># 这样一配置完成，静态路径的根就是static</span></span><br><span class="line">    os.path.join(BASE_DIR, <span class="string">'static1'</span>),  <span class="comment"># 这样一配置完成，静态路径的根就是static</span></span><br><span class="line">    os.path.join(BASE_DIR, <span class="string">'static2'</span>),  <span class="comment"># 这样一配置完成，静态路径的根就是static</span></span><br><span class="line">]</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="form表单"><a href="#form表单" class="headerlink" title="form表单"></a>form表单</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=<span class="string">""</span>&gt;</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">	1. 什么都不写，提交到当前页面</span></span><br><span class="line"><span class="string">	2. 全写：https://passport.baidu.com/v2/api/?login</span></span><br><span class="line"><span class="string">	3. 只写后缀</span></span><br><span class="line"><span class="string">		/login/  =&gt; 自动补全ip和端口</span></span><br><span class="line"><span class="string">		http://127.0.0.1:8000/login/</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line">面试题：get和post的区别？</span><br><span class="line">	http://<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8000</span>/login/?a=<span class="number">1</span>&amp;b=<span class="number">2</span>&amp;c=<span class="number">3</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    	get请求：</span></span><br><span class="line"><span class="string">    		1. get没有请求体</span></span><br><span class="line"><span class="string">    		2. 对数据大小的限制是4KB</span></span><br><span class="line"><span class="string">    		3. 不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息</span></span><br><span class="line"><span class="string">    	post请求：</span></span><br><span class="line"><span class="string">    		1. post有请求体</span></span><br><span class="line"><span class="string">    		2. 理论上对数据大小没有限制</span></span><br><span class="line"><span class="string">    		3. 相对安全</span></span><br><span class="line"><span class="string">    '''</span>     </span><br><span class="line">    </span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">	MySQL中可能会出现的安全问题：SQL注入</span></span><br><span class="line"><span class="string">	前端当中可能会出现的安全问题：xss攻击</span></span><br><span class="line"><span class="string">	django中会出现的安全问题：csrf跨站请求</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">login</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="comment"># 1. 如何判断请求方式？</span></span><br><span class="line">    <span class="built_in">print</span>(request)  <span class="comment"># &lt;WSGIRequest: GET '/login/'&gt;</span></span><br><span class="line">    <span class="built_in">print</span>(request.method, <span class="built_in">type</span>(request.method))  <span class="comment"># GET &lt;WSGIRequest: GET '/login/'&gt;</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'POST'</span>:</span><br><span class="line">        <span class="comment">#  2. 如何获取post请求方式的数据？</span></span><br><span class="line">        <span class="comment"># print(request.POST) # QueryDict: {'user': ['ly'], 'password': ['123']}&gt;</span></span><br><span class="line">        <span class="comment"># print(request.POST.get('username')) # ly</span></span><br><span class="line">        <span class="comment"># # get只能拿最后一个值</span></span><br><span class="line">        <span class="comment"># print(request.POST.get('hobby')) # ly</span></span><br><span class="line">        <span class="comment"># print(request.POST.getlist('hobby')) # 拿到所有的值</span></span><br><span class="line">        username = request.POST.get(<span class="string">'username'</span>)</span><br><span class="line">        password = request.POST.get(<span class="string">'password'</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> username == <span class="string">'ly'</span> <span class="keyword">and</span> password ==<span class="string">'123'</span>:</span><br><span class="line">            <span class="keyword">return</span> HttpResponse(<span class="string">'登录成功'</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> HttpResponse(<span class="string">'密码错误'</span>)</span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">'login.html'</span>,  )</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="django连接mysql"><a href="#django连接mysql" class="headerlink" title="django连接mysql"></a>django连接mysql</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 连接mysql的配置</span></span><br><span class="line">  <span class="string">'default'</span>: {</span><br><span class="line">        <span class="string">'ENGINE'</span>: <span class="string">'django.db.backends.mysql'</span>,</span><br><span class="line">        <span class="string">'NAME'</span>: <span class="string">'db8_3'</span>,</span><br><span class="line">        <span class="string">'HOST'</span>: <span class="string">'127.0.0.1'</span>,</span><br><span class="line">        <span class="string">'PORT'</span>: <span class="number">3306</span>,</span><br><span class="line">        <span class="string">'USER'</span>: <span class="string">'root'</span>,</span><br><span class="line">        <span class="string">'PASSWORD'</span>:<span class="string">'123'</span>,</span><br><span class="line">        <span class="string">'CHARSET'</span>:<span class="string">'utf8'</span></span><br><span class="line">    }</span><br><span class="line">        </span><br><span class="line"><span class="comment"># django默认的操作mysql的模块是MySQLdb</span></span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">	在python3.6版本以下，需要加入下面两句话</span></span><br><span class="line"><span class="string">        需要先安装pymysql</span></span><br><span class="line"><span class="string">        pip3 install pymysql</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        import pymysql</span></span><br><span class="line"><span class="string">        pymysql.install_as_MySQLdb()</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                 
             </div>
@@ -535,7 +529,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2020/08/08/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/">http://example.com/2020/08/08/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/</a>
+                    <a href="http://example.com/2020/06/21/Django%E7%AC%AC%E4%BA%8C%E5%A4%A9/">http://example.com/2020/06/21/Django%E7%AC%AC%E4%BA%8C%E5%A4%A9/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -573,8 +567,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/python%E5%9F%BA%E7%A1%80/">
-                                    <span class="chip bg-color">python基础</span>
+                                <a href="/tags/Django%E5%9F%BA%E7%A1%80/">
+                                    <span class="chip bg-color">Django基础</span>
                                 </a>
                             
                         </div>
@@ -619,7 +613,7 @@
         repo: '',
         owner: '',
         admin: null,
-        id: '2020-08-08T14-27-33',
+        id: '2020-06-21T20-05-17',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -649,13 +643,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2020/08/08/Django%E9%9D%A2%E8%AF%95%E9%A2%98/">
+                <a href="/2020/08/08/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="Django面试题">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="深浅拷贝">
                         
-                        <span class="card-title">Django面试题</span>
+                        <span class="card-title">深浅拷贝</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -672,8 +666,8 @@
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Django/" class="post-category">
-                                    Django
+                            <a href="/categories/%E5%B0%8F%E7%9F%A5%E8%AF%86/" class="post-category">
+                                    小知识
                                 </a>
                             
                             
@@ -683,8 +677,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Django/">
-                        <span class="chip bg-color">Django</span>
+                    <a href="/tags/python%E5%9F%BA%E7%A1%80/">
+                        <span class="chip bg-color">python基础</span>
                     </a>
                     
                 </div>
@@ -698,13 +692,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/06/21/Django%E7%AC%AC%E4%BA%8C%E5%A4%A9/">
+                <a href="/2020/06/20/%E5%88%9D%E8%AF%86Django/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Django三板斧">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="初识Django">
                         
-                        <span class="card-title">Django三板斧</span>
+                        <span class="card-title">初识Django</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -715,7 +709,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-21
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-20
                             </span>
                         <span class="publish-author">
                             
