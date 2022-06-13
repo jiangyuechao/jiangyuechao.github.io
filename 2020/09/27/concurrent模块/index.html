@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="flask面试题, 且听风吟">
+    <meta name="keywords" content="concurrent模块, 且听风吟">
     <meta name="description" content="welcome to my word">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>flask面试题 | 且听风吟</title>
+    <title>concurrent模块 | 且听风吟</title>
     <link rel="icon" type="image/png" href="/source/images/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -202,12 +202,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">flask面试题</h1>
+                    <h1 class="description center-align post-title">concurrent模块</h1>
                 </div>
             </div>
         </div>
@@ -323,8 +323,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/flask%E5%9F%BA%E7%A1%80/">
-                                <span class="chip bg-color">flask基础</span>
+                            <a href="/tags/python%E5%9F%BA%E7%A1%80/">
+                                <span class="chip bg-color">python基础</span>
                             </a>
                         
                     </div>
@@ -335,8 +335,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/flask/" class="post-category">
-                                flask
+                            <a href="/categories/python/" class="post-category">
+                                python
                             </a>
                         
                     </div>
@@ -348,7 +348,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-11-24
+                    2020-09-27
                 </div>
                 
 
@@ -370,27 +370,32 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <span id="more"></span>
-<h3 id="如何改变Flask的默认地址和端口"><a href="#如何改变Flask的默认地址和端口" class="headerlink" title="如何改变Flask的默认地址和端口"></a>如何改变Flask的默认地址和端口</h3><p>在应用程序上调用run方法时，可以通过将修改的值传递给主机和端口参数来更改Flask的默认主机和端口。</p>
-<h3 id="使用Flask框架有什么好处"><a href="#使用Flask框架有什么好处" class="headerlink" title="使用Flask框架有什么好处"></a>使用Flask框架有什么好处</h3><p>1、 它具有内置的开发服务器。<br>2、 它具有大量的第三方扩展。<br>3、 它具有一个很小的API，并且可以由Web开发人员快速学习。<br>4、 它符合WSGI。<br>5、 它支持Unicode。</p>
-<h3 id="SQLite数据库是否内置Flask"><a href="#SQLite数据库是否内置Flask" class="headerlink" title="SQLite数据库是否内置Flask"></a>SQLite数据库是否内置Flask</h3><p>1、SQLite是Python内置的。<br>2、要在Flask中使用数据库，我们不需要安装任何其他的Flask-Extension。<br>3、在视图内部，我们可以导入SQLite并编写SQL查询以与数据库进行交互。<br>4、Flask开发人员通常使用Flask-SQLAlchemy，它消除了编写复杂SQL查询的需要，并且支持与SQLite数据库进行交互的ORM。</p>
-<h3 id="Flask框架中的模板引擎是什么意思"><a href="#Flask框架中的模板引擎是什么意思" class="headerlink" title="Flask框架中的模板引擎是什么意思"></a>Flask框架中的模板引擎是什么意思</h3><p>1、模板是一个包含两种类型的数据的文件，即静态和动态，在运行期间填充模板中的动态数据。<br>2、Flask利用Jinja2模板引擎，使开发人员可以使用带有占位符的HTML模板来创建动态数据。<br>3、通过使用Flask的render_template方法以及所需的参数和值，可以在运行时填充这些占位符。</p>
-<h3 id="Django和Flask有什么区别？为什么要选择Flask"><a href="#Django和Flask有什么区别？为什么要选择Flask" class="headerlink" title="Django和Flask有什么区别？为什么要选择Flask"></a>Django和Flask有什么区别？为什么要选择Flask</h3><p>1、Django是一个使用Python编程语言创建的Web开发框架。<br>2、它是功能齐全的Web应用程序框架，具有许多内置功能，例如Admin后端和具有迁移功能的ORM。<br>3、它创建时间早，更成熟。<br>4、Flask适用于快速开发用例。<br>5、Flask更适合开发不需要大型代码库的轻量级Web应用程序。它易于开发微服务或无服务器应用程序。<br>5、与Django相比，Flask简单易学且API更少。<br>6、随着行业追随将微服务作为容器的一部分的趋势，将Flask保留在您的Web开发工具包中很实用</p>
-<h3 id="Flask中的g对象是什么？它与会话对象有何不同"><a href="#Flask中的g对象是什么？它与会话对象有何不同" class="headerlink" title="Flask中的g对象是什么？它与会话对象有何不同"></a>Flask中的g对象是什么？它与会话对象有何不同</h3><p>1、Flask的g对象用作全局命名空间，用于在应用程序上下文中保存任何数据。<br>2、g对象不适用于在请求之间存储数据。从某种意义上说，字母g代表global。<br>3、在某些情况下，当您需要在应用程序上下文中保留全局变量，而不是创建全局变量时，最好使用g对象，因为Flask中的每个请求都有一个单独的g对象。<br>4、Flask的g对象使我们免于意外修改自定义全局变量。</p>
-<h3 id="您可以通过哪些方式连接Flask中的数据库"><a href="#您可以通过哪些方式连接Flask中的数据库" class="headerlink" title="您可以通过哪些方式连接Flask中的数据库"></a>您可以通过哪些方式连接Flask中的数据库</h3><p>1、Flask可用于大多数RDB模式，例如PostgreSQL，SQLite和MySQL。<br>2、要连接数据库，我们必须使用Flask-SQLAlchemy扩展。它使开发过程中的数据库交互和管理变得容易，而无需编写原始SQL查询。<br>3、原始SQL查询容易受到SQL注入攻击。对于使用NoSQL数据存储（例如MongoDB），我们可以使用Flask-MongoEngine扩展</p>
-<h3 id="Flask蓝图的作用"><a href="#Flask蓝图的作用" class="headerlink" title="Flask蓝图的作用"></a>Flask蓝图的作用</h3><p>蓝图Blueprint实现模块化的应用<br>book_bp = Blueprint(‘book’, name）创建蓝图对象  </p>
-<p>蓝图中使用路由@book_bp.route(‘url’)<br>在另一.py文件里导入和注册蓝图   </p>
-<p>from book import book_bp<br>app.register_blueprint(book_bp)</p>
-<p>作用:<br>  1、将不同的功能模块化<br>  2、构建大型应用<br>  3、优化项目结构<br>  4、增强可读性,易于维护（跟Django的view功能相似）</p>
-<h3 id="Flask框架默认session处理机制"><a href="#Flask框架默认session处理机制" class="headerlink" title="Flask框架默认session处理机制"></a>Flask框架默认session处理机制</h3><p>1、Flask的默认session利用了Werkzeug的SecureCookie，把信息做序列化(pickle)后编码(base64)，放到cookie里了。<br>2、过期时间是通过cookie的过期时间实现的。<br>3、为了防止cookie内容被篡改，session会自动打上一个叫session的hash串，这个串是经过session内容、SECRET_KEY计算出来的，看得出，这种设计虽然不能保证session里的内容不泄露，但至少防止了不被篡改</p>
-<h3 id="列举HTTP请求中的状态码"><a href="#列举HTTP请求中的状态码" class="headerlink" title="列举HTTP请求中的状态码"></a>列举HTTP请求中的状态码</h3><p>404 请求的url地址不存在<br>503 访问限制有权限<br>200 访问成功<br>302 重定向</p>
-<p>1xx —— 元数据<br>2xx —— 正确的响应<br>3xx —— 重定向<br>4xx —— 客户端错误<br>5xx —— 服务端错误<br>100 Continue。客户端应当继续发送请求。<br>200 OK。请求已成功,请求所希望的响应头或数据体将随此响应返回。<br>201 Created。请求成功,并且服务器创建了新的资源。<br>301 Moved Permanently。请求的网页已永久移动到新位置。 服务器返回此响应(对GET或HEAD请求的响应)时,会自动将请求者转到新位置。</p>
-<p>302 Found。服务器目前从不同位置的网页响应请求,但请求者应继续使用原有位置来进行以后的请求。<br>400 Bad Request。服务器不理解请求的语法。<br>401 Unauthorized。请求要求身份验证。对于需要登录的网页,服务器可能返回此响应。<br>403 Forbidden。服务器拒绝请求。<br>404 Not Found。服务器找不到请求的网页。<br>500 Internal Server Error。服务器遇到错误,无法完成请求。</p>
-<h3 id="Flask-WTF是什么？有什么特点？"><a href="#Flask-WTF是什么？有什么特点？" class="headerlink" title="Flask-WTF是什么？有什么特点？"></a>Flask-WTF是什么？有什么特点？</h3><p>1、Flask-wtf是一个用于表单处理,校验并提供csrf验证的功能的扩展库<br>2、Flask-wtf能把正表单免受CSRF&lt;跨站请求伪造&gt;的攻击<br>3、Flask-WTF 提供 FileField 来处理文件上传，它在表单提交后，自动从 flask.request.files 中抽取数据。FileField 的 data 属性是一个 </p>
-<h3 id="SQLAlchemy如何执行原生SQL"><a href="#SQLAlchemy如何执行原生SQL" class="headerlink" title="SQLAlchemy如何执行原生SQL"></a>SQLAlchemy如何执行原生SQL</h3><p>两种SQLAlchemy可以执行原生sql的方式<br>第一种是通过session(会话)对象执行execute方法</p>
-<p>session = scoped_session(SessionFactory)<br>session.execute(‘insert users(name) values(:value)’, params={‘value’: ‘thanlon’})</p>
-<p>第二种是通过cursor(游标)对象执行execute方法。</p>
-<p>conn = engine.raw_connection()<br>cursor = conn.cursor()<br>cursor.execute(‘select * from users’)</p>
-<h3 id="DBUtils模块的作用"><a href="#DBUtils模块的作用" class="headerlink" title="DBUtils模块的作用"></a>DBUtils模块的作用</h3><p>作用:<br>    DBUtils模块的作用是实现数据库连接池，是为了解决“多线程情况下请求比较多时性能降低”的问题</p>
+
+<h3 id="关于concurrent模块"><a href="#关于concurrent模块" class="headerlink" title="关于concurrent模块"></a>关于concurrent模块</h3><p>今天来讲下 python 的另外一个自带库 concurrent 。<br>concurrent 是在 Python3.2 中引入的，只用几行代码就可以编写出线程池/进程池。<br>计算型任务效率和 mutiprocessing.pool 提供的 poll 和 ThreadPoll 相比不分伯仲，而且在 IO 型任务由于引入了 Future 的概念效率要高数倍。<br>而threading的话还要自己维护相关的队列防止死锁，代码的可读性也会下降，相反 concurrent 提供的线程池却非常的便捷，不用自己操心死锁以及编写线程池代码，由于异步的概念 IO 型任务也更有优势<br>concurrent 主要提供了 ThreadPoolExecutor 和 ProcessPoolExecutor 。一个多线程，一个多进程。但 concurrent 本质上都是对 threading 和 mutiprocessing 的封装。看它的源码可以知道，所以最底层并没有异步。<br>ThreadPoolExecutor 自己提供了任务队列，不需要自己写了。而所谓的线程池，它只是简单的比较当前的 threads 数量和定义的 max_workers 的大小，小于 max_workers 就允许任务创建线程执行任务</p>
+<p>#操作多线程/多进程</p>
+<h3 id="创建线程池"><a href="#创建线程池" class="headerlink" title="创建线程池"></a>创建线程池</h3><p>通过 ThreadPoolExecutor 类创建线程池对象，max_workers 设置最大运行线程数数。<br>使用 ThreadPoolExecutor 的好处是不用担心线程死锁问题，让多线程编程更简洁<br>from concurrent import futures<br>pool = futures.ThreadPoolExecutor(max_workers = 2)</p>
+<h3 id="submit"><a href="#submit" class="headerlink" title="submit"></a>submit</h3><p>submit(self, fn, *args, **kwargs):<br>fn：需要异步执行的函数<br>*args,**kwargs：fn 接受的参数</p>
+<p>该方法的作用就是提交一个可执行的回调task，它返回一个Future对象。可以看出此方法不会阻塞主线程的执行。<br>import requests,datetime,time<br>from concurrent import futures</p>
+<p>def get_request(url):<br>    r = requests.get(url)<br>    print(‘{}:{}  {}’.format(datetime.datetime.now(),url,r.status_code))</p>
+<p>urls = [‘<a target="_blank" rel="noopener" href="https://www.baidu.com&amp;/#39;,'https://www.tmall.com','https://www.jd.com']">https://www.baidu.com','https://www.tmall.com','https://www.jd.com']</a><br>pool = futures.ThreadPoolExecutor(max_workers = 2)<br>for url in urls:<br>    task = pool.submit(get_request,url)<br>    print(‘{}主线程’.format(datetime.datetime.now()))<br>    time.sleep(2)</p>
+<p>输出结果<br>2021-03-12 15:29:10.780141:主线程<br>2021-03-12 15:29:10.865425:<a target="_blank" rel="noopener" href="https://www.baidu.com/">https://www.baidu.com</a>  200<br>2021-03-12 15:29:10.923062:<a target="_blank" rel="noopener" href="https://www.tmall.com/">https://www.tmall.com</a>  200<br>2021-03-12 15:29:10.940930:<a target="_blank" rel="noopener" href="https://www.jd.com/">https://www.jd.com</a>  200</p>
+<h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><p>map(self, fn, *iterables, timeout=None, chunksize=1):<br>fn：需要异步执行的函数<br>*iterables：可迭代对象</p>
+<p>map 第二个参数是可迭代对象，比如 list、tuple 等，写法相对简单。map 方法也不会阻塞主线程的执行<br>import requests,datetime,time<br>from concurrent import futures</p>
+<p>def get_request(url):<br>    r = requests.get(url)<br>    print(‘{}:{}  {}’.format(datetime.datetime.now(),url,r.status_code))</p>
+<p>urls = [‘<a target="_blank" rel="noopener" href="https://www.baidu.com&amp;/#39;,'https://www.tmall.com','https://www.jd.com']">https://www.baidu.com','https://www.tmall.com','https://www.jd.com']</a><br>pool = futures.ThreadPoolExecutor(max_workers = 2)<br>tasks = pool.map(get_request,urls)<br>print(‘{}:主线程’.format(datetime.datetime.now()))<br>time.sleep(2)</p>
+<p>输出结果<br>2021-03-12 16:14:04.854452:主线程<br>2021-03-12 16:14:04.938870:<a target="_blank" rel="noopener" href="https://www.baidu.com/">https://www.baidu.com</a>  200<br>2021-03-12 16:14:05.033849:<a target="_blank" rel="noopener" href="https://www.jd.com/">https://www.jd.com</a>  200<br>2021-03-12 16:14:05.048952:<a target="_blank" rel="noopener" href="https://www.tmall.com/">https://www.tmall.com</a>  200</p>
+<h3 id="wait"><a href="#wait" class="headerlink" title="wait"></a>wait</h3><p>如果要等待子线程执行完之后再执行主线程要怎么办呢，可以通过 wait 。</p>
+<p>wait(fs, timeout=None, return_when=ALL_COMPLETED):<br>fs：所有任务 tasks<br>return_when：有三个参数 FIRST_COMPLETED：只要有一个子线程完成则返回结果。<br>             FIRST_EXCEPTION：只要有一个子线程抛异常则返回结果，若没有异常则等同于ALL_COMPLETED。<br>             ALL_COMPLETED：默认参数，等待所有子线程完成</p>
+<p>import requests,datetime,time<br>from concurrent import futures</p>
+<p>def get_request(url):<br>    r = requests.get(url)<br>    print(‘{}:{}  {}’.format(datetime.datetime.now(),url,r.status_code))</p>
+<p>urls = [‘<a target="_blank" rel="noopener" href="https://www.baidu.com&amp;/#39;,'https://www.tmall.com','https://www.jd.com']">https://www.baidu.com','https://www.tmall.com','https://www.jd.com']</a><br>pool = futures.ThreadPoolExecutor(max_workers = 2)<br>tasks =[]<br>for url in urls:<br>    task = pool.submit(get_request,url)<br>    tasks.append(task)<br>futures.wait(tasks)<br>print(‘{}:主线程’.format(datetime.datetime.now()))<br>time.sleep(2)</p>
+<p>输出结果<br>2021-03-12 16:30:13.437042:<a target="_blank" rel="noopener" href="https://www.baidu.com/">https://www.baidu.com</a>  200<br>2021-03-12 16:30:13.552700:<a target="_blank" rel="noopener" href="https://www.jd.com/">https://www.jd.com</a>  200<br>2021-03-12 16:30:14.117325:<a target="_blank" rel="noopener" href="https://www.tmall.com/">https://www.tmall.com</a>  200<br>2021-03-12 16:30:14.118284:主线程</p>
+<h3 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h3><p>as_completed(fs, timeout=None)</p>
+<p>所有任务 tasks<br>使用 concurrent.futures 操作 多线程/多进程 过程中，很多函数报错并不会直接终止程序，而是什么都没发生。使用 as_completed 可以捕获异常，代码如下<br>import requests,datetime,time<br>from concurrent import futures</p>
+<p>def get_request(url):<br>    r = requests.get(url)<br>    print(‘{}:{}  {}’.format(datetime.datetime.now(),url,r.status_code))</p>
+<p>urls = [‘<a target="_blank" rel="noopener" href="http://www.baidu.com&amp;/#39;,'https://www.tmall.com','https://www.jd.com']">www.baidu.com','https://www.tmall.com','https://www.jd.com']</a><br>创建线程池<br>pool = futures.ThreadPoolExecutor(max_workers = 2)<br>tasks =[]<br>for url in urls:<br>    task = pool.submit(get_request,url)<br>    tasks.append(task)<br>异常捕获<br>errors = futures.as_completed(tasks)<br>for error in errors:<br>    # error.result()       等待子线程都完成，并抛出异常，中断主线程<br>    # 捕获子线程异常，不会终止主线程继续运行<br>    print(error.exception())<br>futures.wait(tasks)<br>print(‘{}:主线程’.format(datetime.datetime.now()))<br>time.sleep(2)</p>
+<p>输出结果<br>Invalid URL ‘<a target="_blank" rel="noopener" href="http://www.baidu.com&amp;/#39;">www.baidu.com'</a>: No schema supplied. Perhaps you meant <a target="_blank" rel="noopener" href="http://www.baidu.com/">http://www.baidu.com</a>?<br>2021-03-12 17:24:26.984933:<a target="_blank" rel="noopener" href="https://www.tmall.com/">https://www.tmall.com</a>  200<br>None<br>2021-03-12 17:24:26.993939:<a target="_blank" rel="noopener" href="https://www.jd.com/">https://www.jd.com</a>  200<br>None<br>2021-03-12 17:24:26.994937:主线程</p>
+<p>多进程编程与之类似，将 ThreadPoolExecutor 替换成 ProcessPoolExecutor</p>
 
                 
             </div>
@@ -417,7 +422,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2020/11/24/flask%E9%9D%A2%E8%AF%95%E9%A2%98/">http://example.com/2020/11/24/flask%E9%9D%A2%E8%AF%95%E9%A2%98/</a>
+                    <a href="http://example.com/2020/09/27/concurrent%E6%A8%A1%E5%9D%97/">http://example.com/2020/09/27/concurrent%E6%A8%A1%E5%9D%97/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -455,8 +460,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/flask%E5%9F%BA%E7%A1%80/">
-                                    <span class="chip bg-color">flask基础</span>
+                                <a href="/tags/python%E5%9F%BA%E7%A1%80/">
+                                    <span class="chip bg-color">python基础</span>
                                 </a>
                             
                         </div>
@@ -501,7 +506,7 @@
         repo: '',
         owner: '',
         admin: null,
-        id: '2020-11-24T16-27-33',
+        id: '2020-09-27T19-23-21',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -531,13 +536,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2021/09/23/drf%E9%9D%A2%E8%AF%95%E9%A2%98/">
+                <a href="/2020/11/24/flask%E9%9D%A2%E8%AF%95%E9%A2%98/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="drf面试题">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="flask面试题">
                         
-                        <span class="card-title">drf面试题</span>
+                        <span class="card-title">flask面试题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -548,14 +553,14 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-09-23
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-24
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Django/" class="post-category">
-                                    Django
+                            <a href="/categories/flask/" class="post-category">
+                                    flask
                                 </a>
                             
                             
@@ -565,8 +570,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Django-drf%E9%9D%A2%E8%AF%95%E9%A2%98/">
-                        <span class="chip bg-color">Django-drf面试题</span>
+                    <a href="/tags/flask%E5%9F%BA%E7%A1%80/">
+                        <span class="chip bg-color">flask基础</span>
                     </a>
                     
                 </div>
@@ -580,13 +585,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/09/27/concurrent%E6%A8%A1%E5%9D%97/">
+                <a href="/2020/09/27/multiprocess%E6%A8%A1%E5%9D%97/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="concurrent模块">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="多进程包multiprocessing的使用">
                         
-                        <span class="card-title">concurrent模块</span>
+                        <span class="card-title">多进程包multiprocessing的使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">

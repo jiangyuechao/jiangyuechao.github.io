@@ -54,6 +54,56 @@
     
     
     <entry>
+      <title>concurrent模块</title>
+      <link href="/2020/09/27/concurrent%E6%A8%A1%E5%9D%97/"/>
+      <url>/2020/09/27/concurrent%E6%A8%A1%E5%9D%97/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><span id="more"></span><h3 id="关于concurrent模块"><a href="#关于concurrent模块" class="headerlink" title="关于concurrent模块"></a>关于concurrent模块</h3><p>今天来讲下 python 的另外一个自带库 concurrent 。<br>concurrent 是在 Python3.2 中引入的，只用几行代码就可以编写出线程池/进程池。<br>计算型任务效率和 mutiprocessing.pool 提供的 poll 和 ThreadPoll 相比不分伯仲，而且在 IO 型任务由于引入了 Future 的概念效率要高数倍。<br>而threading的话还要自己维护相关的队列防止死锁，代码的可读性也会下降，相反 concurrent 提供的线程池却非常的便捷，不用自己操心死锁以及编写线程池代码，由于异步的概念 IO 型任务也更有优势<br>concurrent 主要提供了 ThreadPoolExecutor 和 ProcessPoolExecutor 。一个多线程，一个多进程。但 concurrent 本质上都是对 threading 和 mutiprocessing 的封装。看它的源码可以知道，所以最底层并没有异步。<br>ThreadPoolExecutor 自己提供了任务队列，不需要自己写了。而所谓的线程池，它只是简单的比较当前的 threads 数量和定义的 max_workers 的大小，小于 max_workers 就允许任务创建线程执行任务</p><p>#操作多线程/多进程</p><h3 id="创建线程池"><a href="#创建线程池" class="headerlink" title="创建线程池"></a>创建线程池</h3><p>通过 ThreadPoolExecutor 类创建线程池对象，max_workers 设置最大运行线程数数。<br>使用 ThreadPoolExecutor 的好处是不用担心线程死锁问题，让多线程编程更简洁<br>from concurrent import futures<br>pool = futures.ThreadPoolExecutor(max_workers = 2)</p><h3 id="submit"><a href="#submit" class="headerlink" title="submit"></a>submit</h3><p>submit(self, fn, *args, **kwargs):<br>fn：需要异步执行的函数<br>*args,**kwargs：fn 接受的参数</p><p>该方法的作用就是提交一个可执行的回调task，它返回一个Future对象。可以看出此方法不会阻塞主线程的执行。<br>import requests,datetime,time<br>from concurrent import futures</p><p>def get_request(url):<br>    r = requests.get(url)<br>    print(‘{}:{}  {}’.format(datetime.datetime.now(),url,r.status_code))</p><p>urls = [‘<a href="https://www.baidu.com&amp;/#39;,'https://www.tmall.com','https://www.jd.com']">https://www.baidu.com','https://www.tmall.com','https://www.jd.com']</a><br>pool = futures.ThreadPoolExecutor(max_workers = 2)<br>for url in urls:<br>    task = pool.submit(get_request,url)<br>    print(‘{}主线程’.format(datetime.datetime.now()))<br>    time.sleep(2)</p><p>输出结果<br>2021-03-12 15:29:10.780141:主线程<br>2021-03-12 15:29:10.865425:<a href="https://www.baidu.com/">https://www.baidu.com</a>  200<br>2021-03-12 15:29:10.923062:<a href="https://www.tmall.com/">https://www.tmall.com</a>  200<br>2021-03-12 15:29:10.940930:<a href="https://www.jd.com/">https://www.jd.com</a>  200</p><h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><p>map(self, fn, *iterables, timeout=None, chunksize=1):<br>fn：需要异步执行的函数<br>*iterables：可迭代对象</p><p>map 第二个参数是可迭代对象，比如 list、tuple 等，写法相对简单。map 方法也不会阻塞主线程的执行<br>import requests,datetime,time<br>from concurrent import futures</p><p>def get_request(url):<br>    r = requests.get(url)<br>    print(‘{}:{}  {}’.format(datetime.datetime.now(),url,r.status_code))</p><p>urls = [‘<a href="https://www.baidu.com&amp;/#39;,'https://www.tmall.com','https://www.jd.com']">https://www.baidu.com','https://www.tmall.com','https://www.jd.com']</a><br>pool = futures.ThreadPoolExecutor(max_workers = 2)<br>tasks = pool.map(get_request,urls)<br>print(‘{}:主线程’.format(datetime.datetime.now()))<br>time.sleep(2)</p><p>输出结果<br>2021-03-12 16:14:04.854452:主线程<br>2021-03-12 16:14:04.938870:<a href="https://www.baidu.com/">https://www.baidu.com</a>  200<br>2021-03-12 16:14:05.033849:<a href="https://www.jd.com/">https://www.jd.com</a>  200<br>2021-03-12 16:14:05.048952:<a href="https://www.tmall.com/">https://www.tmall.com</a>  200</p><h3 id="wait"><a href="#wait" class="headerlink" title="wait"></a>wait</h3><p>如果要等待子线程执行完之后再执行主线程要怎么办呢，可以通过 wait 。</p><p>wait(fs, timeout=None, return_when=ALL_COMPLETED):<br>fs：所有任务 tasks<br>return_when：有三个参数 FIRST_COMPLETED：只要有一个子线程完成则返回结果。<br>             FIRST_EXCEPTION：只要有一个子线程抛异常则返回结果，若没有异常则等同于ALL_COMPLETED。<br>             ALL_COMPLETED：默认参数，等待所有子线程完成</p><p>import requests,datetime,time<br>from concurrent import futures</p><p>def get_request(url):<br>    r = requests.get(url)<br>    print(‘{}:{}  {}’.format(datetime.datetime.now(),url,r.status_code))</p><p>urls = [‘<a href="https://www.baidu.com&amp;/#39;,'https://www.tmall.com','https://www.jd.com']">https://www.baidu.com','https://www.tmall.com','https://www.jd.com']</a><br>pool = futures.ThreadPoolExecutor(max_workers = 2)<br>tasks =[]<br>for url in urls:<br>    task = pool.submit(get_request,url)<br>    tasks.append(task)<br>futures.wait(tasks)<br>print(‘{}:主线程’.format(datetime.datetime.now()))<br>time.sleep(2)</p><p>输出结果<br>2021-03-12 16:30:13.437042:<a href="https://www.baidu.com/">https://www.baidu.com</a>  200<br>2021-03-12 16:30:13.552700:<a href="https://www.jd.com/">https://www.jd.com</a>  200<br>2021-03-12 16:30:14.117325:<a href="https://www.tmall.com/">https://www.tmall.com</a>  200<br>2021-03-12 16:30:14.118284:主线程</p><h3 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h3><p>as_completed(fs, timeout=None)</p><p>所有任务 tasks<br>使用 concurrent.futures 操作 多线程/多进程 过程中，很多函数报错并不会直接终止程序，而是什么都没发生。使用 as_completed 可以捕获异常，代码如下<br>import requests,datetime,time<br>from concurrent import futures</p><p>def get_request(url):<br>    r = requests.get(url)<br>    print(‘{}:{}  {}’.format(datetime.datetime.now(),url,r.status_code))</p><p>urls = [‘<a href="http://www.baidu.com&amp;/#39;,'https://www.tmall.com','https://www.jd.com']">www.baidu.com','https://www.tmall.com','https://www.jd.com']</a><br>创建线程池<br>pool = futures.ThreadPoolExecutor(max_workers = 2)<br>tasks =[]<br>for url in urls:<br>    task = pool.submit(get_request,url)<br>    tasks.append(task)<br>异常捕获<br>errors = futures.as_completed(tasks)<br>for error in errors:<br>    # error.result()       等待子线程都完成，并抛出异常，中断主线程<br>    # 捕获子线程异常，不会终止主线程继续运行<br>    print(error.exception())<br>futures.wait(tasks)<br>print(‘{}:主线程’.format(datetime.datetime.now()))<br>time.sleep(2)</p><p>输出结果<br>Invalid URL ‘<a href="http://www.baidu.com&amp;/#39;">www.baidu.com'</a>: No schema supplied. Perhaps you meant <a href="http://www.baidu.com/">http://www.baidu.com</a>?<br>2021-03-12 17:24:26.984933:<a href="https://www.tmall.com/">https://www.tmall.com</a>  200<br>None<br>2021-03-12 17:24:26.993939:<a href="https://www.jd.com/">https://www.jd.com</a>  200<br>None<br>2021-03-12 17:24:26.994937:主线程</p><p>多进程编程与之类似，将 ThreadPoolExecutor 替换成 ProcessPoolExecutor</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python基础 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>多进程包multiprocessing的使用</title>
+      <link href="/2020/09/27/multiprocess%E6%A8%A1%E5%9D%97/"/>
+      <url>/2020/09/27/multiprocess%E6%A8%A1%E5%9D%97/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><span id="more"></span><p>Python提供了非常好用的多进程包multiprocessing，你只需要定义一个函数，Python会替你完成其他所有事情。借助这个包，可以轻松完成从单进程到并发执行的转换。</p><p>###新建单一进程</p><p>如果我们新建少量进程，可以如下：<br>import multiprocessing<br>import time<br>def func(msg):<br>  for i in xrange(3):<br>    print msg<br>    time.sleep(1)<br>if <strong>name</strong> == “<strong>main</strong>“:<br>  p = multiprocessing.Process(target=func, args=(“hello”, ))<br>  p.start()<br>  p.join()<br>  print “Sub-process done.”<br>###使用进程池</p><p>是的，你没有看错，不是线程池。它可以让你跑满多核CPU，而且使用方法非常简单。<br>注意要用apply_async，如果落下async，就变成阻塞版本了。<br>processes=4是最多并发进程数量。</p><p>import multiprocessing<br>import time<br>def func(msg):<br>  for i in xrange(3):<br>    print msg<br>    time.sleep(1)<br>if <strong>name</strong> == “<strong>main</strong>“:<br>  pool = multiprocessing.Pool(processes=4)<br>  for i in xrange(10):<br>    msg = “hello %d” %(i)<br>    pool.apply_async(func, (msg, ))<br>  pool.close()<br>  pool.join()<br>  print “Sub-process(es) done.”</p><p>###使用Pool，并需要关注结果<br>更多的时候，我们不仅需要多进程执行，还需要关注每个进程的执行结果，如下：</p><p>import multiprocessing<br>import time<br>def func(msg):<br>  for i in xrange(3):<br>    print msg<br>    time.sleep(1)<br>  return “done “ + msg<br>if <strong>name</strong> == “<strong>main</strong>“:<br>  pool = multiprocessing.Pool(processes=4)<br>  result = []<br>  for i in xrange(10):<br>    msg = “hello %d” %(i)<br>    result.append(pool.apply_async(func, (msg, )))<br>  pool.close()<br>  pool.join()<br>  for res in result:<br>    print res.get()<br>  print “Sub-process(es) done.”</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python基础 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>redis缓存</title>
       <link href="/2020/08/10/Redis%E7%BC%93%E5%AD%98/"/>
       <url>/2020/08/10/Redis%E7%BC%93%E5%AD%98/</url>
