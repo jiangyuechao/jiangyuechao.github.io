@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="多进程包multiprocessing的使用, 且听风吟">
+    <meta name="keywords" content="一文搞懂各种锁, 且听风吟">
     <meta name="description" content="welcome to my word">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>多进程包multiprocessing的使用 | 且听风吟</title>
+    <title>一文搞懂各种锁 | 且听风吟</title>
     <link rel="icon" type="image/png" href="/source/images/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -202,12 +202,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">多进程包multiprocessing的使用</h1>
+                    <h1 class="description center-align post-title">一文搞懂各种锁</h1>
                 </div>
             </div>
         </div>
@@ -323,8 +323,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/python%E5%9F%BA%E7%A1%80/">
-                                <span class="chip bg-color">python基础</span>
+                            <a href="/tags/%E9%94%81%E6%9C%BA%E5%88%B6/">
+                                <span class="chip bg-color">锁机制</span>
                             </a>
                         
                     </div>
@@ -348,7 +348,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-09-27
+                    2022-06-16
                 </div>
                 
 
@@ -369,16 +369,35 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <span id="more"></span>
+                <p>一文搞懂各种锁-互斥锁-自旋锁-可重入锁-读写锁-悲观锁-乐观锁-分布式锁</p>
+<span id="more"></span>
 
 
-<p>Python提供了非常好用的多进程包multiprocessing，你只需要定义一个函数，Python会替你完成其他所有事情。借助这个包，可以轻松完成从单进程到并发执行的转换。</p>
-<h3 id="新建单一进程"><a href="#新建单一进程" class="headerlink" title="新建单一进程"></a>新建单一进程</h3><p>如果我们新建少量进程，可以如下：<br>import multiprocessing<br>import time<br>def func(msg):<br>  for i in xrange(3):<br>    print msg<br>    time.sleep(1)<br>if <strong>name</strong> == “<strong>main</strong>“:<br>  p = multiprocessing.Process(target=func, args=(“hello”, ))<br>  p.start()<br>  p.join()<br>  print “Sub-process done.”</p>
-<h3 id="使用进程池"><a href="#使用进程池" class="headerlink" title="使用进程池"></a>使用进程池</h3><p>是的，你没有看错，不是线程池。它可以让你跑满多核CPU，而且使用方法非常简单。<br>注意要用apply_async，如果落下async，就变成阻塞版本了。<br>processes=4是最多并发进程数量。</p>
-<p>import multiprocessing<br>import time<br>def func(msg):<br>  for i in xrange(3):<br>    print msg<br>    time.sleep(1)<br>if <strong>name</strong> == “<strong>main</strong>“:<br>  pool = multiprocessing.Pool(processes=4)<br>  for i in xrange(10):<br>    msg = “hello %d” %(i)<br>    pool.apply_async(func, (msg, ))<br>  pool.close()<br>  pool.join()<br>  print “Sub-process(es) done.”</p>
-<h3 id="使用Pool，并需要关注结果"><a href="#使用Pool，并需要关注结果" class="headerlink" title="使用Pool，并需要关注结果"></a>使用Pool，并需要关注结果</h3><p>更多的时候，我们不仅需要多进程执行，还需要关注每个进程的执行结果，如下：</p>
-<p>import multiprocessing<br>import time<br>def func(msg):<br>  for i in xrange(3):<br>    print msg<br>    time.sleep(1)<br>  return “done “ + msg<br>if <strong>name</strong> == “<strong>main</strong>“:<br>  pool = multiprocessing.Pool(processes=4)<br>  result = []<br>  for i in xrange(10):<br>    msg = “hello %d” %(i)<br>    result.append(pool.apply_async(func, (msg, )))<br>  pool.close()<br>  pool.join()<br>  for res in result:<br>    print res.get()<br>  print “Sub-process(es) done.”</p>
 
+<h2 id="一-为什么会有锁机制"><a href="#一-为什么会有锁机制" class="headerlink" title="一 为什么会有锁机制"></a>一 为什么会有锁机制</h2><figure class="highlight go"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>  在多线程情况下共享操作同一个变量时，会导致数据不一致，出现并发安全问题，所以通过锁机制来保证数据的准确和唯一</span><br><span class="line"><span class="number">2</span>  通过锁将可能出现问题的代码用锁对象锁起来,被锁起来的代码就叫同步代码块,同一时间只能有一个线程来访问这个同步代码块</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="二-什么是临界区"><a href="#二-什么是临界区" class="headerlink" title="二 什么是临界区"></a>二 什么是临界区</h2><figure class="highlight go"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> 每个进程中访问临界资源的那段代码称为临界区（criticalsection）</span><br><span class="line"><span class="number">2</span> 通过锁机制，保证每次只允许一个进程进入临界区，进入后，不允许其他进程进入</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="三-操作系统的各种锁"><a href="#三-操作系统的各种锁" class="headerlink" title="三 操作系统的各种锁"></a>三 操作系统的各种锁</h2><h3 id="3-1-互斥锁"><a href="#3-1-互斥锁" class="headerlink" title="3.1 互斥锁"></a>3.1 互斥锁</h3><figure class="highlight go"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 互斥锁</span></span><br><span class="line">互斥锁是一种简单的加锁的方法来控制对共享资源的访问，互斥锁只有两种状态,即上锁( lock )和解锁(unlock)，如果互斥量已经上锁，调用线程会阻塞，直到互斥量被解锁。在完成了对共享资源的访问后，要对互斥量进行解锁</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 互斥锁特点</span></span><br><span class="line"><span class="number">1.</span> 原子性：把一个互斥量锁定为一个原子操作，操作系统保证了如果一个线程锁定了一个互斥量，没有其他线程在同一时间可以成功锁定这个互斥量；</span><br><span class="line"><span class="number">2.</span> 唯一性：如果一个线程锁定了一个互斥量，在它解除锁定之前，没有其他线程可以锁定这个互斥量；</span><br><span class="line"><span class="number">3.</span> 非繁忙等待：如果一个线程已经锁定了一个互斥量，第二个线程又试图去锁定这个互斥量，则第二个线程将被挂起（不占用任何cpu资源），直到第一个线程解除对这个互斥量的锁定为止，第二个线程则被唤醒并继续执行，同时锁定这个互斥量</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 注意</span></span><br><span class="line">Python,Go,Java都支持互斥锁</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="3-2-自旋锁"><a href="#3-2-自旋锁" class="headerlink" title="3.2 自旋锁"></a>3.2 自旋锁</h3><figure class="highlight go"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 自旋锁</span></span><br><span class="line">自旋锁与互斥量功能一样，唯一一点不同的就是互斥量阻塞后休眠让出cpu，而自旋锁阻塞后不会让出cpu，会一直忙等待，直到得到锁，原地打转</span><br><span class="line">自旋锁在用户态使用的比较少，在内核使用的比较多！自旋锁的使用场景：锁的持有时间比较短，或者说小于<span class="number">2</span>次上下文切换的时间。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 自旋锁特点</span></span><br><span class="line"><span class="number">1</span> 某个协程持有锁时间长，等待的协程一直在循环等待，消耗CPU资源。</span><br><span class="line"><span class="number">2</span> 不公平，有可能存在有的协程等待时间过程，出现线程饥饿（这里就是协程饥饿）</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 注意</span></span><br><span class="line">Python,Go不支持自旋锁</span><br><span class="line">Java支持自旋锁</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>Go实现自旋锁</strong></p>
+<figure class="highlight go"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">1 锁也是1个变量，初值设为0；</span></span><br><span class="line"><span class="comment">2 1个协程将锁原子性的置为1；</span></span><br><span class="line"><span class="comment">3 操作变量n；</span></span><br><span class="line"><span class="comment">4 操作完成后，将锁原子性的置为0，释放锁。</span></span><br><span class="line"><span class="comment">在1个协程获取锁时，另一个协程一直尝试，直到能够获取锁（不断循环），这就是自旋锁</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"sync/atomic"</span></span><br><span class="line">    <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"><span class="comment">// Spin是一个锁变量，实现了Lock和Unlock方法</span></span><br><span class="line"><span class="keyword">type</span> Spin <span class="type">int32</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(l *Spin)</span></span> Lock() {</span><br><span class="line">    <span class="comment">// 原子交换，0换成1</span></span><br><span class="line">    <span class="keyword">for</span> !atomic.CompareAndSwapInt32((*<span class="type">int32</span>)(l), <span class="number">0</span>, <span class="number">1</span>) {}</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(l *Spin)</span></span> Unlock() {</span><br><span class="line">    <span class="comment">// 原子置零</span></span><br><span class="line">    atomic.StoreInt32((*<span class="type">int32</span>)(l), <span class="number">0</span>)</span><br><span class="line">}</span><br><span class="line"><span class="keyword">type</span> Locker <span class="keyword">interface</span> {</span><br><span class="line">    Lock()</span><br><span class="line">    Unlock()</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> {</span><br><span class="line">    <span class="keyword">var</span> l Locker</span><br><span class="line">    l = <span class="built_in">new</span>(Spin)</span><br><span class="line">    <span class="keyword">var</span> n <span class="type">int</span></span><br><span class="line">    <span class="comment">// 两个协程</span></span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">2</span>; i++ {</span><br><span class="line">        <span class="keyword">go</span> routine(i, &amp;n, l, <span class="number">200</span>*time.Millisecond)</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">select</span> {}</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">routine</span><span class="params">(i <span class="type">int</span>, v *<span class="type">int</span>, l Locker, d time.Duration)</span></span> {</span><br><span class="line">    <span class="comment">// 实现自旋加锁</span></span><br><span class="line">    <span class="keyword">for</span> {</span><br><span class="line">        <span class="function"><span class="keyword">func</span><span class="params">()</span></span> {</span><br><span class="line">            l.Lock()</span><br><span class="line">            <span class="keyword">defer</span> l.Unlock()</span><br><span class="line">            *v++</span><br><span class="line">            <span class="built_in">println</span>(*v, i)</span><br><span class="line">            time.Sleep(d)</span><br><span class="line">        }()</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="3-3-可重入锁-递归锁"><a href="#3-3-可重入锁-递归锁" class="headerlink" title="3.3 可重入锁(递归锁)"></a>3.3 可重入锁(递归锁)</h3><figure class="highlight go"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 可重入锁</span></span><br><span class="line">为了解决互斥锁导致的死锁问题(哲学家吃面问题)，引入可重入锁又叫递归锁</span><br><span class="line">可重入内部维护着一个锁和一个计数器，计数器记录了获取锁的次数，从而使得资源可以被同一个线程多次获取，直到一个线程所有的获取都被释放，其他的线程才能获得资源</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 注意</span></span><br><span class="line">Go不支持可重入锁 <span class="comment">//https://blog.csdn.net/qq_39397165/article/details/117433641</span></span><br><span class="line">Python,Java支持可重入锁</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="3-4-读写锁"><a href="#3-4-读写锁" class="headerlink" title="3.4 读写锁"></a>3.4 读写锁</h3><figure class="highlight go"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 读写锁</span></span><br><span class="line">读写锁允许更改的并行性，写的串行性，也叫共享互斥锁。</span><br><span class="line">互斥量要么是锁住状态，要么就是不加锁状态，而且一次只有一个线程可以对其加锁。</span><br><span class="line">读写锁可以有<span class="number">3</span>种状态：读模式下加锁状态、写模式加锁状态、不加锁状态。</span><br><span class="line">一次只有一个线程可以占有写模式的读写锁，但是多个线程可以同时占有读模式的读写锁（允许多个线程读但只允许一个线程写）</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 读写锁特点</span></span><br><span class="line"><span class="number">1</span> 如果有其它线程读数据，则允许其它线程执行读操作，但不允许写操作；</span><br><span class="line"><span class="number">2</span> 如果有其它线程写数据，则其它线程都不允许读、写操作</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 注意</span></span><br><span class="line">Python不支持读写，自行实现：https:<span class="comment">//www.cnblogs.com/LuoboLiam/p/15338632.html</span></span><br><span class="line">Java,Go支持读写锁</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="3-5-信号量-Semaphore"><a href="#3-5-信号量-Semaphore" class="headerlink" title="3.5 信号量(Semaphore)"></a>3.5 信号量(Semaphore)</h3><figure class="highlight go"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 信号量</span></span><br><span class="line">信号量可以理解为多把锁，同时允许多个线程来更改数据</span><br><span class="line">信号量是一个计数器，可以用来控制多个进程对共享资源的访问</span><br><span class="line">信号量广泛用于进程或线程间的同步和互斥，信号量本质上是一个非负的整数计数器，它被用来控制对公共资源的访问</span><br><span class="line"></span><br><span class="line"><span class="comment">// 注意</span></span><br><span class="line">Go不支持信号量，可以自行实现：https:<span class="comment">//studygolang.com/articles/25382?fr=sidebar</span></span><br><span class="line">Python,Java支持信号量</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="3-6-条件变量-Condition"><a href="#3-6-条件变量-Condition" class="headerlink" title="3.6 条件变量(Condition)"></a>3.6 条件变量(Condition)</h3><figure class="highlight go"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 条件变量</span></span><br><span class="line">线程等待，只有满足某条件时，n个线程才执行</span><br><span class="line">条件变量用来自动阻塞线程，直到某特殊情况发生为止。</span><br><span class="line">条件变量使我们可以睡眠等待某种条件出现。条件变量是利用线程间共享的全局变量进行同步的一种机制，主要包括两个动作：</span><br><span class="line">一个线程等待<span class="string">"条件变量的条件成立"</span>而挂起；</span><br><span class="line">另一个线程使 “条件成立”（给出条件成立信号）</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 注意</span></span><br><span class="line">Go,Python,Java都支持条件变量</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="3-7-其他"><a href="#3-7-其他" class="headerlink" title="3.7 其他"></a>3.7 其他</h3><figure class="highlight go"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 公平锁 / 非公平锁</span></span><br><span class="line"><span class="number">1</span> 公平锁：是指多个线程按照申请锁的顺序来获取锁。</span><br><span class="line"><span class="number">2</span> 非公平锁:是指多个线程获取锁的顺序并不是按照申请锁的顺序，有可能后申请的线程比先申请的线程优先获取锁。有可能，会造成优先级反转或者饥饿现象</span><br><span class="line"></span><br><span class="line"><span class="comment">// 可重入锁 / 不可重入锁</span></span><br><span class="line"><span class="number">1</span> 可重入锁：指的是可重复可递归调用的锁，在外层使用锁之后，在内层仍然可以使用，并且不发生死锁，这样的锁就叫做可重入锁</span><br><span class="line"><span class="number">2</span> 不可重入锁：与可重入锁相反，不可递归调用，递归调用就发生死锁。</span><br><span class="line"></span><br><span class="line"><span class="comment">// 独享锁 / 共享锁</span></span><br><span class="line"><span class="number">1</span> 独享锁：该锁每一次只能被一个线程所持有。</span><br><span class="line"><span class="number">2</span> 共享锁：该锁可被多个线程共有</span><br><span class="line"></span><br><span class="line"><span class="comment">// 互斥锁 / 读写锁</span></span><br><span class="line"><span class="number">1</span> 互斥锁:在访问共享资源之前对进行加锁操作，在访问完成之后进行解锁操作。 加锁后，任何其他试图再次加锁的线程会被阻塞，直到当前进程解锁</span><br><span class="line"><span class="number">2</span> 读写锁：既是互斥锁，又是共享锁，read模式是共享，write是互斥(排它锁)的</span><br><span class="line"></span><br><span class="line"><span class="comment">// 分段锁</span></span><br><span class="line">分段锁: 其实是一种锁的设计，并不是具体的一种锁</span><br><span class="line">容器里有多把锁，每一把锁用于锁容器其中一部分数据，那么当多线程访问容器里不同数据段的数据时，线程间就不会存在锁竞争</span><br><span class="line"></span><br><span class="line"><span class="comment">// 偏向锁 / 轻量级锁 / 重量级锁</span></span><br><span class="line"><span class="number">1</span> 偏向锁:是指一段同步代码一直被一个线程所访问，那么该线程会自动获取锁。降低获取锁的代价。</span><br><span class="line">轻量级</span><br><span class="line"><span class="number">2</span> 轻量级锁:是指当锁是偏向锁的时候，被另一个线程所访问，偏向锁就会升级为轻量级锁，其他线程会通过自旋的形式尝试获取锁，不会阻塞，提高性能。</span><br><span class="line">重量级锁</span><br><span class="line"><span class="number">3</span> 重量级锁: 是指当锁为轻量级锁的时候，另一个线程虽然是自旋，但自旋不会一直持续下去，当自旋一定次数的时候，还没有获取到锁，就会进入阻塞，该锁膨胀为重量级锁。重量级锁会让其他申请的线程进入阻塞，性能降低</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="四-乐观锁-x2F-悲观锁"><a href="#四-乐观锁-x2F-悲观锁" class="headerlink" title="四 乐观锁/悲观锁"></a>四 乐观锁/悲观锁</h2><figure class="highlight go"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 悲观锁</span></span><br><span class="line"></span><br><span class="line">总是假设最坏的情况，每次去拿数据的时候都认为别人会修改，所以每次在拿数据的时候都会上锁，这样别人想拿这个数据就会阻塞直到它拿到锁（共享资源每次只给一个线程使用，其它线程阻塞，用完后再把资源转让给其它线程）。传统的关系型数据库里边就用到了很多这种锁机制，比如行锁，表锁等，读锁，写锁等，都是在做操作之前先上锁</span><br><span class="line"></span><br><span class="line"><span class="comment">//乐观锁</span></span><br><span class="line">总是假设最好的情况，每次去拿数据的时候都认为别人不会修改，所以不会上锁，但是在更新的时候会判断一下在此期间别人有没有去更新这个数据，可以使用版本号机制和CAS算法实现。乐观锁适用于多读的应用类型，这样可以提高吞吐量，像数据库提供的类似于write_condition机制，其实都是提供的乐观锁</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="五-分布式锁"><a href="#五-分布式锁" class="headerlink" title="五 分布式锁"></a>五 分布式锁</h2><figure class="highlight go"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">在分布式系统中访问共享资源就需要一种互斥机制，来防止彼此之间的互相干扰，以保证一致性，在这种情况下，就需要用到分布式锁</span><br><span class="line"></span><br><span class="line">为了保证一个方法或属性在高并发情况下的同一时间只能被同一个线程执行，在传统单体应用单机部署的情况下，可以使用并发处理相关的功能进行互斥控制。但是，随着业务发展的需要，原单体单机部署的系统被演化成分布式集群系统后，由于分布式系统多线程、多进程并且分布在不同机器上，这将使原单机部署情况下的并发控制锁策略失效，单纯的应用并不能提供分布式锁的能力。为了解决这个问题就需要一种跨机器的互斥机制来控制共享资源的访问，这就是分布式锁</span><br><span class="line"></span><br><span class="line"><span class="comment">// 分布式锁的多种实现方式</span></span><br><span class="line">https:<span class="comment">//www.cnblogs.com/liuqingzheng/p/11080501.html</span></span><br></pre></td></tr></tbody></table></figure>
                 
             </div>
             <hr/>
@@ -404,7 +423,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2020/09/27/multiprocess%E6%A8%A1%E5%9D%97/">http://example.com/2020/09/27/multiprocess%E6%A8%A1%E5%9D%97/</a>
+                    <a href="http://example.com/2022/06/16/%E9%94%81/">http://example.com/2022/06/16/%E9%94%81/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -442,8 +461,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/python%E5%9F%BA%E7%A1%80/">
-                                    <span class="chip bg-color">python基础</span>
+                                <a href="/tags/%E9%94%81%E6%9C%BA%E5%88%B6/">
+                                    <span class="chip bg-color">锁机制</span>
                                 </a>
                             
                         </div>
@@ -488,7 +507,7 @@
         repo: '',
         owner: '',
         admin: null,
-        id: '2020-09-27T19-23-21',
+        id: '2022-06-16T19-23-21',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -514,29 +533,30 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/09/27/concurrent%E6%A8%A1%E5%9D%97/">
+                <a href="/2022/06/16/%E9%94%81/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="concurrent模块">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="一文搞懂各种锁">
                         
-                        <span class="card-title">concurrent模块</span>
+                        <span class="card-title">一文搞懂各种锁</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            一文搞懂各种锁-互斥锁-自旋锁-可重入锁-读写锁-悲观锁-乐观锁-分布式锁
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-09-27
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-16
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -549,11 +569,12 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/python%E5%9F%BA%E7%A1%80/">
-                        <span class="chip bg-color">python基础</span>
+                    <a href="/tags/%E9%94%81%E6%9C%BA%E5%88%B6/">
+                        <span class="chip bg-color">锁机制</span>
                     </a>
                     
                 </div>
@@ -567,13 +588,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/08/10/Redis%E7%BC%93%E5%AD%98/">
+                <a href="/2021/09/23/drf%E9%9D%A2%E8%AF%95%E9%A2%98/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="redis缓存">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="drf面试题">
                         
-                        <span class="card-title">redis缓存</span>
+                        <span class="card-title">drf面试题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -584,14 +605,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-10
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-23
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/redis/" class="post-category">
-                                    redis
+                            <a href="/categories/Django/" class="post-category">
+                                    Django
                                 </a>
                             
                             
@@ -601,8 +622,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/redis%E5%9F%BA%E7%A1%80/">
-                        <span class="chip bg-color">redis基础</span>
+                    <a href="/tags/Django-drf%E9%9D%A2%E8%AF%95%E9%A2%98/">
+                        <span class="chip bg-color">Django-drf面试题</span>
                     </a>
                     
                 </div>
