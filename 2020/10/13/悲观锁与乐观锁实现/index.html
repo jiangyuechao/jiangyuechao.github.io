@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="paramiko模块, 且听风吟">
+    <meta name="keywords" content="乐观锁与悲观锁的实现, 且听风吟">
     <meta name="description" content="welcome to my word">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>paramiko模块 | 且听风吟</title>
+    <title>乐观锁与悲观锁的实现 | 且听风吟</title>
     <link rel="icon" type="image/png" href="/source/images/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -202,12 +202,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">paramiko模块</h1>
+                    <h1 class="description center-align post-title">乐观锁与悲观锁的实现</h1>
                 </div>
             </div>
         </div>
@@ -323,8 +323,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/python%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/">
-                                <span class="chip bg-color">python自动化运维</span>
+                            <a href="/tags/python%E5%9F%BA%E7%A1%80/">
+                                <span class="chip bg-color">python基础</span>
                             </a>
                         
                     </div>
@@ -348,7 +348,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-10-03
+                    2020-10-13
                 </div>
                 
 
@@ -369,27 +369,17 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Paramiko是用python语言写的一个模块，远程连接到Linux服务器，查看上面的日志状态，批量配置远程服务器，文件上传，文件下载等</p>
-<span id="more"></span>
+                <span id="more"></span>
 
-<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>paramiko是一个基于SSH用于连接远程服务器并执行相关操作（SSHClient和SFTPClinet,即一个是远程连接，一个是上传下载服务），使用该模块可以对远程服务器进行命令或文件操作，值得一说的是，fabric和ansible内部的远程管理就是使用的paramiko来现实<br>ssh是一个协议，OpenSSH是其中一个开源实现，paramiko是Python的一个库，实现了SSHv2协议(底层使用cryptography)。</p>
-<p>有了Paramiko以后，我们就可以在Python代码中直接使用SSH协议对远程服务器执行操作，而不是通过ssh命令对远程服务器进行操作。</p>
-<p>由于paramiko属于第三方库，所以需要使用如下命令先行安装<br>pip3 install paramiko</p>
-<h3 id="Paramiko介绍"><a href="#Paramiko介绍" class="headerlink" title="Paramiko介绍"></a>Paramiko介绍</h3><p>paramiko包含两个核心组件: SSHClient和SFTPClient。</p>
-<p><strong>SSHClient</strong>的作用类似于Linux的ssh命令，是对SSH会话的封装，该类封装了传输(Transport)，通道(Channel)及SFTPClient建立的方法(open_sftp)，通常用于执行远程命令。<br><strong>SFTPClient</strong>的作用类似与Linux的sftp命令，是对SFTP客户端的封装，用以实现远程文件操作，如文件上传、下载、修改文件权限等操作</p>
-<p>Paramiko中的几个基础名词：<br>1、Channel: 是一种类Socket，一种安全的SSH传输通道；<br>2、Transport: 是一种加密的会话，使用时会同步创建了一个加密的Tunnels(通道)，这个Tunnels叫做Channel；<br>3、Session: 是client与Server保持连接的对象，用connect()/start_client()/start_server()开始会话。</p>
-<h3 id="Paramiko的基本使用"><a href="#Paramiko的基本使用" class="headerlink" title="Paramiko的基本使用"></a>Paramiko的基本使用</h3><p><strong>SSHClient常用的方法介绍</strong></p>
-<p><strong>connect()</strong>: 实现远程服务器的连接与认证，对于该方法只有hostname是必传参数。<br>常用参数<br>hostname 连接的目标主机<br>port=SSH_PORT 指定端口<br>username=None 验证的用户名<br>password=None 验证的用户密码<br>pkey=None 私钥方式用于身份验证<br>key_filename=None 一个文件名或文件列表，指定私钥文件<br>timeout=None 可选的tcp连接超时时间<br>allow_agent=True, 是否允许连接到ssh代理，默认为True 允许<br>look_for_keys=True 是否在~/.ssh中搜索私钥文件，默认为True 允许<br>compress=False, 是否打开压缩</p>
-<p><strong>set_missing_host_key_policy()</strong>: 设置远程服务器没有在know_hosts文件中记录时的应对策略。目前支持三种策略<br>设置连接的远程主机没有本地主机密钥或HostKeys对象时的策略，目前支持三种：<br><strong>AutoAddPolicy</strong> 自动添加主机名及主机密钥到本地HostKeys对象，不依赖load_system_host_key的配置。即新建立ssh连接时不需要再输入yes或no进行确认<br><strong>WarningPolicy</strong> 用于记录一个未知的主机密钥的python警告。并接受，功能上和AutoAddPolicy类似，但是会提示是新连接<br><strong>RejectPolicy</strong> 自动拒绝未知的主机名和密钥，依赖load_system_host_key的配置。此为默认选项</p>
-<p><strong>exec_command()</strong>: 在远程服务器执行Linux命令的方法。</p>
-<p><strong>open_sftp()</strong>: 在当前ssh会话的基础上创建一个sftp会话。该方法会返回一个SFTPClient对象<br>利用SSHClient对象的open_sftp()方法，可以直接返回一个基于当前连接的sftp对象，可以进行文件的上传等操作.<br>sftp = client.open_sftp()<br>sftp.put(‘local.txt’,’remote.txt’)</p>
-<p><strong>SSHClient常用的方法举例</strong><br>import paramiko<br>实例化SSHClient<br>ssh_client = paramiko.SSHClient()<br>自动添加策略，保存服务器的主机名和密钥信息，如果不添加，那么不再本地know_hosts文件中记录的主机将无法连接 ，此方法必须放在connect方法的前面<br>ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())<br>连接SSH服务端，以用户名和密码进行认证 ，调用connect方法连接服务器<br>ssh_client.connect(hostname=’192.168.137.105’, port=22, username=’root’, password=’123456’)<br>打开一个Channel并执行命令  结果放到stdout中，如果有错误将放到stderr中<br>stdin, stdout, stderr = ssh_client.exec_command(‘df -hT ‘)<br>stdout 为正确输出，stderr为错误输出，同时是有1个变量有值   # 打印执行结果  print(stdout.read().decode(‘utf-8’))<br>关闭SSHClient连接<br>ssh_client.close()</p>
-<p><strong>密钥连接方式</strong></p>
-<p>配置私人密钥文件位置<br>private = paramiko.RSAKey.from_private_key_file(‘/root/.ssh/id_rsa’)<br>实例化SSHClient<br>ssh_client = paramiko.SSHClient()<br>自动添加策略，保存服务器的主机名和密钥信息，如果不添加，那么不再本地know_hosts文件中记录的主机将无法连接<br>ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())<br>连接SSH服务端，以用户名和密码进行认证<br>ssh_client.connect(<br>hostname=’192.168.137.100’,<br>port=22,<br>username=’root’,<br>pkey=private<br>)</p>
-<p><strong>SFTPClient常用方法介绍</strong></p>
-<p>SFTPCLient作为一个sftp的客户端对象，根据ssh传输协议的sftp会话，实现远程文件操作，如上传、下载、权限、状态<br>from_transport(cls,t) 创建一个已连通的SFTP客户端通道<br>put(localpath, remotepath, callback=None, confirm=True) 将本地文件上传到服务器<br>参数confirm：是否调用stat()方法检查文件状态，返回ls -l的结果<br>get(remotepath, localpath, callback=None) 从服务器下载文件到本地<br>mkdir() 在服务器上创建目录<br>remove() 在服务器上删除目录<br>rename() 在服务器上重命名目录<br>stat() 查看服务器文件状态<br>listdir() 列出服务器目录下的文件</p>
-<p><strong>SFTPClient常用方法举例</strong></p>
-<p>import paramiko<br>实例化一个transport对象<br>tran = paramiko.Transport((‘192.168.137.100’, 22))<br>连接SSH服务端，使用password<br>tran.connect(username=”root”, password=’123456’)<br>或使用配置私人密钥文件位置<br>private = paramiko.RSAKey.from_private_key_file(‘/root/.ssh/id_rsa’)<br>连接SSH服务端，使用pkey指定私钥<br>tran.connect(username=”root”, pkey=private)<br>获取SFTP实例<br>sftp = paramiko.SFTPClient.from_transport(tran)<br>设置上传的本地/远程文件路径<br>local_path = “/home/1.txt”<br>remote_path = “/tmp/1.txt”<br>执行上传动作<br>sftp.put(local_path, remote_path)<br>执行下载动作<br>sftp.get(remote_path, local_path)<br>关闭Transport通道<br>tran.close()</p>
+
+
+
+<h3 id="Django实现悲观锁"><a href="#Django实现悲观锁" class="headerlink" title="Django实现悲观锁"></a>Django实现悲观锁</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">在Django中使用悲观锁锁定一个对象，需要使用到select<span class="emphasis">_for_</span>update()方法，悲观锁本质上是一个行级锁，能够锁定所有匹配的行，直至事务结束</span><br><span class="line">例如在一个类中写一个post方法，在方法里面写表名.object.select<span class="emphasis">_for_</span>update().get(id=x)再return Response</span><br><span class="line">函数视图，锁定所有符合条件的文章对象列表。</span><br><span class="line"> from django.db import transaction</span><br><span class="line"></span><br><span class="line"> with transaction.atomic():</span><br><span class="line"><span class="code">     entries = Entry.objects.select_for_update().filter(author=request.user)</span></span><br><span class="line"><span class="code">     for entry in entries:</span></span><br><span class="line"><span class="code">         ...</span></span><br><span class="line"><span class="code">一般情况下如果其他事务锁定了相关行，那么本次查询将被阻塞，直到锁被释放。如果不想要使查询阻塞的话，使用select_for_update(nowait=True)。</span></span><br><span class="line"><span class="code"></span></span><br><span class="line">当你同时使用select<span class="emphasis">_for_</span>update与select<span class="emphasis">_related方法时，select_</span>related指定的相关对象也会被锁定。你可以通过select<span class="emphasis">_for_</span>update(of=(...))方法指定需要锁定的关联对象</span><br><span class="line"></span><br><span class="line">注意：</span><br><span class="line">select<span class="emphasis">_for_</span>update方法必须与事务(transaction)同时使用。</span><br><span class="line">MySQL版本要在8.0.1+ 以上才支持 nowait和 of选项</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="Django实现乐观锁"><a href="#Django实现乐观锁" class="headerlink" title="Django实现乐观锁"></a>Django实现乐观锁</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">乐观锁实现一般使用记录版本号，为数据表增加一个版本标识(version)字段，每次对数据的更新操作成功后都对版本号执行+1操作。每次执行更新操作时都去判断当前版本号是不是该条数据的最新版本号，如果不是说明数据已经同时被修改过了，则丢弃更新，需要重新获取目标对象再进行更新。</span><br><span class="line"></span><br><span class="line">Django项目中实现乐观锁可以借助于django-concurrency这个第三方库, 它可以给模型增加一个version字段，每次执行save操作时会自动给版本号+1。</span><br><span class="line"></span><br><span class="line"> from django.db import models</span><br><span class="line"> from concurrency.fields import IntegerVersionField</span><br><span class="line"></span><br><span class="line"> class ConcurrentModel( models.Model ):</span><br><span class="line"><span class="code">     version = IntegerVersionField( )</span></span><br><span class="line"><span class="code">     name = models.CharField(max_length=100)</span></span><br><span class="line"><span class="code">下例中a和b同时获取了pk=1的模型对象信息，并尝试对其name字段进行修改。由于a.save()方法调用成功以后对象的版本号version已经加1，b再调用b.save()方法时将会报RecordModifiedError的错误，这样避免了a，b同时修改同一对象信息造成数据冲突。</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"> a = ConcurrentModel.objects.get(pk=1)</span><br><span class="line"> a.name = '1'</span><br><span class="line"></span><br><span class="line"> b = ConcurrentModel.objects.get(pk=1)</span><br><span class="line"> b.name = '2'</span><br><span class="line"></span><br><span class="line"> a.save()</span><br><span class="line"> b.save()</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="什么时候该用悲观锁，什么时候该用乐观锁"><a href="#什么时候该用悲观锁，什么时候该用乐观锁" class="headerlink" title="什么时候该用悲观锁，什么时候该用乐观锁"></a>什么时候该用悲观锁，什么时候该用乐观锁</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">并发量：如果并发量不大且不允许脏读，可以使用悲观锁解决并发问题；但如果系统的并发非常大的话,悲观锁定会带来非常大的性能问题, 建议乐观锁。</span><br><span class="line"></span><br><span class="line">响应速度：如果需要非常高的响应速度，建议采用乐观锁方案，成功就执行，不成功就失败，不需要等待其他并发去释放锁。乐观锁并未真正加锁，效率高。</span><br><span class="line"></span><br><span class="line">冲突频率：如果冲突频率非常高，建议采用悲观锁，保证成功率。冲突频率大，选择乐观锁会需要多次重试才能成功，代价比较大。</span><br><span class="line"></span><br><span class="line">重试代价：如果重试代价大，建议采用悲观锁。悲观锁依赖数据库锁，效率低。更新失败的概率比较低。</span><br></pre></td></tr></tbody></table></figure>
+
 
                 
             </div>
@@ -416,7 +406,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2020/10/03/paramiko%E6%A8%A1%E5%9D%97/">http://example.com/2020/10/03/paramiko%E6%A8%A1%E5%9D%97/</a>
+                    <a href="http://example.com/2020/10/13/%E6%82%B2%E8%A7%82%E9%94%81%E4%B8%8E%E4%B9%90%E8%A7%82%E9%94%81%E5%AE%9E%E7%8E%B0/">http://example.com/2020/10/13/%E6%82%B2%E8%A7%82%E9%94%81%E4%B8%8E%E4%B9%90%E8%A7%82%E9%94%81%E5%AE%9E%E7%8E%B0/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -454,8 +444,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/python%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/">
-                                    <span class="chip bg-color">python自动化运维</span>
+                                <a href="/tags/python%E5%9F%BA%E7%A1%80/">
+                                    <span class="chip bg-color">python基础</span>
                                 </a>
                             
                         </div>
@@ -500,7 +490,7 @@
         repo: '',
         owner: '',
         admin: null,
-        id: '2020-10-03T19-23-21',
+        id: '2020-10-13T19-23-21',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -530,13 +520,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/10/13/%E6%82%B2%E8%A7%82%E9%94%81%E4%B8%8E%E4%B9%90%E8%A7%82%E9%94%81%E5%AE%9E%E7%8E%B0/">
+                <a href="/2020/11/24/flask%E9%9D%A2%E8%AF%95%E9%A2%98/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="乐观锁与悲观锁的实现">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="flask面试题">
                         
-                        <span class="card-title">乐观锁与悲观锁的实现</span>
+                        <span class="card-title">flask面试题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -547,14 +537,14 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-13
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-24
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/python/" class="post-category">
-                                    python
+                            <a href="/categories/flask/" class="post-category">
+                                    flask
                                 </a>
                             
                             
@@ -564,8 +554,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/python%E5%9F%BA%E7%A1%80/">
-                        <span class="chip bg-color">python基础</span>
+                    <a href="/tags/flask%E5%9F%BA%E7%A1%80/">
+                        <span class="chip bg-color">flask基础</span>
                     </a>
                     
                 </div>
@@ -579,24 +569,24 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/09/27/concurrent%E6%A8%A1%E5%9D%97/">
+                <a href="/2020/10/03/paramiko%E6%A8%A1%E5%9D%97/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="concurrent模块">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="paramiko模块">
                         
-                        <span class="card-title">concurrent模块</span>
+                        <span class="card-title">paramiko模块</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            Paramiko是用python语言写的一个模块，远程连接到Linux服务器，查看上面的日志状态，批量配置远程服务器，文件上传，文件下载等
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-27
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-03
                             </span>
                         <span class="publish-author">
                             
@@ -613,8 +603,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/python%E5%9F%BA%E7%A1%80/">
-                        <span class="chip bg-color">python基础</span>
+                    <a href="/tags/python%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/">
+                        <span class="chip bg-color">python自动化运维</span>
                     </a>
                     
                 </div>
