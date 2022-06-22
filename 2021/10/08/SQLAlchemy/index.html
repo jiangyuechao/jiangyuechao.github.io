@@ -1,0 +1,1121 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="FLask-SQLAlchemy, 且听风吟">
+    <meta name="description" content="welcome to my word">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>FLask-SQLAlchemy | 且听风吟</title>
+    <link rel="icon" type="image/png" href="/source/images/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 6.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">且听风吟</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a target="_blank" rel="noopener" href="http://jyc0507.top/#articles" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>主页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">且听风吟</div>
+        <div class="logo-desc">
+            
+            welcome to my word
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a target="_blank" rel="noopener" href="http://jyc0507.top/#articles" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			主页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">FLask-SQLAlchemy</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/FLask-SQLAlchemy/">
+                                <span class="chip bg-color">FLask-SQLAlchemy</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Flask/" class="post-category">
+                                Flask
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-10-08
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    3k
+                </div>
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <span id="more"></span>
+
+
+
+
+
+<h1 id="SQLAlchemy"><a href="#SQLAlchemy" class="headerlink" title="SQLAlchemy"></a>SQLAlchemy</h1><h2 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1.介绍"></a>1.介绍</h2><p>SQLAlchemy是一个基于Python实现的ORM框架。该框架建立在 DB API之上，使用关系对象映射进行数据库操作，简言之便是：将类和对象转换成SQL，然后使用数据API执行SQL并获取执行结果。</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install sqlalchemy</span><br></pre></td></tr></tbody></table></figure>
+
+<p>组成部分：</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Engine，框架的引擎</span><br><span class="line">Connection Pooling ，数据库连接池</span><br><span class="line">Dialect，选择连接数据库的DB API种类</span><br><span class="line">Schema/Types，架构和类型</span><br><span class="line">SQL Exprression Language，SQL表达式语言</span><br></pre></td></tr></tbody></table></figure>
+
+<p>SQLAlchemy本身无法操作数据库，其必须以来pymsql等第三方插件，Dialect用于和数据API进行交流，根据配置文件的不同调用不同的数据库API，从而实现对数据库的操作，如：</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">MySQL-Python</span><br><span class="line">    mysql+mysqldb://&lt;user&gt;:&lt;password&gt;@&lt;host&gt;[:&lt;port&gt;]/&lt;dbname&gt;</span><br><span class="line">    </span><br><span class="line">pymysql</span><br><span class="line">    mysql+pymysql://&lt;username&gt;:&lt;password&gt;@&lt;host&gt;/&lt;dbname&gt;[?&lt;options&gt;]</span><br><span class="line">    </span><br><span class="line">MySQL-Connector</span><br><span class="line">    mysql+mysqlconnector://&lt;user&gt;:&lt;password&gt;@&lt;host&gt;[:&lt;port&gt;]/&lt;dbname&gt;</span><br><span class="line">    </span><br><span class="line">cx_Oracle</span><br><span class="line">    oracle+cx_oracle://user:<span class="keyword">pass</span>@host:port/dbname[?key=value&amp;key=value...]</span><br><span class="line">    </span><br><span class="line">更多：http://docs.sqlalchemy.org/en/latest/dialects/index.html</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>django中如何反向生成models</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py inspectdb &gt; app/models.py</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="2-简单使用（能创建表，删除表，不能修改表）"><a href="#2-简单使用（能创建表，删除表，不能修改表）" class="headerlink" title="2.简单使用（能创建表，删除表，不能修改表）"></a>2.简单使用（能创建表，删除表，不能修改表）</h2><p>修改表：在数据库添加字段，类对应上</p>
+<p>1执行原生sql（不常用）</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"><span class="keyword">import</span> sqlalchemy</span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.engine.base <span class="keyword">import</span> Engine</span><br><span class="line"></span><br><span class="line">engine = create_engine(</span><br><span class="line">    <span class="string">"mysql+pymysql://root:123456@127.0.0.1:3306/test?charset=utf8"</span>,</span><br><span class="line">    max_overflow=<span class="number">0</span>,  <span class="comment"># 超过连接池大小外最多创建的连接</span></span><br><span class="line">    pool_size=<span class="number">5</span>,  <span class="comment"># 连接池大小</span></span><br><span class="line">    pool_timeout=<span class="number">30</span>,  <span class="comment"># 池中没有线程最多等待的时间，否则报错</span></span><br><span class="line">    pool_recycle=-<span class="number">1</span>  <span class="comment"># 多久之后对线程池中的线程进行一次连接的回收（重置）</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">task</span>(<span class="params">arg</span>):</span><br><span class="line">    conn = engine.raw_connection()</span><br><span class="line">    cursor = conn.cursor()</span><br><span class="line">    cursor.execute(</span><br><span class="line">        <span class="string">"select * from app01_book"</span></span><br><span class="line">    )</span><br><span class="line">    result = cursor.fetchall()</span><br><span class="line">    <span class="built_in">print</span>(result)</span><br><span class="line">    cursor.close()</span><br><span class="line">    conn.close()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">20</span>):</span><br><span class="line">    t = threading.Thread(target=task, args=(i,))</span><br><span class="line">    t.start()</span><br></pre></td></tr></tbody></table></figure>
+
+<p>2 orm使用</p>
+<p>models.py</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> Column, Integer, String, Text, ForeignKey, DateTime, UniqueConstraint, Index</span><br><span class="line">Base = declarative_base()</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Users</span>(<span class="title class_ inherited__">Base</span>):</span><br><span class="line">    __tablename__ = <span class="string">'users'</span>  <span class="comment"># 数据库表名称</span></span><br><span class="line">    <span class="built_in">id</span> = Column(Integer, primary_key=<span class="literal">True</span>)  <span class="comment"># id 主键</span></span><br><span class="line">    name = Column(String(<span class="number">32</span>), index=<span class="literal">True</span>, nullable=<span class="literal">False</span>)  <span class="comment"># name列，索引，不可为空</span></span><br><span class="line">    <span class="comment"># email = Column(String(32), unique=True)</span></span><br><span class="line">    <span class="comment">#datetime.datetime.now不能加括号，加了括号，以后永远是当前时间</span></span><br><span class="line">    <span class="comment"># ctime = Column(DateTime, default=datetime.datetime.now)</span></span><br><span class="line">    <span class="comment"># extra = Column(Text, nullable=True)</span></span><br><span class="line"></span><br><span class="line">    __table_args__ = (</span><br><span class="line">        <span class="comment"># UniqueConstraint('id', 'name', name='uix_id_name'), #联合唯一</span></span><br><span class="line">        <span class="comment"># Index('ix_id_name', 'name', 'email'), #索引</span></span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">init_db</span>():</span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    根据类创建数据库表</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    engine = create_engine(</span><br><span class="line">        <span class="string">"mysql+pymysql://root:123456@127.0.0.1:3306/aaa?charset=utf8"</span>,</span><br><span class="line">        max_overflow=<span class="number">0</span>,  <span class="comment"># 超过连接池大小外最多创建的连接</span></span><br><span class="line">        pool_size=<span class="number">5</span>,  <span class="comment"># 连接池大小</span></span><br><span class="line">        pool_timeout=<span class="number">30</span>,  <span class="comment"># 池中没有线程最多等待的时间，否则报错</span></span><br><span class="line">        pool_recycle=-<span class="number">1</span>  <span class="comment"># 多久之后对线程池中的线程进行一次连接的回收（重置）</span></span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    Base.metadata.create_all(engine)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">drop_db</span>():</span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    根据类删除数据库表</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    engine = create_engine(</span><br><span class="line">        <span class="string">"mysql+pymysql://root:123456@127.0.0.1:3306/aaa?charset=utf8"</span>,</span><br><span class="line">        max_overflow=<span class="number">0</span>,  <span class="comment"># 超过连接池大小外最多创建的连接</span></span><br><span class="line">        pool_size=<span class="number">5</span>,  <span class="comment"># 连接池大小</span></span><br><span class="line">        pool_timeout=<span class="number">30</span>,  <span class="comment"># 池中没有线程最多等待的时间，否则报错</span></span><br><span class="line">        pool_recycle=-<span class="number">1</span>  <span class="comment"># 多久之后对线程池中的线程进行一次连接的回收（重置）</span></span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    Base.metadata.drop_all(engine)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="comment"># drop_db()</span></span><br><span class="line">    init_db()</span><br></pre></td></tr></tbody></table></figure>
+
+<p>app.py</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> sessionmaker</span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine</span><br><span class="line"><span class="keyword">from</span> models <span class="keyword">import</span> Users</span><br><span class="line"><span class="comment">#"mysql+pymysql://root@127.0.0.1:3306/aaa"</span></span><br><span class="line">engine = create_engine(<span class="string">"mysql+pymysql://root:123456@127.0.0.1:3306/aaa"</span>, max_overflow=<span class="number">0</span>, pool_size=<span class="number">5</span>)</span><br><span class="line">Connection = sessionmaker(bind=engine)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 每次执行数据库操作时，都需要创建一个Connection</span></span><br><span class="line">con = Connection()</span><br><span class="line"></span><br><span class="line"><span class="comment"># ############# 执行ORM操作 #############</span></span><br><span class="line">obj1 = Users(name=<span class="string">"lqz"</span>)</span><br><span class="line">con.add(obj1)</span><br><span class="line"><span class="comment"># 提交事务</span></span><br><span class="line">con.commit()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭session，其实是将连接放回连接池</span></span><br><span class="line">con.close()</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="3-一对多关系"><a href="#3-一对多关系" class="headerlink" title="3.一对多关系"></a>3.一对多关系</h2><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Hobby</span>(<span class="title class_ inherited__">Base</span>):</span><br><span class="line">    __tablename__ = <span class="string">'hobby'</span></span><br><span class="line">    <span class="built_in">id</span> = Column(Integer, primary_key=<span class="literal">True</span>)</span><br><span class="line">    caption = Column(String(<span class="number">50</span>), default=<span class="string">'篮球'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span>(<span class="title class_ inherited__">Base</span>):</span><br><span class="line">    __tablename__ = <span class="string">'person'</span></span><br><span class="line">    nid = Column(Integer, primary_key=<span class="literal">True</span>)</span><br><span class="line">    name = Column(String(<span class="number">32</span>), index=<span class="literal">True</span>, nullable=<span class="literal">True</span>)</span><br><span class="line">    <span class="comment"># hobby指的是tablename而不是类名，uselist=False</span></span><br><span class="line">    hobby_id = Column(Integer, ForeignKey(<span class="string">"hobby.id"</span>))</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 跟数据库无关，不会新增字段，只用于快速链表操作</span></span><br><span class="line">    <span class="comment"># 类名，backref用于反向查询</span></span><br><span class="line">    hobby=relationship(<span class="string">'Hobby'</span>,backref=<span class="string">'pers'</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="4-多对多关系"><a href="#4-多对多关系" class="headerlink" title="4.多对多关系"></a>4.多对多关系</h2><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Boy2Girl</span>(<span class="title class_ inherited__">Base</span>):</span><br><span class="line">    __tablename__ = <span class="string">'boy2girl'</span></span><br><span class="line">    <span class="built_in">id</span> = Column(Integer, primary_key=<span class="literal">True</span>, autoincrement=<span class="literal">True</span>)</span><br><span class="line">    girl_id = Column(Integer, ForeignKey(<span class="string">'girl.id'</span>))</span><br><span class="line">    boy_id = Column(Integer, ForeignKey(<span class="string">'boy.id'</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Girl</span>(<span class="title class_ inherited__">Base</span>):</span><br><span class="line">    __tablename__ = <span class="string">'girl'</span></span><br><span class="line">    <span class="built_in">id</span> = Column(Integer, primary_key=<span class="literal">True</span>)</span><br><span class="line">    name = Column(String(<span class="number">64</span>), unique=<span class="literal">True</span>, nullable=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Boy</span>(<span class="title class_ inherited__">Base</span>):</span><br><span class="line">    __tablename__ = <span class="string">'boy'</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">id</span> = Column(Integer, primary_key=<span class="literal">True</span>, autoincrement=<span class="literal">True</span>)</span><br><span class="line">    hostname = Column(String(<span class="number">64</span>), unique=<span class="literal">True</span>, nullable=<span class="literal">False</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 与生成表结构无关，仅用于查询方便,放在哪个单表中都可以</span></span><br><span class="line">    servers = relationship(<span class="string">'Girl'</span>, secondary=<span class="string">'boy2girl'</span>, backref=<span class="string">'boys'</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="5-操作数据表"><a href="#5-操作数据表" class="headerlink" title="5.操作数据表"></a>5.操作数据表</h2><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> sessionmaker</span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine</span><br><span class="line"><span class="keyword">from</span> models <span class="keyword">import</span> Users</span><br><span class="line">  </span><br><span class="line">engine = create_engine(<span class="string">"mysql+pymysql://root:123456@127.0.0.1:3306/aaa"</span>, max_overflow=<span class="number">0</span>, pool_size=<span class="number">5</span>)</span><br><span class="line">Session = sessionmaker(bind=engine)</span><br><span class="line">  </span><br><span class="line"><span class="comment"># 每次执行数据库操作时，都需要创建一个session</span></span><br><span class="line">session = Session()</span><br><span class="line">  </span><br><span class="line"><span class="comment"># ############# 执行ORM操作 #############</span></span><br><span class="line">obj1 = Users(name=<span class="string">"lqz"</span>)</span><br><span class="line">session.add(obj1)</span><br><span class="line">  </span><br><span class="line"><span class="comment"># 提交事务</span></span><br><span class="line">session.commit()</span><br><span class="line"><span class="comment"># 关闭session</span></span><br><span class="line">session.close()</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="6-基于scoped-session实现线程安全"><a href="#6-基于scoped-session实现线程安全" class="headerlink" title="6.基于scoped_session实现线程安全"></a>6.基于scoped_session实现线程安全</h2><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> sessionmaker</span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> scoped_session</span><br><span class="line"><span class="keyword">from</span> models <span class="keyword">import</span> Users</span><br><span class="line"></span><br><span class="line">engine = create_engine(<span class="string">"mysql+pymysql://root:123@127.0.0.1:3306/s6"</span>, max_overflow=<span class="number">0</span>, pool_size=<span class="number">5</span>)</span><br><span class="line">Session = sessionmaker(bind=engine)</span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string"># 线程安全，基于本地线程实现每个线程用同一个session</span></span><br><span class="line"><span class="string"># 特殊的：scoped_session中有原来方法的Session中的一下方法：</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">public_methods = (</span></span><br><span class="line"><span class="string">    '__contains__', '__iter__', 'add', 'add_all', 'begin', 'begin_nested',</span></span><br><span class="line"><span class="string">    'close', 'commit', 'connection', 'delete', 'execute', 'expire',</span></span><br><span class="line"><span class="string">    'expire_all', 'expunge', 'expunge_all', 'flush', 'get_bind',</span></span><br><span class="line"><span class="string">    'is_modified', 'bulk_save_objects', 'bulk_insert_mappings',</span></span><br><span class="line"><span class="string">    'bulk_update_mappings',</span></span><br><span class="line"><span class="string">    'merge', 'query', 'refresh', 'rollback',</span></span><br><span class="line"><span class="string">    'scalar'</span></span><br><span class="line"><span class="string">)</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="comment">#scoped_session类并没有继承Session,但是却又它的所有方法</span></span><br><span class="line">session = scoped_session(Session)</span><br><span class="line"><span class="comment"># ############# 执行ORM操作 #############</span></span><br><span class="line">obj1 = Users(name=<span class="string">"alex1"</span>)</span><br><span class="line">session.add(obj1)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 提交事务</span></span><br><span class="line">session.commit()</span><br><span class="line"><span class="comment"># 关闭session</span></span><br><span class="line">session.close()</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="7-基本增删查改"><a href="#7-基本增删查改" class="headerlink" title="7.基本增删查改"></a>7.基本增删查改</h2><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> Column, Integer, String, ForeignKey, UniqueConstraint, Index</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> sessionmaker, relationship</span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.sql <span class="keyword">import</span> text</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> db <span class="keyword">import</span> Users, Hosts</span><br><span class="line"></span><br><span class="line">engine = create_engine(<span class="string">"mysql+pymysql://root:123@127.0.0.1:3306/s6"</span>, max_overflow=<span class="number">0</span>, pool_size=<span class="number">5</span>)</span><br><span class="line">Session = sessionmaker(bind=engine)</span><br><span class="line"></span><br><span class="line">session = Session()</span><br><span class="line"></span><br><span class="line"><span class="comment"># ################ 添加 ################</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">obj1 = Users(name="wupeiqi")</span></span><br><span class="line"><span class="string">session.add(obj1)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">session.add_all([</span></span><br><span class="line"><span class="string">    Users(name="lqz"),</span></span><br><span class="line"><span class="string">    Users(name="egon"),</span></span><br><span class="line"><span class="string">    Hosts(name="c1.com"),</span></span><br><span class="line"><span class="string">])</span></span><br><span class="line"><span class="string">session.commit()</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ################ 删除 ################</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">session.query(Users).filter(Users.id &gt; 2).delete()</span></span><br><span class="line"><span class="string">session.commit()</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="comment"># ################ 修改 ################</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">#传字典</span></span><br><span class="line"><span class="string">session.query(Users).filter(Users.id &gt; 0).update({"name" : "lqz"})</span></span><br><span class="line"><span class="string">#类似于django的F查询</span></span><br><span class="line"><span class="string">session.query(Users).filter(Users.id &gt; 0).update({Users.name: Users.name + "099"}, synchronize_session=False)</span></span><br><span class="line"><span class="string">session.query(Users).filter(Users.id &gt; 0).update({"age": Users.age + 1}, synchronize_session="evaluate")</span></span><br><span class="line"><span class="string">session.commit()</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="comment"># ################ 查询 ################</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">r1 = session.query(Users).all()</span></span><br><span class="line"><span class="string">#只取age列，把name重命名为xx</span></span><br><span class="line"><span class="string">r2 = session.query(Users.name.label('xx'), Users.age).all()</span></span><br><span class="line"><span class="string">#filter传的是表达式，filter_by传的是参数</span></span><br><span class="line"><span class="string">r3 = session.query(Users).filter(Users.name == "lqz").all()</span></span><br><span class="line"><span class="string">r4 = session.query(Users).filter_by(name='lqz').all()</span></span><br><span class="line"><span class="string">r5 = session.query(Users).filter_by(name='lqz').first()</span></span><br><span class="line"><span class="string">#:value 和:name 相当于占位符，用params传参数</span></span><br><span class="line"><span class="string">r6 = session.query(Users).filter(text("id&lt;:value and name=:name")).params(value=224, name='fred').order_by(Users.id).all()</span></span><br><span class="line"><span class="string">#自定义查询sql</span></span><br><span class="line"><span class="string">r7 = session.query(Users).from_statement(text("SELECT * FROM users where name=:name")).params(name='ed').all()</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#增，删，改都要commit()</span></span><br><span class="line">session.close()</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="8-常用操作"><a href="#8-常用操作" class="headerlink" title="8.常用操作"></a>8.常用操作</h2><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#　条件</span></span><br><span class="line">ret = session.query(Users).filter_by(name=<span class="string">'lqz'</span>).<span class="built_in">all</span>()</span><br><span class="line"><span class="comment">#表达式，and条件连接</span></span><br><span class="line">ret = session.query(Users).<span class="built_in">filter</span>(Users.<span class="built_in">id</span> &gt; <span class="number">1</span>, Users.name == <span class="string">'eric'</span>).<span class="built_in">all</span>()</span><br><span class="line">ret = session.query(Users).<span class="built_in">filter</span>(Users.<span class="built_in">id</span>.between(<span class="number">1</span>, <span class="number">3</span>), Users.name == <span class="string">'eric'</span>).<span class="built_in">all</span>()</span><br><span class="line"><span class="comment">#注意下划线</span></span><br><span class="line">ret = session.query(Users).<span class="built_in">filter</span>(Users.<span class="built_in">id</span>.in_([<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>])).<span class="built_in">all</span>()</span><br><span class="line"><span class="comment">#~非，除。。外</span></span><br><span class="line">ret = session.query(Users).<span class="built_in">filter</span>(~Users.<span class="built_in">id</span>.in_([<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>])).<span class="built_in">all</span>()</span><br><span class="line"><span class="comment">#二次筛选</span></span><br><span class="line">ret = session.query(Users).<span class="built_in">filter</span>(Users.<span class="built_in">id</span>.in_(session.query(Users.<span class="built_in">id</span>).filter_by(name=<span class="string">'eric'</span>))).<span class="built_in">all</span>()</span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> and_, or_</span><br><span class="line"><span class="comment">#or_包裹的都是or条件，and_包裹的都是and条件</span></span><br><span class="line">ret = session.query(Users).<span class="built_in">filter</span>(and_(Users.<span class="built_in">id</span> &gt; <span class="number">3</span>, Users.name == <span class="string">'eric'</span>)).<span class="built_in">all</span>()</span><br><span class="line">ret = session.query(Users).<span class="built_in">filter</span>(or_(Users.<span class="built_in">id</span> &lt; <span class="number">2</span>, Users.name == <span class="string">'eric'</span>)).<span class="built_in">all</span>()</span><br><span class="line">ret = session.query(Users).<span class="built_in">filter</span>(</span><br><span class="line">    or_(</span><br><span class="line">        Users.<span class="built_in">id</span> &lt; <span class="number">2</span>,</span><br><span class="line">        and_(Users.name == <span class="string">'eric'</span>, Users.<span class="built_in">id</span> &gt; <span class="number">3</span>),</span><br><span class="line">        Users.extra != <span class="string">""</span></span><br><span class="line">    )).<span class="built_in">all</span>()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 通配符，以e开头，不以e开头</span></span><br><span class="line">ret = session.query(Users).<span class="built_in">filter</span>(Users.name.like(<span class="string">'e%'</span>)).<span class="built_in">all</span>()</span><br><span class="line">ret = session.query(Users).<span class="built_in">filter</span>(~Users.name.like(<span class="string">'e%'</span>)).<span class="built_in">all</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 限制，用于分页，区间</span></span><br><span class="line">ret = session.query(Users)[<span class="number">1</span>:<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 排序，根据name降序排列（从大到小）</span></span><br><span class="line">ret = session.query(Users).order_by(Users.name.desc()).<span class="built_in">all</span>()</span><br><span class="line"><span class="comment">#第一个条件重复后，再按第二个条件升序排</span></span><br><span class="line">ret = session.query(Users).order_by(Users.name.desc(), Users.<span class="built_in">id</span>.asc()).<span class="built_in">all</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 分组</span></span><br><span class="line"><span class="keyword">from</span> sqlalchemy.sql <span class="keyword">import</span> func</span><br><span class="line"></span><br><span class="line">ret = session.query(Users).group_by(Users.extra).<span class="built_in">all</span>()</span><br><span class="line"><span class="comment">#分组之后取最大id，id之和，最小id</span></span><br><span class="line">ret = session.query(</span><br><span class="line">    func.<span class="built_in">max</span>(Users.<span class="built_in">id</span>),</span><br><span class="line">    func.<span class="built_in">sum</span>(Users.<span class="built_in">id</span>),</span><br><span class="line">    func.<span class="built_in">min</span>(Users.<span class="built_in">id</span>)).group_by(Users.name).<span class="built_in">all</span>()</span><br><span class="line"><span class="comment">#haviing筛选</span></span><br><span class="line">ret = session.query(</span><br><span class="line">    func.<span class="built_in">max</span>(Users.<span class="built_in">id</span>),</span><br><span class="line">    func.<span class="built_in">sum</span>(Users.<span class="built_in">id</span>),</span><br><span class="line">    func.<span class="built_in">min</span>(Users.<span class="built_in">id</span>)).group_by(Users.name).having(func.<span class="built_in">min</span>(Users.<span class="built_in">id</span>) &gt;<span class="number">2</span>).<span class="built_in">all</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 连表（默认用forinkey关联）</span></span><br><span class="line"></span><br><span class="line">ret = session.query(Users, Favor).<span class="built_in">filter</span>(Users.<span class="built_in">id</span> == Favor.nid).<span class="built_in">all</span>()</span><br><span class="line"><span class="comment">#join表，默认是inner join</span></span><br><span class="line">ret = session.query(Person).join(Favor).<span class="built_in">all</span>()</span><br><span class="line"><span class="comment">#isouter=True 外连，表示Person left join Favor，没有右连接，反过来即可</span></span><br><span class="line">ret = session.query(Person).join(Favor, isouter=<span class="literal">True</span>).<span class="built_in">all</span>()</span><br><span class="line"><span class="comment">#打印原生sql</span></span><br><span class="line">aa=session.query(Person).join(Favor, isouter=<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(aa)</span><br><span class="line"><span class="comment"># 自己指定on条件（连表条件）,第二个参数，支持on多个条件，用and_,同上</span></span><br><span class="line">ret = session.query(Person).join(Favor,Person.<span class="built_in">id</span>==Favor.<span class="built_in">id</span>, isouter=<span class="literal">True</span>).<span class="built_in">all</span>()</span><br><span class="line"><span class="comment"># 组合（了解）UNION 操作符用于合并两个或多个 SELECT 语句的结果集</span></span><br><span class="line"><span class="comment">#union和union all的区别？</span></span><br><span class="line">q1 = session.query(Users.name).<span class="built_in">filter</span>(Users.<span class="built_in">id</span> &gt; <span class="number">2</span>)</span><br><span class="line">q2 = session.query(Favor.caption).<span class="built_in">filter</span>(Favor.nid &lt; <span class="number">2</span>)</span><br><span class="line">ret = q1.union(q2).<span class="built_in">all</span>()</span><br><span class="line"></span><br><span class="line">q1 = session.query(Users.name).<span class="built_in">filter</span>(Users.<span class="built_in">id</span> &gt; <span class="number">2</span>)</span><br><span class="line">q2 = session.query(Favor.caption).<span class="built_in">filter</span>(Favor.nid &lt; <span class="number">2</span>)</span><br><span class="line">ret = q1.union_all(q2).<span class="built_in">all</span>()</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="9-执行原生sql"><a href="#9-执行原生sql" class="headerlink" title="9.执行原生sql"></a>9.执行原生sql</h2><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> Column, Integer, String, ForeignKey, UniqueConstraint, Index</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> sessionmaker, relationship</span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.sql <span class="keyword">import</span> text</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.engine.result <span class="keyword">import</span> ResultProxy</span><br><span class="line"><span class="keyword">from</span> db <span class="keyword">import</span> Users, Hosts</span><br><span class="line"></span><br><span class="line">engine = create_engine(<span class="string">"mysql+pymysql://root:123@127.0.0.1:3306/s6"</span>, max_overflow=<span class="number">0</span>, pool_size=<span class="number">5</span>)</span><br><span class="line">Session = sessionmaker(bind=engine)</span><br><span class="line"></span><br><span class="line">session = Session()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询</span></span><br><span class="line"><span class="comment"># cursor = session.execute('select * from users')</span></span><br><span class="line"><span class="comment"># result = cursor.fetchall()</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加</span></span><br><span class="line">cursor = session.execute(<span class="string">'insert into users(name) values(:value)'</span>,params={<span class="string">"value"</span>:<span class="string">'lqz'</span>})</span><br><span class="line">session.commit()</span><br><span class="line"><span class="built_in">print</span>(cursor.lastrowid)</span><br><span class="line"></span><br><span class="line">session.close()</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="10-一对多"><a href="#10-一对多" class="headerlink" title="10.一对多"></a>10.一对多</h2><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> Column, Integer, String, ForeignKey, UniqueConstraint, Index</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> sessionmaker, relationship</span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.sql <span class="keyword">import</span> text</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.engine.result <span class="keyword">import</span> ResultProxy</span><br><span class="line"><span class="keyword">from</span> db <span class="keyword">import</span> Users, Hosts, Hobby, Person</span><br><span class="line"></span><br><span class="line">engine = create_engine(<span class="string">"mysql+pymysql://root:123@127.0.0.1:3306/s6?charset=utf8"</span>, max_overflow=<span class="number">0</span>, pool_size=<span class="number">5</span>)</span><br><span class="line">Session = sessionmaker(bind=engine)</span><br><span class="line">session = Session()</span><br><span class="line"><span class="comment"># 添加</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">session.add_all([</span></span><br><span class="line"><span class="string">    Hobby(caption='乒乓球'),</span></span><br><span class="line"><span class="string">    Hobby(caption='羽毛球'),</span></span><br><span class="line"><span class="string">    Person(name='张三', hobby_id=3),</span></span><br><span class="line"><span class="string">    Person(name='李四', hobby_id=4),</span></span><br><span class="line"><span class="string">])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">person = Person(name='张九', hobby=Hobby(caption='姑娘'))</span></span><br><span class="line"><span class="string">session.add(person)</span></span><br><span class="line"><span class="string">#添加二</span></span><br><span class="line"><span class="string">hb = Hobby(caption='人妖')</span></span><br><span class="line"><span class="string">hb.pers = [Person(name='文飞'), Person(name='博雅')]</span></span><br><span class="line"><span class="string">session.add(hb)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">session.commit()</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用relationship正向查询</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">v = session.query(Person).first()</span></span><br><span class="line"><span class="string">print(v.name)</span></span><br><span class="line"><span class="string">print(v.hobby.caption)</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用relationship反向查询</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">v = session.query(Hobby).first()</span></span><br><span class="line"><span class="string">print(v.caption)</span></span><br><span class="line"><span class="string">print(v.pers)</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="comment">#方式一，自己链表</span></span><br><span class="line"><span class="comment"># person_list=session.query(models.Person.name,models.Hobby.caption).join(models.Hobby,isouter=True).all()</span></span><br><span class="line">person_list=session.query(models.Person,models.Hobby).join(models.Hobby,isouter=<span class="literal">True</span>).<span class="built_in">all</span>()</span><br><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> person_list:</span><br><span class="line">    <span class="comment"># print(row.name,row.caption)</span></span><br><span class="line">    <span class="built_in">print</span>(row[<span class="number">0</span>].name,row[<span class="number">1</span>].caption)</span><br><span class="line"></span><br><span class="line"><span class="comment">#方式二：通过relationship</span></span><br><span class="line"></span><br><span class="line">person_list=session.query(models.Person).<span class="built_in">all</span>()</span><br><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> person_list:</span><br><span class="line">    <span class="built_in">print</span>(row.name,row.hobby.caption)</span><br><span class="line"><span class="comment">#查询喜欢姑娘的所有人</span></span><br><span class="line">obj=session.query(models.Hobby).<span class="built_in">filter</span>(models.Hobby.<span class="built_in">id</span>==<span class="number">1</span>).first()</span><br><span class="line">persons=obj.pers</span><br><span class="line"><span class="built_in">print</span>(persons)</span><br><span class="line">session.close()</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="11-多对多"><a href="#11-多对多" class="headerlink" title="11.多对多"></a>11.多对多</h2><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> Column, Integer, String, ForeignKey, UniqueConstraint, Index</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> sessionmaker, relationship</span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.sql <span class="keyword">import</span> text</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.engine.result <span class="keyword">import</span> ResultProxy</span><br><span class="line"><span class="keyword">from</span> db <span class="keyword">import</span> Users, Hosts, Hobby, Person, Group, Server, Server2Group</span><br><span class="line"></span><br><span class="line">engine = create_engine(<span class="string">"mysql+pymysql://root:123@127.0.0.1:3306/s6?charset=utf8"</span>, max_overflow=<span class="number">0</span>, pool_size=<span class="number">5</span>)</span><br><span class="line">Session = sessionmaker(bind=engine)</span><br><span class="line">session = Session()</span><br><span class="line"><span class="comment"># 添加</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">session.add_all([</span></span><br><span class="line"><span class="string">    Server(hostname='c1.com'),</span></span><br><span class="line"><span class="string">    Server(hostname='c2.com'),</span></span><br><span class="line"><span class="string">    Group(name='A组'),</span></span><br><span class="line"><span class="string">    Group(name='B组'),</span></span><br><span class="line"><span class="string">])</span></span><br><span class="line"><span class="string">session.commit()</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">s2g = Server2Group(server_id=1, group_id=1)</span></span><br><span class="line"><span class="string">session.add(s2g)</span></span><br><span class="line"><span class="string">session.commit()</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">gp = Group(name='C组')</span></span><br><span class="line"><span class="string">gp.servers = [Server(hostname='c3.com'),Server(hostname='c4.com')]</span></span><br><span class="line"><span class="string">session.add(gp)</span></span><br><span class="line"><span class="string">session.commit()</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">ser = Server(hostname='c6.com')</span></span><br><span class="line"><span class="string">ser.groups = [Group(name='F组'),Group(name='G组')]</span></span><br><span class="line"><span class="string">session.add(ser)</span></span><br><span class="line"><span class="string">session.commit()</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用relationship正向查询</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">v = session.query(Group).first()</span></span><br><span class="line"><span class="string">print(v.name)</span></span><br><span class="line"><span class="string">print(v.servers)</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用relationship反向查询</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">v = session.query(Server).first()</span></span><br><span class="line"><span class="string">print(v.hostname)</span></span><br><span class="line"><span class="string">print(v.groups)</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">session.close()</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="12-其它"><a href="#12-其它" class="headerlink" title="12.其它"></a>12.其它</h2><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> Column, Integer, String, ForeignKey, UniqueConstraint, Index</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> sessionmaker, relationship</span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.sql <span class="keyword">import</span> text, func</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.engine.result <span class="keyword">import</span> ResultProxy</span><br><span class="line"><span class="keyword">from</span> db <span class="keyword">import</span> Users, Hosts, Hobby, Person, Group, Server, Server2Group</span><br><span class="line"></span><br><span class="line">engine = create_engine(<span class="string">"mysql+pymysql://root:123@127.0.0.1:3306/s6?charset=utf8"</span>, max_overflow=<span class="number">0</span>, pool_size=<span class="number">5</span>)</span><br><span class="line">Session = sessionmaker(bind=engine)</span><br><span class="line">session = Session()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关联子查询:correlate(Group)表示跟Group表做关联，as_scalar相当于对该sql加括号，用于放在后面当子查询</span></span><br><span class="line">subqry = session.query(func.count(Server.<span class="built_in">id</span>).label(<span class="string">"sid"</span>)).<span class="built_in">filter</span>(Server.<span class="built_in">id</span> == Group.<span class="built_in">id</span>).correlate(Group).as_scalar()</span><br><span class="line">result = session.query(Group.name, subqry)</span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">SELECT `group`.name AS group_name, (SELECT count(server.id) AS sid </span></span><br><span class="line"><span class="string">FROM server </span></span><br><span class="line"><span class="string">WHERE server.id = `group`.id) AS anon_1 </span></span><br><span class="line"><span class="string">FROM `group`</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">select * from tb where id in [select id from xxx];</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">select id,</span></span><br><span class="line"><span class="string">		name,</span></span><br><span class="line"><span class="string">		#必须保证此次查询只有一个值</span></span><br><span class="line"><span class="string">		(select max(id) from xxx) as mid</span></span><br><span class="line"><span class="string">from tb</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">例如，第三个字段只能有一个值</span></span><br><span class="line"><span class="string">id name  mid</span></span><br><span class="line"><span class="string">1  lqz   1，2  不合理</span></span><br><span class="line"><span class="string">2  egon   2</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">成绩表：</span></span><br><span class="line"><span class="string">id sid    cid    score</span></span><br><span class="line"><span class="string">1  1      物理      99 </span></span><br><span class="line"><span class="string">2  1      化学      88</span></span><br><span class="line"><span class="string">3  2      物理      95</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">学生表：</span></span><br><span class="line"><span class="string">id   name  每个学生总分数</span></span><br><span class="line"><span class="string">1     xx      88</span></span><br><span class="line"><span class="string">2     yy       77</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">select id，name,</span></span><br><span class="line"><span class="string">(select avr(score) from 成绩表 where 成绩表.sid=学生表.id) as x</span></span><br><span class="line"><span class="string">from 学生表</span></span><br><span class="line"><span class="string">subqry = session.query(func.count(成绩表.scort).label("sc")).filter(学生表.id == 成绩表.sid).correlate(学生表).as_scalar()</span></span><br><span class="line"><span class="string">result = session.query(学生表.name, subqry)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 原生SQL</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string"># 查询</span></span><br><span class="line"><span class="string">cursor = session.execute('select * from users')</span></span><br><span class="line"><span class="string">result = cursor.fetchall()</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 添加</span></span><br><span class="line"><span class="string">cursor = session.execute('insert into users(name) values(:value)',params={"value":'wupeiqi'})</span></span><br><span class="line"><span class="string">session.commit()</span></span><br><span class="line"><span class="string">print(cursor.lastrowid)</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line">session.close()</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="13-Flask-SQLAlchemy"><a href="#13-Flask-SQLAlchemy" class="headerlink" title="13.Flask-SQLAlchemy"></a>13.Flask-SQLAlchemy</h2><p>flask和SQLAchemy的管理者，通过他把他们做连接</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">db = SQLAlchemy()</span><br><span class="line">	- 包含配置</span><br><span class="line">	- 包含ORM基类</span><br><span class="line">	- 包含create_all</span><br><span class="line">	- engine</span><br><span class="line">	- 创建连接</span><br></pre></td></tr></tbody></table></figure>
+
+<p>离线脚本，创建表</p>
+<p>详见代码</p>
+<p>flask-migrate<br>python3 manage.py db init 初始化：只执行一次</p>
+<p>python3 manage.py db migrate 等同于 makemigartions<br>python3 manage.py db upgrade 等同于migrate</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">祈安</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://example.com/2021/10/08/SQLAlchemy/">http://example.com/2021/10/08/SQLAlchemy/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">祈安</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/FLask-SQLAlchemy/">
+                                    <span class="chip bg-color">FLask-SQLAlchemy</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: null,
+        id: '2021-10-08T19-23-21',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/10/09/Scrapy/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="爬虫-Scrapy">
+                        
+                        <span class="card-title">爬虫-Scrapy</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-09
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Scrapy/" class="post-category">
+                                    Scrapy
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%88%AC%E8%99%AB-Scrapy/">
+                        <span class="chip bg-color">爬虫-Scrapy</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/09/23/drf%E9%9D%A2%E8%AF%95%E9%A2%98/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="drf面试题">
+                        
+                        <span class="card-title">drf面试题</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-23
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Django/" class="post-category">
+                                    Django
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Django-drf%E9%9D%A2%E8%AF%95%E9%A2%98/">
+                        <span class="chip bg-color">Django-drf面试题</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('100')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 且听风吟<br />'
+            + '文章作者: 祈安<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="tencent"
+                   type="playlist"
+                   id="4628814494"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2020-2022</span>
+            
+            <span id="year">2020</span>
+            <a href="/about" target="_blank">祈安</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">63.7k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:jiangychao@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=913126194" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 913126194" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true,"react":{"opacity":0.7}}});</script></body>
+
+</html>
