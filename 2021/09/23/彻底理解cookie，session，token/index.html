@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="concurrent模块, 且听风吟">
+    <meta name="keywords" content="彻底理解cookie，session，token, 且听风吟">
     <meta name="description" content="welcome to my word">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>concurrent模块 | 且听风吟</title>
+    <title>彻底理解cookie，session，token | 且听风吟</title>
     <link rel="icon" type="image/png" href="/source/images/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -202,12 +202,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">concurrent模块</h1>
+                    <h1 class="description center-align post-title">彻底理解cookie，session，token</h1>
                 </div>
             </div>
         </div>
@@ -323,8 +323,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/python%E5%9F%BA%E7%A1%80/">
-                                <span class="chip bg-color">python基础</span>
+                            <a href="/tags/%E8%AE%A4%E8%AF%81/">
+                                <span class="chip bg-color">认证</span>
                             </a>
                         
                     </div>
@@ -335,8 +335,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/python/" class="post-category">
-                                python
+                            <a href="/categories/cookie%EF%BC%8Csession%EF%BC%8Ctoken/" class="post-category">
+                                cookie，session，token
                             </a>
                         
                     </div>
@@ -348,7 +348,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-09-27
+                    2021-09-23
                 </div>
                 
 
@@ -357,7 +357,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    3.7k
                 </div>
                 
 
@@ -376,30 +376,88 @@
             <div id="articleContent">
                 <span id="more"></span>
 
-<h3 id="关于concurrent模块"><a href="#关于concurrent模块" class="headerlink" title="关于concurrent模块"></a>关于concurrent模块</h3><p>今天来讲下 python 的另外一个自带库 concurrent 。<br>concurrent 是在 Python3.2 中引入的，只用几行代码就可以编写出线程池/进程池。<br>计算型任务效率和 mutiprocessing.pool 提供的 poll 和 ThreadPoll 相比不分伯仲，而且在 IO 型任务由于引入了 Future 的概念效率要高数倍。<br>而threading的话还要自己维护相关的队列防止死锁，代码的可读性也会下降，相反 concurrent 提供的线程池却非常的便捷，不用自己操心死锁以及编写线程池代码，由于异步的概念 IO 型任务也更有优势<br>concurrent 主要提供了 ThreadPoolExecutor 和 ProcessPoolExecutor 。一个多线程，一个多进程。但 concurrent 本质上都是对 threading 和 mutiprocessing 的封装。看它的源码可以知道，所以最底层并没有异步。<br>ThreadPoolExecutor 自己提供了任务队列，不需要自己写了。而所谓的线程池，它只是简单的比较当前的 threads 数量和定义的 max_workers 的大小，小于 max_workers 就允许任务创建线程执行任务</p>
-<h3 id="创建线程池"><a href="#创建线程池" class="headerlink" title="创建线程池"></a>创建线程池</h3><p>通过 ThreadPoolExecutor 类创建线程池对象，max_workers 设置最大运行线程数数。<br>使用 ThreadPoolExecutor 的好处是不用担心线程死锁问题，让多线程编程更简洁<br>from concurrent import futures<br>pool = futures.ThreadPoolExecutor(max_workers = 2)</p>
-<h3 id="submit"><a href="#submit" class="headerlink" title="submit"></a>submit</h3><p>submit(self, fn, *args, **kwargs):<br>fn：需要异步执行的函数<br>*args,**kwargs：fn 接受的参数</p>
-<p>该方法的作用就是提交一个可执行的回调task，它返回一个Future对象。可以看出此方法不会阻塞主线程的执行。<br>import requests,datetime,time<br>from concurrent import futures</p>
-<p>def get_request(url):<br>    r = requests.get(url)<br>    print(‘{}:{}  {}’.format(datetime.datetime.now(),url,r.status_code))</p>
-<p>urls = [‘<a target="_blank" rel="noopener" href="https://www.baidu.com&amp;/#39;,'https://www.tmall.com','https://www.jd.com']">https://www.baidu.com','https://www.tmall.com','https://www.jd.com']</a><br>pool = futures.ThreadPoolExecutor(max_workers = 2)<br>for url in urls:<br>    task = pool.submit(get_request,url)<br>    print(‘{}主线程’.format(datetime.datetime.now()))<br>    time.sleep(2)</p>
-<p>输出结果<br>2021-03-12 15:29:10.780141:主线程<br>2021-03-12 15:29:10.865425:<a target="_blank" rel="noopener" href="https://www.baidu.com/">https://www.baidu.com</a>  200<br>2021-03-12 15:29:10.923062:<a target="_blank" rel="noopener" href="https://www.tmall.com/">https://www.tmall.com</a>  200<br>2021-03-12 15:29:10.940930:<a target="_blank" rel="noopener" href="https://www.jd.com/">https://www.jd.com</a>  200</p>
-<h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><p>map(self, fn, *iterables, timeout=None, chunksize=1):<br>fn：需要异步执行的函数<br>*iterables：可迭代对象</p>
-<p>map 第二个参数是可迭代对象，比如 list、tuple 等，写法相对简单。map 方法也不会阻塞主线程的执行<br>import requests,datetime,time<br>from concurrent import futures</p>
-<p>def get_request(url):<br>    r = requests.get(url)<br>    print(‘{}:{}  {}’.format(datetime.datetime.now(),url,r.status_code))</p>
-<p>urls = [‘<a target="_blank" rel="noopener" href="https://www.baidu.com&amp;/#39;,'https://www.tmall.com','https://www.jd.com']">https://www.baidu.com','https://www.tmall.com','https://www.jd.com']</a><br>pool = futures.ThreadPoolExecutor(max_workers = 2)<br>tasks = pool.map(get_request,urls)<br>print(‘{}:主线程’.format(datetime.datetime.now()))<br>time.sleep(2)</p>
-<p>输出结果<br>2021-03-12 16:14:04.854452:主线程<br>2021-03-12 16:14:04.938870:<a target="_blank" rel="noopener" href="https://www.baidu.com/">https://www.baidu.com</a>  200<br>2021-03-12 16:14:05.033849:<a target="_blank" rel="noopener" href="https://www.jd.com/">https://www.jd.com</a>  200<br>2021-03-12 16:14:05.048952:<a target="_blank" rel="noopener" href="https://www.tmall.com/">https://www.tmall.com</a>  200</p>
-<h3 id="wait"><a href="#wait" class="headerlink" title="wait"></a>wait</h3><p>如果要等待子线程执行完之后再执行主线程要怎么办呢，可以通过 wait 。</p>
-<p>wait(fs, timeout=None, return_when=ALL_COMPLETED):<br>fs：所有任务 tasks<br>return_when：有三个参数 FIRST_COMPLETED：只要有一个子线程完成则返回结果。<br>             FIRST_EXCEPTION：只要有一个子线程抛异常则返回结果，若没有异常则等同于ALL_COMPLETED。<br>             ALL_COMPLETED：默认参数，等待所有子线程完成</p>
-<p>import requests,datetime,time<br>from concurrent import futures</p>
-<p>def get_request(url):<br>    r = requests.get(url)<br>    print(‘{}:{}  {}’.format(datetime.datetime.now(),url,r.status_code))</p>
-<p>urls = [‘<a target="_blank" rel="noopener" href="https://www.baidu.com&amp;/#39;,'https://www.tmall.com','https://www.jd.com']">https://www.baidu.com','https://www.tmall.com','https://www.jd.com']</a><br>pool = futures.ThreadPoolExecutor(max_workers = 2)<br>tasks =[]<br>for url in urls:<br>    task = pool.submit(get_request,url)<br>    tasks.append(task)<br>futures.wait(tasks)<br>print(‘{}:主线程’.format(datetime.datetime.now()))<br>time.sleep(2)</p>
-<p>输出结果<br>2021-03-12 16:30:13.437042:<a target="_blank" rel="noopener" href="https://www.baidu.com/">https://www.baidu.com</a>  200<br>2021-03-12 16:30:13.552700:<a target="_blank" rel="noopener" href="https://www.jd.com/">https://www.jd.com</a>  200<br>2021-03-12 16:30:14.117325:<a target="_blank" rel="noopener" href="https://www.tmall.com/">https://www.tmall.com</a>  200<br>2021-03-12 16:30:14.118284:主线程</p>
-<h3 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h3><p>as_completed(fs, timeout=None)</p>
-<p>所有任务 tasks<br>使用 concurrent.futures 操作 多线程/多进程 过程中，很多函数报错并不会直接终止程序，而是什么都没发生。使用 as_completed 可以捕获异常，代码如下<br>import requests,datetime,time<br>from concurrent import futures</p>
-<p>def get_request(url):<br>    r = requests.get(url)<br>    print(‘{}:{}  {}’.format(datetime.datetime.now(),url,r.status_code))</p>
-<p>urls = [‘<a target="_blank" rel="noopener" href="http://www.baidu.com&amp;/#39;,'https://www.tmall.com','https://www.jd.com']">www.baidu.com','https://www.tmall.com','https://www.jd.com']</a><br>创建线程池<br>pool = futures.ThreadPoolExecutor(max_workers = 2)<br>tasks =[]<br>for url in urls:<br>    task = pool.submit(get_request,url)<br>    tasks.append(task)<br>异常捕获<br>errors = futures.as_completed(tasks)<br>for error in errors:<br>    # error.result()       等待子线程都完成，并抛出异常，中断主线程<br>    # 捕获子线程异常，不会终止主线程继续运行<br>    print(error.exception())<br>futures.wait(tasks)<br>print(‘{}:主线程’.format(datetime.datetime.now()))<br>time.sleep(2)</p>
-<p>输出结果<br>Invalid URL ‘<a target="_blank" rel="noopener" href="http://www.baidu.com&amp;/#39;">www.baidu.com'</a>: No schema supplied. Perhaps you meant <a target="_blank" rel="noopener" href="http://www.baidu.com/">http://www.baidu.com</a>?<br>2021-03-12 17:24:26.984933:<a target="_blank" rel="noopener" href="https://www.tmall.com/">https://www.tmall.com</a>  200<br>None<br>2021-03-12 17:24:26.993939:<a target="_blank" rel="noopener" href="https://www.jd.com/">https://www.jd.com</a>  200<br>None<br>2021-03-12 17:24:26.994937:主线程</p>
-<p>多进程编程与之类似，将 ThreadPoolExecutor 替换成 ProcessPoolExecutor</p>
+
+
+
+
+
+
+<h1 id="彻底理解cookie，session，token"><a href="#彻底理解cookie，session，token" class="headerlink" title="[彻底理解cookie，session，token]"></a>[彻底理解cookie，session，token]</h1><h2 id="一-Cookie-Session-Token发展史"><a href="#一-Cookie-Session-Token发展史" class="headerlink" title="一 Cookie,Session,Token发展史"></a>一 Cookie,Session,Token发展史</h2><p><strong>无cookie时期</strong></p>
+<p>很久很久以前，Web 基本上就是文档的浏览而已， 既然是浏览，作为服务器， 不需要记录谁在某一段时间里都浏览了什么文档，每次请求都是一个新的HTTP协议， 就是请求加响应， 尤其是我不用记住是谁刚刚发了HTTP请求， 每个请求对我来说都是全新的。这段时间很嗨皮</p>
+<p><strong>cookie+session认证时期</strong></p>
+<p>但是随着交互式Web应用的兴起，像在线购物网站，需要登录的网站等等，马上就面临一个问题，那就是要管理会话，必须记住哪些人登录系统， 哪些人往自己的购物车中放商品， 也就是说我必须把每个人区分开，这就是一个不小的挑战，因为HTTP请求是无状态的，所以想出的办法就是给大家发一个会话标识(session id), 说白了就是一个随机的字串，每个人收到的都不一样， 每次大家向我发起HTTP请求的时候，把这个字符串给一并捎过来， 这样我就能区分开谁是谁了</p>
+<p><strong>cookie+session存在问题及解决</strong></p>
+<p>这样大家很嗨皮了，可是服务器就不嗨皮了，每个人只需要保存自己的session id，而服务器要保存所有人的session id ！ 如果访问服务器多了， 就得由成千上万，甚至几十万个。</p>
+<p>这对服务器说是一个巨大的开销 ， 严重的限制了服务器扩展能力， 比如说我用两个机器组成了一个集群， 小F通过机器A登录了系统， 那session id会保存在机器A上， 假设小F的下一次请求被转发到机器B怎么办？ 机器B可没有小F的 session id啊。</p>
+<p>有时候会采用一点小伎俩： session sticky ， 就是让小F的请求一直粘连在机器A上， 但是这也不管用， 要是机器A挂掉了， 还得转到机器B去。</p>
+<p>那只好做session 的复制了， 把session id 在两个机器之间搬来搬去， 快累死了。</p>
+<p>　　　　　　<a target="_blank" rel="noopener" href="https://images2018.cnblogs.com/blog/1350514/201805/1350514-20180504122814029-1201707523.png"><img src="https://s2.loli.net/2022/06/22/Xq5E9ZztO8pjDAa.png" alt="img"></a></p>
+<p>后来有个叫Memcached的支了招： 把session id 集中存储到一个地方， 所有的机器都来访问这个地方的数据， 这样一来，就不用复制了， 但是增加了单点失败的可能性， 要是那个负责session 的机器挂了， 所有人都得重新登录一遍， 估计得被人骂死。</p>
+<p>　　　　　　<a target="_blank" rel="noopener" href="https://images2018.cnblogs.com/blog/1350514/201805/1350514-20180504123036062-1920411426.png"><img src="https://s2.loli.net/2022/06/22/ZFhUMo7gWYBSdXR.png" alt="img"></a></p>
+<p>也尝试把这个单点的机器也搞出集群，增加可靠性， 但不管如何， 这小小的session 对我来说是一个沉重的负担</p>
+<p><strong>Token认证</strong></p>
+<p>于是有人就一直在思考， 我为什么要保存这可恶的session呢， 只让每个客户端去保存该多好？</p>
+<p>可是如果不保存这些session id , 怎么验证客户端发给我的session id 的确是我生成的呢？ 如果不去验证，我们都不知道他们是不是合法登录的用户， 那些不怀好意的家伙们就可以伪造session id , 为所欲为了。</p>
+<p>嗯，对了，关键点就是验证 ！</p>
+<p>比如说， 小F已经登录了系统， 我给他发一个令牌(token)， 里边包含了小F的 user id， 下一次小F 再次通过Http 请求访问我的时候， 把这个token 通过Http header 带过来不就可以了。</p>
+<p>不过这和session id没有本质区别啊， 任何人都可以可以伪造， 所以我得想点儿办法， 让别人伪造不了。</p>
+<p>那就对数据做一个签名吧， 比如说我用HMAC-SHA256 算法，加上一个只有我才知道的密钥， 对数据做一个签名， 把这个签名和数据一起作为token ， 由于密钥别人不知道， 就无法伪造token了。</p>
+<p><a target="_blank" rel="noopener" href="https://images2018.cnblogs.com/blog/1350514/201805/1350514-20180504123206667-444188772.png"><img src="https://s2.loli.net/2022/06/22/5LUOeq8xWiFyMfA.png" alt="img"></a></p>
+<p>这个token 我不保存， 当小F把这个token 给我发过来的时候，我再用同样的HMAC-SHA256 算法和同样的密钥，对数据再计算一次签名， 和token 中的签名做个比较， 如果相同， 我就知道小F已经登录过了，并且可以直接取到小F的user id , 如果不相同， 数据部分肯定被人篡改过， 我就告诉发送者： 对不起，没有认证。</p>
+<p><a target="_blank" rel="noopener" href="https://images2018.cnblogs.com/blog/1350514/201805/1350514-20180504123326596-1492094512.png"><img src="https://s2.loli.net/2022/06/22/vTgcp3aVwM4HbD8.png" alt="img"></a></p>
+<p>Token 中的数据是明文保存的（虽然我会用Base64做下编码， 但那不是加密）， 还是可以被别人看到的， 所以我不能在其中保存像密码这样的敏感信息。</p>
+<p>当然， 如果一个人的token 被别人偷走了， 那我也没办法， 我也会认为小偷就是合法用户， 这其实和一个人的session id 被别人偷走是一样的。</p>
+<p>这样一来， 我就不保存session id 了， 我只是生成token , 然后验证token ， 我用我的CPU计算时间获取了我的session 存储空间 ！</p>
+<p>解除了session id这个负担， 可以说是无事一身轻， 我的机器集群现在可以轻松地做水平扩展， 用户访问量增大， 直接加机器就行。 这种无状态的感觉实在是太好了！</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="二-Cookie-Session解释"><a href="#二-Cookie-Session解释" class="headerlink" title="二 Cookie,Session解释"></a>二 Cookie,Session解释</h2><h3 id="3-1-Cookie"><a href="#3-1-Cookie" class="headerlink" title="3.1 Cookie"></a>3.1 Cookie</h3><p>cookie 是一个非常具体的东西，指的就是浏览器里面能永久存储的一种数据，仅仅是浏览器实现的一种数据存储功能。</p>
+<p>cookie由服务器生成，发送给浏览器，浏览器把cookie以kv形式保存到某个目录下的文本文件内，下一次请求同一网站时会把该cookie发送给服务器。由于cookie是存在客户端上的，所以浏览器加入了一些限制确保cookie不会被恶意使用，同时不会占据太多磁盘空间，所以每个域的cookie数量是有限的。</p>
+<h3 id="3-2-Session"><a href="#3-2-Session" class="headerlink" title="3.2 Session"></a>3.2 Session</h3><p>session 从字面上讲，就是会话。这个就类似于你和一个人交谈，你怎么知道当前和你交谈的是张三而不是李四呢？对方肯定有某种特征（长相等）表明他就是张三。</p>
+<p>session 也是类似的道理，服务器要知道当前发请求给自己的是谁。为了做这种区分，服务器就要给每个客户端分配不同的“身份标识”，然后客户端每次向服务器发请求的时候，都带上这个“身份标识”，服务器就知道这个请求来自于谁了。至于客户端怎么保存这个“身份标识”，可以有很多种方式，对于浏览器客户端，大家都默认采用 cookie 的方式。</p>
+<p>服务器使用session把用户的信息临时保存在了服务器上，用户离开网站后session会被销毁。这种用户信息存储方式相对cookie来说更安全，可是session有一个缺陷：如果web服务器做了负载均衡，那么下一个操作请求到了另一台服务器的时候session会丢失。</p>
+<h3 id="3-3-cookie和session的区别"><a href="#3-3-cookie和session的区别" class="headerlink" title="3.3 cookie和session的区别"></a>3.3 cookie和session的区别</h3><p><strong>session是存储服务器端，cookie是存储在客户端，所以session的安全性比cookie高</strong></p>
+<p>获取session里的信息是通过存放在会话cookie里的session id获取的。而session是存放在服务器的内存中里，所以session里的数据不断增加会造成服务器的负担，所以会把很重要的信息存储在session中，而把一些次要东西存储在客户端的cookie里。</p>
+<p><strong>session的信息是通过sessionid获取的，而sessionid是存放在会话cookie中</strong></p>
+<p>当浏览器关闭的时候会话cookie消失，所以sessionid也就消失了，但是session的信息还存在服务器端，只是查不到所谓的session，但它并不是不存在</p>
+<h2 id="三-Token介绍"><a href="#三-Token介绍" class="headerlink" title="三 Token介绍"></a>三 Token介绍</h2><p>在Web领域基于Token的身份验证随处可见。在大多数使用Web API的互联网公司中，tokens 是多用户下处理认证的最佳方式。</p>
+<p>以下几点特性会让你在程序中使用基于Token的身份验证</p>
+<p>无状态、可扩展<br>支持移动设备<br>跨程序调用<br>安全<br>那些使用基于Token的身份验证的大佬们：大部分你见到过的API和Web应用都使用tokens。例如Facebook, Twitter, Google+, GitHub等。</p>
+<p>在介绍基于Token的身份验证的原理与优势之前，不妨先看看之前的认证都是怎么做的。</p>
+<h3 id="3-1-传统方式——基于服务器的验证"><a href="#3-1-传统方式——基于服务器的验证" class="headerlink" title="3.1 传统方式——基于服务器的验证"></a>3.1 传统方式——基于服务器的验证</h3><p>由于 HTTP 协议是无状态的，这种无状态意味着程序需要验证每一次请求，从而辨别客户端的身份。在这之前，程序都是通过在服务端存储登录的用户信息来辨别身份的。这种方式一般都是通过存储 session 来完成，可放在内存或磁盘上。</p>
+<p>随着Web，应用程序，已经移动端的兴起，这种验证的方式逐渐暴露出了问题。尤其是在可扩展性方面</p>
+<h3 id="3-2-基于服务器验证方式的问题"><a href="#3-2-基于服务器验证方式的问题" class="headerlink" title="3.2 基于服务器验证方式的问题"></a>3.2 基于服务器验证方式的问题</h3><h4 id="3-2-1-Seesions"><a href="#3-2-1-Seesions" class="headerlink" title="3.2.1 Seesions"></a>3.2.1 Seesions</h4><p>每次认证用户发起请求时，服务器需要去创建一个记录来存储信息。当越来越多的用户发请求时，内存的开销也会不断增加。</p>
+<h4 id="3-2-2-可扩展性"><a href="#3-2-2-可扩展性" class="headerlink" title="3.2.2 可扩展性"></a>3.2.2 可扩展性</h4><p>由于sessions 存放在服务器内存中，伴随而来的是可扩展性问题。当我们想要增加服务器来解决负载问题时，session 里的关键性信息会限制我们的扩展。</p>
+<h4 id="3-2-3-CORS-跨域资源共享"><a href="#3-2-3-CORS-跨域资源共享" class="headerlink" title="3.2.3 CORS (跨域资源共享)"></a>3.2.3 CORS (跨域资源共享)</h4><p>当我们扩展应用程序，让数据能够从不同设备上访问时，跨域资源的共享会是一个让人头疼的问题。在使用 Ajax 抓取另一个域的资源时（移动端访问我们的 API 服务器），可能会出现禁止请求的情况。</p>
+<h4 id="3-2-4-CSRF-跨站请求伪造"><a href="#3-2-4-CSRF-跨站请求伪造" class="headerlink" title="3.2.4 CSRF (跨站请求伪造)"></a>3.2.4 CSRF (跨站请求伪造)</h4><p>用户在访问银行网站时，他们很容易受到跨站请求伪造的攻击，并且能够被利用其访问其他的网站。<br>在这些问题中，可扩展性是最突出的。因此我们有必要去寻求一种更有行之有效的方法。</p>
+<h3 id="3-3-基于Token的验证原理"><a href="#3-3-基于Token的验证原理" class="headerlink" title="3.3 基于Token的验证原理"></a>3.3 基于Token的验证原理</h3><p>基于 Token 的身份验证是无状态的，我们不用将用户信息存在服务器或 Session 中。这种概念解决了在服务端存储信息时的许多问题。没有 session 信息意味着你的程序可以根据需要去增减机器，而不用去担心用户是否登录和已经登录到了哪里。</p>
+<p>虽然基于Token的身份验证实现的方式很多，但大致过程如下:</p>
+<blockquote>
+<p>1 用户通过用户名和密码发送请求<br>2 程序验证<br>3 程序返回一个签名的 token 给客户端<br>4 客户端储存 token, 并且每次请求都会附带它<br>5 服务端验证 token 并返回数据</p>
+</blockquote>
+<p>每一次请求都需要Token。Token 应该在 HTTP的头部发送从而保证了 Http 请求无状态。我们也需要设置服务器属性</p>
+<blockquote>
+<p>Access-Control-Allow-Origin: *</p>
+</blockquote>
+<p>来让服务器能接受到来自所有域的请求。需要注意的是，在ACAO头部指定 * 时，不得带有像HTTP认证，客户端SSL证书和cookies的证书。</p>
+<p>实现思路：</p>
+<blockquote>
+<p>1.用户登录校验，校验成功后就返回Token给客户端。</p>
+<p>2.客户端收到数据后保存在客户端</p>
+<p>3.客户端每次访问API是携带Token到服务器端。</p>
+<p>4.服务器端采用filter过滤器校验。校验成功则返回请求数据，校验失败则返回错误码</p>
+</blockquote>
+<p>当我们在程序中认证了信息并取得 token 之后，我们便能通过这个 token 做许多的事情。我们甚至能基于创建一个基于权限的token传给第三方应用程序，这些第三方程序能够获取到我们的数据（当然只限于该 token 被允许访问的数据）</p>
+<p>原理图如下：</p>
+<p><a target="_blank" rel="noopener" href="https://images2018.cnblogs.com/blog/1350514/201805/1350514-20180504123850641-479661599.png"><img src="https://s2.loli.net/2022/06/22/uqKa7sSkrBEZWjo.png" alt="img"></a></p>
+<h3 id="3-4-Token的优势"><a href="#3-4-Token的优势" class="headerlink" title="3.4 Token的优势"></a>3.4 Token的优势</h3><h4 id="3-4-1-无状态、可扩展"><a href="#3-4-1-无状态、可扩展" class="headerlink" title="3.4.1 无状态、可扩展"></a>3.4.1 无状态、可扩展</h4><p>在客户端存储的 token 是无状态的，并且能够被扩展。基于这种无状态和不存储Session信息，负载均衡服务器 能够将用户的请求传递到任何一台服务器上，因为服务器与用户信息没有关联。相反在传统方式中，我们必须将请求发送到一台存储了该用户 session 的服务器上（称为Session亲和性），因此当用户量大时，可能会造成 一些拥堵。使用 token 完美解决了此问题。</p>
+<h4 id="3-4-2-安全性"><a href="#3-4-2-安全性" class="headerlink" title="3.4.2 安全性"></a>3.4.2 安全性</h4><p>请求中发送 token 而不是 cookie，这能够防止 CSRF(跨站请求伪造) 攻击。即使在客户端使用 cookie 存储 token，cookie 也仅仅是一个存储机制而不是用于认证。另外，由于没有 session，让我们少我们不必再进行基于 session 的操作。</p>
+<p>Token 是有时效的，一段时间之后用户需要重新验证。我们也不一定需要等到token自动失效，token有撤回的操作，通过 token revocataion可以使一个特定的 token 或是一组有相同认证的 token 无效。</p>
+<h4 id="3-4-3-可扩展性"><a href="#3-4-3-可扩展性" class="headerlink" title="3.4.3 可扩展性"></a>3.4.3 可扩展性</h4><p>使用 Tokens 能够与其它应用共享权限。例如，能将一个博客帐号和自己的QQ号关联起来。当通过一个 第三方平台登录QQ时，我们可以将一个博客发到QQ平台中。</p>
+<p>使用 token，可以给第三方应用程序提供自定义的权限限制。当用户想让一个第三方应用程序访问它们的数据时，我们可以通过建立自己的API，给出具有特殊权限的tokens。</p>
+<h4 id="3-4-4-多平台与跨域"><a href="#3-4-4-多平台与跨域" class="headerlink" title="3.4.4 多平台与跨域"></a>3.4.4 多平台与跨域</h4><p>我们已经讨论了CORS (跨域资源共享)。当我们的应用和服务不断扩大的时候，我们可能需要通过多种不同平台或其他应用来接入我们的服务。</p>
+<p>可以让我们的API只提供数据，我们也可以从CDN提供服务（Having our API just serve data, we can also make the design choice to serve assets from a CDN.）。 在为我们的应用程序做了如下简单的配置之后，就可以消除 CORS 带来的问题。只要用户有一个通过了验证的token，数据和资源就能够在任何域上被请求到。</p>
+<figure class="highlight makefile"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">Access-Control-Allow-Origin: *       </span></span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="3-4-5-基于标准"><a href="#3-4-5-基于标准" class="headerlink" title="3.4.5 基于标准"></a>3.4.5 基于标准</h4><p>有几种不同方式来创建 token。最常用的标准就是 JSON Web Tokens。很多语言都支持它</p>
 
                 
             </div>
@@ -426,7 +484,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2020/09/27/concurrent%E6%A8%A1%E5%9D%97/">http://example.com/2020/09/27/concurrent%E6%A8%A1%E5%9D%97/</a>
+                    <a href="http://example.com/2021/09/23/%E5%BD%BB%E5%BA%95%E7%90%86%E8%A7%A3cookie%EF%BC%8Csession%EF%BC%8Ctoken/">http://example.com/2021/09/23/%E5%BD%BB%E5%BA%95%E7%90%86%E8%A7%A3cookie%EF%BC%8Csession%EF%BC%8Ctoken/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -464,8 +522,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/python%E5%9F%BA%E7%A1%80/">
-                                    <span class="chip bg-color">python基础</span>
+                                <a href="/tags/%E8%AE%A4%E8%AF%81/">
+                                    <span class="chip bg-color">认证</span>
                                 </a>
                             
                         </div>
@@ -510,7 +568,7 @@
         repo: '',
         owner: '',
         admin: null,
-        id: '2020-09-27T19-23-21',
+        id: '2021-09-23T19-23-21',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -540,31 +598,31 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/10/03/paramiko%E6%A8%A1%E5%9D%97/">
+                <a href="/2021/09/23/drf%E9%9D%A2%E8%AF%95%E9%A2%98/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="paramiko模块">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="drf面试题">
                         
-                        <span class="card-title">paramiko模块</span>
+                        <span class="card-title">drf面试题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Paramiko是用python语言写的一个模块，远程连接到Linux服务器，查看上面的日志状态，批量配置远程服务器，文件上传，文件下载等
+                            
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-03
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-09-23
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/python/" class="post-category">
-                                    python
+                            <a href="/categories/Django/" class="post-category">
+                                    Django
                                 </a>
                             
                             
@@ -574,8 +632,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/python%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/">
-                        <span class="chip bg-color">python自动化运维</span>
+                    <a href="/tags/Django-drf%E9%9D%A2%E8%AF%95%E9%A2%98/">
+                        <span class="chip bg-color">Django-drf面试题</span>
                     </a>
                     
                 </div>
@@ -589,13 +647,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/09/27/multiprocess%E6%A8%A1%E5%9D%97/">
+                <a href="/2020/11/24/flask%E9%9D%A2%E8%AF%95%E9%A2%98/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="多进程包multiprocessing的使用">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="flask面试题">
                         
-                        <span class="card-title">多进程包multiprocessing的使用</span>
+                        <span class="card-title">flask面试题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -606,14 +664,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-27
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-24
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/python/" class="post-category">
-                                    python
+                            <a href="/categories/flask/" class="post-category">
+                                    flask
                                 </a>
                             
                             
@@ -623,8 +681,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/python%E5%9F%BA%E7%A1%80/">
-                        <span class="chip bg-color">python基础</span>
+                    <a href="/tags/flask%E5%9F%BA%E7%A1%80/">
+                        <span class="chip bg-color">flask基础</span>
                     </a>
                     
                 </div>
