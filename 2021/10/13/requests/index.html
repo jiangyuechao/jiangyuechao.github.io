@@ -1,0 +1,1130 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="requests, 且听风吟">
+    <meta name="description" content="welcome to my word">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>requests | 且听风吟</title>
+    <link rel="icon" type="image/png" href="/source/images/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 6.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">且听风吟</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a target="_blank" rel="noopener" href="http://jyc0507.top/#articles" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>主页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">且听风吟</div>
+        <div class="logo-desc">
+            
+            welcome to my word
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a target="_blank" rel="noopener" href="http://jyc0507.top/#articles" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			主页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">requests</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/requests/">
+                                <span class="chip bg-color">requests</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/requests/" class="post-category">
+                                requests
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-10-13
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    3k
+                </div>
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <span id="more"></span>
+
+
+
+
+
+
+
+
+<p><strong>requests</strong></p>
+<h3 id="一-介绍"><a href="#一-介绍" class="headerlink" title="一 介绍"></a>一 介绍</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#介绍：使用requests可以模拟浏览器的请求，比起之前用到的urllib，requests模块的api更加便捷（本质就是封装了urllib3）</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#注意：requests库发送请求将网页内容下载下来以后，并不会执行js代码，这需要我们自己分析目标站点然后发起新的request请求</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#安装：pip3 install requests</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#各种请求方式：常用的就是requests.get()和requests.post()</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> requests</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.get(<span class="string">'https://api.github.com/events'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.post(<span class="string">'http://httpbin.org/post'</span>, data = {<span class="string">'key'</span>:<span class="string">'value'</span>})</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.put(<span class="string">'http://httpbin.org/put'</span>, data = {<span class="string">'key'</span>:<span class="string">'value'</span>})</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.delete(<span class="string">'http://httpbin.org/delete'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.head(<span class="string">'http://httpbin.org/get'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.options(<span class="string">'http://httpbin.org/get'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 建议在正式学习requests前，先熟悉下HTTP协议</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><a target="_blank" rel="noopener" href="http://docs.python-requests.org/en/master/">官网链接：http://docs.python-requests.org/en/master/</a></p>
+<h3 id="二-基于GET请求"><a href="#二-基于GET请求" class="headerlink" title="二 基于GET请求"></a>二 基于GET请求</h3><p><strong>1、基本请求</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">response=requests.get(<span class="string">'http://dig.chouti.com/'</span>)</span><br><span class="line"><span class="built_in">print</span>(response.text)</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>2、带参数的GET请求-&gt;params</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#在请求头内将自己伪装成浏览器，否则百度不会正常返回页面内容</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">response=requests.get(<span class="string">'https://www.baidu.com/s?wd=python&amp;pn=1'</span>,</span><br><span class="line">                      headers={</span><br><span class="line">                        <span class="string">'User-Agent'</span>:<span class="string">'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.75 Safari/537.36'</span>,</span><br><span class="line">                      })</span><br><span class="line"><span class="built_in">print</span>(response.text)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#如果查询关键词是中文或者有其他特殊符号，则不得不进行url编码</span></span><br><span class="line"><span class="keyword">from</span> urllib.parse <span class="keyword">import</span> urlencode</span><br><span class="line">wd=<span class="string">'lqz老师'</span></span><br><span class="line">encode_res=urlencode({<span class="string">'k'</span>:wd},encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">keyword=encode_res.split(<span class="string">'='</span>)[<span class="number">1</span>]</span><br><span class="line"><span class="built_in">print</span>(keyword)</span><br><span class="line"><span class="comment"># 然后拼接成url</span></span><br><span class="line">url=<span class="string">'https://www.baidu.com/s?wd=%s&amp;pn=1'</span> %keyword</span><br><span class="line"></span><br><span class="line">response=requests.get(url,</span><br><span class="line">                      headers={</span><br><span class="line">                        <span class="string">'User-Agent'</span>:<span class="string">'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.75 Safari/537.36'</span>,</span><br><span class="line">                      })</span><br><span class="line">res1=response.text</span><br><span class="line"><span class="comment">#上述操作可以用requests模块的一个params参数搞定，本质还是调用urlencode</span></span><br><span class="line"><span class="keyword">from</span> urllib.parse <span class="keyword">import</span> urlencode</span><br><span class="line">wd=<span class="string">'lqz老师'</span></span><br><span class="line">pn=<span class="number">1</span></span><br><span class="line"></span><br><span class="line">response=requests.get(<span class="string">'https://www.baidu.com/s'</span>,</span><br><span class="line">                      params={</span><br><span class="line">                          <span class="string">'wd'</span>:wd,</span><br><span class="line">                          <span class="string">'pn'</span>:pn</span><br><span class="line">                      },</span><br><span class="line">                      headers={</span><br><span class="line">                        <span class="string">'User-Agent'</span>:<span class="string">'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.75 Safari/537.36'</span>,</span><br><span class="line">                      })</span><br><span class="line">res2=response.text</span><br><span class="line"></span><br><span class="line"><span class="comment">#验证结果，打开a.html与b.html页面内容一样</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">'a.html'</span>,<span class="string">'w'</span>,encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(res1) </span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">'b.html'</span>, <span class="string">'w'</span>, encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(res2)</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>3、带参数的GET请求-&gt;headers</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#通常我们在发送请求时都需要带上请求头，请求头是将自身伪装成浏览器的关键，常见的有用的请求头如下</span></span><br><span class="line">Host</span><br><span class="line">Referer <span class="comment">#大型网站通常都会根据该参数判断请求的来源</span></span><br><span class="line">User-Agent <span class="comment">#客户端</span></span><br><span class="line">Cookie <span class="comment">#Cookie信息虽然包含在请求头里，但requests模块有单独的参数来处理他，headers={}内就不要放它了</span></span><br><span class="line"><span class="comment">#添加headers(浏览器会识别请求头,不加可能会被拒绝访问,比如访问https://www.zhihu.com/explore)</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">response=requests.get(<span class="string">'https://www.zhihu.com/explore'</span>)</span><br><span class="line">response.status_code <span class="comment">#500</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#自己定制headers</span></span><br><span class="line">headers={</span><br><span class="line">    <span class="string">'User-Agent'</span>:<span class="string">'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.76 Mobile Safari/537.36'</span>,</span><br><span class="line"></span><br><span class="line">}</span><br><span class="line">respone=requests.get(<span class="string">'https://www.zhihu.com/explore'</span>,</span><br><span class="line">                     headers=headers)</span><br><span class="line"><span class="built_in">print</span>(respone.status_code) <span class="comment">#200</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>4、带参数的GET请求-&gt;cookies</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#登录github，然后从浏览器中获取cookies，以后就可以直接拿着cookie登录了，无需输入用户名密码</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">Cookies={   <span class="string">'user_session'</span>:<span class="string">'wGMHFJKgDcmRIVvcA14_Wrt_3xaUyJNsBnPbYzEL6L0bHcfc'</span>,</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">response=requests.get(<span class="string">'https://github.com/settings/emails'</span>,</span><br><span class="line">             cookies=Cookies) <span class="comment">#github对请求头没有什么限制，我们无需定制user-agent，对于其他网站可能还需要定制</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">'378533872@qq.com'</span> <span class="keyword">in</span> response.text) <span class="comment">#True</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="三-基于POST请求"><a href="#三-基于POST请求" class="headerlink" title="三 基于POST请求"></a>三 基于POST请求</h3><p><strong>1、介绍</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#GET请求</span></span><br><span class="line">HTTP默认的请求方法就是GET</span><br><span class="line">     * 没有请求体</span><br><span class="line">     * 数据必须在1K之内！</span><br><span class="line">     * GET请求数据会暴露在浏览器的地址栏中</span><br><span class="line"></span><br><span class="line">GET请求常用的操作：</span><br><span class="line">       <span class="number">1.</span> 在浏览器的地址栏中直接给出URL，那么就一定是GET请求</span><br><span class="line">       <span class="number">2.</span> 点击页面上的超链接也一定是GET请求</span><br><span class="line">       <span class="number">3.</span> 提交表单时，表单默认使用GET请求，但可以设置为POST</span><br><span class="line"></span><br><span class="line"><span class="comment">#POST请求</span></span><br><span class="line">(<span class="number">1</span>). 数据不会出现在地址栏中</span><br><span class="line">(<span class="number">2</span>). 数据的大小没有上限</span><br><span class="line">(<span class="number">3</span>). 有请求体</span><br><span class="line">(<span class="number">4</span>). 请求体中如果存在中文，会使用URL编码！</span><br><span class="line"></span><br><span class="line"><span class="comment">#！！！requests.post()用法与requests.get()完全一致，特殊的是requests.post()有一个data参数，用来存放请求体数据</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>2、发送post请求，模拟浏览器的登录行为</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#对于登录来说，应该输错用户名或密码然后分析抓包流程，用脑子想一想，输对了浏览器就跳转了，还分析个毛线，累死你也找不到包</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">一 目标站点分析</span></span><br><span class="line"><span class="string">    浏览器输入https://github.com/login</span></span><br><span class="line"><span class="string">    然后输入错误的账号密码，抓包</span></span><br><span class="line"><span class="string">    发现登录行为是post提交到：https://github.com/session</span></span><br><span class="line"><span class="string">    而且请求头包含cookie</span></span><br><span class="line"><span class="string">    而且请求体包含：</span></span><br><span class="line"><span class="string">        commit:Sign in</span></span><br><span class="line"><span class="string">        utf8:✓</span></span><br><span class="line"><span class="string">        authenticity_token:lbI8IJCwGslZS8qJPnof5e7ZkCoSoMn6jmDTsL1r/m06NLyIbw7vCrpwrFAPzHMep3Tmf/TSJVoXWrvDZaVwxQ==</span></span><br><span class="line"><span class="string">        login:egonlin</span></span><br><span class="line"><span class="string">        password:123</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">二 流程分析</span></span><br><span class="line"><span class="string">    先GET：https://github.com/login拿到初始cookie与authenticity_token</span></span><br><span class="line"><span class="string">    返回POST：https://github.com/session， 带上初始cookie，带上请求体（authenticity_token，用户名，密码等）</span></span><br><span class="line"><span class="string">    最后拿到登录cookie</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">```</span></span><br><span class="line"><span class="string">ps：如果密码时密文形式，则可以先输错账号，输对密码，然后到浏览器中拿到加密后的密码，github的密码是明文</span></span><br><span class="line"><span class="string">```</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="comment">#第一次请求</span></span><br><span class="line">r1=requests.get(<span class="string">'https://github.com/login'</span>)</span><br><span class="line">r1_cookie=r1.cookies.get_dict() <span class="comment">#拿到初始cookie(未被授权)</span></span><br><span class="line">authenticity_token=re.findall(<span class="string">r'name="authenticity_token".*?value="(.*?)"'</span>,r1.text)[<span class="number">0</span>] <span class="comment">#从页面中拿到CSRF TOKEN</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#第二次请求：带着初始cookie和TOKEN发送POST请求给登录页面，带上账号密码</span></span><br><span class="line">data={</span><br><span class="line">    <span class="string">'commit'</span>:<span class="string">'Sign in'</span>,</span><br><span class="line">    <span class="string">'utf8'</span>:<span class="string">'✓'</span>,</span><br><span class="line">    <span class="string">'authenticity_token'</span>:authenticity_token,</span><br><span class="line">    <span class="string">'login'</span>:<span class="string">'317828332@qq.com'</span>,</span><br><span class="line">    <span class="string">'password'</span>:<span class="string">'alex3714'</span></span><br><span class="line">}</span><br><span class="line">r2=requests.post(<span class="string">'https://github.com/session'</span>,</span><br><span class="line">             data=data,</span><br><span class="line">             cookies=r1_cookie</span><br><span class="line">             )</span><br><span class="line"></span><br><span class="line">login_cookie=r2.cookies.get_dict()</span><br><span class="line"></span><br><span class="line"><span class="comment">#第三次请求：以后的登录，拿着login_cookie就可以,比如访问一些个人配置</span></span><br><span class="line">r3=requests.get(<span class="string">'https://github.com/settings/emails'</span>,</span><br><span class="line">                cookies=login_cookie)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">'317828332@qq.com'</span> <span class="keyword">in</span> r3.text) <span class="comment">#True</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">session=requests.session()</span><br><span class="line"><span class="comment">#第一次请求</span></span><br><span class="line">r1=session.get(<span class="string">'https://github.com/login'</span>)</span><br><span class="line">authenticity_token=re.findall(<span class="string">r'name="authenticity_token".*?value="(.*?)"'</span>,r1.text)[<span class="number">0</span>] <span class="comment">#从页面中拿到CSRF TOKEN</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#第二次请求</span></span><br><span class="line">data={</span><br><span class="line">    <span class="string">'commit'</span>:<span class="string">'Sign in'</span>,</span><br><span class="line">    <span class="string">'utf8'</span>:<span class="string">'✓'</span>,</span><br><span class="line">    <span class="string">'authenticity_token'</span>:authenticity_token,</span><br><span class="line">    <span class="string">'login'</span>:<span class="string">'317828332@qq.com'</span>,</span><br><span class="line">    <span class="string">'password'</span>:<span class="string">'alex3714'</span></span><br><span class="line">}</span><br><span class="line">r2=session.post(<span class="string">'https://github.com/session'</span>,</span><br><span class="line">             data=data,</span><br><span class="line">             )</span><br><span class="line"></span><br><span class="line"><span class="comment">#第三次请求</span></span><br><span class="line">r3=session.get(<span class="string">'https://github.com/settings/emails'</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">'317828332@qq.com'</span> <span class="keyword">in</span> r3.text) <span class="comment">#True</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>3、补充</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">requests.post(url=<span class="string">'xxxxxxxx'</span>,</span><br><span class="line">              data={<span class="string">'xxx'</span>:<span class="string">'yyy'</span>}) <span class="comment">#没有指定请求头,#默认的请求头:application/x-www-form-urlencoed</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#如果我们自定义请求头是application/json,并且用data传值, 则服务端取不到值</span></span><br><span class="line">requests.post(url=<span class="string">''</span>,</span><br><span class="line">              data={<span class="string">''</span>:<span class="number">1</span>,},</span><br><span class="line">              headers={</span><br><span class="line">                  <span class="string">'content-type'</span>:<span class="string">'application/json'</span></span><br><span class="line">              })</span><br><span class="line"></span><br><span class="line">requests.post(url=<span class="string">''</span>,</span><br><span class="line">              json={<span class="string">''</span>:<span class="number">1</span>,},</span><br><span class="line">              ) <span class="comment">#默认的请求头:application/json</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="四-响应Response"><a href="#四-响应Response" class="headerlink" title="四 响应Response"></a>四 响应Response</h3><p><strong>1、response属性</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">respone=requests.get(<span class="string">'http://www.jianshu.com'</span>)</span><br><span class="line"><span class="comment"># respone属性</span></span><br><span class="line"><span class="built_in">print</span>(respone.text)</span><br><span class="line"><span class="built_in">print</span>(respone.content)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(respone.status_code)</span><br><span class="line"><span class="built_in">print</span>(respone.headers)</span><br><span class="line"><span class="built_in">print</span>(respone.cookies)</span><br><span class="line"><span class="built_in">print</span>(respone.cookies.get_dict())</span><br><span class="line"><span class="built_in">print</span>(respone.cookies.items())</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(respone.url)</span><br><span class="line"><span class="built_in">print</span>(respone.history)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(respone.encoding)</span><br><span class="line"></span><br><span class="line"><span class="comment">#关闭：response.close()</span></span><br><span class="line"><span class="keyword">from</span> contextlib <span class="keyword">import</span> closing</span><br><span class="line"><span class="keyword">with</span> closing(requests.get(<span class="string">'xxx'</span>,stream=<span class="literal">True</span>)) <span class="keyword">as</span> response:</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> response.iter_content():</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>2、编码问题</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#编码问题</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">response=requests.get(<span class="string">'http://www.autohome.com/news'</span>)</span><br><span class="line"><span class="comment"># response.encoding='gbk' #汽车之家网站返回的页面内容为gb2312编码的，而requests的默认编码为ISO-8859-1，如果不设置成gbk则中文乱码</span></span><br><span class="line"><span class="built_in">print</span>(response.text)</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>3、获取二进制数据</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">response=requests.get(<span class="string">'https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1509868306530&amp;di=712e4ef3ab258b36e9f4b48e85a81c9d&amp;imgtype=0&amp;src=http%3A%2F%2Fc.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F11385343fbf2b211e1fb58a1c08065380dd78e0c.jpg'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">'a.jpg'</span>,<span class="string">'wb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(response.content)</span><br><span class="line"><span class="comment">#stream参数:一点一点的取,比如下载视频时,如果视频100G,用response.content然后一下子写到文件中是不合理的</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">response=requests.get(<span class="string">'https://gss3.baidu.com/6LZ0ej3k1Qd3ote6lo7D0j9wehsv/tieba-smallvideo-transcode/1767502_56ec685f9c7ec542eeaf6eac93a65dc7_6fe25cd1347c_3.mp4'</span>,</span><br><span class="line">                      stream=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">'b.mp4'</span>,<span class="string">'wb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> response.iter_content():</span><br><span class="line">        f.write(line)</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>4、解析json</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#解析json</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">response=requests.get(<span class="string">'http://httpbin.org/get'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line">res1=json.loads(response.text) <span class="comment">#太麻烦</span></span><br><span class="line"></span><br><span class="line">res2=response.json() <span class="comment">#直接获取json数据</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(res1 == res2) <span class="comment">#True</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>5、Redirection and History</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">By default Requests will perform location redirection <span class="keyword">for</span> <span class="built_in">all</span> verbs <span class="keyword">except</span> HEAD.</span><br><span class="line"></span><br><span class="line">We can use the history <span class="built_in">property</span> of the Response <span class="built_in">object</span> to track redirection.</span><br><span class="line"></span><br><span class="line">The Response.history <span class="built_in">list</span> contains the Response objects that were created <span class="keyword">in</span> order to complete the request. The <span class="built_in">list</span> <span class="keyword">is</span> <span class="built_in">sorted</span> <span class="keyword">from</span> the oldest to the most recent response.</span><br><span class="line"></span><br><span class="line">For example, GitHub redirects <span class="built_in">all</span> HTTP requests to HTTPS:</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.get(<span class="string">'http://github.com'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r.url</span><br><span class="line"><span class="string">'https://github.com/'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r.status_code</span><br><span class="line"><span class="number">200</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r.history</span><br><span class="line">[&lt;Response [<span class="number">301</span>]&gt;]</span><br><span class="line">If yo<span class="string">u're using GET, OPTIONS, POST, PUT, PATCH or DELETE, you can disable redirection handling with the allow_redirects parameter:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&gt;&gt;&gt; r = requests.get('</span>http://github.com<span class="string">', allow_redirects=False)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&gt;&gt;&gt; r.status_code</span></span><br><span class="line"><span class="string">301</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&gt;&gt;&gt; r.history</span></span><br><span class="line"><span class="string">[]</span></span><br><span class="line"><span class="string">If you'</span>re using HEAD, you can enable redirection <span class="keyword">as</span> well:</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r = requests.head(<span class="string">'http://github.com'</span>, allow_redirects=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r.url</span><br><span class="line"><span class="string">'https://github.com/'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r.history</span><br><span class="line">[&lt;Response [<span class="number">301</span>]&gt;]</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="comment">#第一次请求</span></span><br><span class="line">r1=requests.get(<span class="string">'https://github.com/login'</span>)</span><br><span class="line">r1_cookie=r1.cookies.get_dict() <span class="comment">#拿到初始cookie(未被授权)</span></span><br><span class="line">authenticity_token=re.findall(<span class="string">r'name="authenticity_token".*?value="(.*?)"'</span>,r1.text)[<span class="number">0</span>] <span class="comment">#从页面中拿到CSRF TOKEN</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#第二次请求：带着初始cookie和TOKEN发送POST请求给登录页面，带上账号密码</span></span><br><span class="line">data={</span><br><span class="line">    <span class="string">'commit'</span>:<span class="string">'Sign in'</span>,</span><br><span class="line">    <span class="string">'utf8'</span>:<span class="string">'✓'</span>,</span><br><span class="line">    <span class="string">'authenticity_token'</span>:authenticity_token,</span><br><span class="line">    <span class="string">'login'</span>:<span class="string">'317828332@qq.com'</span>,</span><br><span class="line">    <span class="string">'password'</span>:<span class="string">'alex3714'</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#测试一：没有指定allow_redirects=False,则响应头中出现Location就跳转到新页面，r2代表新页面的response</span></span><br><span class="line">r2=requests.post(<span class="string">'https://github.com/session'</span>,</span><br><span class="line">             data=data,</span><br><span class="line">             cookies=r1_cookie</span><br><span class="line">             )</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(r2.status_code) <span class="comment">#200</span></span><br><span class="line"><span class="built_in">print</span>(r2.url) <span class="comment">#看到的是跳转后的页面</span></span><br><span class="line"><span class="built_in">print</span>(r2.history) <span class="comment">#看到的是跳转前的response</span></span><br><span class="line"><span class="built_in">print</span>(r2.history[<span class="number">0</span>].text) <span class="comment">#看到的是跳转前的response.text</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#测试二：指定allow_redirects=False,则响应头中即便出现Location也不会跳转到新页面，r2代表的仍然是老页面的response</span></span><br><span class="line">r2=requests.post(<span class="string">'https://github.com/session'</span>,</span><br><span class="line">             data=data,</span><br><span class="line">             cookies=r1_cookie,</span><br><span class="line">             allow_redirects=<span class="literal">False</span></span><br><span class="line">             )</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(r2.status_code) <span class="comment">#302</span></span><br><span class="line"><span class="built_in">print</span>(r2.url) <span class="comment">#看到的是跳转前的页面https://github.com/session</span></span><br><span class="line"><span class="built_in">print</span>(r2.history) <span class="comment">#[]</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="五-高级用法"><a href="#五-高级用法" class="headerlink" title="五 高级用法"></a>五 高级用法</h3><p><strong>1、SSL Cert Verification</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#证书验证(大部分网站都是https)</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">respone=requests.get(<span class="string">'https://www.12306.cn'</span>) <span class="comment">#如果是ssl请求,首先检查证书是否合法,不合法则报错,程序终端</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#改进1:去掉报错,但是会报警告</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">respone=requests.get(<span class="string">'https://www.12306.cn'</span>,verify=<span class="literal">False</span>) <span class="comment">#不验证证书,报警告,返回200</span></span><br><span class="line"><span class="built_in">print</span>(respone.status_code)</span><br><span class="line"></span><br><span class="line"><span class="comment">#改进2:去掉报错,并且去掉警报信息</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> requests.packages <span class="keyword">import</span> urllib3</span><br><span class="line">urllib3.disable_warnings() <span class="comment">#关闭警告</span></span><br><span class="line">respone=requests.get(<span class="string">'https://www.12306.cn'</span>,verify=<span class="literal">False</span>)</span><br><span class="line"><span class="built_in">print</span>(respone.status_code)</span><br><span class="line"></span><br><span class="line"><span class="comment">#改进3:加上证书</span></span><br><span class="line"><span class="comment">#很多网站都是https,但是不用证书也可以访问,大多数情况都是可以携带也可以不携带证书</span></span><br><span class="line"><span class="comment">#知乎\百度等都是可带可不带</span></span><br><span class="line"><span class="comment">#有硬性要求的,则必须带，比如对于定向的用户,拿到证书后才有权限访问某个特定网站</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">respone=requests.get(<span class="string">'https://www.12306.cn'</span>,</span><br><span class="line">                     cert=(<span class="string">'/path/server.crt'</span>,</span><br><span class="line">                           <span class="string">'/path/key'</span>))</span><br><span class="line"><span class="built_in">print</span>(respone.status_code)</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>2、使用代理</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#官网链接: http://docs.python-requests.org/en/master/user/advanced/#proxies</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#代理设置:先发送请求给代理,然后由代理帮忙发送(封ip是常见的事情)</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">proxies={</span><br><span class="line">    <span class="string">'http'</span>:<span class="string">'http://egon:123@localhost:9743'</span>,<span class="comment">#带用户名密码的代理,@符号前是用户名与密码</span></span><br><span class="line">    <span class="string">'http'</span>:<span class="string">'http://localhost:9743'</span>,</span><br><span class="line">    <span class="string">'https'</span>:<span class="string">'https://localhost:9743'</span>,</span><br><span class="line">}</span><br><span class="line">respone=requests.get(<span class="string">'https://www.12306.cn'</span>,</span><br><span class="line">                     proxies=proxies)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(respone.status_code)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#支持socks代理,安装:pip install requests[socks]</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">proxies = {</span><br><span class="line">    <span class="string">'http'</span>: <span class="string">'socks5://user:pass@host:port'</span>,</span><br><span class="line">    <span class="string">'https'</span>: <span class="string">'socks5://user:pass@host:port'</span></span><br><span class="line">}</span><br><span class="line">respone=requests.get(<span class="string">'https://www.12306.cn'</span>,</span><br><span class="line">                     proxies=proxies)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(respone.status_code)</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>3、超时设置</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#超时设置</span></span><br><span class="line"><span class="comment">#两种超时:float or tuple</span></span><br><span class="line"><span class="comment">#timeout=0.1 #代表接收数据的超时时间</span></span><br><span class="line"><span class="comment">#timeout=(0.1,0.2)#0.1代表链接超时  0.2代表接收数据的超时时间</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">respone=requests.get(<span class="string">'https://www.baidu.com'</span>,</span><br><span class="line">                     timeout=<span class="number">0.0001</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>4、 认证设置</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#官网链接：http://docs.python-requests.org/en/master/user/authentication/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#认证设置:登陆网站是,弹出一个框,要求你输入用户名密码（与alter很类似），此时是无法获取html的</span></span><br><span class="line"><span class="comment"># 但本质原理是拼接成请求头发送</span></span><br><span class="line"><span class="comment">#         r.headers['Authorization'] = _basic_auth_str(self.username, self.password)</span></span><br><span class="line"><span class="comment"># 一般的网站都不用默认的加密方式，都是自己写</span></span><br><span class="line"><span class="comment"># 那么我们就需要按照网站的加密方式，自己写一个类似于_basic_auth_str的方法</span></span><br><span class="line"><span class="comment"># 得到加密字符串后添加到请求头</span></span><br><span class="line"><span class="comment">#         r.headers['Authorization'] =func('.....')</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#看一看默认的加密方式吧，通常网站都不会用默认的加密设置</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> requests.auth <span class="keyword">import</span> HTTPBasicAuth</span><br><span class="line">r=requests.get(<span class="string">'xxx'</span>,auth=HTTPBasicAuth(<span class="string">'user'</span>,<span class="string">'password'</span>))</span><br><span class="line"><span class="built_in">print</span>(r.status_code)</span><br><span class="line"></span><br><span class="line"><span class="comment">#HTTPBasicAuth可以简写为如下格式</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r=requests.get(<span class="string">'xxx'</span>,auth=(<span class="string">'user'</span>,<span class="string">'password'</span>))</span><br><span class="line"><span class="built_in">print</span>(r.status_code)</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>5、异常处理</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#异常处理</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> requests.exceptions <span class="keyword">import</span> * <span class="comment">#可以查看requests.exceptions获取异常类型</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    r=requests.get(<span class="string">'http://www.baidu.com'</span>,timeout=<span class="number">0.00001</span>)</span><br><span class="line"><span class="keyword">except</span> ReadTimeout:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">'===:'</span>)</span><br><span class="line"><span class="comment"># except ConnectionError: #网络不通</span></span><br><span class="line"><span class="comment">#     print('-----')</span></span><br><span class="line"><span class="comment"># except Timeout:</span></span><br><span class="line"><span class="comment">#     print('aaaaa')</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">except</span> RequestException:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">'Error'</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>6、上传文件</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">files={<span class="string">'file'</span>:<span class="built_in">open</span>(<span class="string">'a.jpg'</span>,<span class="string">'rb'</span>)}</span><br><span class="line">respone=requests.post(<span class="string">'http://httpbin.org/post'</span>,files=files)</span><br><span class="line"><span class="built_in">print</span>(respone.status_code)</span><br></pre></td></tr></tbody></table></figure>
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">祈安</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://example.com/2021/10/13/requests/">http://example.com/2021/10/13/requests/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">祈安</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/requests/">
+                                    <span class="chip bg-color">requests</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: null,
+        id: '2021-10-13T19-23-21',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/06/02/01-ElasticSearch%E4%B9%8B-%E5%AE%89%E8%A3%85/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="ElasticSearch之-安装">
+                        
+                        <span class="card-title">ElasticSearch之-安装</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-02
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/ElasticSearch/" class="post-category">
+                                    ElasticSearch
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/ElasticSearch%E4%B9%8B-%E5%AE%89%E8%A3%85/">
+                        <span class="chip bg-color">ElasticSearch之-安装</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/10/13/%E5%88%86%E5%B8%83%E5%BC%8F%E7%88%AC%E8%99%AB/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="分布式爬虫">
+                        
+                        <span class="card-title">分布式爬虫</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-13
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E7%88%AC%E8%99%AB/" class="post-category">
+                                    分布式爬虫
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%88%AC%E8%99%AB-%E5%88%86%E5%B8%83%E5%BC%8F%E7%88%AC%E8%99%AB/">
+                        <span class="chip bg-color">爬虫-分布式爬虫</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('100')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 且听风吟<br />'
+            + '文章作者: 祈安<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="tencent"
+                   type="playlist"
+                   id="4628814494"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2020-2022</span>
+            
+            <span id="year">2020</span>
+            <a href="/about" target="_blank">祈安</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">75k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:jiangychao@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=913126194" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 913126194" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true,"react":{"opacity":0.7}}});</script></body>
+
+</html>
