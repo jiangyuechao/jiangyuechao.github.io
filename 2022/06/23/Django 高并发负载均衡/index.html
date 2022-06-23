@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="ORM, 且听风吟">
+    <meta name="keywords" content="且听风吟">
     <meta name="description" content="welcome to my word">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>ORM | 且听风吟</title>
+    <title>且听风吟</title>
     <link rel="icon" type="image/png" href="/source/images/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -202,12 +202,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">ORM</h1>
+                    <h1 class="description center-align post-title"></h1>
                 </div>
             </div>
         </div>
@@ -321,25 +321,12 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/Django%E4%B9%8BORM/">
-                                <span class="chip bg-color">Django之ORM</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/Django/" class="post-category">
-                                Django
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -348,7 +335,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-06-22
+                    2022-06-23
                 </div>
                 
 
@@ -357,7 +344,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    998
+                    3.8k
                 </div>
                 
 
@@ -374,32 +361,53 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <span id="more"></span>
-
-<h3 id="ORM的概念"><a href="#ORM的概念" class="headerlink" title="ORM的概念"></a>ORM的概念</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> 什么是ORM？</span><br><span class="line">	关系映射对象</span><br><span class="line">    <span class="comment"># 不但在python中有，在其他语言中也有</span></span><br><span class="line"><span class="number">2.</span> 特点：</span><br><span class="line">	在操作数据库的时候，不用在写原生SQL语句</span><br><span class="line">    <span class="string">'''相对而言，执行效率低了'''</span></span><br><span class="line"><span class="number">3.</span> ORM书写的位置：</span><br><span class="line">	在models.py文件中</span><br><span class="line"><span class="number">4.</span> 如何使用？</span><br><span class="line">	类名    &gt;&gt;&gt;   表名</span><br><span class="line">     对象    &gt;&gt;&gt;   记录</span><br><span class="line">     属性    &gt;&gt;&gt;    字段</span><br><span class="line"> <span class="number">5.</span> 如何来创建表？</span><br><span class="line">	<span class="comment"># 创建一张表出来,必须继承models</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">User</span>(models.Model):</span><br><span class="line">    <span class="comment"># 组合索引，联合索引</span></span><br><span class="line">    <span class="comment"># id int primary key auto_increment</span></span><br><span class="line">    <span class="built_in">id</span> = models.IntegerField(primary_key=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># username, max_length必须写</span></span><br><span class="line">    username = models.CharField(max_length=<span class="number">32</span>)  <span class="comment"># varchar(32)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># password, orm支持自定义数据类型</span></span><br><span class="line">    password = models.CharField(max_length=<span class="number">32</span>)  <span class="comment"># char()</span></span><br><span class="line">    </span><br><span class="line"><span class="number">6.</span> 类写完之后，一定要执行数据库迁移命令，才能真正的创建出来数据表</span><br><span class="line">	<span class="string">'''</span></span><br><span class="line"><span class="string">		python36 manage.py makemigrations</span></span><br><span class="line"><span class="string">		python36 manage.py migrate</span></span><br><span class="line"><span class="string">	'''</span></span><br><span class="line">    <span class="comment"># 凡是跟数据相关的操作都要执行以上两句话</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 补充：ORM不能创建数据库，必须提前把库创建完成</span></span><br></pre></td></tr></tbody></table></figure>
-
-<h3 id="字段的增删改查"><a href="#字段的增删改查" class="headerlink" title="字段的增删改查"></a>字段的增删改查</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> <span class="string">'''</span></span><br><span class="line"><span class="string">        如果你的表有主键，并且主键名也叫id，那么可以省略不写，自动创建</span></span><br><span class="line"><span class="string">        如果你的主键名不叫id，那么，就需要指定了</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="comment"># 创建一张表出来,必须继承models</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">User</span>(models.Model):</span><br><span class="line">    <span class="comment"># 组合索引，联合索引</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">        如果你的表有主键，并且主键名也叫id，那么可以省略不写，自动创建</span></span><br><span class="line"><span class="string">        如果你的主键名不叫id，那么，就需要指定了</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="comment"># id int primary key auto_increment</span></span><br><span class="line">    <span class="built_in">id</span> = models.IntegerField(primary_key=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># username, max_length必须写</span></span><br><span class="line">    username = models.CharField(max_length=<span class="number">32</span>)  <span class="comment"># varchar(32)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># password, orm支持自定义数据类型</span></span><br><span class="line">    password = models.CharField(max_length=<span class="number">32</span>)  <span class="comment"># char() </span></span><br></pre></td></tr></tbody></table></figure>
-
-<h3 id="ORM数据的增删改查"><a href="#ORM数据的增删改查" class="headerlink" title="ORM数据的增删改查"></a>ORM数据的增删改查</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 增加数据</span></span><br><span class="line">    <span class="comment"># sql: insert into t1 ()...</span></span><br><span class="line">    <span class="comment"># ORM:</span></span><br><span class="line">    <span class="comment"># 第一种方式</span></span><br><span class="line">    <span class="comment"># res=models.User.objects.create(username='ly', password=123)</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">        返回值是当前插入的数据对象</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="comment"># print(res.username)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 第二种方式：</span></span><br><span class="line">    <span class="comment"># obj=models.User(username='ly1', password=123)</span></span><br><span class="line">    <span class="comment"># obj.save() # 这句话才是真正的操作数据</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 修改:第一种方式</span></span><br><span class="line">    <span class="comment"># sql:update db1 set username = '', password = '' where id=1 and ...</span></span><br><span class="line">    <span class="comment"># orm:</span></span><br><span class="line">    <span class="comment"># models.User.objects.filter(id=1).update(username='LY')</span></span><br><span class="line">    <span class="comment"># models.User.objects.filter(pk=1).update(username='LY')</span></span><br><span class="line"></span><br><span class="line">    <span class="string">'''返回值是影响的行数'''</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 第二种方式</span></span><br><span class="line">    <span class="comment"># res = models.User.objects.filter(pk=1).all()[0]</span></span><br><span class="line">    <span class="comment"># filter里面的条件是and关系</span></span><br><span class="line">    <span class="comment"># res = models.User.objects.filter(pk=1, username='aaaa11').first()  # [0]</span></span><br><span class="line">    <span class="comment"># res = models.User.objects.filter(pk=1).first()  # [0]</span></span><br><span class="line">    <span class="comment"># res = models.User.objects.filter(username='aaaa').filter(password=123).all()  # [0]</span></span><br><span class="line">    <span class="string">'''只要返回值是QuerySet对象，那么，就可以一直点queryset提供的方法'''</span></span><br><span class="line">    <span class="comment"># print(res) # &lt;QuerySet [&lt;User: User object&gt;]&gt;</span></span><br><span class="line">    <span class="comment"># print(res.username)</span></span><br><span class="line">    <span class="comment"># print(res.password)</span></span><br><span class="line">    <span class="comment"># res.username = 'aaaa'</span></span><br><span class="line">    <span class="comment"># res.save()</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 删除:delete from user where id = 1</span></span><br><span class="line">    models.User.objects.<span class="built_in">filter</span>(pk=<span class="number">1</span>).delete()</span><br></pre></td></tr></tbody></table></figure>
-
-<h3 id="ORM创建表关系"><a href="#ORM创建表关系" class="headerlink" title="ORM创建表关系"></a>ORM创建表关系</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mysql是关系型数据库</span></span><br><span class="line"></span><br><span class="line">一对一：</span><br><span class="line">	<span class="string">'''外键字段建在任何一方都可以，但是，推荐建在使用频率比较高的一张表'''</span></span><br><span class="line">一对多</span><br><span class="line">	<span class="string">'''</span></span><br><span class="line"><span class="string">		外键字段建在多的一方</span></span><br><span class="line"><span class="string">	'''</span></span><br><span class="line">多对多</span><br><span class="line">	<span class="string">'''</span></span><br><span class="line"><span class="string">		外键字段不建在任何一张表，而是，建在第三张表中</span></span><br><span class="line"><span class="string">	'''</span></span><br><span class="line">eg：</span><br><span class="line">	</span><br><span class="line">	图书表</span><br><span class="line">    出版社表</span><br><span class="line">    作者表</span><br><span class="line">    作者详情表</span><br><span class="line">    </span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    	图书和出版社是一对多，图书是多，出版社是一</span></span><br><span class="line"><span class="string">    	图书和作者是多对多的关系</span></span><br><span class="line"><span class="string">    	作者和作者详情表是一对一</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 不常用的数据我们称之为冷数据，</span></span><br><span class="line">    <span class="comment"># 常用的数据我们称之为热数据</span></span><br><span class="line">    <span class="comment"># ORM创建表关系</span></span><br><span class="line">    <span class="comment"># 1. 先创建这张表的基础字段，</span></span><br><span class="line">    <span class="comment"># 2. 在回头创建外键字段</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 出版社表</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Book</span>(models.Model):</span><br><span class="line">    title = models.CharField(max_length=<span class="number">32</span>)</span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">        float</span></span><br><span class="line"><span class="string">        double</span></span><br><span class="line"><span class="string">        decimal(5, 2) 999999.99</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="comment"># decimal(8, 2)</span></span><br><span class="line">    price = models.DecimalField(max_digits=<span class="number">8</span>, decimal_places=<span class="number">2</span>)</span><br><span class="line">    <span class="comment"># publish_id = models.ForeignKey(to='Publish', to_field='id')</span></span><br><span class="line">    publish_id = models.ForeignKey(to=<span class="string">'Publish'</span>)  <span class="comment"># 如果关联的是id字段，那么可以省略不写</span></span><br><span class="line">    <span class="comment"># publish_id = models.ForeignKey(to=Publish)  # 如果关联的是id字段，那么可以省略不写</span></span><br><span class="line"></span><br><span class="line">    authors = models.ManyToManyField(to=<span class="string">'Author'</span>)</span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">        authors是一个虚拟字段，不会真正的在book表中创建出来这个字段</span></span><br><span class="line"><span class="string">        这个字段是关联第三张表的</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Publish</span>(models.Model):</span><br><span class="line">    addr = models.CharField(max_length=<span class="number">32</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 作者表</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Author</span>(models.Model):</span><br><span class="line">    name = models.CharField(max_length=<span class="number">128</span>)</span><br><span class="line"></span><br><span class="line">    author_detail = models.OneToOneField(to=<span class="string">'AuthorDetail'</span>)</span><br><span class="line"><span class="comment"># 作者详情表</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">AuthorDetail</span>(models.Model):</span><br><span class="line">    phone = models.CharField(max_length=<span class="number">32</span>)</span><br><span class="line">   </span><br></pre></td></tr></tbody></table></figure>
+                <hr>
+<p>title: Django-高并发负载均衡<br>date: 2021-11-05 19:23:26<br>author: 祈安<br>categories:<br>    - Django<br>tags:<br>    - Django-高并发负载均衡</p>
+<hr>
+<span id="more"></span>
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+<p><strong>Django 高并发负载均衡</strong></p>
+<h2 id="1-什么是负载均衡？"><a href="#1-什么是负载均衡？" class="headerlink" title="1 什么是负载均衡？"></a>1 什么是负载均衡？</h2><p>当一台服务器的性能达到极限时，我们可以使用服务器集群来提高网站的整体性能。那么，在服务器集群中，需要有一台服务器充当调度者的角色，用户的所有请求都会首先由它接收，调度者再根据每台服务器的负载情况将请求分配给某一台后端服务器去处理。</p>
+<p>那么在这个过程中，调度者如何合理分配任务，保证所有后端服务器都将性能充分发挥，从而保持服务器集群的整体性能最优，这就是负载均衡问题。</p>
+<p>下面详细介绍负载均衡的四种实现方式</p>
+<h2 id="2-HTTP重定向实现负载均衡"><a href="#2-HTTP重定向实现负载均衡" class="headerlink" title="2 HTTP重定向实现负载均衡"></a>2 HTTP重定向实现负载均衡</h2><h4 id="过程描述"><a href="#过程描述" class="headerlink" title="过程描述"></a>过程描述</h4><p>当用户向服务器发起请求时，请求首先被集群调度者截获；调度者根据某种分配策略，选择一台服务器，并将选中的服务器的IP地址封装在HTTP响应消息头部的Location字段中，并将响应消息的状态码设为302，最后将这个响应消息返回给浏览器。</p>
+<p>当浏览器收到响应消息后，解析Location字段，并向该URL发起请求，然后指定的服务器处理该用户的请求，最后将结果返回给用户。</p>
+<p>在使用HTTP重定向来实现服务器集群负载均衡的过程中，需要一台服务器作为请求调度者。用户的一项操作需要发起两次HTTP请求，一次向调度服务器发送请求，获取后端服务器的IP，第二次向后端服务器发送请求，获取处理结果。</p>
+<h4 id="调度策略"><a href="#调度策略" class="headerlink" title="调度策略"></a>调度策略</h4><p>调度服务器收到用户的请求后，究竟选择哪台后端服务器处理请求，这由调度服务器所使用的调度策略决定。</p>
+<p>  随机分配策略<br>  当调度服务器收到用户请求后，可以随机决定使用哪台后端服务器，然后将该服务器的IP封装在HTTP响应消息的Location属性中，返回给浏览器即可。</p>
+<p>  轮询策略(RR)<br>  调度服务器需要维护一个值，用于记录上次分配的后端服务器的IP。那么当新的请求到来时，调度者将请求依次分配给下一台服务器。</p>
+<p>由于轮询策略需要调度者维护一个值用于记录上次分配的服务器IP，因此需要额外的开销；此外，由于这个值属于互斥资源，那么当多个请求同时到来时，为了避免线程的安全问题，因此需要锁定互斥资源，从而降低了性能。而随机分配策略不需要维护额外的值，也就不存在线程安全问题，因此性能比轮询要高。</p>
+<h4 id="优缺点分析"><a href="#优缺点分析" class="headerlink" title="优缺点分析"></a>优缺点分析</h4><p>采用HTTP重定向来实现服务器集群的负载均衡实现起来较为容易，逻辑比较简单，但缺点也较为明显。</p>
+<p>在HTTP重定向方法中，调度服务器只在客户端第一次向网站发起请求的时候起作用。当调度服务器向浏览器返回响应信息后，客户端此后的操作都基于新的URL进行的(也就是后端服务器)，此后浏览器就不会与调度服务器产生关系，进而会产生如下几个问题：</p>
+<p>  由于不同用户的访问时间、访问页面深度有所不同，从而每个用户对各自的后端服务器所造成的压力也不同。而调度服务器在调度时，无法知道当前用户将会对服务器造成多大的压力，因此这种方式无法实现真正意义上的负载均衡，只不过是把请求次数平均分配给每台服务器罢了。<br>  若分配给该用户的后端服务器出现故障，并且如果页面被浏览器缓存，那么当用户再次访问网站时，请求都会发给出现故障的服务器，从而导致访问失败</p>
+<h2 id="3-DNS负载均衡"><a href="#3-DNS负载均衡" class="headerlink" title="3 DNS负载均衡"></a>3 DNS负载均衡</h2><h4 id="DNS是什么"><a href="#DNS是什么" class="headerlink" title="DNS是什么"></a>DNS是什么</h4><p>在了解DNS负载均衡之前，我们首先需要了解DNS域名解析的过程。</p>
+<p>我们知道，数据包采用IP地址在网络中传播，而为了方便用户记忆，我们使用域名来访问网站。那么，我们通过域名访问网站之前，首先需要将域名解析成IP地址，这个工作是由DNS完成的。也就是域名服务器。</p>
+<p>我们提交的请求不会直接发送给想要访问的网站，而是首先发给域名服务器，它会帮我们把域名解析成IP地址并返回给我们。我们收到IP之后才会向该IP发起请求。</p>
+<p>那么，DNS服务器有一个天然的优势，如果一个域名指向了多个IP地址，那么每次进行域名解析时，DNS只要选一个IP返回给用户，就能够实现服务器集群的负载均衡。</p>
+<h4 id="具体做法"><a href="#具体做法" class="headerlink" title="具体做法"></a>具体做法</h4><p>首先需要将我们的域名指向多个后端服务器(将一个域名解析到多个IP上)，再设置一下调度策略，那么我们的准备工作就完成了，接下来的负载均衡就完全由DNS服务器来实现。</p>
+<p>当用户向我们的域名发起请求时，DNS服务器会自动地根据我们事先设定好的调度策略选一个合适的IP返回给用户，用户再向该IP发起请求。</p>
+<h4 id="调度策略-1"><a href="#调度策略-1" class="headerlink" title="调度策略"></a>调度策略</h4><p>一般DNS提供商会提供一些调度策略供我们选择，如随机分配、轮询、根据请求者的地域分配离他最近的服务器。</p>
+<h4 id="优缺点分析-1"><a href="#优缺点分析-1" class="headerlink" title="优缺点分析"></a>优缺点分析</h4><p>DNS负载均衡最大的优点就是配置简单。服务器集群的调度工作完全由DNS服务器承担，那么我们就可以把精力放在后端服务器上，保证他们的稳定性与吞吐量。而且完全不用担心DNS服务器的性能，即便是使用了轮询策略，它的吞吐率依然卓越。</p>
+<p>此外，DNS负载均衡具有较强了扩展性，你完全可以为一个域名解析较多的IP，而且不用担心性能问题。</p>
+<p>但是，由于把集群调度权交给了DNS服务器，从而我们没办法随心所欲地控制调度者，没办法定制调度策略。</p>
+<p>DNS服务器也没办法了解每台服务器的负载情况，因此没办法实现真正意义上的负载均衡。它和HTTP重定向一样，只不过把所有请求平均分配给后端服务器罢了。</p>
+<p>此外，当我们发现某一台后端服务器发生故障时，即使我们立即将该服务器从域名解析中去除，但由于DNS服务器会有缓存，该IP仍然会在DNS中保留一段时间，那么就会导致一部分用户无法正常访问网站。这是一个致命的问题！好在这个问题可以用动态DNS来解决。</p>
+<h4 id="动态DNS"><a href="#动态DNS" class="headerlink" title="动态DNS"></a>动态DNS</h4><p>动态DNS能够让我们通过程序动态修改DNS服务器中的域名解析。从而当我们的监控程序发现某台服务器挂了之后，能立即通知DNS将其删掉。</p>
+<h4 id="综上所述"><a href="#综上所述" class="headerlink" title="综上所述"></a>综上所述</h4><p>DNS负载均衡是一种粗犷的负载均衡方法，这里只做介绍，不推荐使用。</p>
+<h2 id="4-反向代理负载均衡"><a href="#4-反向代理负载均衡" class="headerlink" title="4 反向代理负载均衡"></a>4 反向代理负载均衡</h2><h4 id="什么是反向代理负载均衡？"><a href="#什么是反向代理负载均衡？" class="headerlink" title="什么是反向代理负载均衡？"></a>什么是反向代理负载均衡？</h4><p>反向代理服务器是一个位于实际服务器之前的服务器，所有向我们网站发来的请求都首先要经过反向代理服务器，服务器根据用户的请求要么直接将结果返回给用户，要么将请求交给后端服务器处理，再返回给用户。</p>
+<p>之前我们介绍了用反向代理服务器实现静态页面和常用的动态页面的缓存。接下来我们介绍反向代理服务器更常用的功能——实现负载均衡。</p>
+<p>我们知道，所有发送给我们网站的请求都首先经过反向代理服务器。那么，反向代理服务器就可以充当服务器集群的调度者，它可以根据当前后端服务器的负载情况，将请求转发给一台合适的服务器，并将处理结果返回给用户。</p>
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><p>  隐藏后端服务器。<br>  与HTTP重定向相比，反向代理能够隐藏后端服务器，所有浏览器都不会与后端服务器直接交互，从而能够确保调度者的控制权，提升集群的整体性能。<br>  故障转移<br>  与DNS负载均衡相比，反向代理能够更快速地移除故障结点。当监控程序发现某一后端服务器出现故障时，能够及时通知反向代理服务器，并立即将其删除。<br>  合理分配任务<br>  HTTP重定向和DNS负载均衡都无法实现真正意义上的负载均衡，也就是调度服务器无法根据后端服务器的实际负载情况分配任务。但反向代理服务器支持手动设定每台后端服务器的权重。我们可以根据服务器的配置设置不同的权重，权重的不同会导致被调度者选中的概率的不同。</p>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><p>  调度者压力过大<br>  由于所有的请求都先由反向代理服务器处理，那么当请求量超过调度服务器的最大负载时，调度服务器的吞吐率降低会直接降低集群的整体性能。<br>  制约扩展<br>  当后端服务器也无法满足巨大的吞吐量时，就需要增加后端服务器的数量，可没办法无限量地增加，因为会受到调度服务器的最大吞吐量的制约。</p>
+<h4 id="粘滞会话"><a href="#粘滞会话" class="headerlink" title="粘滞会话"></a>粘滞会话</h4><p>反向代理服务器会引起一个问题。若某台后端服务器处理了用户的请求，并保存了该用户的session或存储了缓存，那么当该用户再次发送请求时，无法保证该请求仍然由保存了其Session或缓存的服务器处理，若由其他服务器处理，先前的Session或缓存就找不到了。</p>
+<p>解决办法1：<br>可以修改反向代理服务器的任务分配策略，以用户IP作为标识较为合适。相同的用户IP会交由同一台后端服务器处理，从而就避免了粘滞会话的问题。</p>
+<p>解决办法2：<br>可以在Cookie中标注请求的服务器ID，当再次提交请求时，调度者将该请求分配给Cookie中标注的服务器处理即可。</p>
+<h2 id="5-负载均衡组件"><a href="#5-负载均衡组件" class="headerlink" title="5 负载均衡组件"></a>5 负载均衡组件</h2><p>1.1、apache<br>—— 它是Apache软件基金会的一个开放源代码的跨平台的网页服务器，属于老牌的web服务器了，支持基于Ip或者域名的虚拟主机，支持代理服务器，支持安全Socket层(SSL)等等，目前互联网主要使用它做静态资源服务器，也可以做代理服务器转发请求(如：图片链等)，结合tomcat等servlet容器处理jsp。<br>1.2、ngnix<br>—— 俄罗斯人开发的一个高性能的 HTTP和反向代理服务器。由于Nginx 超越 Apache 的高性能和稳定性，使得国内使用 Nginx 作为 Web 服务器的网站也越来越多，其中包括新浪博客、新浪播客、网易新闻、腾讯网、搜狐博客等门户网站频道等，在3w以上的高并发环境下，ngnix处理能力相当于apache的10倍。<br>参考：apache和tomcat的性能分析和对比(Nginx 0.8.x + PHP 5.2.13（FastCGI）搭建胜过Apache十倍的Web服务器（第6版）[原创])<br>1.3、lvs<br>—— Linux Virtual Server的简写，意即Linux虚拟服务器，是一个虚拟的服务器集群系统。由毕业于国防科技大学的章文嵩博士于1998年5月创立，可以实现LINUX平台下的简单负载均衡。了解更多，访问官网：<a target="_blank" rel="noopener" href="http://zh.linuxvirtualserver.org/%E3%80%82">http://zh.linuxvirtualserver.org/。</a></p>
+<p>1.4、HAProxy</p>
+<p>—— HAProxy提供高可用性、负载均衡以及基于TCP和HTTP应用的代理，支持虚拟主机，它是免费、快速并且可靠的一种解决方案。HAProxy特别适用于那些负载特大的web站点， 这些站点通常又需要会话保持或七层处理。HAProxy运行在当前的硬件上，完全可以支持数以万计的并发连接。并且它的运行模式使得它可以很简单安全的整合进您当前的架构中， 同时可以保护你的web服务器不被暴露到网络上.<br>1.5、keepalived<br>—— 这里说的keepalived不是apache或者tomcat等某个组件上的属性字段，它也是一个组件，可以实现web服务器的高可用(HA high availably)。它可以检测web服务器的工作状态，如果该服务器出现故障被检测到，将其剔除服务器群中，直至正常工作后，keepalive会自动检测到并加入到服务器群里面。实现主备服务器发生故障时ip瞬时无缝交接。它是LVS集群节点健康检测的一个用户空间守护进程，也是LVS的引导故障转移模块（director failover）。Keepalived守护进程可以检查LVS池的状态。如果LVS服务器池当中的某一个服务器宕机了。keepalived会通过一 个setsockopt呼叫通知内核将这个节点从LVS拓扑图中移除。<br>1.6、memcached<br>—— 它是一个高性能分布式内存对象缓存系统。当初是Danga Interactive为了LiveJournal快速发展开发的系统，用于对业务查询数据缓存，减轻数据库的负载。其守护进程(daemon)是用C写的，但是客户端支持几乎所有语言(客户端基本上有3种版本[memcache client for Java;spymemcached;xMecache])，服务端和客户端通过简单的协议通信；在memcached里面缓存的数据必须序列化。<br>1.7、terracotta<br>—— 是一款由美国Terracotta公司开发的著名开源Java集群平台。它在JVM与Java应用之间实现了一个专门处理集群功能的抽象层，允许用户在不改变系统代码的情况下实现java应用的集群。支持数据的持久化、session的复制以及高可用(HA)。</p>
 
                 
             </div>
@@ -426,7 +434,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2020/06/22/Django%E7%AC%AC%E4%B8%89%E5%A4%A9/">http://example.com/2020/06/22/Django%E7%AC%AC%E4%B8%89%E5%A4%A9/</a>
+                    <a href="http://example.com/2022/06/23/Django%20%E9%AB%98%E5%B9%B6%E5%8F%91%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">http://example.com/2022/06/23/Django%20%E9%AB%98%E5%B9%B6%E5%8F%91%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -463,11 +471,7 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/Django%E4%B9%8BORM/">
-                                    <span class="chip bg-color">Django之ORM</span>
-                                </a>
-                            
+                            <span class="chip bg-color">无标签</span>
                         </div>
                     
                 </div>
@@ -510,7 +514,7 @@
         repo: '',
         owner: '',
         admin: null,
-        id: '2020-06-22T20-02-44',
+        id: '2022-06-23T16-17-11',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -540,13 +544,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/06/23/Django%E7%AC%AC%E5%9B%9B%E5%A4%A9/">
+                <a href="/2022/06/23/Redis%E4%B8%8EMysql%E5%8F%8C%E5%86%99%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88%E8%A7%A3%E6%9E%90/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="Django路由层">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Redis与Mysql双写一致性方案解析">
                         
-                        <span class="card-title">Django路由层</span>
+                        <span class="card-title">Redis与Mysql双写一致性方案解析</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -557,14 +561,14 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-23
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-23
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Django/" class="post-category">
-                                    Django
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
+                                    数据库
                                 </a>
                             
                             
@@ -574,8 +578,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Django%E5%9F%BA%E7%A1%80/">
-                        <span class="chip bg-color">Django基础</span>
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                        <span class="chip bg-color">数据库</span>
                     </a>
                     
                 </div>
@@ -589,13 +593,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/06/22/MySQL%E4%B8%BB%E4%BB%8E%E6%90%AD%E5%BB%BA%EF%BC%88%E5%9F%BA%E4%BA%8Edocker)/">
+                <a href="/2022/06/19/mysql%E9%87%8D%E7%82%B9/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="10分钟搭建MySQL主从同步（基于docker)">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="MySQL面试">
                         
-                        <span class="card-title">10分钟搭建MySQL主从同步（基于docker)</span>
+                        <span class="card-title">MySQL面试</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -606,7 +610,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-22
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-19
                             </span>
                         <span class="publish-author">
                             
@@ -623,8 +627,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/MySQL%E4%B8%BB%E4%BB%8E/">
-                        <span class="chip bg-color">MySQL主从</span>
+                    <a href="/tags/MySQL%E9%9D%A2%E8%AF%95%E9%87%8D%E7%82%B9/">
+                        <span class="chip bg-color">MySQL面试重点</span>
                     </a>
                     
                 </div>

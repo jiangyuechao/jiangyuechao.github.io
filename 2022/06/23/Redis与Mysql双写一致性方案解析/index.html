@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="ORM, 且听风吟">
+    <meta name="keywords" content="Redis与Mysql双写一致性方案解析, 且听风吟">
     <meta name="description" content="welcome to my word">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>ORM | 且听风吟</title>
+    <title>Redis与Mysql双写一致性方案解析 | 且听风吟</title>
     <link rel="icon" type="image/png" href="/source/images/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -202,12 +202,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">ORM</h1>
+                    <h1 class="description center-align post-title">Redis与Mysql双写一致性方案解析</h1>
                 </div>
             </div>
         </div>
@@ -323,8 +323,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Django%E4%B9%8BORM/">
-                                <span class="chip bg-color">Django之ORM</span>
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                                <span class="chip bg-color">数据库</span>
                             </a>
                         
                     </div>
@@ -335,8 +335,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Django/" class="post-category">
-                                Django
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
+                                数据库
                             </a>
                         
                     </div>
@@ -348,7 +348,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-06-22
+                    2022-06-23
                 </div>
                 
 
@@ -357,7 +357,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    998
+                    2.7k
                 </div>
                 
 
@@ -376,30 +376,118 @@
             <div id="articleContent">
                 <span id="more"></span>
 
-<h3 id="ORM的概念"><a href="#ORM的概念" class="headerlink" title="ORM的概念"></a>ORM的概念</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> 什么是ORM？</span><br><span class="line">	关系映射对象</span><br><span class="line">    <span class="comment"># 不但在python中有，在其他语言中也有</span></span><br><span class="line"><span class="number">2.</span> 特点：</span><br><span class="line">	在操作数据库的时候，不用在写原生SQL语句</span><br><span class="line">    <span class="string">'''相对而言，执行效率低了'''</span></span><br><span class="line"><span class="number">3.</span> ORM书写的位置：</span><br><span class="line">	在models.py文件中</span><br><span class="line"><span class="number">4.</span> 如何使用？</span><br><span class="line">	类名    &gt;&gt;&gt;   表名</span><br><span class="line">     对象    &gt;&gt;&gt;   记录</span><br><span class="line">     属性    &gt;&gt;&gt;    字段</span><br><span class="line"> <span class="number">5.</span> 如何来创建表？</span><br><span class="line">	<span class="comment"># 创建一张表出来,必须继承models</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">User</span>(models.Model):</span><br><span class="line">    <span class="comment"># 组合索引，联合索引</span></span><br><span class="line">    <span class="comment"># id int primary key auto_increment</span></span><br><span class="line">    <span class="built_in">id</span> = models.IntegerField(primary_key=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># username, max_length必须写</span></span><br><span class="line">    username = models.CharField(max_length=<span class="number">32</span>)  <span class="comment"># varchar(32)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># password, orm支持自定义数据类型</span></span><br><span class="line">    password = models.CharField(max_length=<span class="number">32</span>)  <span class="comment"># char()</span></span><br><span class="line">    </span><br><span class="line"><span class="number">6.</span> 类写完之后，一定要执行数据库迁移命令，才能真正的创建出来数据表</span><br><span class="line">	<span class="string">'''</span></span><br><span class="line"><span class="string">		python36 manage.py makemigrations</span></span><br><span class="line"><span class="string">		python36 manage.py migrate</span></span><br><span class="line"><span class="string">	'''</span></span><br><span class="line">    <span class="comment"># 凡是跟数据相关的操作都要执行以上两句话</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 补充：ORM不能创建数据库，必须提前把库创建完成</span></span><br></pre></td></tr></tbody></table></figure>
-
-<h3 id="字段的增删改查"><a href="#字段的增删改查" class="headerlink" title="字段的增删改查"></a>字段的增删改查</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> <span class="string">'''</span></span><br><span class="line"><span class="string">        如果你的表有主键，并且主键名也叫id，那么可以省略不写，自动创建</span></span><br><span class="line"><span class="string">        如果你的主键名不叫id，那么，就需要指定了</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="comment"># 创建一张表出来,必须继承models</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">User</span>(models.Model):</span><br><span class="line">    <span class="comment"># 组合索引，联合索引</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">        如果你的表有主键，并且主键名也叫id，那么可以省略不写，自动创建</span></span><br><span class="line"><span class="string">        如果你的主键名不叫id，那么，就需要指定了</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="comment"># id int primary key auto_increment</span></span><br><span class="line">    <span class="built_in">id</span> = models.IntegerField(primary_key=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># username, max_length必须写</span></span><br><span class="line">    username = models.CharField(max_length=<span class="number">32</span>)  <span class="comment"># varchar(32)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># password, orm支持自定义数据类型</span></span><br><span class="line">    password = models.CharField(max_length=<span class="number">32</span>)  <span class="comment"># char() </span></span><br></pre></td></tr></tbody></table></figure>
-
-<h3 id="ORM数据的增删改查"><a href="#ORM数据的增删改查" class="headerlink" title="ORM数据的增删改查"></a>ORM数据的增删改查</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 增加数据</span></span><br><span class="line">    <span class="comment"># sql: insert into t1 ()...</span></span><br><span class="line">    <span class="comment"># ORM:</span></span><br><span class="line">    <span class="comment"># 第一种方式</span></span><br><span class="line">    <span class="comment"># res=models.User.objects.create(username='ly', password=123)</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">        返回值是当前插入的数据对象</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="comment"># print(res.username)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 第二种方式：</span></span><br><span class="line">    <span class="comment"># obj=models.User(username='ly1', password=123)</span></span><br><span class="line">    <span class="comment"># obj.save() # 这句话才是真正的操作数据</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 修改:第一种方式</span></span><br><span class="line">    <span class="comment"># sql:update db1 set username = '', password = '' where id=1 and ...</span></span><br><span class="line">    <span class="comment"># orm:</span></span><br><span class="line">    <span class="comment"># models.User.objects.filter(id=1).update(username='LY')</span></span><br><span class="line">    <span class="comment"># models.User.objects.filter(pk=1).update(username='LY')</span></span><br><span class="line"></span><br><span class="line">    <span class="string">'''返回值是影响的行数'''</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 第二种方式</span></span><br><span class="line">    <span class="comment"># res = models.User.objects.filter(pk=1).all()[0]</span></span><br><span class="line">    <span class="comment"># filter里面的条件是and关系</span></span><br><span class="line">    <span class="comment"># res = models.User.objects.filter(pk=1, username='aaaa11').first()  # [0]</span></span><br><span class="line">    <span class="comment"># res = models.User.objects.filter(pk=1).first()  # [0]</span></span><br><span class="line">    <span class="comment"># res = models.User.objects.filter(username='aaaa').filter(password=123).all()  # [0]</span></span><br><span class="line">    <span class="string">'''只要返回值是QuerySet对象，那么，就可以一直点queryset提供的方法'''</span></span><br><span class="line">    <span class="comment"># print(res) # &lt;QuerySet [&lt;User: User object&gt;]&gt;</span></span><br><span class="line">    <span class="comment"># print(res.username)</span></span><br><span class="line">    <span class="comment"># print(res.password)</span></span><br><span class="line">    <span class="comment"># res.username = 'aaaa'</span></span><br><span class="line">    <span class="comment"># res.save()</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 删除:delete from user where id = 1</span></span><br><span class="line">    models.User.objects.<span class="built_in">filter</span>(pk=<span class="number">1</span>).delete()</span><br></pre></td></tr></tbody></table></figure>
-
-<h3 id="ORM创建表关系"><a href="#ORM创建表关系" class="headerlink" title="ORM创建表关系"></a>ORM创建表关系</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mysql是关系型数据库</span></span><br><span class="line"></span><br><span class="line">一对一：</span><br><span class="line">	<span class="string">'''外键字段建在任何一方都可以，但是，推荐建在使用频率比较高的一张表'''</span></span><br><span class="line">一对多</span><br><span class="line">	<span class="string">'''</span></span><br><span class="line"><span class="string">		外键字段建在多的一方</span></span><br><span class="line"><span class="string">	'''</span></span><br><span class="line">多对多</span><br><span class="line">	<span class="string">'''</span></span><br><span class="line"><span class="string">		外键字段不建在任何一张表，而是，建在第三张表中</span></span><br><span class="line"><span class="string">	'''</span></span><br><span class="line">eg：</span><br><span class="line">	</span><br><span class="line">	图书表</span><br><span class="line">    出版社表</span><br><span class="line">    作者表</span><br><span class="line">    作者详情表</span><br><span class="line">    </span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    	图书和出版社是一对多，图书是多，出版社是一</span></span><br><span class="line"><span class="string">    	图书和作者是多对多的关系</span></span><br><span class="line"><span class="string">    	作者和作者详情表是一对一</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 不常用的数据我们称之为冷数据，</span></span><br><span class="line">    <span class="comment"># 常用的数据我们称之为热数据</span></span><br><span class="line">    <span class="comment"># ORM创建表关系</span></span><br><span class="line">    <span class="comment"># 1. 先创建这张表的基础字段，</span></span><br><span class="line">    <span class="comment"># 2. 在回头创建外键字段</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 出版社表</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Book</span>(models.Model):</span><br><span class="line">    title = models.CharField(max_length=<span class="number">32</span>)</span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">        float</span></span><br><span class="line"><span class="string">        double</span></span><br><span class="line"><span class="string">        decimal(5, 2) 999999.99</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="comment"># decimal(8, 2)</span></span><br><span class="line">    price = models.DecimalField(max_digits=<span class="number">8</span>, decimal_places=<span class="number">2</span>)</span><br><span class="line">    <span class="comment"># publish_id = models.ForeignKey(to='Publish', to_field='id')</span></span><br><span class="line">    publish_id = models.ForeignKey(to=<span class="string">'Publish'</span>)  <span class="comment"># 如果关联的是id字段，那么可以省略不写</span></span><br><span class="line">    <span class="comment"># publish_id = models.ForeignKey(to=Publish)  # 如果关联的是id字段，那么可以省略不写</span></span><br><span class="line"></span><br><span class="line">    authors = models.ManyToManyField(to=<span class="string">'Author'</span>)</span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">        authors是一个虚拟字段，不会真正的在book表中创建出来这个字段</span></span><br><span class="line"><span class="string">        这个字段是关联第三张表的</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Publish</span>(models.Model):</span><br><span class="line">    addr = models.CharField(max_length=<span class="number">32</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 作者表</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Author</span>(models.Model):</span><br><span class="line">    name = models.CharField(max_length=<span class="number">128</span>)</span><br><span class="line"></span><br><span class="line">    author_detail = models.OneToOneField(to=<span class="string">'AuthorDetail'</span>)</span><br><span class="line"><span class="comment"># 作者详情表</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">AuthorDetail</span>(models.Model):</span><br><span class="line">    phone = models.CharField(max_length=<span class="number">32</span>)</span><br><span class="line">   </span><br></pre></td></tr></tbody></table></figure>
 
 
 
+<p><strong>Redis与Mysql双写一致性方案解析</strong></p>
+<h2 id="一-前言"><a href="#一-前言" class="headerlink" title="一 前言"></a>一 前言</h2><p>首先，缓存由于其高并发和高性能的特性，已经在项目中被广泛使用。在读取缓存方面，大家没啥疑问，都是按照流程来进行。</p>
+<p>但是在更新缓存方面，对于更新完数据库，是更新缓存呢，还是删除缓存。又或者是先删除缓存，再更新数据库，其实大家存在很大的争议</p>
+<p>本文由以下三个部分组成 1、讲解缓存更新策略 2、对每种策略进行缺点分析 3、针对缺点给出改进方案</p>
+<h2 id="二-一致性方案"><a href="#二-一致性方案" class="headerlink" title="二 一致性方案"></a>二 一致性方案</h2><p>先做一个说明，从理论上来说，给缓存设置过期时间，是保证最终一致性的解决方案。这种方案下，我们可以对存入缓存的数据设置过期时间，所有的写操作以数据库为准，对缓存操作只是尽最大努力即可。也就是说如果数据库写成功，缓存更新失败，那么只要到达过期时间，则后面的读请求自然会从数据库中读取新值然后回填缓存。因此，接下来讨论的思路不依赖于给缓存设置过期时间这个方案。 在这里，我们讨论<strong>三种</strong>更新策略：</p>
+<ul>
+<li>\1. 先更新数据库，再更新缓存</li>
+<li>\2. 先删除缓存，再更新数据库</li>
+<li>\3. 先更新数据库，再删除缓存</li>
+</ul>
+<h2 id="三-先更新数据库，再更新缓存"><a href="#三-先更新数据库，再更新缓存" class="headerlink" title="三 先更新数据库，再更新缓存"></a>三 先更新数据库，再更新缓存</h2><p>这套方案，大家是普遍反对的。为什么呢？有如下两点原因。</p>
+<p><strong>原因一（线程安全角度）</strong> 同时有请求A和请求B进行更新操作，那么会出现</p>
+<ul>
+<li>（1）线程A更新了数据库</li>
+<li>（2）线程B更新了数据库</li>
+<li>（3）线程B更新了缓存</li>
+<li>（4）线程A更新了缓存</li>
+</ul>
+<p>这就出现请求A更新缓存应该比请求B更新缓存早才对，但是因为网络等原因，B却比A更早更新了缓存。这就导致了脏数据，因此不考虑。</p>
+<p><strong>原因二（业务场景角度）</strong> 有如下两点：</p>
+<ul>
+<li>（1）如果你是一个写数据库场景比较多，而读数据场景比较少的业务需求，采用这种方案就会导致，数据压根还没读到，缓存就被频繁的更新，浪费性能。</li>
+<li>（2）如果你写入数据库的值，并不是直接写入缓存的，而是要经过一系列复杂的计算再写入缓存。那么，每次写入数据库后，都再次计算写入缓存的值，无疑是浪费性能的。显然，删除缓存更为适合。</li>
+</ul>
+<p>接下来讨论的就是争议最大的，先删缓存，再更新数据库。还是先更新数据库，再删缓存的问题。</p>
+<h2 id="四-先删缓存，再更新数据库"><a href="#四-先删缓存，再更新数据库" class="headerlink" title="四 先删缓存，再更新数据库"></a>四 先删缓存，再更新数据库</h2><p>该方案会导致不一致的原因是。同时有一个请求A进行更新操作，另一个请求B进行查询操作。那么会出现如下情形:</p>
+<ul>
+<li>（1）请求A进行写操作，删除缓存</li>
+<li>（2）请求B查询发现缓存不存在</li>
+<li>（3）请求B去数据库查询得到旧值</li>
+<li>（4）请求B将旧值写入缓存</li>
+<li>（5）请求A将新值写入数据库 上述情况就会导致不一致的情形出现。而且，如果不采用给缓存设置过期时间策略，该数据永远都是脏数据。</li>
+</ul>
+<p>那么，<strong>如何解决呢？采用延时双删策略</strong> 伪代码如下</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">write</span><span class="params">(String key,Object data)</span>{</span><br><span class="line">        redis.delKey(key);</span><br><span class="line">        db.updateData(data);</span><br><span class="line">        Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">        redis.delKey(key);</span><br><span class="line">    }</span><br></pre></td></tr></tbody></table></figure>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+<p>转化为中文描述就是</p>
+<ul>
+<li>（1）先淘汰缓存</li>
+<li>（2）再写数据库（这两步和原来一样）</li>
+<li>（3）休眠1秒，再次淘汰缓存 这么做，可以将1秒内所造成的缓存脏数据，再次删除。</li>
+</ul>
+<p><strong>那么，这个1秒怎么确定的，具体该休眠多久呢？</strong></p>
+<p>针对上面的情形，读者应该自行评估自己的项目的读数据业务逻辑的耗时。然后写数据的休眠时间则在读数据业务逻辑的耗时基础上，加几百ms即可。这么做的目的，就是确保读请求结束，写请求可以删除读请求造成的缓存脏数据。</p>
+<p><strong>如果你用了mysql的读写分离架构怎么办？</strong></p>
+<p>ok，在这种情况下，造成数据不一致的原因如下，还是两个请求，一个请求A进行更新操作，另一个请求B进行查询操作。</p>
+<ul>
+<li>（1）请求A进行写操作，删除缓存</li>
+<li>（2）请求A将数据写入数据库了，</li>
+<li>（3）请求B查询缓存发现，缓存没有值</li>
+<li>（4）请求B去从库查询，这时，还没有完成主从同步，因此查询到的是旧值</li>
+<li>（5）请求B将旧值写入缓存</li>
+<li>（6）数据库完成主从同步，从库变为新值 上述情形，就是数据不一致的原因。还是使用双删延时策略。只是，睡眠时间修改为在主从同步的延时时间基础上，加几百ms。</li>
+</ul>
+<p><strong>采用这种同步淘汰策略，吞吐量降低怎么办？</strong></p>
+<p>ok，那就将第二次删除作为异步的。自己起一个线程，异步删除。这样，写的请求就不用沉睡一段时间后了，再返回。这么做，加大吞吐量。</p>
+<p><strong>第二次删除,如果删除失败怎么办？</strong></p>
+<p>这是个非常好的问题，因为第二次删除失败，就会出现如下情形。还是有两个请求，一个请求A进行更新操作，另一个请求B进行查询操作，为了方便，假设是单库：</p>
+<ul>
+<li>（1）请求A进行写操作，删除缓存</li>
+<li>（2）请求B查询发现缓存不存在</li>
+<li>（3）请求B去数据库查询得到旧值</li>
+<li>（4）请求B将旧值写入缓存</li>
+<li>（5）请求A将新值写入数据库</li>
+<li>（6）请求A试图去删除请求B写入对缓存值，结果失败了。 ok,这也就是说。如果第二次删除缓存失败，会再次出现缓存和数据库不一致的问题。 <strong>如何解决呢？</strong> 具体解决方案，且看博主对第(3)种更新策略的解析。</li>
+</ul>
+<h2 id="五-先更新数据库，再删缓存"><a href="#五-先更新数据库，再删缓存" class="headerlink" title="五 先更新数据库，再删缓存"></a>五 先更新数据库，再删缓存</h2><p>首先，先说一下。老外提出了一个缓存更新套路，名为<a href="https://link.zhihu.com/?target=https://docs.microsoft.com/en-us/azure/architecture/patterns/cache-aside">《Cache-Aside pattern》</a>。其中就指出</p>
+<ol>
+<li><strong>失效</strong>：应用程序先从cache取数据，没有得到，则从数据库中取数据，成功后，放到缓存中。</li>
+<li><strong>命中</strong>：应用程序从cache中取数据，取到后返回。</li>
+<li><strong>更新</strong>：先把数据存到数据库中，成功后，再让缓存失效。</li>
+</ol>
+<p>另外，知名社交网站facebook也在论文<a href="https://link.zhihu.com/?target=https://www.usenix.org/system/files/conference/nsdi13/nsdi13-final170_update.pdf">《Scaling Memcache at Facebook》</a>中提出，他们用的也是先更新数据库，再删缓存的策略。</p>
+<p><strong>这种情况不存在并发问题么？</strong></p>
+<p>不是的。假设这会有两个请求，一个请求A做查询操作，一个请求B做更新操作，那么会有如下情形产生</p>
+<p>（1）缓存刚好失效</p>
+<p>（2）请求A查询数据库，得一个旧值</p>
+<p>（3）请求B将新值写入数据库</p>
+<p>（4）请求B删除缓存</p>
+<p>（5）请求A将查到的旧值写入缓存 ok，如果发生上述情况，确实是会发生脏数据。</p>
+<p><strong>然而，发生这种情况的概率又有多少呢？</strong></p>
+<p>发生上述情况有一个先天性条件，就是步骤（3）的写数据库操作比步骤（2）的读数据库操作耗时更短，才有可能使得步骤（4）先于步骤（5）。</p>
+<p>可是，大家想想，数据库的读操作的速度远快于写操作的（不然做读写分离干嘛，做读写分离的意义就是因为读操作比较快，耗资源少），因此步骤（3）耗时比步骤（2）更短，这一情形很难出现。 假设，有人非要抬杠，有强迫症，一定要解决怎么办？</p>
+<p><strong>如何解决上述并发问题？</strong></p>
+<p>首先，给缓存设有效时间是一种方案。其次，采用策略（2）里给出的异步延时删除策略，保证读请求完成以后，再进行删除操作。</p>
+<p><strong>还有其他造成不一致的原因么？</strong></p>
+<p>有的，这也是缓存更新策略（2）和缓存更新策略（3）都存在的一个问题，如果删缓存失败了怎么办，那不是会有不一致的情况出现么。比如一个写数据请求，然后写入数据库了，删缓存失败了，这会就出现不一致的情况了。这也是缓存更新策略（2）里留下的最后一个疑问。</p>
+<p><strong>如何解决？</strong> 提供一个保障的重试机制即可，这里给出两套方案。</p>
+<p><strong>方案一</strong>： </p>
+<p>流程如下所示</p>
+<ul>
+<li>（1）更新数据库数据；</li>
+<li>（2）缓存因为种种问题删除失败</li>
+<li>（3）将需要删除的key发送至消息队列</li>
+<li>（4）自己消费消息，获得需要删除的key</li>
+<li>（5）继续重试删除操作，直到成功 然而，该方案有一个缺点，对业务线代码造成大量的侵入。于是有了方案二，在方案二中，启动一个订阅程序去订阅数据库的binlog，获得需要操作的数据。在应用程序中，另起一段程序，获得这个订阅程序传来的信息，进行删除缓存操作。</li>
+</ul>
+<p><strong>方案二</strong>：</p>
+<p>流程如下所示：</p>
+<ul>
+<li>（1）更新数据库数据</li>
+<li>（2）数据库会将操作信息写入binlog日志当中</li>
+<li>（3）订阅程序提取出所需要的数据以及key</li>
+<li>（4）另起一段非业务代码，获得该信息</li>
+<li>（5）尝试删除缓存操作，发现删除失败</li>
+<li>（6）将这些信息发送至消息队列</li>
+<li>（7）重新从消息队列中获得该数据，重试操作。</li>
+</ul>
+<p><strong>备注说明：</strong>上述的订阅binlog程序在mysql中有现成的中间件叫canal，可以完成订阅binlog日志的功能。至于oracle中，博主目前不知道有没有现成中间件可以使用。另外，重试机制，博主是采用的是消息队列的方式。如果对一致性要求不是很高，直接在程序中另起一个线程，每隔一段时间去重试即可，这些大家可以灵活自由发挥，只是提供一个思路。</p>
 
                 
             </div>
@@ -426,7 +514,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2020/06/22/Django%E7%AC%AC%E4%B8%89%E5%A4%A9/">http://example.com/2020/06/22/Django%E7%AC%AC%E4%B8%89%E5%A4%A9/</a>
+                    <a href="http://example.com/2022/06/23/Redis%E4%B8%8EMysql%E5%8F%8C%E5%86%99%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88%E8%A7%A3%E6%9E%90/">http://example.com/2022/06/23/Redis%E4%B8%8EMysql%E5%8F%8C%E5%86%99%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88%E8%A7%A3%E6%9E%90/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -464,8 +552,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Django%E4%B9%8BORM/">
-                                    <span class="chip bg-color">Django之ORM</span>
+                                <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                                    <span class="chip bg-color">数据库</span>
                                 </a>
                             
                         </div>
@@ -510,7 +598,7 @@
         repo: '',
         owner: '',
         admin: null,
-        id: '2020-06-22T20-02-44',
+        id: '2022-06-23T19-23-26',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -536,17 +624,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/06/23/Django%E7%AC%AC%E5%9B%9B%E5%A4%A9/">
+                <a href="/2022/06/23/Redis%E4%B8%8EMysql%E5%8F%8C%E5%86%99%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88%E8%A7%A3%E6%9E%90/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="Django路由层">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Redis与Mysql双写一致性方案解析">
                         
-                        <span class="card-title">Django路由层</span>
+                        <span class="card-title">Redis与Mysql双写一致性方案解析</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -556,26 +645,27 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-23
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-23
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Django/" class="post-category">
-                                    Django
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
+                                    数据库
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Django%E5%9F%BA%E7%A1%80/">
-                        <span class="chip bg-color">Django基础</span>
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                        <span class="chip bg-color">数据库</span>
                     </a>
                     
                 </div>
@@ -589,44 +679,34 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/06/22/MySQL%E4%B8%BB%E4%BB%8E%E6%90%AD%E5%BB%BA%EF%BC%88%E5%9F%BA%E4%BA%8Edocker)/">
+                <a href="/2022/06/23/Django%20%E9%AB%98%E5%B9%B6%E5%8F%91%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="10分钟搭建MySQL主从同步（基于docker)">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
                         
-                        <span class="card-title">10分钟搭建MySQL主从同步（基于docker)</span>
+                        <span class="card-title"></span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
                             
+title: Django-高并发负载均衡date: 2021-11-05 19:23:26author: 祈安categories:    - Djangotags:    - Django-高并发负载均衡
+
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-22
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-23
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/MySQL/" class="post-category">
-                                    MySQL
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            祈安
                             
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/MySQL%E4%B8%BB%E4%BB%8E/">
-                        <span class="chip bg-color">MySQL主从</span>
-                    </a>
-                    
                 </div>
                 
             </div>
