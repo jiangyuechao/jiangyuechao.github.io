@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Django-高并发负载均衡, 且听风吟">
+    <meta name="keywords" content="Redis常见场景解析, 且听风吟">
     <meta name="description" content="welcome to my word">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Django-高并发负载均衡 | 且听风吟</title>
+    <title>Redis常见场景解析 | 且听风吟</title>
     <link rel="icon" type="image/png" href="/source/images/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -202,12 +202,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Django-高并发负载均衡</h1>
+                    <h1 class="description center-align post-title">Redis常见场景解析</h1>
                 </div>
             </div>
         </div>
@@ -323,8 +323,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Django-%E9%AB%98%E5%B9%B6%E5%8F%91%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">
-                                <span class="chip bg-color">Django-高并发负载均衡</span>
+                            <a href="/tags/Redis/">
+                                <span class="chip bg-color">Redis</span>
                             </a>
                         
                     </div>
@@ -335,8 +335,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Django/" class="post-category">
-                                Django
+                            <a href="/categories/Redis/" class="post-category">
+                                Redis
                             </a>
                         
                     </div>
@@ -348,7 +348,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-11-05
+                    2022-07-07
                 </div>
                 
 
@@ -357,14 +357,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.8k
+                    1.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    13 分
+                    5 分
                 </div>
                 
 
@@ -384,46 +384,25 @@
 
 
 
-
-<p><strong>Django 高并发负载均衡</strong></p>
-<h2 id="1-什么是负载均衡？"><a href="#1-什么是负载均衡？" class="headerlink" title="1 什么是负载均衡？"></a>1 什么是负载均衡？</h2><p>当一台服务器的性能达到极限时，我们可以使用服务器集群来提高网站的整体性能。那么，在服务器集群中，需要有一台服务器充当调度者的角色，用户的所有请求都会首先由它接收，调度者再根据每台服务器的负载情况将请求分配给某一台后端服务器去处理。</p>
-<p>那么在这个过程中，调度者如何合理分配任务，保证所有后端服务器都将性能充分发挥，从而保持服务器集群的整体性能最优，这就是负载均衡问题。</p>
-<p>下面详细介绍负载均衡的四种实现方式</p>
-<h2 id="2-HTTP重定向实现负载均衡"><a href="#2-HTTP重定向实现负载均衡" class="headerlink" title="2 HTTP重定向实现负载均衡"></a>2 HTTP重定向实现负载均衡</h2><h4 id="过程描述"><a href="#过程描述" class="headerlink" title="过程描述"></a>过程描述</h4><p>当用户向服务器发起请求时，请求首先被集群调度者截获；调度者根据某种分配策略，选择一台服务器，并将选中的服务器的IP地址封装在HTTP响应消息头部的Location字段中，并将响应消息的状态码设为302，最后将这个响应消息返回给浏览器。</p>
-<p>当浏览器收到响应消息后，解析Location字段，并向该URL发起请求，然后指定的服务器处理该用户的请求，最后将结果返回给用户。</p>
-<p>在使用HTTP重定向来实现服务器集群负载均衡的过程中，需要一台服务器作为请求调度者。用户的一项操作需要发起两次HTTP请求，一次向调度服务器发送请求，获取后端服务器的IP，第二次向后端服务器发送请求，获取处理结果。</p>
-<h4 id="调度策略"><a href="#调度策略" class="headerlink" title="调度策略"></a>调度策略</h4><p>调度服务器收到用户的请求后，究竟选择哪台后端服务器处理请求，这由调度服务器所使用的调度策略决定。</p>
-<p>  随机分配策略<br>  当调度服务器收到用户请求后，可以随机决定使用哪台后端服务器，然后将该服务器的IP封装在HTTP响应消息的Location属性中，返回给浏览器即可。</p>
-<p>  轮询策略(RR)<br>  调度服务器需要维护一个值，用于记录上次分配的后端服务器的IP。那么当新的请求到来时，调度者将请求依次分配给下一台服务器。</p>
-<p>由于轮询策略需要调度者维护一个值用于记录上次分配的服务器IP，因此需要额外的开销；此外，由于这个值属于互斥资源，那么当多个请求同时到来时，为了避免线程的安全问题，因此需要锁定互斥资源，从而降低了性能。而随机分配策略不需要维护额外的值，也就不存在线程安全问题，因此性能比轮询要高。</p>
-<h4 id="优缺点分析"><a href="#优缺点分析" class="headerlink" title="优缺点分析"></a>优缺点分析</h4><p>采用HTTP重定向来实现服务器集群的负载均衡实现起来较为容易，逻辑比较简单，但缺点也较为明显。</p>
-<p>在HTTP重定向方法中，调度服务器只在客户端第一次向网站发起请求的时候起作用。当调度服务器向浏览器返回响应信息后，客户端此后的操作都基于新的URL进行的(也就是后端服务器)，此后浏览器就不会与调度服务器产生关系，进而会产生如下几个问题：</p>
-<p>  由于不同用户的访问时间、访问页面深度有所不同，从而每个用户对各自的后端服务器所造成的压力也不同。而调度服务器在调度时，无法知道当前用户将会对服务器造成多大的压力，因此这种方式无法实现真正意义上的负载均衡，只不过是把请求次数平均分配给每台服务器罢了。<br>  若分配给该用户的后端服务器出现故障，并且如果页面被浏览器缓存，那么当用户再次访问网站时，请求都会发给出现故障的服务器，从而导致访问失败</p>
-<h2 id="3-DNS负载均衡"><a href="#3-DNS负载均衡" class="headerlink" title="3 DNS负载均衡"></a>3 DNS负载均衡</h2><h4 id="DNS是什么"><a href="#DNS是什么" class="headerlink" title="DNS是什么"></a>DNS是什么</h4><p>在了解DNS负载均衡之前，我们首先需要了解DNS域名解析的过程。</p>
-<p>我们知道，数据包采用IP地址在网络中传播，而为了方便用户记忆，我们使用域名来访问网站。那么，我们通过域名访问网站之前，首先需要将域名解析成IP地址，这个工作是由DNS完成的。也就是域名服务器。</p>
-<p>我们提交的请求不会直接发送给想要访问的网站，而是首先发给域名服务器，它会帮我们把域名解析成IP地址并返回给我们。我们收到IP之后才会向该IP发起请求。</p>
-<p>那么，DNS服务器有一个天然的优势，如果一个域名指向了多个IP地址，那么每次进行域名解析时，DNS只要选一个IP返回给用户，就能够实现服务器集群的负载均衡。</p>
-<h4 id="具体做法"><a href="#具体做法" class="headerlink" title="具体做法"></a>具体做法</h4><p>首先需要将我们的域名指向多个后端服务器(将一个域名解析到多个IP上)，再设置一下调度策略，那么我们的准备工作就完成了，接下来的负载均衡就完全由DNS服务器来实现。</p>
-<p>当用户向我们的域名发起请求时，DNS服务器会自动地根据我们事先设定好的调度策略选一个合适的IP返回给用户，用户再向该IP发起请求。</p>
-<h4 id="调度策略-1"><a href="#调度策略-1" class="headerlink" title="调度策略"></a>调度策略</h4><p>一般DNS提供商会提供一些调度策略供我们选择，如随机分配、轮询、根据请求者的地域分配离他最近的服务器。</p>
-<h4 id="优缺点分析-1"><a href="#优缺点分析-1" class="headerlink" title="优缺点分析"></a>优缺点分析</h4><p>DNS负载均衡最大的优点就是配置简单。服务器集群的调度工作完全由DNS服务器承担，那么我们就可以把精力放在后端服务器上，保证他们的稳定性与吞吐量。而且完全不用担心DNS服务器的性能，即便是使用了轮询策略，它的吞吐率依然卓越。</p>
-<p>此外，DNS负载均衡具有较强了扩展性，你完全可以为一个域名解析较多的IP，而且不用担心性能问题。</p>
-<p>但是，由于把集群调度权交给了DNS服务器，从而我们没办法随心所欲地控制调度者，没办法定制调度策略。</p>
-<p>DNS服务器也没办法了解每台服务器的负载情况，因此没办法实现真正意义上的负载均衡。它和HTTP重定向一样，只不过把所有请求平均分配给后端服务器罢了。</p>
-<p>此外，当我们发现某一台后端服务器发生故障时，即使我们立即将该服务器从域名解析中去除，但由于DNS服务器会有缓存，该IP仍然会在DNS中保留一段时间，那么就会导致一部分用户无法正常访问网站。这是一个致命的问题！好在这个问题可以用动态DNS来解决。</p>
-<h4 id="动态DNS"><a href="#动态DNS" class="headerlink" title="动态DNS"></a>动态DNS</h4><p>动态DNS能够让我们通过程序动态修改DNS服务器中的域名解析。从而当我们的监控程序发现某台服务器挂了之后，能立即通知DNS将其删掉。</p>
-<h4 id="综上所述"><a href="#综上所述" class="headerlink" title="综上所述"></a>综上所述</h4><p>DNS负载均衡是一种粗犷的负载均衡方法，这里只做介绍，不推荐使用。</p>
-<h2 id="4-反向代理负载均衡"><a href="#4-反向代理负载均衡" class="headerlink" title="4 反向代理负载均衡"></a>4 反向代理负载均衡</h2><h4 id="什么是反向代理负载均衡？"><a href="#什么是反向代理负载均衡？" class="headerlink" title="什么是反向代理负载均衡？"></a>什么是反向代理负载均衡？</h4><p>反向代理服务器是一个位于实际服务器之前的服务器，所有向我们网站发来的请求都首先要经过反向代理服务器，服务器根据用户的请求要么直接将结果返回给用户，要么将请求交给后端服务器处理，再返回给用户。</p>
-<p>之前我们介绍了用反向代理服务器实现静态页面和常用的动态页面的缓存。接下来我们介绍反向代理服务器更常用的功能——实现负载均衡。</p>
-<p>我们知道，所有发送给我们网站的请求都首先经过反向代理服务器。那么，反向代理服务器就可以充当服务器集群的调度者，它可以根据当前后端服务器的负载情况，将请求转发给一台合适的服务器，并将处理结果返回给用户。</p>
-<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><p>  隐藏后端服务器。<br>  与HTTP重定向相比，反向代理能够隐藏后端服务器，所有浏览器都不会与后端服务器直接交互，从而能够确保调度者的控制权，提升集群的整体性能。<br>  故障转移<br>  与DNS负载均衡相比，反向代理能够更快速地移除故障结点。当监控程序发现某一后端服务器出现故障时，能够及时通知反向代理服务器，并立即将其删除。<br>  合理分配任务<br>  HTTP重定向和DNS负载均衡都无法实现真正意义上的负载均衡，也就是调度服务器无法根据后端服务器的实际负载情况分配任务。但反向代理服务器支持手动设定每台后端服务器的权重。我们可以根据服务器的配置设置不同的权重，权重的不同会导致被调度者选中的概率的不同。</p>
-<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><p>  调度者压力过大<br>  由于所有的请求都先由反向代理服务器处理，那么当请求量超过调度服务器的最大负载时，调度服务器的吞吐率降低会直接降低集群的整体性能。<br>  制约扩展<br>  当后端服务器也无法满足巨大的吞吐量时，就需要增加后端服务器的数量，可没办法无限量地增加，因为会受到调度服务器的最大吞吐量的制约。</p>
-<h4 id="粘滞会话"><a href="#粘滞会话" class="headerlink" title="粘滞会话"></a>粘滞会话</h4><p>反向代理服务器会引起一个问题。若某台后端服务器处理了用户的请求，并保存了该用户的session或存储了缓存，那么当该用户再次发送请求时，无法保证该请求仍然由保存了其Session或缓存的服务器处理，若由其他服务器处理，先前的Session或缓存就找不到了。</p>
-<p>解决办法1：<br>可以修改反向代理服务器的任务分配策略，以用户IP作为标识较为合适。相同的用户IP会交由同一台后端服务器处理，从而就避免了粘滞会话的问题。</p>
-<p>解决办法2：<br>可以在Cookie中标注请求的服务器ID，当再次提交请求时，调度者将该请求分配给Cookie中标注的服务器处理即可。</p>
-<h2 id="5-负载均衡组件"><a href="#5-负载均衡组件" class="headerlink" title="5 负载均衡组件"></a>5 负载均衡组件</h2><p>1.1、apache<br>—— 它是Apache软件基金会的一个开放源代码的跨平台的网页服务器，属于老牌的web服务器了，支持基于Ip或者域名的虚拟主机，支持代理服务器，支持安全Socket层(SSL)等等，目前互联网主要使用它做静态资源服务器，也可以做代理服务器转发请求(如：图片链等)，结合tomcat等servlet容器处理jsp。<br>1.2、ngnix<br>—— 俄罗斯人开发的一个高性能的 HTTP和反向代理服务器。由于Nginx 超越 Apache 的高性能和稳定性，使得国内使用 Nginx 作为 Web 服务器的网站也越来越多，其中包括新浪博客、新浪播客、网易新闻、腾讯网、搜狐博客等门户网站频道等，在3w以上的高并发环境下，ngnix处理能力相当于apache的10倍。<br>参考：apache和tomcat的性能分析和对比(Nginx 0.8.x + PHP 5.2.13（FastCGI）搭建胜过Apache十倍的Web服务器（第6版）[原创])<br>1.3、lvs<br>—— Linux Virtual Server的简写，意即Linux虚拟服务器，是一个虚拟的服务器集群系统。由毕业于国防科技大学的章文嵩博士于1998年5月创立，可以实现LINUX平台下的简单负载均衡。了解更多，访问官网：<a target="_blank" rel="noopener" href="http://zh.linuxvirtualserver.org/%E3%80%82">http://zh.linuxvirtualserver.org/。</a></p>
-<p>1.4、HAProxy</p>
-<p>—— HAProxy提供高可用性、负载均衡以及基于TCP和HTTP应用的代理，支持虚拟主机，它是免费、快速并且可靠的一种解决方案。HAProxy特别适用于那些负载特大的web站点， 这些站点通常又需要会话保持或七层处理。HAProxy运行在当前的硬件上，完全可以支持数以万计的并发连接。并且它的运行模式使得它可以很简单安全的整合进您当前的架构中， 同时可以保护你的web服务器不被暴露到网络上.<br>1.5、keepalived<br>—— 这里说的keepalived不是apache或者tomcat等某个组件上的属性字段，它也是一个组件，可以实现web服务器的高可用(HA high availably)。它可以检测web服务器的工作状态，如果该服务器出现故障被检测到，将其剔除服务器群中，直至正常工作后，keepalive会自动检测到并加入到服务器群里面。实现主备服务器发生故障时ip瞬时无缝交接。它是LVS集群节点健康检测的一个用户空间守护进程，也是LVS的引导故障转移模块（director failover）。Keepalived守护进程可以检查LVS池的状态。如果LVS服务器池当中的某一个服务器宕机了。keepalived会通过一 个setsockopt呼叫通知内核将这个节点从LVS拓扑图中移除。<br>1.6、memcached<br>—— 它是一个高性能分布式内存对象缓存系统。当初是Danga Interactive为了LiveJournal快速发展开发的系统，用于对业务查询数据缓存，减轻数据库的负载。其守护进程(daemon)是用C写的，但是客户端支持几乎所有语言(客户端基本上有3种版本[memcache client for Java;spymemcached;xMecache])，服务端和客户端通过简单的协议通信；在memcached里面缓存的数据必须序列化。<br>1.7、terracotta<br>—— 是一款由美国Terracotta公司开发的著名开源Java集群平台。它在JVM与Java应用之间实现了一个专门处理集群功能的抽象层，允许用户在不改变系统代码的情况下实现java应用的集群。支持数据的持久化、session的复制以及高可用(HA)。</p>
+<h3 id="Redis常见场景解析"><a href="#Redis常见场景解析" class="headerlink" title="Redis常见场景解析"></a>Redis常见场景解析</h3><p><strong>一 前言</strong><br>Redis是一个key-value存储系统，现在在各种系统中的使用越来越多，大部分情况下是因为其高性能的特性，被当做缓存使用，这里介绍下Redis经常遇到的使用场景。</p>
+<p><strong>二 Redis特性</strong><br>一个产品的使用场景肯定是需要根据产品的特性，先列举一下Redis的特点：</p>
+<p>读写性能优异<br>持久化<br>数据类型丰富<br>单线程<br>数据自动过期<br>发布订阅<br>分布式<br>这里我们通过几个场景，不同维度说下Redis的应用</p>
+<p><strong>三 应用场景</strong><br>高性能适合当做缓存<br>缓存是Redis最常见的应用场景，之所有这么使用，主要是因为Redis读写性能优异。而且逐渐有取代memcached，成为首选服务端缓存的组件。而且，Redis内部是支持事务的，在使用时候能有效保证数据的一致性。 作为缓存使用时，一般有两种方式保存数据：</p>
+<p>1、读取前，先去读Redis，如果没有数据，读取数据库，将数据拉入Redis。<br>2、插入数据时，同时写入Redis。<br>方案一：实施起来简单，但是有两个需要注意的地方：<br>1、避免缓存击穿。（数据库没有就需要命中的数据，导致Redis一直没有数据，而一直命中数据库。）<br>2、数据的实时性相对会差一点。</p>
+<p>方案二：数据实时性强，但是开发时不便于统一处理。 。</p>
+<p>当然，两种方式根据实际情况来适用。如：方案一适用于对于数据实时性要求不是特别高的场景。方案二适用于字典表、数据量不大的数据存储。</p>
+<p>丰富的数据格式性能更高，应用场景丰富<br>Redis相比其他缓存，有一个非常大的优势，就是支持多种数据类型。</p>
+<p>数据类型说明string字符串，最简单的k-v存储hashhash格式，value为field和value，适合ID-Detail这样的场景。list简单的list，顺序列表，支持首位或者末尾插入数据set无序list，查找速度快，适合交集、并集、差集处理sorted set有序的set</p>
+<p>其实，通过上面的数据类型的特性，基本就能想到合适的应用场景了。</p>
+<p>string——适合最简单的k-v存储，类似于memcached的存储结构，短信验证码，配置信息等，就用这种类型来存储。<br>hash——一般key为ID或者唯一标示，value对应的就是详情了。如商品详情，个人信息详情，新闻详情等。<br>list——因为list是有序的，比较适合存储一些有序且数据相对固定的数据。如省市区表、字典表等。因为list是有序的，适合根据写入的时间来排序，如：最新的***，消息队列等。<br>set——可以简单的理解为ID-List的模式，如微博中一个人有哪些好友，set最牛的地方在于，可以对两个set提供交集、并集、差集操作。例如：查找两个人共同的好友等。<br>Sorted Set——是set的增强版本，增加了一个score参数，自动会根据score的值进行排序。比较适合类似于top 10等不根据插入的时间来排序的数据。<br>如上所述，虽然Redis不像关系数据库那么复杂的数据结构，但是，也能适合很多场景，比一般的缓存数据结构要多。了解每种数据结构适合的业务场景，不仅有利于提升开发效率，也能有效利用Redis的性能。</p>
+<p>单线程可以作为分布式锁<br>谈到Redis和Memcached 的区别，大家更多的是谈到数据结构和持久化这两个特性，其实还有一个比较大的区别就是：</p>
+<p>Redis 是单线程，多路复用方式提高处理效率。<br>Memcached 是多线程的，通过CPU线程切换来提高处理效率。<br>所以Redis单线程的这个特性，其实也是很重要的应用场景，最常用的就是分布式锁。<br>应对高并发的系统，都是用多服务器部署，每个技术框架针对数据锁都有很好的处理方式，如 .net 的lock,java 的synchronized,都能通过锁住某个对象来应对线程导致的数据污染问题。但是毕竟，只能控制本服务器的线程，分布式部署以后数据污染问题，就比较难处理了。Redis的单线程这个特性，就非常符合这个需求，伪代码如下</p>
+<p>复制代码<br>//产生锁<br>while lock!=1<br>    //过期时间是为了避免死锁<br>    now = int(time.time())<br>    lock_timeout = now + LOCK_TIMEOUT + 1<br>    lock = redis_client.setnx(lock_key, lock_timeout)</p>
+<p>//真正要处理的业务<br>doing() </p>
+<p>//释放锁<br>now = int(time.time())<br>    if now &lt; lock_timeout:<br>        redis_client.delete(lock_key)<br>复制代码<br>以上是一个只说明流程的伪代码，其实整体的逻辑是很简单的，只要考虑到死锁时的情况，就比较好处理了。Redis作为分布式锁，因为其性能的优势，不会成为瓶颈，一般会产生瓶颈的是真正的业务处理内容，还是尽量缩小锁的范围来确保系统性能。</p>
+<p>自动过期能有效提升开发效率<br>Redis针对数据都可以设置过期时间，这个特点也是大家应用比较多的，过期的数据清理无需使用方去关注，所以开发效率也比较高，当然，性能也比较高。最常见的就是：短信验证码、具有时间性的商品展示等。无需像数据库还要去查时间进行对比。因为使用比较简单，就不赘述了。</p>
+<p>分布式和持久化有效应对海量数据和高并发<br>Redis初期的版本官方只是支持单机或者简单的主从，大多应用则都是自己去开发集群的中间件，但是随着应用越来越广泛，用户关于分布式的呼声越来越高，所以Redis 3.0版本时候官方加入了分布式的支持，主要是两个方面：</p>
+<p>Redis服务器主从热备，确保系统稳定性<br>Redis分片应对海量数据和高并发<br>而且Redis虽然是一个内存缓存，数据存在内存，但是Redis支持多种方式将数据持久化，写入硬盘，所有，Redis数据的稳定性也是非常有保障的，结合Redis的集群方案，有的系统已经将Redis当做一种NoSql数据存储来适用。</p>
 
                 
             </div>
@@ -450,7 +429,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2021/11/05/Django%20%E9%AB%98%E5%B9%B6%E5%8F%91%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">http://example.com/2021/11/05/Django%20%E9%AB%98%E5%B9%B6%E5%8F%91%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</a>
+                    <a href="http://example.com/2022/07/07/%E5%B8%B8%E8%A7%81redis%E5%9C%BA%E6%99%AF/">http://example.com/2022/07/07/%E5%B8%B8%E8%A7%81redis%E5%9C%BA%E6%99%AF/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -488,8 +467,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Django-%E9%AB%98%E5%B9%B6%E5%8F%91%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">
-                                    <span class="chip bg-color">Django-高并发负载均衡</span>
+                                <a href="/tags/Redis/">
+                                    <span class="chip bg-color">Redis</span>
                                 </a>
                             
                         </div>
@@ -534,7 +513,7 @@
         repo: '',
         owner: '',
         admin: null,
-        id: '2021-11-05T19-23-21',
+        id: '2022-07-07T19-23-26',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -560,17 +539,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/06/02/00-ElasticSearch%E4%B9%8B-%E4%BB%8B%E7%BB%8D/">
+                <a href="/2022/07/07/%E5%B8%B8%E8%A7%81redis%E5%9C%BA%E6%99%AF/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="ElasticSearch之-介绍">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="Redis常见场景解析">
                         
-                        <span class="card-title">ElasticSearch之-介绍</span>
+                        <span class="card-title">Redis常见场景解析</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -580,26 +560,27 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-02
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-07
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/ElasticSearch/" class="post-category">
-                                    ElasticSearch
+                            <a href="/categories/Redis/" class="post-category">
+                                    Redis
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/ElasticSearch%E4%B9%8B-%E4%BB%8B%E7%BB%8D/">
-                        <span class="chip bg-color">ElasticSearch之-介绍</span>
+                    <a href="/tags/Redis/">
+                        <span class="chip bg-color">Redis</span>
                     </a>
                     
                 </div>
@@ -613,13 +594,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/10/13/requests/">
+                <a href="/2022/06/26/52%E6%9D%A1SQL%E4%BC%98%E5%8C%96%E8%A7%84%E5%88%99/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="requests">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="52条SQL优化规则">
                         
-                        <span class="card-title">requests</span>
+                        <span class="card-title">52条SQL优化规则</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -630,14 +611,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-13
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-26
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/requests/" class="post-category">
-                                    requests
+                            <a href="/categories/MySQL/" class="post-category">
+                                    MySQL
                                 </a>
                             
                             
@@ -647,8 +628,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/requests/">
-                        <span class="chip bg-color">requests</span>
+                    <a href="/tags/SQL%E8%AF%AD%E5%8F%A5%E4%BC%98%E5%8C%96/">
+                        <span class="chip bg-color">SQL语句优化</span>
                     </a>
                     
                 </div>
