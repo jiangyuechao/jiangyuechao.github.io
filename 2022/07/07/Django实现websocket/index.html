@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="ElasticSearch-安装中文分词器, 且听风吟">
+    <meta name="keywords" content="Django实现websocket, 且听风吟">
     <meta name="description" content="welcome to my word">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>ElasticSearch-安装中文分词器 | 且听风吟</title>
+    <title>Django实现websocket | 且听风吟</title>
     <link rel="icon" type="image/png" href="/source/images/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -202,12 +202,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">ElasticSearch-安装中文分词器</h1>
+                    <h1 class="description center-align post-title">Django实现websocket</h1>
                 </div>
             </div>
         </div>
@@ -323,8 +323,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/ElasticSearch-%E5%AE%89%E8%A3%85%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D%E5%99%A8/">
-                                <span class="chip bg-color">ElasticSearch-安装中文分词器</span>
+                            <a href="/tags/Django%E5%AE%9E%E7%8E%B0websocket/">
+                                <span class="chip bg-color">Django实现websocket</span>
                             </a>
                         
                     </div>
@@ -335,8 +335,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/ElasticSearch/" class="post-category">
-                                ElasticSearch
+                            <a href="/categories/Django/" class="post-category">
+                                Django
                             </a>
                         
                     </div>
@@ -348,7 +348,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-06-04
+                    2022-07-07
                 </div>
                 
 
@@ -357,14 +357,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    163
+                    887
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -384,17 +384,76 @@
 
 
 
+<h3 id="Django实现websocket完成实时通讯，聊天室，在线客服等"><a href="#Django实现websocket完成实时通讯，聊天室，在线客服等" class="headerlink" title="Django实现websocket完成实时通讯，聊天室，在线客服等"></a>Django实现websocket完成实时通讯，聊天室，在线客服等</h3><h4 id="一-什么是Websocket"><a href="#一-什么是Websocket" class="headerlink" title="一 什么是Websocket"></a>一 什么是Websocket</h4><p>WebSocket是一种在单个TCP连接上进行全双工通信的协议</p>
+<p>WebSocket使得客户端和服务器之间的数据交换变得更加简单，允许服务端主动向客户端推送数据。在WebSocket API中，浏览器和服务器只需要完成一次握手，两者之间就直接可以创建持久性的连接，并进行双向数据传输</p>
+<p>现在，很多网站为了实现推送技术，所用的技术都是轮询。轮询是在特定的的时间间隔（如每1秒），由浏览器对服务器发出HTTP请求，然后由服务器返回最新的数据给客户端的浏览器。这种传统的模式带来很明显的缺点，即浏览器需要不断的向服务器发出请求，然而HTTP请求可能包含较长的头部，其中真正有效的数据可能只是很小的一部分，显然这样会浪费很多的带宽等资源。<br>而比较新的技术去做轮询的效果是Comet。这种技术虽然可以双向通信，但依然需要反复发出请求。而且在Comet中，普遍采用的长链接，也会消耗服务器资源。<br>在这种情况下，HTML5定义了WebSocket协议，能更好的节省服务器资源和带宽，并且能够更实时地进行通讯</p>
+<h4 id="二-Django实现Websocket"><a href="#二-Django实现Websocket" class="headerlink" title="二 Django实现Websocket"></a>二 Django实现Websocket</h4><p>django实现websocket大致上有两种方式，一种channels，一种是dwebsocket。channels依赖于redis，twisted等，相比之下使用dwebsocket要更为方便一些</p>
+<h4 id="三-dwebsocket安装"><a href="#三-dwebsocket安装" class="headerlink" title="三 dwebsocket安装"></a>三 dwebsocket安装</h4><p>pip3 install dwebsocket</p>
+<h4 id="四-dwebsocket配置"><a href="#四-dwebsocket配置" class="headerlink" title="四 dwebsocket配置"></a>四 dwebsocket配置</h4><p>INSTALLED_APPS = [<br>    …..<br>    …..<br>    ‘dwebsocket’,<br>]</p>
+<p>MIDDLEWARE_CLASSES = [<br>    ……<br>    ……<br>    ‘dwebsocket.middleware.WebSocketMiddleware’  # 为所有的URL提供websocket，如果只是单独的视图需要可以不选</p>
+<p>]<br>WEBSOCKET_ACCEPT_ALL=True   # 可以允许每一个单独的视图实用websockets</p>
+<h4 id="五-使用"><a href="#五-使用" class="headerlink" title="五 使用"></a>五 使用</h4><p>html代码：<br>    <br>    <br>    <br>        <meta charset="UTF-8"><br>        <title>Title</title><br>    <br>    </p>
+<pre><code>&lt;button onclick="WebSocketTest()"&gt;test&lt;/button&gt;
+&lt;/body&gt;
 
 
+&lt;script&gt;
 
 
-<p><strong>05-ElasticSearch之-安装中文分词器</strong></p>
-<h2 id="一-中文分词介绍"><a href="#一-中文分词介绍" class="headerlink" title="一 中文分词介绍"></a>一 中文分词介绍</h2><p>elasticsearch提供了几个内置的分词器：standard analyzer(标准分词器)、simple analyzer(简单分词器)、whitespace analyzer（空格分词器）、language analyzer（语言分词器）</p>
-<p>而如果我们不指定分词器类型的话，elasticsearch默认是使用标准分词器的</p>
-<p>我们需要下载中文分词插件，来实现中文分词</p>
-<h2 id="二-下载"><a href="#二-下载" class="headerlink" title="二 下载"></a>二 下载</h2><p>地址为：<a target="_blank" rel="noopener" href="https://github.com/medcl/elasticsearch-analysis-ik">https://github.com/medcl/elasticsearch-analysis-ik</a></p>
-<p>安装方式参照【02-ElasticSearch之-插件介绍】</p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#我们采用第二种，url安装</span></span><br><span class="line">./<span class="built_in">bin</span>/elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v7<span class="number">.4</span><span class="number">.2</span>/elasticsearch-analysis-ik-<span class="number">7.4</span><span class="number">.2</span>.<span class="built_in">zip</span></span><br></pre></td></tr></tbody></table></figure>
+    function WebSocketTest() {
+        alert(1)
+        if ("WebSocket" in window) {
+            alert("您的浏览器支持 WebSocket!");
+
+            // 打开一个 web socket
+            ws = new WebSocket("ws://127.0.0.1:8000/path/");
+
+            ws.onopen = function () {
+                // Web Socket 已连接上，使用 send() 方法发送数据
+                ws.send("发送数据");
+                alert("数据发送中...");
+            };
+
+            ws.onmessage = function (evt) {
+                var received_msg = evt.data;
+                alert("数据已接收...");
+                alert("数据:" + received_msg)
+            };
+
+            ws.onclose = function () {
+                // 关闭 websocket
+                alert("连接已关闭...");
+            };
+        }
+
+        else {
+            // 浏览器不支持 WebSocket
+            alert("您的浏览器不支持 WebSocket!");
+        }
+    }
+
+
+&lt;/script&gt;
+&lt;/html&gt;
+</code></pre>
+<p>View Code<br>views视图层：<br>    from django.shortcuts import render,HttpResponse</p>
+<pre><code># Create your views here.
+def login(request):
+    return render(request,'login.html')
+
+from dwebsocket.decorators import accept_websocket
+@accept_websocket
+def path(request):
+    if request.is_websocket():
+        print(1)
+        request.websocket.send('下载完成'.encode('utf-8'))
+</code></pre>
+<p>View Code<br>路由层：<br>    from django.conf.urls import url<br>    from django.contrib import admin<br>    from app01 import views<br>    urlpatterns = [<br>        url(r’^admin/‘, admin.site.urls),<br>        url(r’^login/‘, views.login),<br>        url(r’^path/‘, views.path),<br>    ]</p>
+<p>View Code</p>
+<h4 id="六-详解"><a href="#六-详解" class="headerlink" title="六 详解"></a>六 详解</h4><p>dwebsocket有两种装饰器：require_websocket和accept_websocekt，使用require_websocket装饰器会导致视图函数无法接收导致正常的http请求，一般情况使用accept_websocket方式就可以了，</p>
+<p>dwebsocket的一些内置方法：</p>
+<p>request.is_websocket（）：判断请求是否是websocket方式，是返回true，否则返回false<br>request.websocket： 当请求为websocket的时候，会在request中增加一个websocket属性，<br>WebSocket.wait（） 返回客户端发送的一条消息，没有收到消息则会导致阻塞<br>WebSocket.read（） 和wait一样可以接受返回的消息，只是这种是非阻塞的，没有消息返回None<br>WebSocket.count_messages（）返回消息的数量<br>WebSocket.has_messages（）返回是否有新的消息过来<br>WebSocket.send（message）像客户端发送消息，message为byte类型</p>
+
                 
             </div>
             <hr/>
@@ -420,7 +479,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/06/04/05-ElasticSearch%E4%B9%8B-%E5%AE%89%E8%A3%85%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D%E5%99%A8/">http://example.com/2022/06/04/05-ElasticSearch%E4%B9%8B-%E5%AE%89%E8%A3%85%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D%E5%99%A8/</a>
+                    <a href="http://example.com/2022/07/07/Django%E5%AE%9E%E7%8E%B0websocket/">http://example.com/2022/07/07/Django%E5%AE%9E%E7%8E%B0websocket/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -458,8 +517,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/ElasticSearch-%E5%AE%89%E8%A3%85%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D%E5%99%A8/">
-                                    <span class="chip bg-color">ElasticSearch-安装中文分词器</span>
+                                <a href="/tags/Django%E5%AE%9E%E7%8E%B0websocket/">
+                                    <span class="chip bg-color">Django实现websocket</span>
                                 </a>
                             
                         </div>
@@ -504,7 +563,7 @@
         repo: '',
         owner: '',
         admin: null,
-        id: '2022-06-04T19-23-21',
+        id: '2022-07-07T19-23-26',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -530,17 +589,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/06/04/04-ElasticSearch%E4%B9%8B-%E5%AE%89%E8%A3%85Kibana/">
+                <a href="/2022/07/07/Django%E5%AE%9E%E7%8E%B0websocket/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="ElasticSearch-安装Kibana">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Django实现websocket">
                         
-                        <span class="card-title">ElasticSearch-安装Kibana</span>
+                        <span class="card-title">Django实现websocket</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -550,26 +610,27 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-04
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-07
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/ElasticSearch/" class="post-category">
-                                    ElasticSearch
+                            <a href="/categories/Django/" class="post-category">
+                                    Django
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/ElasticSearch-%E5%AE%89%E8%A3%85Kibana/">
-                        <span class="chip bg-color">ElasticSearch-安装Kibana</span>
+                    <a href="/tags/Django%E5%AE%9E%E7%8E%B0websocket/">
+                        <span class="chip bg-color">Django实现websocket</span>
                     </a>
                     
                 </div>
@@ -583,13 +644,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/06/03/02-ElasticSearch%E4%B9%8B-%E6%8F%92%E4%BB%B6%E4%BB%8B%E7%BB%8D/">
+                <a href="/2022/07/07/%E5%B8%B8%E8%A7%81redis%E5%9C%BA%E6%99%AF/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="ElasticSearch之-插件介绍">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="Redis常见场景解析">
                         
-                        <span class="card-title">ElasticSearch之-插件介绍</span>
+                        <span class="card-title">Redis常见场景解析</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -600,14 +661,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-03
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-07
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/ElasticSearch/" class="post-category">
-                                    ElasticSearch
+                            <a href="/categories/Redis/" class="post-category">
+                                    Redis
                                 </a>
                             
                             
@@ -617,8 +678,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/ElasticSearch%E4%B9%8B-%E6%8F%92%E4%BB%B6%E4%BB%8B%E7%BB%8D/">
-                        <span class="chip bg-color">ElasticSearch之-插件介绍</span>
+                    <a href="/tags/Redis/">
+                        <span class="chip bg-color">Redis</span>
                     </a>
                     
                 </div>
