@@ -397,9 +397,10 @@
 <p>string——适合最简单的k-v存储，类似于memcached的存储结构，短信验证码，配置信息等，就用这种类型来存储。<br>hash——一般key为ID或者唯一标示，value对应的就是详情了。如商品详情，个人信息详情，新闻详情等。<br>list——因为list是有序的，比较适合存储一些有序且数据相对固定的数据。如省市区表、字典表等。因为list是有序的，适合根据写入的时间来排序，如：最新的***，消息队列等。<br>set——可以简单的理解为ID-List的模式，如微博中一个人有哪些好友，set最牛的地方在于，可以对两个set提供交集、并集、差集操作。例如：查找两个人共同的好友等。<br>Sorted Set——是set的增强版本，增加了一个score参数，自动会根据score的值进行排序。比较适合类似于top 10等不根据插入的时间来排序的数据。<br>如上所述，虽然Redis不像关系数据库那么复杂的数据结构，但是，也能适合很多场景，比一般的缓存数据结构要多。了解每种数据结构适合的业务场景，不仅有利于提升开发效率，也能有效利用Redis的性能。</p>
 <p>单线程可以作为分布式锁<br>谈到Redis和Memcached 的区别，大家更多的是谈到数据结构和持久化这两个特性，其实还有一个比较大的区别就是：</p>
 <p>Redis 是单线程，多路复用方式提高处理效率。<br>Memcached 是多线程的，通过CPU线程切换来提高处理效率。<br>所以Redis单线程的这个特性，其实也是很重要的应用场景，最常用的就是分布式锁。<br>应对高并发的系统，都是用多服务器部署，每个技术框架针对数据锁都有很好的处理方式，如 .net 的lock,java 的synchronized,都能通过锁住某个对象来应对线程导致的数据污染问题。但是毕竟，只能控制本服务器的线程，分布式部署以后数据污染问题，就比较难处理了。Redis的单线程这个特性，就非常符合这个需求，伪代码如下</p>
-<p>复制代码<br>//产生锁<br>while lock!=1<br>    //过期时间是为了避免死锁<br>    now = int(time.time())<br>    lock_timeout = now + LOCK_TIMEOUT + 1<br>    lock = redis_client.setnx(lock_key, lock_timeout)</p>
+<p>//产生锁<br>while lock!=1<br>    //过期时间是为了避免死锁<br>    now = int(time.time())<br>    lock_timeout = now + LOCK_TIMEOUT + 1<br>    lock = redis_client.setnx(lock_key, lock_timeout)</p>
 <p>//真正要处理的业务<br>doing() </p>
-<p>//释放锁<br>now = int(time.time())<br>    if now &lt; lock_timeout:<br>        redis_client.delete(lock_key)<br>复制代码<br>以上是一个只说明流程的伪代码，其实整体的逻辑是很简单的，只要考虑到死锁时的情况，就比较好处理了。Redis作为分布式锁，因为其性能的优势，不会成为瓶颈，一般会产生瓶颈的是真正的业务处理内容，还是尽量缩小锁的范围来确保系统性能。</p>
+<p>//释放锁<br>now = int(time.time())<br>    if now &lt; lock_timeout:<br>        redis_client.delete(lock_key)</p>
+<p>以上是一个只说明流程的伪代码，其实整体的逻辑是很简单的，只要考虑到死锁时的情况，就比较好处理了。Redis作为分布式锁，因为其性能的优势，不会成为瓶颈，一般会产生瓶颈的是真正的业务处理内容，还是尽量缩小锁的范围来确保系统性能。</p>
 <p>自动过期能有效提升开发效率<br>Redis针对数据都可以设置过期时间，这个特点也是大家应用比较多的，过期的数据清理无需使用方去关注，所以开发效率也比较高，当然，性能也比较高。最常见的就是：短信验证码、具有时间性的商品展示等。无需像数据库还要去查时间进行对比。因为使用比较简单，就不赘述了。</p>
 <p>分布式和持久化有效应对海量数据和高并发<br>Redis初期的版本官方只是支持单机或者简单的主从，大多应用则都是自己去开发集群的中间件，但是随着应用越来越广泛，用户关于分布式的呼声越来越高，所以Redis 3.0版本时候官方加入了分布式的支持，主要是两个方面：</p>
 <p>Redis服务器主从热备，确保系统稳定性<br>Redis分片应对海量数据和高并发<br>而且Redis虽然是一个内存缓存，数据存在内存，但是Redis支持多种方式将数据持久化，写入硬盘，所有，Redis数据的稳定性也是非常有保障的，结合Redis的集群方案，有的系统已经将Redis当做一种NoSql数据存储来适用。</p>
@@ -867,7 +868,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">89.2k</span>&nbsp;字
+                class="white-color">90.3k</span>&nbsp;字
             
             
             

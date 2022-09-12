@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Redis与Mysql双写一致性方案解析, 且听风吟">
+    <meta name="keywords" content="且听风吟">
     <meta name="description" content="welcome to my word">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Redis与Mysql双写一致性方案解析 | 且听风吟</title>
+    <title>且听风吟</title>
     <link rel="icon" type="image/png" href="/source/images/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -202,12 +202,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Redis与Mysql双写一致性方案解析</h1>
+                    <h1 class="description center-align post-title"></h1>
                 </div>
             </div>
         </div>
@@ -321,25 +321,12 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
-                                <span class="chip bg-color">数据库</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
-                                数据库
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -348,7 +335,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-06-23
+                    2022-09-12
                 </div>
                 
 
@@ -357,14 +344,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.7k
+                    1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    9 分
+                    4 分
                 </div>
                 
 
@@ -379,120 +366,72 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <span id="more"></span>
+                <p>title: numpy<br>date: 2022-09-09<br>author: 祈安<br>categories: </p>
+<pre><code>- 数据分析
+</code></pre>
+<p>tags:<br>    - numpy</p>
+<span id="more"></span>
+
+
+
+<h1 id="numpy创建数组的概念"><a href="#numpy创建数组的概念" class="headerlink" title="numpy创建数组的概念"></a>numpy创建数组的概念</h1><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">创建数组的语法结构</span><br><span class="line">	np.array(列表，元祖)</span><br><span class="line">    一维数组</span><br><span class="line">    	np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</span><br><span class="line">        np.array((<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>))</span><br><span class="line">    二维数组</span><br><span class="line">    	np.array([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>],</span><br><span class="line">                 [<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>]])</span><br><span class="line">    三维数组(很少使用)</span><br><span class="line">    	再嵌套一个</span><br><span class="line">        np.array([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>],[<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>],[<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>]])</span><br><span class="line">        元祖形式同上</span><br><span class="line">  总结：numpy中很多数学操作都需要依赖于数组对象      </span><br><span class="line">        </span><br><span class="line">    </span><br><span class="line">  针对numpy数组中的元素</span><br><span class="line">  	  <span class="number">1.</span>数组内的元素必须是同一类型（若定义时出现类型错乱，内部也会自动统一）</span><br></pre></td></tr></tbody></table></figure>
+
+<h1 id="numpy中的数据类型"><a href="#numpy中的数据类型" class="headerlink" title="numpy中的数据类型"></a>numpy中的数据类型</h1><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">由于numpy主要是进行数据计算，所以numpy数据类型为数字类型为主</span><br><span class="line"><span class="string">"""为了不和python中数据类型关键字冲突</span></span><br><span class="line"><span class="string">   numpy在所有冲突的关键字后加下划线区分"""</span></span><br><span class="line"><span class="number">1.</span>布尔型：bool_</span><br><span class="line"><span class="number">2.</span>整型：int_,int32，int64</span><br><span class="line">	无符号整型：unint8，unint16，unint32，unint64</span><br><span class="line"><span class="number">3.</span>复数型：complex_,complex32，complex64</span><br><span class="line"><span class="number">4.</span>浮点型：float_,float32，float64</span><br><span class="line"></span><br><span class="line">针对数字类型后面的数字</span><br><span class="line">    int32只能表示（-<span class="number">2</span>**<span class="number">31</span>,<span class="number">2</span>**<span class="number">31</span>-<span class="number">1</span>），因为他只有<span class="number">32</span>个位，只能表示<span class="number">2</span>**<span class="number">32</span>个数，int64同理</span><br></pre></td></tr></tbody></table></figure>
+
+<h1 id="numpy常用属性"><a href="#numpy常用属性" class="headerlink" title="numpy常用属性"></a>numpy常用属性</h1><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">T：转置（行列互换）</span><br><span class="line">dtype：类似于python中的<span class="built_in">type</span>，用于查看数据类型</span><br><span class="line">size：统计数组内元素的个数</span><br><span class="line">ndim：数组的维数</span><br><span class="line">shape：获取数组的行、列数</span><br><span class="line">reshape：修改数组行、列数</span><br></pre></td></tr></tbody></table></figure>
+
+<h1 id="numpy常用方法"><a href="#numpy常用方法" class="headerlink" title="numpy常用方法"></a>numpy常用方法</h1><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">固定格式：np.常见方法名()</span><br><span class="line"><span class="number">1.</span>array() 创建数组</span><br><span class="line"><span class="number">2.</span>arange() 和<span class="built_in">range</span>使用方法一致，第三个参数为步长</span><br><span class="line"><span class="number">3.</span>linspace() 和arange使用方法一致,区别在于arange顾头不顾尾，                    linspace顾头也顾尾</span><br><span class="line"><span class="number">4.</span>ones((<span class="number">3</span>,<span class="number">4</span>))   创建一个全为<span class="number">0</span>的 <span class="number">3</span>行<span class="number">4</span>列数组</span><br><span class="line"><span class="number">5.</span>zeros((<span class="number">3</span>,<span class="number">4</span>))  创建一个全为<span class="number">0</span>的 <span class="number">3</span>行<span class="number">4</span>列数组</span><br><span class="line"><span class="number">6.</span>vstack((数组<span class="number">1</span>，数组<span class="number">2</span>))  竖向拼接两个数组</span><br><span class="line"><span class="number">7.</span>hstack((数组<span class="number">1</span>，数组<span class="number">2</span>))  水平拼接两个数组</span><br><span class="line"><span class="number">8.</span>shape([<span class="number">0</span>])       读取矩阵的长度 <span class="number">0</span>代表第一维度</span><br><span class="line"><span class="number">9.</span>argmax(t.axis=<span class="number">0</span>) 获取最大值的位置</span><br><span class="line"><span class="number">10.</span>argmin(t.axis=<span class="number">0</span>) 获取最小值的位置</span><br><span class="line"><span class="number">11.</span>eye(<span class="number">3</span>)           创建一个对角线位<span class="number">1</span>的正方形数组</span><br><span class="line"><span class="number">12.</span>empty(<span class="number">10</span>)   根据指定形状和dtype创建空数组（随机值）</span><br></pre></td></tr></tbody></table></figure>
+
+<h1 id="numpy的索引与切片"><a href="#numpy的索引与切片" class="headerlink" title="numpy的索引与切片"></a>numpy的索引与切片</h1><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>针对一维数组，索引与切片的使用方式与python中的列表一致</span><br><span class="line"><span class="number">2.</span>针对多维数组，有行索引和列索引</span><br><span class="line">  res=[行索引，列索引]</span><br><span class="line">  res=[行索引，:]  ：代表所有</span><br></pre></td></tr></tbody></table></figure>
+
+<h1 id="numpy的运算符"><a href="#numpy的运算符" class="headerlink" title="numpy的运算符"></a>numpy的运算符</h1><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">比较运算符</span><br><span class="line">&gt;</span><br><span class="line">    等价于np.greater(arr1,arr2)</span><br><span class="line">    判断arr1的元素是否大于arr2的元素</span><br><span class="line">&gt;=</span><br><span class="line">    等价于np.greater_equal(arr1,arr2)</span><br><span class="line">    判断arr1的元素是否大于等于arr2的元素</span><br><span class="line">&lt;</span><br><span class="line">    等价于np.less(arr1,arr2)</span><br><span class="line">    判断arr1的元素是否小于arr2的元素</span><br><span class="line">&lt;=</span><br><span class="line">    等价于np.less_equal(arr1,arr2)</span><br><span class="line">    判断arr1的元素是否小于等于arr2的元素</span><br><span class="line">==</span><br><span class="line">    等价于np.equal(arr1,arr2)</span><br><span class="line">    判断arr1的元素是否等于arr2的元素</span><br><span class="line">!=</span><br><span class="line">    等价于np.not_equal(arr1,arr2)</span><br><span class="line">    判断arr1的元素是否不等于arr2的元素</span><br></pre></td></tr></tbody></table></figure>
+
+<h1 id="numpy常用函数"><a href="#numpy常用函数" class="headerlink" title="numpy常用函数"></a>numpy常用函数</h1><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 基本函数</span></span><br><span class="line">np.<span class="built_in">round</span>([],decimals=<span class="number">0</span>) </span><br><span class="line">	对各元素四舍五入，decimals代表指定小数点之后的位数</span><br><span class="line">np.sqrt(arr)</span><br><span class="line">	计算各元素的算术平方根</span><br><span class="line">np.square(arr)</span><br><span class="line">	计算各元素的平方值</span><br><span class="line">np.exp(arr)</span><br><span class="line">	计算以e为底数的指数</span><br><span class="line">np.power(arr,a)</span><br><span class="line">	计算各元素的指数</span><br><span class="line">np.log2(arr)</span><br><span class="line">	计算以<span class="number">2</span>为底各元素的对数</span><br><span class="line">np.log10(arr)</span><br><span class="line">	计算以<span class="number">10</span>为底各元素的对数</span><br><span class="line">np.log(arr)</span><br><span class="line">	计算以e为底各元素的对数</span><br><span class="line"></span><br><span class="line"><span class="comment"># 必会常用统计函数</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">其中参数axis用来控制行列</span></span><br><span class="line"><span class="string">axis=1 代表行</span></span><br><span class="line"><span class="string">axis=0 代表列</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">np.<span class="built_in">min</span>(arr.axis)</span><br><span class="line">	按照轴的方向计算最小值</span><br><span class="line">np.<span class="built_in">max</span>(arr.axis)</span><br><span class="line">	按照轴的方向计算最大值</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="numpy随机数子模块"><a href="#numpy随机数子模块" class="headerlink" title="numpy随机数子模块"></a>numpy随机数子模块</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">numpy中的random子模块</span><br><span class="line">np.random.rand   给定形状产生随即数组（<span class="number">0</span>到<span class="number">1</span>之间的约数）</span><br><span class="line">.randint         给定形状产生随机整数</span><br><span class="line">.choice          给定形状产生随机选择</span><br><span class="line">.shuffle         将序列的所有元素随机排序</span><br><span class="line">.uniform         给定形状产生随即数组（随机均匀分布）</span><br><span class="line">.normal          随机正态分布</span><br></pre></td></tr></tbody></table></figure>
 
 
 
 
-<p><strong>Redis与Mysql双写一致性方案解析</strong></p>
-<h2 id="一-前言"><a href="#一-前言" class="headerlink" title="一 前言"></a>一 前言</h2><p>首先，缓存由于其高并发和高性能的特性，已经在项目中被广泛使用。在读取缓存方面，大家没啥疑问，都是按照流程来进行。</p>
-<p>但是在更新缓存方面，对于更新完数据库，是更新缓存呢，还是删除缓存。又或者是先删除缓存，再更新数据库，其实大家存在很大的争议</p>
-<p>本文由以下三个部分组成 1、讲解缓存更新策略 2、对每种策略进行缺点分析 3、针对缺点给出改进方案</p>
-<h2 id="二-一致性方案"><a href="#二-一致性方案" class="headerlink" title="二 一致性方案"></a>二 一致性方案</h2><p>先做一个说明，从理论上来说，给缓存设置过期时间，是保证最终一致性的解决方案。这种方案下，我们可以对存入缓存的数据设置过期时间，所有的写操作以数据库为准，对缓存操作只是尽最大努力即可。也就是说如果数据库写成功，缓存更新失败，那么只要到达过期时间，则后面的读请求自然会从数据库中读取新值然后回填缓存。因此，接下来讨论的思路不依赖于给缓存设置过期时间这个方案。 在这里，我们讨论<strong>三种</strong>更新策略：</p>
-<ul>
-<li>\1. 先更新数据库，再更新缓存</li>
-<li>\2. 先删除缓存，再更新数据库</li>
-<li>\3. 先更新数据库，再删除缓存</li>
-</ul>
-<h2 id="三-先更新数据库，再更新缓存"><a href="#三-先更新数据库，再更新缓存" class="headerlink" title="三 先更新数据库，再更新缓存"></a>三 先更新数据库，再更新缓存</h2><p>这套方案，大家是普遍反对的。为什么呢？有如下两点原因。</p>
-<p><strong>原因一（线程安全角度）</strong> 同时有请求A和请求B进行更新操作，那么会出现</p>
-<ul>
-<li>（1）线程A更新了数据库</li>
-<li>（2）线程B更新了数据库</li>
-<li>（3）线程B更新了缓存</li>
-<li>（4）线程A更新了缓存</li>
-</ul>
-<p>这就出现请求A更新缓存应该比请求B更新缓存早才对，但是因为网络等原因，B却比A更早更新了缓存。这就导致了脏数据，因此不考虑。</p>
-<p><strong>原因二（业务场景角度）</strong> 有如下两点：</p>
-<ul>
-<li>（1）如果你是一个写数据库场景比较多，而读数据场景比较少的业务需求，采用这种方案就会导致，数据压根还没读到，缓存就被频繁的更新，浪费性能。</li>
-<li>（2）如果你写入数据库的值，并不是直接写入缓存的，而是要经过一系列复杂的计算再写入缓存。那么，每次写入数据库后，都再次计算写入缓存的值，无疑是浪费性能的。显然，删除缓存更为适合。</li>
-</ul>
-<p>接下来讨论的就是争议最大的，先删缓存，再更新数据库。还是先更新数据库，再删缓存的问题。</p>
-<h2 id="四-先删缓存，再更新数据库"><a href="#四-先删缓存，再更新数据库" class="headerlink" title="四 先删缓存，再更新数据库"></a>四 先删缓存，再更新数据库</h2><p>该方案会导致不一致的原因是。同时有一个请求A进行更新操作，另一个请求B进行查询操作。那么会出现如下情形:</p>
-<ul>
-<li>（1）请求A进行写操作，删除缓存</li>
-<li>（2）请求B查询发现缓存不存在</li>
-<li>（3）请求B去数据库查询得到旧值</li>
-<li>（4）请求B将旧值写入缓存</li>
-<li>（5）请求A将新值写入数据库 上述情况就会导致不一致的情形出现。而且，如果不采用给缓存设置过期时间策略，该数据永远都是脏数据。</li>
-</ul>
-<p>那么，<strong>如何解决呢？采用延时双删策略</strong> 伪代码如下</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">write</span><span class="params">(String key,Object data)</span>{</span><br><span class="line">        redis.delKey(key);</span><br><span class="line">        db.updateData(data);</span><br><span class="line">        Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">        redis.delKey(key);</span><br><span class="line">    }</span><br></pre></td></tr></tbody></table></figure>
 
-<p>转化为中文描述就是</p>
-<ul>
-<li>（1）先淘汰缓存</li>
-<li>（2）再写数据库（这两步和原来一样）</li>
-<li>（3）休眠1秒，再次淘汰缓存 这么做，可以将1秒内所造成的缓存脏数据，再次删除。</li>
-</ul>
-<p><strong>那么，这个1秒怎么确定的，具体该休眠多久呢？</strong></p>
-<p>针对上面的情形，读者应该自行评估自己的项目的读数据业务逻辑的耗时。然后写数据的休眠时间则在读数据业务逻辑的耗时基础上，加几百ms即可。这么做的目的，就是确保读请求结束，写请求可以删除读请求造成的缓存脏数据。</p>
-<p><strong>如果你用了mysql的读写分离架构怎么办？</strong></p>
-<p>ok，在这种情况下，造成数据不一致的原因如下，还是两个请求，一个请求A进行更新操作，另一个请求B进行查询操作。</p>
-<ul>
-<li>（1）请求A进行写操作，删除缓存</li>
-<li>（2）请求A将数据写入数据库了，</li>
-<li>（3）请求B查询缓存发现，缓存没有值</li>
-<li>（4）请求B去从库查询，这时，还没有完成主从同步，因此查询到的是旧值</li>
-<li>（5）请求B将旧值写入缓存</li>
-<li>（6）数据库完成主从同步，从库变为新值 上述情形，就是数据不一致的原因。还是使用双删延时策略。只是，睡眠时间修改为在主从同步的延时时间基础上，加几百ms。</li>
-</ul>
-<p><strong>采用这种同步淘汰策略，吞吐量降低怎么办？</strong></p>
-<p>ok，那就将第二次删除作为异步的。自己起一个线程，异步删除。这样，写的请求就不用沉睡一段时间后了，再返回。这么做，加大吞吐量。</p>
-<p><strong>第二次删除,如果删除失败怎么办？</strong></p>
-<p>这是个非常好的问题，因为第二次删除失败，就会出现如下情形。还是有两个请求，一个请求A进行更新操作，另一个请求B进行查询操作，为了方便，假设是单库：</p>
-<ul>
-<li>（1）请求A进行写操作，删除缓存</li>
-<li>（2）请求B查询发现缓存不存在</li>
-<li>（3）请求B去数据库查询得到旧值</li>
-<li>（4）请求B将旧值写入缓存</li>
-<li>（5）请求A将新值写入数据库</li>
-<li>（6）请求A试图去删除请求B写入对缓存值，结果失败了。 ok,这也就是说。如果第二次删除缓存失败，会再次出现缓存和数据库不一致的问题。 <strong>如何解决呢？</strong> 具体解决方案，且看博主对第(3)种更新策略的解析。</li>
-</ul>
-<h2 id="五-先更新数据库，再删缓存"><a href="#五-先更新数据库，再删缓存" class="headerlink" title="五 先更新数据库，再删缓存"></a>五 先更新数据库，再删缓存</h2><p>首先，先说一下。老外提出了一个缓存更新套路，名为<a href="https://link.zhihu.com/?target=https://docs.microsoft.com/en-us/azure/architecture/patterns/cache-aside">《Cache-Aside pattern》</a>。其中就指出</p>
-<ol>
-<li><strong>失效</strong>：应用程序先从cache取数据，没有得到，则从数据库中取数据，成功后，放到缓存中。</li>
-<li><strong>命中</strong>：应用程序从cache中取数据，取到后返回。</li>
-<li><strong>更新</strong>：先把数据存到数据库中，成功后，再让缓存失效。</li>
-</ol>
-<p>另外，知名社交网站facebook也在论文<a href="https://link.zhihu.com/?target=https://www.usenix.org/system/files/conference/nsdi13/nsdi13-final170_update.pdf">《Scaling Memcache at Facebook》</a>中提出，他们用的也是先更新数据库，再删缓存的策略。</p>
-<p><strong>这种情况不存在并发问题么？</strong></p>
-<p>不是的。假设这会有两个请求，一个请求A做查询操作，一个请求B做更新操作，那么会有如下情形产生</p>
-<p>（1）缓存刚好失效</p>
-<p>（2）请求A查询数据库，得一个旧值</p>
-<p>（3）请求B将新值写入数据库</p>
-<p>（4）请求B删除缓存</p>
-<p>（5）请求A将查到的旧值写入缓存 ok，如果发生上述情况，确实是会发生脏数据。</p>
-<p><strong>然而，发生这种情况的概率又有多少呢？</strong></p>
-<p>发生上述情况有一个先天性条件，就是步骤（3）的写数据库操作比步骤（2）的读数据库操作耗时更短，才有可能使得步骤（4）先于步骤（5）。</p>
-<p>可是，大家想想，数据库的读操作的速度远快于写操作的（不然做读写分离干嘛，做读写分离的意义就是因为读操作比较快，耗资源少），因此步骤（3）耗时比步骤（2）更短，这一情形很难出现。 假设，有人非要抬杠，有强迫症，一定要解决怎么办？</p>
-<p><strong>如何解决上述并发问题？</strong></p>
-<p>首先，给缓存设有效时间是一种方案。其次，采用策略（2）里给出的异步延时删除策略，保证读请求完成以后，再进行删除操作。</p>
-<p><strong>还有其他造成不一致的原因么？</strong></p>
-<p>有的，这也是缓存更新策略（2）和缓存更新策略（3）都存在的一个问题，如果删缓存失败了怎么办，那不是会有不一致的情况出现么。比如一个写数据请求，然后写入数据库了，删缓存失败了，这会就出现不一致的情况了。这也是缓存更新策略（2）里留下的最后一个疑问。</p>
-<p><strong>如何解决？</strong> 提供一个保障的重试机制即可，这里给出两套方案。</p>
-<p><strong>方案一</strong>： </p>
-<p>流程如下所示</p>
-<ul>
-<li>（1）更新数据库数据；</li>
-<li>（2）缓存因为种种问题删除失败</li>
-<li>（3）将需要删除的key发送至消息队列</li>
-<li>（4）自己消费消息，获得需要删除的key</li>
-<li>（5）继续重试删除操作，直到成功 然而，该方案有一个缺点，对业务线代码造成大量的侵入。于是有了方案二，在方案二中，启动一个订阅程序去订阅数据库的binlog，获得需要操作的数据。在应用程序中，另起一段程序，获得这个订阅程序传来的信息，进行删除缓存操作。</li>
-</ul>
-<p><strong>方案二</strong>：</p>
-<p>流程如下所示：</p>
-<ul>
-<li>（1）更新数据库数据</li>
-<li>（2）数据库会将操作信息写入binlog日志当中</li>
-<li>（3）订阅程序提取出所需要的数据以及key</li>
-<li>（4）另起一段非业务代码，获得该信息</li>
-<li>（5）尝试删除缓存操作，发现删除失败</li>
-<li>（6）将这些信息发送至消息队列</li>
-<li>（7）重新从消息队列中获得该数据，重试操作。</li>
-</ul>
-<p><strong>备注说明：</strong>上述的订阅binlog程序在mysql中有现成的中间件叫canal，可以完成订阅binlog日志的功能。至于oracle中，博主目前不知道有没有现成中间件可以使用。另外，重试机制，博主是采用的是消息队列的方式。如果对一致性要求不是很高，直接在程序中另起一个线程，每隔一段时间去重试即可，这些大家可以灵活自由发挥，只是提供一个思路。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                 
             </div>
@@ -519,7 +458,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/06/23/Redis%E4%B8%8EMysql%E5%8F%8C%E5%86%99%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88%E8%A7%A3%E6%9E%90/">http://example.com/2022/06/23/Redis%E4%B8%8EMysql%E5%8F%8C%E5%86%99%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88%E8%A7%A3%E6%9E%90/</a>
+                    <a href="http://example.com/2022/09/12/numpy/">http://example.com/2022/09/12/numpy/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -556,11 +495,7 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
-                                    <span class="chip bg-color">数据库</span>
-                                </a>
-                            
+                            <span class="chip bg-color">无标签</span>
                         </div>
                     
                 </div>
@@ -603,7 +538,7 @@
         repo: '',
         owner: '',
         admin: null,
-        id: '2022-06-23T19-23-26',
+        id: '2022-09-12T17-02-36',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -629,49 +564,42 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/06/26/52%E6%9D%A1SQL%E4%BC%98%E5%8C%96%E8%A7%84%E5%88%99/">
+                <a href="/2022/09/12/numpy/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="52条SQL优化规则">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
                         
-                        <span class="card-title">52条SQL优化规则</span>
+                        <span class="card-title"></span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            title: numpydate: 2022-09-09author: 祈安categories: 
+- 数据分析
+
+tags:    - numpy
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-26
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-09-12
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/MySQL/" class="post-category">
-                                    MySQL
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            祈安
                             
                         </span>
                     </div>
                 </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/SQL%E8%AF%AD%E5%8F%A5%E4%BC%98%E5%8C%96/">
-                        <span class="chip bg-color">SQL语句优化</span>
-                    </a>
-                    
-                </div>
+
                 
             </div>
         </div>
@@ -682,13 +610,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/06/19/mysql%E9%87%8D%E7%82%B9/">
+                <a href="/2022/07/07/Django%E5%AE%9E%E7%8E%B0websocket/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="MySQL面试">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Django实现websocket">
                         
-                        <span class="card-title">MySQL面试</span>
+                        <span class="card-title">Django实现websocket</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -699,14 +627,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-07
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/MySQL/" class="post-category">
-                                    MySQL
+                            <a href="/categories/Django/" class="post-category">
+                                    Django
                                 </a>
                             
                             
@@ -716,8 +644,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/MySQL%E9%9D%A2%E8%AF%95%E9%87%8D%E7%82%B9/">
-                        <span class="chip bg-color">MySQL面试重点</span>
+                    <a href="/tags/Django%E5%AE%9E%E7%8E%B0websocket/">
+                        <span class="chip bg-color">Django实现websocket</span>
                     </a>
                     
                 </div>
