@@ -263,10 +263,19 @@
                 </a>
                 
                 
+                <a href="/categories/Django/" title="Django: 10">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            style="background-color: #F5EEF8;">Django
+                        <span class="tag-length">10</span>
+                    </span>
+                </a>
+                
+                
                 <a href="/categories/MySQL/" title="MySQL: 3">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #F5EEF8;">MySQL
+                            style="background-color: #D5F5E3;">MySQL
                         <span class="tag-length">3</span>
                     </span>
                 </a>
@@ -275,25 +284,7 @@
                 <a href="/categories/Beautifulsoup4/" title="Beautifulsoup4: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #D5F5E3;">Beautifulsoup4
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/Django/" title="Django: 10">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #E8F8F5;">Django
-                        <span class="tag-length">10</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="数据库: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-active "
-                            style="background-color: #FEF9E7;">数据库
+                            style="background-color: #E8F8F5;">Beautifulsoup4
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -302,8 +293,26 @@
                 <a href="/categories/redis/" title="redis: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #F8F9F9;">redis
+                            style="background-color: #FEF9E7;">redis
                         <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="数据库: 2">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-active "
+                            style="background-color: #F8F9F9;">数据库
+                        <span class="tag-length">2</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/python/" title="python: 5">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            style="background-color: #82E0AA;">python
+                        <span class="tag-length">5</span>
                     </span>
                 </a>
                 
@@ -311,7 +320,7 @@
                 <a href="/categories/Flask/" title="Flask: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #82E0AA;">Flask
+                            style="background-color: #D7BDE2;">Flask
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -320,17 +329,8 @@
                 <a href="/categories/Scrapy/" title="Scrapy: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #D7BDE2;">Scrapy
+                            style="background-color: #A3E4D7;">Scrapy
                         <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/python/" title="python: 5">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #A3E4D7;">python
-                        <span class="tag-length">5</span>
                     </span>
                 </a>
                 
@@ -380,19 +380,19 @@
                 </a>
                 
                 
-                <a href="/categories/Redis/" title="Redis: 1">
+                <a href="/categories/cookie%EF%BC%8Csession%EF%BC%8Ctoken/" title="cookie，session，token: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #F9EBEA;">Redis
+                            style="background-color: #F5EEF8;">cookie，session，token
                         <span class="tag-length">1</span>
                     </span>
                 </a>
                 
                 
-                <a href="/categories/cookie%EF%BC%8Csession%EF%BC%8Ctoken/" title="cookie，session，token: 1">
+                <a href="/categories/Redis/" title="Redis: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #F5EEF8;">cookie，session，token
+                            style="background-color: #F9EBEA;">Redis
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -417,6 +417,57 @@
 
     <article id="articles" class="container articles">
         <div class="row tags-posts">
+            
+            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2022/09/18/mysql%E7%9A%84%E6%8E%92%E5%BA%8F%E5%9C%A8%E5%BA%95%E5%B1%82%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0/">
+                        <div class="card-image tag-image">
+                            
+                            
+                            <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="MySQL的排序在底层是如何实现">
+                            
+                            <span class="card-title">MySQL的排序在底层是如何实现</span>
+                        </div>
+                    </a>
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                
+
+
+前言在日常的 MySQL 数据库使用过程中，我们通常会遇见排序的需求，例如：按照消费金额排序，按照字母排序，等等。
+下面我们以一个简单的订单表为例：
+12345678910111213CREATE TABLE `sp_order` (
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-09-18
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
+                                    数据库
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/MySQL/">
+                            <span class="chip bg-color">MySQL</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
             
             <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
@@ -547,7 +598,7 @@ Redis与Mysql双写一致性方案解析
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">91.6k</span>&nbsp;字
+                class="white-color">94.7k</span>&nbsp;字
             
             
             
