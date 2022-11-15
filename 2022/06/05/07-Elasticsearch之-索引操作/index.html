@@ -357,7 +357,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    314
+                    316
                 </div>
                 
 
@@ -373,6 +373,9 @@
         </div>
         <hr class="clearfix">
 
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
         
 
         
@@ -391,13 +394,50 @@
 <p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.5/indices.html>">https://www.elastic.co/guide/en/elasticsearch/reference/7.5/indices.html&gt;</a></p>
 <p>官方2版本的中文文档</p>
 <p><a target="_blank" rel="noopener" href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/index-settings.html">https://www.elastic.co/guide/cn/elasticsearch/guide/current/index-settings.html</a></p>
-<h2 id="一-索引初始化"><a href="#一-索引初始化" class="headerlink" title="一 索引初始化"></a>一 索引初始化</h2><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#新建一个jyc2的索引，索引分片数量为5，索引副本数量为1</span></span><br><span class="line">PUT jyc2</span><br><span class="line">{</span><br><span class="line">  <span class="string">"settings"</span>: {</span><br><span class="line">    <span class="string">"index"</span>:{</span><br><span class="line">      <span class="string">"number_of_shards"</span>:<span class="number">5</span>,</span><br><span class="line">      <span class="string">"number_of_replicas"</span>:<span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">number_of_shards</span></span><br><span class="line"><span class="string">每个索引的主分片数，默认值是 5 。这个配置在索引创建后不能修改。</span></span><br><span class="line"><span class="string">number_of_replicas</span></span><br><span class="line"><span class="string">每个主分片的副本数，默认值是 1 。对于活动的索引库，这个配置可以随时修改。</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="一-索引初始化"><a href="#一-索引初始化" class="headerlink" title="一 索引初始化"></a>一 索引初始化</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment">#新建一个jyc2的索引，索引分片数量为5，索引副本数量为1</span>
+PUT jyc2
+<span class="token punctuation">{</span>
+  <span class="token string">"settings"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"index"</span><span class="token punctuation">:</span><span class="token punctuation">{</span>
+      <span class="token string">"number_of_shards"</span><span class="token punctuation">:</span><span class="token number">5</span><span class="token punctuation">,</span>
+      <span class="token string">"number_of_replicas"</span><span class="token punctuation">:</span><span class="token number">1</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token triple-quoted-string string">'''
+number_of_shards
+每个索引的主分片数，默认值是 5 。这个配置在索引创建后不能修改。
+number_of_replicas
+每个主分片的副本数，默认值是 1 。对于活动的索引库，这个配置可以随时修改。
+'''</span></code></pre>
 
-<h2 id="二-查询索引配置"><a href="#二-查询索引配置" class="headerlink" title="二 查询索引配置"></a>二 查询索引配置</h2><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#获取jyc2索引的配置信息</span></span><br><span class="line">GET jyc2/_settings</span><br><span class="line"><span class="comment">#获取所有索引的配置信息</span></span><br><span class="line">GET _<span class="built_in">all</span>/_settings</span><br><span class="line"><span class="comment">#同上</span></span><br><span class="line">GET _settings</span><br><span class="line"><span class="comment">#获取lqz和lqz2索引的配置信息</span></span><br><span class="line">GET jyc,jyc2/_settings</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="二-查询索引配置"><a href="#二-查询索引配置" class="headerlink" title="二 查询索引配置"></a>二 查询索引配置</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment">#获取jyc2索引的配置信息</span>
+GET jyc2<span class="token operator">/</span>_settings
+<span class="token comment">#获取所有索引的配置信息</span>
+GET _all<span class="token operator">/</span>_settings
+<span class="token comment">#同上</span>
+GET _settings
+<span class="token comment">#获取lqz和lqz2索引的配置信息</span>
+GET jyc<span class="token punctuation">,</span>jyc2<span class="token operator">/</span>_settings</code></pre>
 
-<h2 id="三-更新索引"><a href="#三-更新索引" class="headerlink" title="三 更新索引"></a>三 更新索引</h2><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#修改索引副本数量为2</span></span><br><span class="line">PUT jyc/_settings</span><br><span class="line">{</span><br><span class="line">  <span class="string">"number_of_replicas"</span>: <span class="number">2</span></span><br><span class="line">}</span><br><span class="line"><span class="comment">#如遇到报错：cluster_block_exception，因为</span></span><br><span class="line"><span class="comment">#这是由于ES新节点的数据目录data存储空间不足，导致从master主节点接收同步数据的时候失败，此时ES集群为了保护数据，会自动把索引分片index置为只读read-only</span></span><br><span class="line">PUT  _<span class="built_in">all</span>/_settings</span><br><span class="line">{</span><br><span class="line"><span class="string">"index"</span>: {</span><br><span class="line">  <span class="string">"blocks"</span>: {</span><br><span class="line">    <span class="string">"read_only_allow_delete"</span>: false</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="三-更新索引"><a href="#三-更新索引" class="headerlink" title="三 更新索引"></a>三 更新索引</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment">#修改索引副本数量为2</span>
+PUT jyc<span class="token operator">/</span>_settings
+<span class="token punctuation">{</span>
+  <span class="token string">"number_of_replicas"</span><span class="token punctuation">:</span> <span class="token number">2</span>
+<span class="token punctuation">}</span>
+<span class="token comment">#如遇到报错：cluster_block_exception，因为</span>
+<span class="token comment">#这是由于ES新节点的数据目录data存储空间不足，导致从master主节点接收同步数据的时候失败，此时ES集群为了保护数据，会自动把索引分片index置为只读read-only</span>
+PUT  _all<span class="token operator">/</span>_settings
+<span class="token punctuation">{</span>
+<span class="token string">"index"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  <span class="token string">"blocks"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"read_only_allow_delete"</span><span class="token punctuation">:</span> false
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 
-<h2 id="四-删除索引"><a href="#四-删除索引" class="headerlink" title="四 删除索引"></a>四 删除索引</h2><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#删除jyc索引</span></span><br><span class="line">DELETE jyc</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="四-删除索引"><a href="#四-删除索引" class="headerlink" title="四 删除索引"></a>四 删除索引</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment">#删除jyc索引</span>
+DELETE jyc</code></pre>
                 
             </div>
             <hr/>
@@ -656,7 +696,7 @@
 
         // we need a <pre> tag workaround.
         // otherwise the text inside "pre" loses all the line breaks!
-        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
             newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
         }
 
@@ -674,7 +714,7 @@
 
 
 <!-- 代码块功能依赖 -->
-<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFunction.js"></script>
 
 <!-- 代码语言 -->
 
@@ -690,6 +730,12 @@
 
 <script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
 
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
@@ -861,7 +907,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">103.2k</span>&nbsp;字
+                class="white-color">103.7k</span>&nbsp;字
             
             
             

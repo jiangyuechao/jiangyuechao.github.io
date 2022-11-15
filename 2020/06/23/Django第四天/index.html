@@ -357,7 +357,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    590
+                    586
                 </div>
                 
 
@@ -374,6 +374,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -381,17 +384,83 @@
             <div id="articleContent">
                 <span id="more"></span>
 
-<h3 id="路由层"><a href="#路由层" class="headerlink" title="路由层"></a>路由层</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> 路由匹配, urls.py中</span><br><span class="line"></span><br><span class="line"><span class="comment"># APPEND_SLASH = False 控制django是否自动加斜杠匹配</span></span><br><span class="line"></span><br><span class="line">url(<span class="string">r'^testadd/$'</span>, views.testadd)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 匹配规则：从上到下只要正则表达式匹配成功，就不会往下匹配了</span></span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">	get请求的传参方式？</span></span><br><span class="line"><span class="string">		http://127.0.0.1:8000/test/?a=1</span></span><br><span class="line"><span class="string">		http://127.0.0.1:8000/test/1</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="路由层"><a href="#路由层" class="headerlink" title="路由层"></a>路由层</h3><pre class="language-python" data-language="python"><code class="language-python"><span class="token number">1.</span> 路由匹配<span class="token punctuation">,</span> urls<span class="token punctuation">.</span>py中
 
-<h3 id="无名分组和有名分组"><a href="#无名分组和有名分组" class="headerlink" title="无名分组和有名分组"></a>无名分组和有名分组</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 无名分组</span></span><br><span class="line">url(<span class="string">r'^test/(\d+)'</span>, views.test),</span><br><span class="line"><span class="comment"># 会把括号中匹配的数字当成位置参数传给视图函数</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 有名分组</span></span><br><span class="line">url(<span class="string">r'^test/(?P&lt;aaaa&gt;\d{2})$'</span>, views.test), <span class="comment"># # 会把括号中匹配的数字当成关键字参数传给视图函数</span></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<span class="token comment"># APPEND_SLASH = False 控制django是否自动加斜杠匹配</span>
 
-<h3 id="反向解析"><a href="#反向解析" class="headerlink" title="反向解析"></a>反向解析</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 反向解析其实就是通过一个路由的别名，可以得到该别名所在的这行路由的完整地址</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 路由是可以起别名的</span></span><br><span class="line"><span class="comment"># 反向解析</span></span><br><span class="line">url(<span class="string">r'^v1/v2/v3/v4/v5/test/'</span>, views.test, name=<span class="string">'test'</span>),</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> reverse</span><br><span class="line"><span class="comment"># 1. 后端反向解析</span></span><br><span class="line"><span class="built_in">print</span>(reverse(<span class="string">'test'</span>)) <span class="comment"># /test/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 带参数的反向解析</span></span><br><span class="line"><span class="comment"># 1. 后端反向解析</span></span><br><span class="line"><span class="built_in">print</span>(reverse(<span class="string">'test'</span>, args=(<span class="number">11111</span>, ))) <span class="comment"># /test/</span></span><br><span class="line"><span class="built_in">print</span>(reverse(<span class="string">'test'</span>, kwargs={<span class="string">'aaa'</span>: <span class="number">1111</span>})) <span class="comment"># /test/</span></span><br><span class="line"></span><br><span class="line"><span class="string">'''无名有名不能混合使用，可以单个多次使用'''</span></span><br><span class="line"><span class="comment"># url(r'^test/(\d+)/(\d+)/(\d+)/(\d+)', views.test, name='test'),</span></span><br><span class="line">    url(<span class="string">r'^test/(?P&lt;aaa&gt;\d+)/(?P&lt;bbb&gt;\d+)/(?P&lt;ccc&gt;\d+)/(\d+)'</span>, views.test, name=<span class="string">'test'</span>),</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+url<span class="token punctuation">(</span><span class="token string">r'^testadd/$'</span><span class="token punctuation">,</span> views<span class="token punctuation">.</span>testadd<span class="token punctuation">)</span>
 
-<h3 id="路由分发"><a href="#路由分发" class="headerlink" title="路由分发"></a>路由分发</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 重点</span></span><br><span class="line">以后我们的django项目会越来越大，那么就会导致总路由文件会越来越大，就会非常难维护，我们会把总路由分开到不同的应用下面</span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">	django的每一个应用都支持有自己的</span></span><br><span class="line"><span class="string">		urls.py</span></span><br><span class="line"><span class="string">		templates</span></span><br><span class="line"><span class="string">		static</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 怎么样把这些应用串起来？就是使用路由分发。</span></span><br><span class="line"><span class="comment"># 使用路由分发一般都是多个应用</span></span><br><span class="line"></span><br><span class="line"> <span class="comment"># 路由分发</span></span><br><span class="line">    <span class="string">'''第一种方式'''</span></span><br><span class="line">    <span class="keyword">from</span> app01 <span class="keyword">import</span> urls <span class="keyword">as</span> app01_urls</span><br><span class="line">	<span class="keyword">from</span> app02 <span class="keyword">import</span> urls <span class="keyword">as</span> app02_urls</span><br><span class="line">    url(<span class="string">r'^app01/'</span>, include(app01_urls)),</span><br><span class="line">    url(<span class="string">r'^app02/'</span>, include(app02_urls)),</span><br><span class="line"> <span class="string">'''</span></span><br><span class="line"><span class="string"> 	强调：路由分发时，总路由第一个参数一定不能加$</span></span><br><span class="line"><span class="string"> '''</span></span><br><span class="line">	</span><br><span class="line">    <span class="comment"># 第二种方式</span></span><br><span class="line">	url(<span class="string">r'^app01/'</span>, include(<span class="string">'app01.urls'</span>)),</span><br><span class="line">    url(<span class="string">r'^app02/'</span>, include(<span class="string">'app02.urls'</span>)),</span><br></pre></td></tr></tbody></table></figure>
+<span class="token comment"># 匹配规则：从上到下只要正则表达式匹配成功，就不会往下匹配了</span>
 
-<h3 id="名称空间"><a href="#名称空间" class="headerlink" title="名称空间"></a>名称空间</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 当多个应用出现相同的别名时，反向解析就没办法识别了</span></span><br><span class="line">  url(<span class="string">r'^app01/'</span>, include(<span class="string">'app01.urls'</span>, namespace=<span class="string">'app01'</span>)),</span><br><span class="line">  url(<span class="string">r'^app02/'</span>, include(<span class="string">'app02.urls'</span>, namespace=<span class="string">'app02'</span>)),</span><br><span class="line"> </span><br><span class="line"> <span class="built_in">print</span>(reverse(<span class="string">'app01:index'</span>))</span><br><span class="line"> <span class="built_in">print</span>(reverse(<span class="string">'app02:index'</span>))</span><br></pre></td></tr></tbody></table></figure>
+<span class="token triple-quoted-string string">'''
+	get请求的传参方式？
+		http://127.0.0.1:8000/test/?a=1
+		http://127.0.0.1:8000/test/1
+'''</span></code></pre>
 
-<h3 id="虚拟环境"><a href="#虚拟环境" class="headerlink" title="虚拟环境"></a>虚拟环境</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 针对不同的项目，创建出来一个新的python环境，类似于是一个新的python解释器</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="无名分组和有名分组"><a href="#无名分组和有名分组" class="headerlink" title="无名分组和有名分组"></a>无名分组和有名分组</h3><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># 无名分组</span>
+url<span class="token punctuation">(</span><span class="token string">r'^test/(\d+)'</span><span class="token punctuation">,</span> views<span class="token punctuation">.</span>test<span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token comment"># 会把括号中匹配的数字当成位置参数传给视图函数</span>
+
+<span class="token comment"># 有名分组</span>
+url<span class="token punctuation">(</span><span class="token string">r'^test/(?P&lt;aaaa&gt;\d{2})$'</span><span class="token punctuation">,</span> views<span class="token punctuation">.</span>test<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment"># # 会把括号中匹配的数字当成关键字参数传给视图函数</span>
+</code></pre>
+
+<h3 id="反向解析"><a href="#反向解析" class="headerlink" title="反向解析"></a>反向解析</h3><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># 反向解析其实就是通过一个路由的别名，可以得到该别名所在的这行路由的完整地址</span>
+
+<span class="token comment"># 路由是可以起别名的</span>
+<span class="token comment"># 反向解析</span>
+url<span class="token punctuation">(</span><span class="token string">r'^v1/v2/v3/v4/v5/test/'</span><span class="token punctuation">,</span> views<span class="token punctuation">.</span>test<span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">'test'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+
+<span class="token keyword">from</span> django<span class="token punctuation">.</span>shortcuts <span class="token keyword">import</span> reverse
+<span class="token comment"># 1. 后端反向解析</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>reverse<span class="token punctuation">(</span><span class="token string">'test'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment"># /test/</span>
+
+<span class="token comment"># 带参数的反向解析</span>
+<span class="token comment"># 1. 后端反向解析</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>reverse<span class="token punctuation">(</span><span class="token string">'test'</span><span class="token punctuation">,</span> args<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">11111</span><span class="token punctuation">,</span> <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment"># /test/</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>reverse<span class="token punctuation">(</span><span class="token string">'test'</span><span class="token punctuation">,</span> kwargs<span class="token operator">=</span><span class="token punctuation">{</span><span class="token string">'aaa'</span><span class="token punctuation">:</span> <span class="token number">1111</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment"># /test/</span>
+
+<span class="token triple-quoted-string string">'''无名有名不能混合使用，可以单个多次使用'''</span>
+<span class="token comment"># url(r'^test/(\d+)/(\d+)/(\d+)/(\d+)', views.test, name='test'),</span>
+    url<span class="token punctuation">(</span><span class="token string">r'^test/(?P&lt;aaa&gt;\d+)/(?P&lt;bbb&gt;\d+)/(?P&lt;ccc&gt;\d+)/(\d+)'</span><span class="token punctuation">,</span> views<span class="token punctuation">.</span>test<span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">'test'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+</code></pre>
+
+<h3 id="路由分发"><a href="#路由分发" class="headerlink" title="路由分发"></a>路由分发</h3><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># 重点</span>
+以后我们的django项目会越来越大，那么就会导致总路由文件会越来越大，就会非常难维护，我们会把总路由分开到不同的应用下面
+
+<span class="token triple-quoted-string string">'''
+	django的每一个应用都支持有自己的
+		urls.py
+		templates
+		static
+'''</span>
+
+<span class="token comment"># 怎么样把这些应用串起来？就是使用路由分发。</span>
+<span class="token comment"># 使用路由分发一般都是多个应用</span>
+
+ <span class="token comment"># 路由分发</span>
+    <span class="token triple-quoted-string string">'''第一种方式'''</span>
+    <span class="token keyword">from</span> app01 <span class="token keyword">import</span> urls <span class="token keyword">as</span> app01_urls
+	<span class="token keyword">from</span> app02 <span class="token keyword">import</span> urls <span class="token keyword">as</span> app02_urls
+    url<span class="token punctuation">(</span><span class="token string">r'^app01/'</span><span class="token punctuation">,</span> include<span class="token punctuation">(</span>app01_urls<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    url<span class="token punctuation">(</span><span class="token string">r'^app02/'</span><span class="token punctuation">,</span> include<span class="token punctuation">(</span>app02_urls<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+ <span class="token triple-quoted-string string">'''
+ 	强调：路由分发时，总路由第一个参数一定不能加$
+ '''</span>
+	
+    <span class="token comment"># 第二种方式</span>
+	url<span class="token punctuation">(</span><span class="token string">r'^app01/'</span><span class="token punctuation">,</span> include<span class="token punctuation">(</span><span class="token string">'app01.urls'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    url<span class="token punctuation">(</span><span class="token string">r'^app02/'</span><span class="token punctuation">,</span> include<span class="token punctuation">(</span><span class="token string">'app02.urls'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span></code></pre>
+
+<h3 id="名称空间"><a href="#名称空间" class="headerlink" title="名称空间"></a>名称空间</h3><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># 当多个应用出现相同的别名时，反向解析就没办法识别了</span>
+  url<span class="token punctuation">(</span><span class="token string">r'^app01/'</span><span class="token punctuation">,</span> include<span class="token punctuation">(</span><span class="token string">'app01.urls'</span><span class="token punctuation">,</span> namespace<span class="token operator">=</span><span class="token string">'app01'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  url<span class="token punctuation">(</span><span class="token string">r'^app02/'</span><span class="token punctuation">,</span> include<span class="token punctuation">(</span><span class="token string">'app02.urls'</span><span class="token punctuation">,</span> namespace<span class="token operator">=</span><span class="token string">'app02'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+ 
+ <span class="token keyword">print</span><span class="token punctuation">(</span>reverse<span class="token punctuation">(</span><span class="token string">'app01:index'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+ <span class="token keyword">print</span><span class="token punctuation">(</span>reverse<span class="token punctuation">(</span><span class="token string">'app02:index'</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+
+<h3 id="虚拟环境"><a href="#虚拟环境" class="headerlink" title="虚拟环境"></a>虚拟环境</h3><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># 针对不同的项目，创建出来一个新的python环境，类似于是一个新的python解释器</span></code></pre>
 
 
 
@@ -686,7 +755,7 @@
 
         // we need a <pre> tag workaround.
         // otherwise the text inside "pre" loses all the line breaks!
-        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
             newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
         }
 
@@ -704,7 +773,7 @@
 
 
 <!-- 代码块功能依赖 -->
-<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFunction.js"></script>
 
 <!-- 代码语言 -->
 
@@ -720,6 +789,12 @@
 
 <script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
 
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
@@ -891,7 +966,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">103.2k</span>&nbsp;字
+                class="white-color">103.7k</span>&nbsp;字
             
             
             

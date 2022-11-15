@@ -357,7 +357,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    218
+                    217
                 </div>
                 
 
@@ -374,6 +374,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -382,7 +385,37 @@
                 <span id="more"></span>
 
 
-<h3 id="必会十三招"><a href="#必会十三招" class="headerlink" title="必会十三招"></a>必会十三招</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">1.all()            所有元素</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">2.filter()         过滤</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">   我们在利用主键字段筛选数据时，可以不考虑主键字段叫什么，直接使用pk代替</span></span><br><span class="line"><span class="string">   </span></span><br><span class="line"><span class="string">3.get()</span></span><br><span class="line"><span class="string">4.values()         </span></span><br><span class="line"><span class="string">   获取指定字段对应的数据，返回的结果是queryset对象(列表套字典的形式)</span></span><br><span class="line"><span class="string">   </span></span><br><span class="line"><span class="string">5.values_list()</span></span><br><span class="line"><span class="string">   获取指定字段对应的数据，返回的结果是queryset对象(列表套元祖的形式)</span></span><br><span class="line"><span class="string">   </span></span><br><span class="line"><span class="string">6.count()          统计所查询数据的个数</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">7.first()          所查询数据的第一个 </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">8.last()           所查询数据的最后一个</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">9.order_by()       默认是升序，在字段前加上负号即可改为降序</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">10.reverse()       生效前提是必须已经排序过了的</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">11.exclude()       排除什么在外</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">12.distinct()      去重(主键也得相同)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">13.exist()         判断数据是否有值，结果返回布尔值</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="必会十三招"><a href="#必会十三招" class="headerlink" title="必会十三招"></a>必会十三招</h3><pre class="language-python" data-language="python"><code class="language-python"><span class="token triple-quoted-string string">"""
+1.all()            所有元素
+
+2.filter()         过滤
+
+   我们在利用主键字段筛选数据时，可以不考虑主键字段叫什么，直接使用pk代替
+   
+3.get()
+4.values()         
+   获取指定字段对应的数据，返回的结果是queryset对象(列表套字典的形式)
+   
+5.values_list()
+   获取指定字段对应的数据，返回的结果是queryset对象(列表套元祖的形式)
+   
+6.count()          统计所查询数据的个数
+
+7.first()          所查询数据的第一个 
+
+8.last()           所查询数据的最后一个
+
+9.order_by()       默认是升序，在字段前加上负号即可改为降序
+
+10.reverse()       生效前提是必须已经排序过了的
+
+11.exclude()       排除什么在外
+
+12.distinct()      去重(主键也得相同)
+
+13.exist()         判断数据是否有值，结果返回布尔值
+
+"""</span></code></pre>
 
 
                 
@@ -643,7 +676,7 @@
 
         // we need a <pre> tag workaround.
         // otherwise the text inside "pre" loses all the line breaks!
-        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
             newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
         }
 
@@ -661,7 +694,7 @@
 
 
 <!-- 代码块功能依赖 -->
-<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFunction.js"></script>
 
 <!-- 代码语言 -->
 
@@ -677,6 +710,12 @@
 
 <script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
 
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
@@ -848,7 +887,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">103.2k</span>&nbsp;字
+                class="white-color">103.7k</span>&nbsp;字
             
             
             

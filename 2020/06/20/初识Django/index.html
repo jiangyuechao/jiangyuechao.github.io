@@ -357,7 +357,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    884
+                    891
                 </div>
                 
 
@@ -374,6 +374,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -381,19 +384,151 @@
             <div id="articleContent">
                 <span id="more"></span>
 
-<h3 id="web应用概念"><a href="#web应用概念" class="headerlink" title="web应用概念"></a>web应用概念</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">http的默认端口号：<span class="number">80</span></span><br><span class="line">https的默认端口号：<span class="number">443</span></span><br><span class="line"></span><br><span class="line"><span class="number">1.</span> web应用是什么？</span><br><span class="line">	通过浏览器访问的应用都是</span><br><span class="line"><span class="number">2.</span> 软件开发模式：</span><br><span class="line">	服务端需要具备的特征：<span class="number">24</span>小时对外提供服务</span><br><span class="line">	C/S：client: 客户端， server: 服务端</span><br><span class="line">    B/S：browser: 浏览器，server：服务端</span><br><span class="line">    <span class="comment"># 本质上B/S架构也是C/S架构</span></span><br><span class="line"><span class="number">3.</span> Web应用程序的优点</span><br><span class="line">	<span class="number">1.</span> 只需要一个浏览器</span><br><span class="line">    <span class="number">2.</span> 节省资源</span><br><span class="line">    <span class="number">3.</span> 客户端不需要主动更新，服务端更新即可</span><br><span class="line"><span class="number">4.</span> Web应用程序的缺点</span><br><span class="line">	<span class="number">1.</span> 一旦服务端出现问题，客户端立马受影响</span><br><span class="line">    <span class="number">2.</span> 兼容性问题</span><br><span class="line"></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    	web框架：就是在固定的位置书写固定的代码</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    python中的三大主流框架：</span><br><span class="line">    	<span class="number">1.</span> Django框架：</span><br><span class="line">        	大而全，类似于航空母舰</span><br><span class="line">        <span class="number">2.</span> flask框架：</span><br><span class="line">        	小而精，依赖于第三方模块</span><br><span class="line">         <span class="number">3.</span> tornado框架：</span><br><span class="line">        	异步高性能框架</span><br><span class="line">    </span><br></pre></td></tr></tbody></table></figure>
+<h3 id="web应用概念"><a href="#web应用概念" class="headerlink" title="web应用概念"></a>web应用概念</h3><pre class="language-python" data-language="python"><code class="language-python">http的默认端口号：<span class="token number">80</span>
+https的默认端口号：<span class="token number">443</span>
 
-<h3 id="MVC和MTV模式"><a href="#MVC和MTV模式" class="headerlink" title="MVC和MTV模式"></a>MVC和MTV模式</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> MVC:</span><br><span class="line">    	M: model(跟数据打交道的)</span><br><span class="line">        V: View(视图， 页面)</span><br><span class="line">        C: controller(控制器，主要写逻辑的)</span><br><span class="line">        S:service (服务层)</span><br><span class="line"><span class="number">2.</span> MTV:</span><br><span class="line">    	M: model(模型层：跟数据相关的)</span><br><span class="line">        T:template(模板：html页面)  </span><br><span class="line">        V：view(主要写逻辑的)</span><br></pre></td></tr></tbody></table></figure>
+<span class="token number">1.</span> web应用是什么？
+	通过浏览器访问的应用都是
+<span class="token number">2.</span> 软件开发模式：
+	服务端需要具备的特征：<span class="token number">24</span>小时对外提供服务
+	C<span class="token operator">/</span>S：client<span class="token punctuation">:</span> 客户端， server<span class="token punctuation">:</span> 服务端
+    B<span class="token operator">/</span>S：browser<span class="token punctuation">:</span> 浏览器，server：服务端
+    <span class="token comment"># 本质上B/S架构也是C/S架构</span>
+<span class="token number">3.</span> Web应用程序的优点
+	<span class="token number">1.</span> 只需要一个浏览器
+    <span class="token number">2.</span> 节省资源
+    <span class="token number">3.</span> 客户端不需要主动更新，服务端更新即可
+<span class="token number">4.</span> Web应用程序的缺点
+	<span class="token number">1.</span> 一旦服务端出现问题，客户端立马受影响
+    <span class="token number">2.</span> 兼容性问题
 
-<h3 id="django下载与安装"><a href="#django下载与安装" class="headerlink" title="django下载与安装"></a>django下载与安装</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> django的版本问题：</span><br><span class="line">	django1.x: 老项目再用</span><br><span class="line">    django2.x：新项目再用</span><br><span class="line">    django3.x：刚出来的</span><br><span class="line">    </span><br><span class="line"> <span class="comment"># 我们学习使用django1.x</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装django</span></span><br><span class="line">pip3 install django (最新版本)</span><br><span class="line">pip3 install django==<span class="number">1.1</span><span class="number">.29</span></span><br><span class="line"></span><br><span class="line">如何验证django是否安装成功？</span><br><span class="line"><span class="comment"># 在cmd中， 输入django-admin，如果有输出信息，就代表安装成功</span></span><br><span class="line">    </span><br></pre></td></tr></tbody></table></figure>
+    <span class="token triple-quoted-string string">'''
+    	web框架：就是在固定的位置书写固定的代码
+    '''</span>
+    python中的三大主流框架：
+    	<span class="token number">1.</span> Django框架：
+        	大而全，类似于航空母舰
+        <span class="token number">2.</span> flask框架：
+        	小而精，依赖于第三方模块
+         <span class="token number">3.</span> tornado框架：
+        	异步高性能框架
+    </code></pre>
 
-<h3 id="创建django项目"><a href="#创建django项目" class="headerlink" title="创建django项目"></a>创建django项目</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''你可以提前切换到项目要保存的位置'''</span></span><br><span class="line"><span class="number">1.</span> 命令行创建</span><br><span class="line">	django-admin startproject 项目名</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> pycharm创建</span><br><span class="line">    </span><br><span class="line"><span class="number">3.</span> 命令行创建和pycharm创建的区别:</span><br><span class="line">     <span class="number">1.</span> pycharm创建：</span><br><span class="line">        	自动生成templates文件夹</span><br><span class="line">        settings.py文件：</span><br><span class="line">        	<span class="string">'''</span></span><br><span class="line"><span class="string">        		TEMPLATES = [</span></span><br><span class="line"><span class="string">                            {</span></span><br><span class="line"><span class="string">                                'BACKEND': 'django.template.backends.django.DjangoTemplates',</span></span><br><span class="line"><span class="string">                                'DIRS': [os.path.join(BASE_DIR, 'templates')]</span></span><br><span class="line"><span class="string">                                </span></span><br><span class="line"><span class="string">                                }</span></span><br><span class="line"><span class="string">        	'''</span></span><br><span class="line">     <span class="number">2.</span> 命令行创建：</span><br><span class="line">    		没有templates文件夹</span><br><span class="line">        settings.py文件：</span><br><span class="line">        	<span class="string">'''</span></span><br><span class="line"><span class="string">        		TEMPLATES = [</span></span><br><span class="line"><span class="string">    					{</span></span><br><span class="line"><span class="string">                            'BACKEND': 'django.template.backends.django.DjangoTemplates',</span></span><br><span class="line"><span class="string">                            'DIRS': [],</span></span><br><span class="line"><span class="string">                            }</span></span><br><span class="line"><span class="string">             ]</span></span><br><span class="line"><span class="string">        	'''</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="MVC和MTV模式"><a href="#MVC和MTV模式" class="headerlink" title="MVC和MTV模式"></a>MVC和MTV模式</h3><pre class="language-python" data-language="python"><code class="language-python"><span class="token number">1.</span> MVC<span class="token punctuation">:</span>
+    	M<span class="token punctuation">:</span> model<span class="token punctuation">(</span>跟数据打交道的<span class="token punctuation">)</span>
+        V<span class="token punctuation">:</span> View<span class="token punctuation">(</span>视图， 页面<span class="token punctuation">)</span>
+        C<span class="token punctuation">:</span> controller<span class="token punctuation">(</span>控制器，主要写逻辑的<span class="token punctuation">)</span>
+        S<span class="token punctuation">:</span>service <span class="token punctuation">(</span>服务层<span class="token punctuation">)</span>
+<span class="token number">2.</span> MTV<span class="token punctuation">:</span>
+    	M<span class="token punctuation">:</span> model<span class="token punctuation">(</span>模型层：跟数据相关的<span class="token punctuation">)</span>
+        T<span class="token punctuation">:</span>template<span class="token punctuation">(</span>模板：html页面<span class="token punctuation">)</span>  
+        V：view<span class="token punctuation">(</span>主要写逻辑的<span class="token punctuation">)</span></code></pre>
 
-<h3 id="启动django项目"><a href="#启动django项目" class="headerlink" title="启动django项目"></a>启动django项目</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''前提：先切换到manage.py所在的文件夹下面'''</span></span><br><span class="line"><span class="number">1.</span> 命令行启动</span><br><span class="line">	python3 manage.py runserver</span><br><span class="line">    python3 manage.py runserver <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8080</span></span><br><span class="line">    python3 manage.py runserver <span class="number">8080</span></span><br><span class="line">    </span><br><span class="line">    <span class="string">'''django的默认端口号：8000'''</span></span><br><span class="line"><span class="number">2.</span> pycharm启动</span><br><span class="line">	点击pycharm绿色按钮</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="django下载与安装"><a href="#django下载与安装" class="headerlink" title="django下载与安装"></a>django下载与安装</h3><pre class="language-python" data-language="python"><code class="language-python"><span class="token number">1.</span> django的版本问题：
+	django1<span class="token punctuation">.</span>x<span class="token punctuation">:</span> 老项目再用
+    django2<span class="token punctuation">.</span>x：新项目再用
+    django3<span class="token punctuation">.</span>x：刚出来的
+    
+ <span class="token comment"># 我们学习使用django1.x</span>
 
-<h3 id="创建应用"><a href="#创建应用" class="headerlink" title="创建应用"></a>创建应用</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 应用：application  app</span></span><br><span class="line"></span><br><span class="line">我们刚刚创建的项目就类似于是一所大学，而创建的应用就类似于大学里面的二级学院</span><br><span class="line"></span><br><span class="line">eg：</span><br><span class="line">	用户模块  user</span><br><span class="line">    订单模块  order</span><br><span class="line">    收货地址管理 :address</span><br><span class="line">    ...</span><br><span class="line">    </span><br><span class="line">如何创建应用？</span><br><span class="line">	<span class="number">1.</span> 命令行创建</span><br><span class="line">    	<span class="comment"># python manage.py startapp 应用名</span></span><br><span class="line">        <span class="string">'''</span></span><br><span class="line"><span class="string">        	应用名：最好见名知意，就命名为：app01, app02...</span></span><br><span class="line"><span class="string">        '''</span></span><br><span class="line">        <span class="comment"># 一个django项目至少要有一个应用</span></span><br><span class="line">    <span class="number">2.</span> pycharm创建</span><br><span class="line">    	 Tools =&gt; run manage.py task</span><br><span class="line">    <span class="number">3.</span> 应用创建完成之后，第一件事去配置文件中注册应用</span><br><span class="line">    <span class="comment">###################################################</span></span><br><span class="line">        INSTALLED_APPS = [</span><br><span class="line">            <span class="string">'django.contrib.admin'</span>,</span><br><span class="line">            <span class="string">'django.contrib.auth'</span>,</span><br><span class="line">            <span class="string">'django.contrib.contenttypes'</span>,</span><br><span class="line">            <span class="string">'django.contrib.sessions'</span>,</span><br><span class="line">            <span class="string">'django.contrib.messages'</span>,</span><br><span class="line">            <span class="string">'django.contrib.staticfiles'</span>,</span><br><span class="line">            <span class="string">'app01'</span>,</span><br><span class="line">            <span class="string">'app02'</span></span><br><span class="line">    ]</span><br><span class="line">    <span class="comment">###################################################</span></span><br></pre></td></tr></tbody></table></figure>
+<span class="token comment"># 安装django</span>
+pip3 install django <span class="token punctuation">(</span>最新版本<span class="token punctuation">)</span>
+pip3 install django<span class="token operator">==</span><span class="token number">1.1</span><span class="token number">.29</span>
 
-<h3 id="主要文件介绍"><a href="#主要文件介绍" class="headerlink" title="主要文件介绍"></a>主要文件介绍</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">mysite1  <span class="comment"># 项目名</span></span><br><span class="line">    app01  <span class="comment"># 应用名</span></span><br><span class="line">        migrations <span class="comment"># 迁移数据库的时候，会把迁移记录保存到这里来</span></span><br><span class="line">        	__init__.py</span><br><span class="line">        admin.py   <span class="comment"># django自带的后台管理系统</span></span><br><span class="line">        apps.py    <span class="comment"># 忽略</span></span><br><span class="line">        models.py  <span class="comment"># 模型层，以后跟数据库相关的都在这个里面</span></span><br><span class="line">        tests.py   <span class="comment"># 测试脚本</span></span><br><span class="line">        views.py   <span class="comment"># view层，主要用来写逻辑的</span></span><br><span class="line">mysite1</span><br><span class="line">    __init__.py</span><br><span class="line">    settings.py   <span class="comment"># 整个django项目的全局配置文件</span></span><br><span class="line">    urls.py       <span class="comment"># 路由层，写的是路径与函数的对应关系</span></span><br><span class="line">    wsgi.py		  <span class="comment"># wsgiref服务器， WSGI协议，uwsgi服务器</span></span><br><span class="line">templates         <span class="comment"># 写html页面的地方</span></span><br><span class="line">db.sqlite3        <span class="comment"># django自带的小型数据库， mysql，oracle</span></span><br><span class="line">manage.py		  <span class="comment"># 启动文件，入口文件</span></span><br></pre></td></tr></tbody></table></figure>
+如何验证django是否安装成功？
+<span class="token comment"># 在cmd中， 输入django-admin，如果有输出信息，就代表安装成功</span>
+    </code></pre>
+
+<h3 id="创建django项目"><a href="#创建django项目" class="headerlink" title="创建django项目"></a>创建django项目</h3><pre class="language-python" data-language="python"><code class="language-python"><span class="token triple-quoted-string string">'''你可以提前切换到项目要保存的位置'''</span>
+<span class="token number">1.</span> 命令行创建
+	django<span class="token operator">-</span>admin startproject 项目名
+
+<span class="token number">2.</span> pycharm创建
+    
+<span class="token number">3.</span> 命令行创建和pycharm创建的区别<span class="token punctuation">:</span>
+     <span class="token number">1.</span> pycharm创建：
+        	自动生成templates文件夹
+        settings<span class="token punctuation">.</span>py文件：
+        	<span class="token triple-quoted-string string">'''
+        		TEMPLATES = [
+                            {
+                                'BACKEND': 'django.template.backends.django.DjangoTemplates',
+                                'DIRS': [os.path.join(BASE_DIR, 'templates')]
+                                
+                                }
+        	'''</span>
+     <span class="token number">2.</span> 命令行创建：
+    		没有templates文件夹
+        settings<span class="token punctuation">.</span>py文件：
+        	<span class="token triple-quoted-string string">'''
+        		TEMPLATES = [
+    					{
+                            'BACKEND': 'django.template.backends.django.DjangoTemplates',
+                            'DIRS': [],
+                            }
+             ]
+        	'''</span></code></pre>
+
+<h3 id="启动django项目"><a href="#启动django项目" class="headerlink" title="启动django项目"></a>启动django项目</h3><pre class="language-python" data-language="python"><code class="language-python"><span class="token triple-quoted-string string">'''前提：先切换到manage.py所在的文件夹下面'''</span>
+<span class="token number">1.</span> 命令行启动
+	python3 manage<span class="token punctuation">.</span>py runserver
+    python3 manage<span class="token punctuation">.</span>py runserver <span class="token number">127.0</span><span class="token number">.0</span><span class="token number">.1</span><span class="token punctuation">:</span><span class="token number">8080</span>
+    python3 manage<span class="token punctuation">.</span>py runserver <span class="token number">8080</span>
+    
+    <span class="token triple-quoted-string string">'''django的默认端口号：8000'''</span>
+<span class="token number">2.</span> pycharm启动
+	点击pycharm绿色按钮</code></pre>
+
+<h3 id="创建应用"><a href="#创建应用" class="headerlink" title="创建应用"></a>创建应用</h3><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># 应用：application  app</span>
+
+我们刚刚创建的项目就类似于是一所大学，而创建的应用就类似于大学里面的二级学院
+
+eg：
+	用户模块  user
+    订单模块  order
+    收货地址管理 <span class="token punctuation">:</span>address
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    
+如何创建应用？
+	<span class="token number">1.</span> 命令行创建
+    	<span class="token comment"># python manage.py startapp 应用名</span>
+        <span class="token triple-quoted-string string">'''
+        	应用名：最好见名知意，就命名为：app01, app02...
+        '''</span>
+        <span class="token comment"># 一个django项目至少要有一个应用</span>
+    <span class="token number">2.</span> pycharm创建
+    	 Tools <span class="token operator">=</span><span class="token operator">&gt;</span> run manage<span class="token punctuation">.</span>py task
+    <span class="token number">3.</span> 应用创建完成之后，第一件事去配置文件中注册应用
+    <span class="token comment">###################################################</span>
+        INSTALLED_APPS <span class="token operator">=</span> <span class="token punctuation">[</span>
+            <span class="token string">'django.contrib.admin'</span><span class="token punctuation">,</span>
+            <span class="token string">'django.contrib.auth'</span><span class="token punctuation">,</span>
+            <span class="token string">'django.contrib.contenttypes'</span><span class="token punctuation">,</span>
+            <span class="token string">'django.contrib.sessions'</span><span class="token punctuation">,</span>
+            <span class="token string">'django.contrib.messages'</span><span class="token punctuation">,</span>
+            <span class="token string">'django.contrib.staticfiles'</span><span class="token punctuation">,</span>
+            <span class="token string">'app01'</span><span class="token punctuation">,</span>
+            <span class="token string">'app02'</span>
+    <span class="token punctuation">]</span>
+    <span class="token comment">###################################################</span></code></pre>
+
+<h3 id="主要文件介绍"><a href="#主要文件介绍" class="headerlink" title="主要文件介绍"></a>主要文件介绍</h3><pre class="language-python" data-language="python"><code class="language-python">mysite1  <span class="token comment"># 项目名</span>
+    app01  <span class="token comment"># 应用名</span>
+        migrations <span class="token comment"># 迁移数据库的时候，会把迁移记录保存到这里来</span>
+        	__init__<span class="token punctuation">.</span>py
+        admin<span class="token punctuation">.</span>py   <span class="token comment"># django自带的后台管理系统</span>
+        apps<span class="token punctuation">.</span>py    <span class="token comment"># 忽略</span>
+        models<span class="token punctuation">.</span>py  <span class="token comment"># 模型层，以后跟数据库相关的都在这个里面</span>
+        tests<span class="token punctuation">.</span>py   <span class="token comment"># 测试脚本</span>
+        views<span class="token punctuation">.</span>py   <span class="token comment"># view层，主要用来写逻辑的</span>
+mysite1
+    __init__<span class="token punctuation">.</span>py
+    settings<span class="token punctuation">.</span>py   <span class="token comment"># 整个django项目的全局配置文件</span>
+    urls<span class="token punctuation">.</span>py       <span class="token comment"># 路由层，写的是路径与函数的对应关系</span>
+    wsgi<span class="token punctuation">.</span>py		  <span class="token comment"># wsgiref服务器， WSGI协议，uwsgi服务器</span>
+templates         <span class="token comment"># 写html页面的地方</span>
+db<span class="token punctuation">.</span>sqlite3        <span class="token comment"># django自带的小型数据库， mysql，oracle</span>
+manage<span class="token punctuation">.</span>py		  <span class="token comment"># 启动文件，入口文件</span></code></pre>
 
 
 
@@ -665,7 +800,7 @@
 
         // we need a <pre> tag workaround.
         // otherwise the text inside "pre" loses all the line breaks!
-        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
             newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
         }
 
@@ -683,7 +818,7 @@
 
 
 <!-- 代码块功能依赖 -->
-<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFunction.js"></script>
 
 <!-- 代码语言 -->
 
@@ -699,6 +834,12 @@
 
 <script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
 
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
@@ -870,7 +1011,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">103.2k</span>&nbsp;字
+                class="white-color">103.7k</span>&nbsp;字
             
             
             

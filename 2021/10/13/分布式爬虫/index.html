@@ -374,6 +374,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -390,24 +393,147 @@
 <h3 id="一-介绍"><a href="#一-介绍" class="headerlink" title="一 介绍"></a>一 介绍</h3><p>原来scrapy的Scheduler维护的是本机的任务队列（存放Request对象及其回调函数等信息）+本机的去重队列（存放访问过的url地址）</p>
 <p>[<img src="https://s2.loli.net/2022/06/23/SMBfUuKZplP8AHh.jpg" alt="img">]</p>
 <p>所以实现分布式爬取的关键就是，找一台专门的主机上运行一个共享的队列比如Redis，<br>然后重写Scrapy的Scheduler，让新的Scheduler到共享队列存取Request，并且去除重复的Request请求，所以总结下来，实现分布式的关键就是三点：</p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1、共享队列</span></span><br><span class="line"><span class="comment">#2、重写Scheduler，让其无论是去重还是任务都去访问共享队列</span></span><br><span class="line"><span class="comment">#3、为Scheduler定制去重规则（利用redis的集合类型）</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token comment">#1、共享队列</span>
+<span class="token comment">#2、重写Scheduler，让其无论是去重还是任务都去访问共享队列</span>
+<span class="token comment">#3、为Scheduler定制去重规则（利用redis的集合类型）</span></code></pre>
 
 <p>以上三点便是scrapy-redis组件的核心功能</p>
 <p>[<img src="https://s2.loli.net/2022/06/23/vRDYy5z7r8St9wj.jpg" alt="img">]</p>
-<figure class="highlight mipsasm"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#安装：</span></span><br><span class="line">pip3 <span class="keyword">install </span><span class="keyword">scrapy-redis</span></span><br><span class="line"><span class="keyword"></span></span><br><span class="line"><span class="comment">#源码：</span></span><br><span class="line">D:\python3.<span class="number">6</span>\Lib\site-packages\<span class="keyword">scrapy_redis</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-mipsasm" data-language="mipsasm"><code class="language-mipsasm">#安装：
+pip3 install scrapy-redis
+
+#源码：
+D:\python3.6\Lib\site-packages\scrapy_redis</code></pre>
 
 <h3 id="二、scrapy-redis组件"><a href="#二、scrapy-redis组件" class="headerlink" title="二、scrapy-redis组件"></a>二、scrapy-redis组件</h3><p><strong>1、只使用scrapy-redis的去重功能</strong></p>
 <p>[<img src="https://s2.loli.net/2022/06/23/bzFqy72Xd9PGigs.png" alt="img">]</p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#一、源码：D:\python3.6\Lib\site-packages\scrapy_redis\dupefilter.py</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#二、配置scrapy使用redis提供的共享去重队列</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#2.1 在settings.py中配置链接Redis</span></span><br><span class="line">REDIS_HOST = <span class="string">'localhost'</span>                            <span class="comment"># 主机名</span></span><br><span class="line">REDIS_PORT = <span class="number">6379</span>                                   <span class="comment"># 端口</span></span><br><span class="line">REDIS_URL = <span class="string">'redis://user:pass@hostname:9001'</span>       <span class="comment"># 连接URL（优先于以上配置）</span></span><br><span class="line">REDIS_PARAMS  = {}                                  <span class="comment"># Redis连接参数</span></span><br><span class="line">REDIS_PARAMS[<span class="string">'redis_cls'</span>] = <span class="string">'myproject.RedisClient'</span> <span class="comment"># 指定连接Redis的Python模块</span></span><br><span class="line">REDIS_ENCODING = <span class="string">"utf-8"</span>                            <span class="comment"># redis编码类型  </span></span><br><span class="line"><span class="comment"># 默认配置：D:\python3.6\Lib\site-packages\scrapy_redis\defaults.py</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#2.2 让scrapy使用共享的去重队列</span></span><br><span class="line">DUPEFILTER_CLASS = <span class="string">"scrapy_redis.dupefilter.RFPDupeFilter"</span></span><br><span class="line"><span class="comment">#使用scrapy-redis提供的去重功能，查看源码会发现是基于Redis的集合实现的</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#2.3、需要指定Redis中集合的key名，key=存放不重复Request字符串的集合</span></span><br><span class="line">DUPEFILTER_KEY = <span class="string">'dupefilter:%(timestamp)s'</span></span><br><span class="line"><span class="comment">#源码：dupefilter.py内一行代码key = defaults.DUPEFILTER_KEY % {'timestamp': int(time.time())}</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#2.4、去重规则源码分析dupefilter.py</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">request_seen</span>(<span class="params">self, request</span>):</span><br><span class="line">    <span class="string">"""Returns True if request was already seen.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">```</span></span><br><span class="line"><span class="string">Parameters</span></span><br><span class="line"><span class="string">----------</span></span><br><span class="line"><span class="string">request : scrapy.http.Request</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Returns</span></span><br><span class="line"><span class="string">-------</span></span><br><span class="line"><span class="string">bool</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">fp = self.request_fingerprint(request) </span><br><span class="line"><span class="comment"># This returns the number of values added, zero if already exists.</span></span><br><span class="line">added = self.server.sadd(self.key, fp)</span><br><span class="line"><span class="keyword">return</span> added == <span class="number">0</span></span><br><span class="line">```</span><br><span class="line"></span><br><span class="line"><span class="comment">#2.5、将request请求转成一串字符后再存入集合</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> scrapy.http <span class="keyword">import</span> Request</span><br><span class="line"><span class="keyword">from</span> scrapy.utils.request <span class="keyword">import</span> request_fingerprint</span><br><span class="line"></span><br><span class="line">req = Request(url=<span class="string">'http://www.baidu.com'</span>)</span><br><span class="line">result=request_fingerprint(req)</span><br><span class="line"><span class="built_in">print</span>(result) <span class="comment">#75d6587d87b3f4f3aa574b33dbd69ceeb9eafe7b</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#2.6、注意：</span></span><br><span class="line">    - URL参数位置不同时，计算结果一致；</span><br><span class="line">    - 默认请求头不在计算范围，include_headers可以设置指定请求头</span><br><span class="line">    - 示范：</span><br><span class="line">    <span class="keyword">from</span> scrapy.utils <span class="keyword">import</span> request</span><br><span class="line">    <span class="keyword">from</span> scrapy.http <span class="keyword">import</span> Request</span><br><span class="line">     </span><br><span class="line"></span><br><span class="line">```</span><br><span class="line">req = Request(url=<span class="string">'http://www.baidu.com?name=8&amp;id=1'</span>,callback=<span class="keyword">lambda</span> x:<span class="built_in">print</span>(x),cookies={<span class="string">'k1'</span>:<span class="string">'vvvvv'</span>})</span><br><span class="line">result1 = request.request_fingerprint(req,include_headers=[<span class="string">'cookies'</span>,])</span><br><span class="line"> </span><br><span class="line"><span class="built_in">print</span>(result)</span><br><span class="line"> </span><br><span class="line">req = Request(url=<span class="string">'http://www.baidu.com?id=1&amp;name=8'</span>,callback=<span class="keyword">lambda</span> x:<span class="built_in">print</span>(x),cookies={<span class="string">'k1'</span>:<span class="number">666</span>})</span><br><span class="line"> </span><br><span class="line">result2 = request.request_fingerprint(req,include_headers=[<span class="string">'cookies'</span>,])</span><br><span class="line"> </span><br><span class="line"><span class="built_in">print</span>(result1 == result2) <span class="comment">#True</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token comment">#一、源码：D:\python3.6\Lib\site-packages\scrapy_redis\dupefilter.py</span>
+
+
+
+<span class="token comment">#二、配置scrapy使用redis提供的共享去重队列</span>
+
+<span class="token comment">#2.1 在settings.py中配置链接Redis</span>
+REDIS_HOST <span class="token operator">=</span> <span class="token string">'localhost'</span>                            <span class="token comment"># 主机名</span>
+REDIS_PORT <span class="token operator">=</span> <span class="token number">6379</span>                                   <span class="token comment"># 端口</span>
+REDIS_URL <span class="token operator">=</span> <span class="token string">'redis://user:pass@hostname:9001'</span>       <span class="token comment"># 连接URL（优先于以上配置）</span>
+REDIS_PARAMS  <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>                                  <span class="token comment"># Redis连接参数</span>
+REDIS_PARAMS<span class="token punctuation">[</span><span class="token string">'redis_cls'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'myproject.RedisClient'</span> <span class="token comment"># 指定连接Redis的Python模块</span>
+REDIS_ENCODING <span class="token operator">=</span> <span class="token string">"utf-8"</span>                            <span class="token comment"># redis编码类型  </span>
+<span class="token comment"># 默认配置：D:\python3.6\Lib\site-packages\scrapy_redis\defaults.py</span>
+
+<span class="token comment">#2.2 让scrapy使用共享的去重队列</span>
+DUPEFILTER_CLASS <span class="token operator">=</span> <span class="token string">"scrapy_redis.dupefilter.RFPDupeFilter"</span>
+<span class="token comment">#使用scrapy-redis提供的去重功能，查看源码会发现是基于Redis的集合实现的</span>
+
+<span class="token comment">#2.3、需要指定Redis中集合的key名，key=存放不重复Request字符串的集合</span>
+DUPEFILTER_KEY <span class="token operator">=</span> <span class="token string">'dupefilter:%(timestamp)s'</span>
+<span class="token comment">#源码：dupefilter.py内一行代码key = defaults.DUPEFILTER_KEY % {'timestamp': int(time.time())}</span>
+
+<span class="token comment">#2.4、去重规则源码分析dupefilter.py</span>
+<span class="token keyword">def</span> <span class="token function">request_seen</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> request<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""Returns True if request was already seen.
+
+```
+Parameters
+----------
+request : scrapy.http.Request
+
+Returns
+-------
+bool
+
+"""</span>
+fp <span class="token operator">=</span> self<span class="token punctuation">.</span>request_fingerprint<span class="token punctuation">(</span>request<span class="token punctuation">)</span> 
+<span class="token comment"># This returns the number of values added, zero if already exists.</span>
+added <span class="token operator">=</span> self<span class="token punctuation">.</span>server<span class="token punctuation">.</span>sadd<span class="token punctuation">(</span>self<span class="token punctuation">.</span>key<span class="token punctuation">,</span> fp<span class="token punctuation">)</span>
+<span class="token keyword">return</span> added <span class="token operator">==</span> <span class="token number">0</span>
+```
+
+<span class="token comment">#2.5、将request请求转成一串字符后再存入集合</span>
+
+<span class="token keyword">from</span> scrapy<span class="token punctuation">.</span>http <span class="token keyword">import</span> Request
+<span class="token keyword">from</span> scrapy<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>request <span class="token keyword">import</span> request_fingerprint
+
+req <span class="token operator">=</span> Request<span class="token punctuation">(</span>url<span class="token operator">=</span><span class="token string">'http://www.baidu.com'</span><span class="token punctuation">)</span>
+result<span class="token operator">=</span>request_fingerprint<span class="token punctuation">(</span>req<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span> <span class="token comment">#75d6587d87b3f4f3aa574b33dbd69ceeb9eafe7b</span>
+
+<span class="token comment">#2.6、注意：</span>
+    <span class="token operator">-</span> URL参数位置不同时，计算结果一致；
+    <span class="token operator">-</span> 默认请求头不在计算范围，include_headers可以设置指定请求头
+    <span class="token operator">-</span> 示范：
+    <span class="token keyword">from</span> scrapy<span class="token punctuation">.</span>utils <span class="token keyword">import</span> request
+    <span class="token keyword">from</span> scrapy<span class="token punctuation">.</span>http <span class="token keyword">import</span> Request
+     
+
+```
+req <span class="token operator">=</span> Request<span class="token punctuation">(</span>url<span class="token operator">=</span><span class="token string">'http://www.baidu.com?name=8&amp;id=1'</span><span class="token punctuation">,</span>callback<span class="token operator">=</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span><span class="token keyword">print</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">,</span>cookies<span class="token operator">=</span><span class="token punctuation">{</span><span class="token string">'k1'</span><span class="token punctuation">:</span><span class="token string">'vvvvv'</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+result1 <span class="token operator">=</span> request<span class="token punctuation">.</span>request_fingerprint<span class="token punctuation">(</span>req<span class="token punctuation">,</span>include_headers<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'cookies'</span><span class="token punctuation">,</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+ 
+<span class="token keyword">print</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span>
+ 
+req <span class="token operator">=</span> Request<span class="token punctuation">(</span>url<span class="token operator">=</span><span class="token string">'http://www.baidu.com?id=1&amp;name=8'</span><span class="token punctuation">,</span>callback<span class="token operator">=</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span><span class="token keyword">print</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">,</span>cookies<span class="token operator">=</span><span class="token punctuation">{</span><span class="token string">'k1'</span><span class="token punctuation">:</span><span class="token number">666</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+ 
+result2 <span class="token operator">=</span> request<span class="token punctuation">.</span>request_fingerprint<span class="token punctuation">(</span>req<span class="token punctuation">,</span>include_headers<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'cookies'</span><span class="token punctuation">,</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+ 
+<span class="token keyword">print</span><span class="token punctuation">(</span>result1 <span class="token operator">==</span> result2<span class="token punctuation">)</span> <span class="token comment">#True</span></code></pre>
 
 <p><strong>2、使用scrapy-redis的去重+调度实现分布式爬取</strong></p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1、源码：D:\python3.6\Lib\site-packages\scrapy_redis\scheduler.py</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#2、settings.py配置</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Enables scheduling storing requests queue in redis.</span></span><br><span class="line">SCHEDULER = <span class="string">"scrapy_redis.scheduler.Scheduler"</span>       </span><br><span class="line"></span><br><span class="line"><span class="comment"># 调度器将不重复的任务用pickle序列化后放入共享任务队列，默认使用优先级队列（默认），其他：PriorityQueue（有序集合），FifoQueue（列表）、LifoQueue（列表）               </span></span><br><span class="line">SCHEDULER_QUEUE_CLASS = <span class="string">'scrapy_redis.queue.PriorityQueue'</span>          </span><br><span class="line"></span><br><span class="line"><span class="comment"># 对保存到redis中的request对象进行序列化，默认使用pickle</span></span><br><span class="line">SCHEDULER_SERIALIZER = <span class="string">"scrapy_redis.picklecompat"</span>   </span><br><span class="line"></span><br><span class="line"><span class="comment"># 调度器中请求任务序列化后存放在redis中的key               </span></span><br><span class="line">SCHEDULER_QUEUE_KEY = <span class="string">'%(spider)s:requests'</span>    </span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否在关闭时候保留原来的调度器和去重记录，True=保留，False=清空                     </span></span><br><span class="line">SCHEDULER_PERSIST = <span class="literal">True</span>       </span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否在开始之前清空 调度器和去重记录，True=清空，False=不清空                                     </span></span><br><span class="line">SCHEDULER_FLUSH_ON_START = <span class="literal">False</span>    </span><br><span class="line"></span><br><span class="line"><span class="comment"># 去调度器中获取数据时，如果为空，最多等待时间（最后没数据，未获取到）。如果没有则立刻返回会造成空循环次数过多，cpu占用率飙升                                </span></span><br><span class="line">SCHEDULER_IDLE_BEFORE_CLOSE = <span class="number">10</span>           </span><br><span class="line"></span><br><span class="line"><span class="comment"># 去重规则，在redis中保存时对应的key                         </span></span><br><span class="line">SCHEDULER_DUPEFILTER_KEY = <span class="string">'%(spider)s:dupefilter'</span>      </span><br><span class="line"></span><br><span class="line"><span class="comment"># 去重规则对应处理的类，将任务request_fingerprint(request)得到的字符串放入去重队列            </span></span><br><span class="line">SCHEDULER_DUPEFILTER_CLASS = <span class="string">'scrapy_redis.dupefilter.RFPDupeFilter'</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token comment">#1、源码：D:\python3.6\Lib\site-packages\scrapy_redis\scheduler.py</span>
+
+
+
+<span class="token comment">#2、settings.py配置</span>
+
+<span class="token comment"># Enables scheduling storing requests queue in redis.</span>
+SCHEDULER <span class="token operator">=</span> <span class="token string">"scrapy_redis.scheduler.Scheduler"</span>       
+
+<span class="token comment"># 调度器将不重复的任务用pickle序列化后放入共享任务队列，默认使用优先级队列（默认），其他：PriorityQueue（有序集合），FifoQueue（列表）、LifoQueue（列表）               </span>
+SCHEDULER_QUEUE_CLASS <span class="token operator">=</span> <span class="token string">'scrapy_redis.queue.PriorityQueue'</span>          
+
+<span class="token comment"># 对保存到redis中的request对象进行序列化，默认使用pickle</span>
+SCHEDULER_SERIALIZER <span class="token operator">=</span> <span class="token string">"scrapy_redis.picklecompat"</span>   
+
+<span class="token comment"># 调度器中请求任务序列化后存放在redis中的key               </span>
+SCHEDULER_QUEUE_KEY <span class="token operator">=</span> <span class="token string">'%(spider)s:requests'</span>    
+
+<span class="token comment"># 是否在关闭时候保留原来的调度器和去重记录，True=保留，False=清空                     </span>
+SCHEDULER_PERSIST <span class="token operator">=</span> <span class="token boolean">True</span>       
+
+<span class="token comment"># 是否在开始之前清空 调度器和去重记录，True=清空，False=不清空                                     </span>
+SCHEDULER_FLUSH_ON_START <span class="token operator">=</span> <span class="token boolean">False</span>    
+
+<span class="token comment"># 去调度器中获取数据时，如果为空，最多等待时间（最后没数据，未获取到）。如果没有则立刻返回会造成空循环次数过多，cpu占用率飙升                                </span>
+SCHEDULER_IDLE_BEFORE_CLOSE <span class="token operator">=</span> <span class="token number">10</span>           
+
+<span class="token comment"># 去重规则，在redis中保存时对应的key                         </span>
+SCHEDULER_DUPEFILTER_KEY <span class="token operator">=</span> <span class="token string">'%(spider)s:dupefilter'</span>      
+
+<span class="token comment"># 去重规则对应处理的类，将任务request_fingerprint(request)得到的字符串放入去重队列            </span>
+SCHEDULER_DUPEFILTER_CLASS <span class="token operator">=</span> <span class="token string">'scrapy_redis.dupefilter.RFPDupeFilter'</span></code></pre>
 
 <p><strong>3、持久化</strong></p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#从目标站点获取并解析出数据后保存成item对象，会由引擎交给pipeline进行持久化/保存到数据库,scrapy-redis提供了一个pipeline组件，可以帮我们把item存到redis中</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#1、将item持久化到redis时，指定key和序列化函数 </span></span><br><span class="line">REDIS_ITEMS_KEY = <span class="string">'%(spider)s:items'</span></span><br><span class="line">REDIS_ITEMS_SERIALIZER = <span class="string">'json.dumps'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#2、使用列表保存item数据</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token comment">#从目标站点获取并解析出数据后保存成item对象，会由引擎交给pipeline进行持久化/保存到数据库,scrapy-redis提供了一个pipeline组件，可以帮我们把item存到redis中</span>
+
+<span class="token comment">#1、将item持久化到redis时，指定key和序列化函数 </span>
+REDIS_ITEMS_KEY <span class="token operator">=</span> <span class="token string">'%(spider)s:items'</span>
+REDIS_ITEMS_SERIALIZER <span class="token operator">=</span> <span class="token string">'json.dumps'</span>
+
+<span class="token comment">#2、使用列表保存item数据</span></code></pre>
 
 <p><strong>4、从Redis中获取起始URL</strong></p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">scrapy程序爬取目标站点，一旦爬取完毕后就结束了，如果目标站点更新内容了，我们想重新爬取，那么只能再重新启动scrapy，非常麻烦</span><br><span class="line">scrapy-redis提供了一种供，让scrapy从redis中获取起始url，如果没有scrapy则过一段时间再来取而不会关闭</span><br><span class="line">这样我们就只需要写一个简单的脚本程序，定期往redis队列里放入一个起始url。</span><br><span class="line"></span><br><span class="line"><span class="comment">#具体配置如下</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#1、编写爬虫时，起始URL从redis的Key中获取</span></span><br><span class="line">REDIS_START_URLS_KEY = <span class="string">'%(name)s:start_urls'</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">#2、获取起始URL时，去集合中获取还是去列表中获取？True，集合；False，列表</span></span><br><span class="line">REDIS_START_URLS_AS_SET = <span class="literal">False</span>    <span class="comment"># 获取起始URL时，如果为True，则使用self.server.spop；如果为False，则使用self.server.lpop</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-python" data-language="python"><code class="language-python">scrapy程序爬取目标站点，一旦爬取完毕后就结束了，如果目标站点更新内容了，我们想重新爬取，那么只能再重新启动scrapy，非常麻烦
+scrapy<span class="token operator">-</span>redis提供了一种供，让scrapy从redis中获取起始url，如果没有scrapy则过一段时间再来取而不会关闭
+这样我们就只需要写一个简单的脚本程序，定期往redis队列里放入一个起始url。
+
+<span class="token comment">#具体配置如下</span>
+
+<span class="token comment">#1、编写爬虫时，起始URL从redis的Key中获取</span>
+REDIS_START_URLS_KEY <span class="token operator">=</span> <span class="token string">'%(name)s:start_urls'</span>
+    
+<span class="token comment">#2、获取起始URL时，去集合中获取还是去列表中获取？True，集合；False，列表</span>
+REDIS_START_URLS_AS_SET <span class="token operator">=</span> <span class="token boolean">False</span>    <span class="token comment"># 获取起始URL时，如果为True，则使用self.server.spop；如果为False，则使用self.server.lpop</span></code></pre>
                 
             </div>
             <hr/>
@@ -547,6 +673,55 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
+                <a href="/2021/11/05/Django%20%E9%AB%98%E5%B9%B6%E5%8F%91%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Django-高并发负载均衡">
+                        
+                        <span class="card-title">Django-高并发负载均衡</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-11-05
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Django/" class="post-category">
+                                    Django
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Django-%E9%AB%98%E5%B9%B6%E5%8F%91%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">
+                        <span class="chip bg-color">Django-高并发负载均衡</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
                 <a href="/2021/10/13/requests/">
                     <div class="card-image">
                         
@@ -563,9 +738,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-13
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-13
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -583,55 +758,6 @@
                     
                     <a href="/tags/requests/">
                         <span class="chip bg-color">requests</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/10/12/selenium/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="爬虫-selenium">
-                        
-                        <span class="card-title">爬虫-selenium</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-12
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/selenium/" class="post-category">
-                                    selenium
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E7%88%AC%E8%99%AB-selenium/">
-                        <span class="chip bg-color">爬虫-selenium</span>
                     </a>
                     
                 </div>
@@ -666,7 +792,7 @@
 
         // we need a <pre> tag workaround.
         // otherwise the text inside "pre" loses all the line breaks!
-        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
             newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
         }
 
@@ -684,7 +810,7 @@
 
 
 <!-- 代码块功能依赖 -->
-<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFunction.js"></script>
 
 <!-- 代码语言 -->
 
@@ -700,6 +826,12 @@
 
 <script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
 
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
@@ -871,7 +1003,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">103.2k</span>&nbsp;字
+                class="white-color">103.7k</span>&nbsp;字
             
             
             

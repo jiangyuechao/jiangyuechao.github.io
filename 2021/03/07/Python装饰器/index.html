@@ -374,6 +374,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -406,11 +409,51 @@
 <p>当然，如果遇到其他重复操作的场景也可以类比使用装饰器。</p>
 <h3 id="怎么实现装饰器？"><a href="#怎么实现装饰器？" class="headerlink" title="怎么实现装饰器？"></a>怎么实现装饰器？</h3><p>前面都是文字描述，不管说的怎么天花烂坠，可能都无法体会到它的价值，下面就以一个简单的例子来看一下它的作用。</p>
 <p>如果你要对多个函数进行统计运行时间，不使用装饰器会是这样的，</p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> time, sleep</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fun_one</span>():</span><br><span class="line">    start = time()</span><br><span class="line">    sleep(<span class="number">1</span>)</span><br><span class="line">    end = time()</span><br><span class="line">    cost_time = end - start</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"func one run time {}"</span>.<span class="built_in">format</span>(cost_time))</span><br><span class="line">    </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fun_two</span>():</span><br><span class="line">    start = time()</span><br><span class="line">    sleep(<span class="number">1</span>)</span><br><span class="line">    end = time()</span><br><span class="line">    cost_time = end - start</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"func two run time {}"</span>.<span class="built_in">format</span>(cost_time))</span><br><span class="line">    </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fun_three</span>():</span><br><span class="line">    start = time()</span><br><span class="line">    sleep(<span class="number">1</span>)</span><br><span class="line">    end = time()</span><br><span class="line">    cost_time = end - start</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"func three run time {}"</span>.<span class="built_in">format</span>(cost_time))</span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> time <span class="token keyword">import</span> time<span class="token punctuation">,</span> sleep
+
+<span class="token keyword">def</span> <span class="token function">fun_one</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    start <span class="token operator">=</span> time<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    end <span class="token operator">=</span> time<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    cost_time <span class="token operator">=</span> end <span class="token operator">-</span> start
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"func one run time {}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>cost_time<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    
+<span class="token keyword">def</span> <span class="token function">fun_two</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    start <span class="token operator">=</span> time<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    end <span class="token operator">=</span> time<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    cost_time <span class="token operator">=</span> end <span class="token operator">-</span> start
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"func two run time {}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>cost_time<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    
+<span class="token keyword">def</span> <span class="token function">fun_three</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    start <span class="token operator">=</span> time<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    end <span class="token operator">=</span> time<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    cost_time <span class="token operator">=</span> end <span class="token operator">-</span> start
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"func three run time {}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>cost_time<span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
 
 <p>在每个函数里都需要获取开始时间<strong>start</strong>、结束时间<strong>end</strong>、计算耗费时间<strong>cost_time</strong>、加上一个输出语句。</p>
 <p>使用装饰器的方法是这样的，</p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">run_time</span>(<span class="params">func</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wrapper</span>():</span><br><span class="line">        start = time()</span><br><span class="line">        func()                  <span class="comment"># 函数在这里运行</span></span><br><span class="line">        end = time()</span><br><span class="line">        cost_time = end - start</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"func three run time {}"</span>.<span class="built_in">format</span>(cost_time))</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="meta">@run_time</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fun_one</span>():</span><br><span class="line">    sleep(<span class="number">1</span>)</span><br><span class="line">    </span><br><span class="line"><span class="meta">@run_time</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fun_two</span>():</span><br><span class="line">    sleep(<span class="number">1</span>)</span><br><span class="line">    </span><br><span class="line"><span class="meta">@run_time</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fun_three</span>():</span><br><span class="line">    sleep(<span class="number">1</span>)</span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">run_time</span><span class="token punctuation">(</span>func<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">wrapper</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        start <span class="token operator">=</span> time<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        func<span class="token punctuation">(</span><span class="token punctuation">)</span>                  <span class="token comment"># 函数在这里运行</span>
+        end <span class="token operator">=</span> time<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        cost_time <span class="token operator">=</span> end <span class="token operator">-</span> start
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"func three run time {}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>cost_time<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> wrapper
+
+<span class="token decorator annotation punctuation">@run_time</span>
+<span class="token keyword">def</span> <span class="token function">fun_one</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    
+<span class="token decorator annotation punctuation">@run_time</span>
+<span class="token keyword">def</span> <span class="token function">fun_two</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    
+<span class="token decorator annotation punctuation">@run_time</span>
+<span class="token keyword">def</span> <span class="token function">fun_three</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span></code></pre>
 
 <p>通过编写一个统计时间的装饰器<strong>run_time</strong>，函数的作为装饰器的参数，然后返回一个统计时间的函数wrapper，这就是装饰器的写法，用专业属于来说这叫<strong>闭包</strong>，简单来说就是函数内嵌套函数。然后再每个函数上面加上**@run_time**来调用这个装饰器对不同的函数进行统计时间。</p>
 <p>可见，统计时间这4行代码是重复的，一个函数需要4行，如果100个函数就需要400行，而使用装饰器，只需要几行代码实现一个装饰器，然后每个函数前面加一句命令即可，如果是100个函数，能少300行左右的代码量。</p>
@@ -418,18 +461,52 @@
 <p>除了上述简单的用法还有一些更高级的用法，比如用装饰器进行<strong>类型检查</strong>、添加<strong>带参数</strong>的的装饰器等。它们的用法大同小异，关于高级用法，这里以<strong>带参数的装饰器</strong>为例进行介绍。</p>
 <p>不要把问题想的太复杂，带参数的装饰器其实就是在上述基本的装饰器的基础上在外面套一层接收参数的函数，下面通过一个例子说明一下。</p>
 <p>以上述例子为基础，前面的<strong>简单示例</strong>输出的信息是，</p>
-<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func three run time 1.0003271102905273</span><br><span class="line">func three run time 1.0006263256072998</span><br><span class="line">func three run time 1.000312328338623</span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-text" data-language="text"><code class="language-text">func three run time 1.0003271102905273
+func three run time 1.0006263256072998
+func three run time 1.000312328338623</code></pre>
 
 <p>现在我认为这样的信息太<strong>单薄</strong>，需要它携带更多的信息，例如函数名称、日志等级等，这时候可以把函数名称和日志等级作为装饰器的参数，下面来时实现以下。</p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">logger</span>(<span class="params">msg=<span class="literal">None</span></span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">run_time</span>(<span class="params">func</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">            start = time()</span><br><span class="line">            func()                  <span class="comment"># 函数在这里运行</span></span><br><span class="line">            end = time()</span><br><span class="line">            cost_time = end - start</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"[{}] func three run time {}"</span>.<span class="built_in">format</span>(msg, cost_time))</span><br><span class="line">        <span class="keyword">return</span> wrapper</span><br><span class="line">    <span class="keyword">return</span> run_time</span><br><span class="line"></span><br><span class="line"><span class="meta">@logger(<span class="params">msg=<span class="string">"One"</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fun_one</span>():</span><br><span class="line">    sleep(<span class="number">1</span>)</span><br><span class="line">    </span><br><span class="line"><span class="meta">@logger(<span class="params">msg=<span class="string">"Two"</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fun_two</span>():</span><br><span class="line">    sleep(<span class="number">1</span>)</span><br><span class="line">    </span><br><span class="line"><span class="meta">@logger(<span class="params">msg=<span class="string">"Three"</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fun_three</span>():</span><br><span class="line">    sleep(<span class="number">1</span>)</span><br><span class="line">    </span><br><span class="line">fun_one()</span><br><span class="line">fun_two()</span><br><span class="line">fun_three()</span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">logger</span><span class="token punctuation">(</span>msg<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">run_time</span><span class="token punctuation">(</span>func<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">def</span> <span class="token function">wrapper</span><span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            start <span class="token operator">=</span> time<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            func<span class="token punctuation">(</span><span class="token punctuation">)</span>                  <span class="token comment"># 函数在这里运行</span>
+            end <span class="token operator">=</span> time<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            cost_time <span class="token operator">=</span> end <span class="token operator">-</span> start
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"[{}] func three run time {}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>msg<span class="token punctuation">,</span> cost_time<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> wrapper
+    <span class="token keyword">return</span> run_time
+
+<span class="token decorator annotation punctuation">@logger</span><span class="token punctuation">(</span>msg<span class="token operator">=</span><span class="token string">"One"</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">fun_one</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    
+<span class="token decorator annotation punctuation">@logger</span><span class="token punctuation">(</span>msg<span class="token operator">=</span><span class="token string">"Two"</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">fun_two</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    
+<span class="token decorator annotation punctuation">@logger</span><span class="token punctuation">(</span>msg<span class="token operator">=</span><span class="token string">"Three"</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">fun_three</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    
+fun_one<span class="token punctuation">(</span><span class="token punctuation">)</span>
+fun_two<span class="token punctuation">(</span><span class="token punctuation">)</span>
+fun_three<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
 
 <p>可以看出，我在<strong>示例</strong>基本用法里编写的装饰器外层又嵌套了一层函数用来接收参数<strong>msg</strong>，这样的话在每个函数(func_one、func_two、func_three)前面调用时可以给装饰器传入参数，这样的输出结果是，</p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[One] func three run time <span class="number">1.0013229846954346</span></span><br><span class="line">[Two] func three run time <span class="number">1.000720500946045</span></span><br><span class="line">[Three] func three run time <span class="number">1.0001459121704102</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token punctuation">[</span>One<span class="token punctuation">]</span> func three run time <span class="token number">1.0013229846954346</span>
+<span class="token punctuation">[</span>Two<span class="token punctuation">]</span> func three run time <span class="token number">1.000720500946045</span>
+<span class="token punctuation">[</span>Three<span class="token punctuation">]</span> func three run time <span class="token number">1.0001459121704102</span></code></pre>
 
 <h3 id="自定义属性的装饰器"><a href="#自定义属性的装饰器" class="headerlink" title="自定义属性的装饰器"></a><strong>自定义属性的装饰器</strong></h3><p>上述介绍的几种用法中其实有一个问题，就是装饰器<strong>不够灵活</strong>，我们预先定义了装饰器<strong>run_time</strong>，它就会按照我们定义的流程去工作，只具备这固定的一种功能，当然，我们前面介绍的通过<strong>带参数的装饰器</strong>让它具备了一定的灵活性，但是依然不够灵活。其实，我们还可以对装饰器添加一些属性，就如同给一个类定义实现不同功能的方法那样。</p>
 <p>以输出<strong>日志</strong>为例，初学Python的同学都习惯用<strong>print</strong>打印输出信息，其实这不是一个好习惯，当开发商业工程时，你很用意把一些信息暴露给用户。在开发过程中，我更加鼓励使用日志进行输出，通过定义<strong>WARNING</strong>、<strong>DEBUG</strong>、<strong>INFO</strong>等不同等级来控制信息的输出，比如<strong>INFO</strong>是可以给用户看到的，让用户直到当前程序跑到哪一个阶段了。<strong>DEBUG</strong>是用于开发人员调试和定位问题时使用。<strong>WARING</strong>是用于告警和提示。</p>
 <p>那么问题来了，如果我们预先定义一个打印日志的装饰器，</p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">logger_info</span>(<span class="params">func</span>):</span><br><span class="line">    logmsg = func.__name__</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wrapper</span>():</span><br><span class="line">        func() </span><br><span class="line">        log.log(logging.INFO, <span class="string">"{} if over."</span>.<span class="built_in">format</span>(logmsg))</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">logger_info</span><span class="token punctuation">(</span>func<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    logmsg <span class="token operator">=</span> func<span class="token punctuation">.</span>__name__
+    <span class="token keyword">def</span> <span class="token function">wrapper</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        func<span class="token punctuation">(</span><span class="token punctuation">)</span> 
+        log<span class="token punctuation">.</span>log<span class="token punctuation">(</span>logging<span class="token punctuation">.</span>INFO<span class="token punctuation">,</span> <span class="token string">"{} if over."</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>logmsg<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> wrapper</code></pre>
 
 <p><strong><a href="https://link.zhihu.com/?target=http://logging.INFO">http://logging.INFO</a><strong>是打印日志的等级，如果我们仅仅写一个基本的日志装饰器</strong>logger_info</strong>，那么它的灵活度太差了，因为如果我们要输出<strong>DEBUG</strong>、<strong>WARING</strong>等级的日志，还需要重新写一个装饰器。</p>
 <p>解决这个问题，有两个解决方法：</p>
@@ -439,25 +516,121 @@
 </ul>
 <p>由于第一种已经以统计函数运行时间的方式进行讲解，这里主要讲解第二种方法。</p>
 <p>先看一下代码，</p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> partial</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">wrapper_property</span>(<span class="params">obj, func=<span class="literal">None</span></span>):</span><br><span class="line">    <span class="keyword">if</span> func <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">return</span> partial(attach_wrapper, obj)</span><br><span class="line">    <span class="built_in">setattr</span>(obj, func.__name__, func)</span><br><span class="line">    <span class="keyword">return</span> func</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">logger_info</span>(<span class="params">level, name=<span class="literal">None</span>, message=<span class="literal">None</span></span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">decorate</span>(<span class="params">func</span>):</span><br><span class="line">        </span><br><span class="line">        logmsg = message <span class="keyword">if</span> message <span class="keyword">else</span> func.__name__</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">            log.log(level, logmsg)</span><br><span class="line">            <span class="keyword">return</span> func(*args, **kwargs)</span><br><span class="line"></span><br><span class="line"><span class="meta">        @wrapper_property(<span class="params">wrapper</span>)</span></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">set_level</span>(<span class="params">newlevel</span>):</span><br><span class="line">            <span class="keyword">nonlocal</span> level</span><br><span class="line">            level = newlevel</span><br><span class="line"></span><br><span class="line"><span class="meta">        @wrapper_property(<span class="params">wrapper</span>)</span></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">set_message</span>(<span class="params">newmsg</span>):</span><br><span class="line">            <span class="keyword">nonlocal</span> logmsg</span><br><span class="line">            logmsg = newmsg</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> decorate</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@logger_info(<span class="params">logging.WARNING</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>(<span class="params">x, y</span>):</span><br><span class="line">    <span class="keyword">return</span> x + y</span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> logging
+<span class="token keyword">from</span> functools <span class="token keyword">import</span> partial
+
+<span class="token keyword">def</span> <span class="token function">wrapper_property</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> func<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> func <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> partial<span class="token punctuation">(</span>attach_wrapper<span class="token punctuation">,</span> obj<span class="token punctuation">)</span>
+    <span class="token builtin">setattr</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> func<span class="token punctuation">.</span>__name__<span class="token punctuation">,</span> func<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> func
+
+<span class="token keyword">def</span> <span class="token function">logger_info</span><span class="token punctuation">(</span>level<span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> message<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">decorate</span><span class="token punctuation">(</span>func<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        
+        logmsg <span class="token operator">=</span> message <span class="token keyword">if</span> message <span class="token keyword">else</span> func<span class="token punctuation">.</span>__name__
+
+        <span class="token keyword">def</span> <span class="token function">wrapper</span><span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            log<span class="token punctuation">.</span>log<span class="token punctuation">(</span>level<span class="token punctuation">,</span> logmsg<span class="token punctuation">)</span>
+            <span class="token keyword">return</span> func<span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span>
+
+        <span class="token decorator annotation punctuation">@wrapper_property</span><span class="token punctuation">(</span>wrapper<span class="token punctuation">)</span>
+        <span class="token keyword">def</span> <span class="token function">set_level</span><span class="token punctuation">(</span>newlevel<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">nonlocal</span> level
+            level <span class="token operator">=</span> newlevel
+
+        <span class="token decorator annotation punctuation">@wrapper_property</span><span class="token punctuation">(</span>wrapper<span class="token punctuation">)</span>
+        <span class="token keyword">def</span> <span class="token function">set_message</span><span class="token punctuation">(</span>newmsg<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">nonlocal</span> logmsg
+            logmsg <span class="token operator">=</span> newmsg
+
+        <span class="token keyword">return</span> wrapper
+
+    <span class="token keyword">return</span> decorate
+
+
+<span class="token decorator annotation punctuation">@logger_info</span><span class="token punctuation">(</span>logging<span class="token punctuation">.</span>WARNING<span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> x <span class="token operator">+</span> y</code></pre>
 
 <p>这里面最重要的是<strong>wrapper_property</strong>这个函数，它的功能是把一个函数<strong>func</strong>编程一个对象<strong>obj</strong>的属性，然后通过调用<strong>wrapper_property</strong>，给装饰器添加了两个属性<strong>set_message</strong>和<strong>set_level</strong>，分别用于改变输出日志的内容和改变输出日志的等级。</p>
 <p>看一下输出结果，</p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">main(<span class="number">3</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出</span></span><br><span class="line"><span class="comment"># WARNING:Test:main</span></span><br><span class="line"><span class="comment"># 6</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-python" data-language="python"><code class="language-python">main<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 输出</span>
+<span class="token comment"># WARNING:Test:main</span>
+<span class="token comment"># 6</span></code></pre>
 
 <p>来改变一下输出日志等级，</p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">main.set_level(logging.ERROR)</span><br><span class="line">main(<span class="number">5</span>, <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出</span></span><br><span class="line"><span class="comment"># ERROR:Test:main</span></span><br><span class="line"><span class="comment"># 10</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-python" data-language="python"><code class="language-python">main<span class="token punctuation">.</span>set_level<span class="token punctuation">(</span>logging<span class="token punctuation">.</span>ERROR<span class="token punctuation">)</span>
+main<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 输出</span>
+<span class="token comment"># ERROR:Test:main</span>
+<span class="token comment"># 10</span></code></pre>
 
 <p>输出日志等级改成了<strong>ERROR</strong>。</p>
 <h3 id="保留元信息的装饰器"><a href="#保留元信息的装饰器" class="headerlink" title="保留元信息的装饰器"></a><strong>保留元信息的装饰器</strong></h3><p>很多教程中都会介绍装饰器，但是大多数都是千篇一律的围绕基本用法在展开，少部分会讲一下带参数的装饰器，但是有一个细节很少有教程提及，那就是<strong>保留元信息的装饰器</strong>。</p>
 <p><strong>什么是函数的元信息？</strong></p>
 <p>就是函数携带的一些基本信息，例如函数名、函数文档等，我们可以通过<strong>func.<strong>name</strong><strong>获取函数名、可以通过</strong>func.<strong>doc</strong><strong>获取函数的文档信息，用户也可以通过</strong>注解</strong>等方式为函数添加元信息。</p>
 <p>例如下面代码，</p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">run_time</span>(<span class="params">func</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">        start = time()</span><br><span class="line">        func()                  <span class="comment"># 函数在这里运行</span></span><br><span class="line">        end = time()</span><br><span class="line">        cost_time = end - start</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"func three run time {}"</span>.<span class="built_in">format</span>(cost_time))</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="meta">@run_time</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fun_one</span>():</span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    func one doc.</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    sleep(<span class="number">1</span>)</span><br><span class="line">    </span><br><span class="line">fun_one()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(fun_one.__name__)</span><br><span class="line"><span class="built_in">print</span>(fun_one.__doc__)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出</span></span><br><span class="line"><span class="comment"># wrapper</span></span><br><span class="line"><span class="comment"># None</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> time <span class="token keyword">import</span> time
+
+<span class="token keyword">def</span> <span class="token function">run_time</span><span class="token punctuation">(</span>func<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">wrapper</span><span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        start <span class="token operator">=</span> time<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        func<span class="token punctuation">(</span><span class="token punctuation">)</span>                  <span class="token comment"># 函数在这里运行</span>
+        end <span class="token operator">=</span> time<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        cost_time <span class="token operator">=</span> end <span class="token operator">-</span> start
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"func three run time {}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>cost_time<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> wrapper
+
+<span class="token decorator annotation punctuation">@run_time</span>
+<span class="token keyword">def</span> <span class="token function">fun_one</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">'''
+    func one doc.
+    '''</span>
+    sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    
+fun_one<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>fun_one<span class="token punctuation">.</span>__name__<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>fun_one<span class="token punctuation">.</span>__doc__<span class="token punctuation">)</span>
+
+<span class="token comment"># 输出</span>
+<span class="token comment"># wrapper</span>
+<span class="token comment"># None</span></code></pre>
 
 <p>可以看出，通过使用装饰器，函数<strong>fun_one</strong>的元信息都丢失了，那怎么样才能保留装饰器的元信息呢？</p>
 <p>可以通过使用Python自带模块<strong>functools</strong>中的<strong>wraps</strong>来保留函数的元信息，</p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> wraps</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">run_time</span>(<span class="params">func</span>):</span><br><span class="line"><span class="meta">    @wraps(<span class="params">func</span>)                                </span><span class="comment"># &lt;- 这里加 wraps(func) 即可</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">        start = time()</span><br><span class="line">        func()                  <span class="comment"># 函数在这里运行</span></span><br><span class="line">        end = time()</span><br><span class="line">        cost_time = end - start</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"func three run time {}"</span>.<span class="built_in">format</span>(cost_time))</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="meta">@run_time</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fun_one</span>():</span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    func one doc.</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    sleep(<span class="number">1</span>)</span><br><span class="line">    </span><br><span class="line">fun_one()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(fun_one.__name__)</span><br><span class="line"><span class="built_in">print</span>(fun_one.__doc__)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出</span></span><br><span class="line"><span class="comment"># fun_one   </span></span><br><span class="line"><span class="comment"># func one doc.</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> time <span class="token keyword">import</span> time
+<span class="token keyword">from</span> functools <span class="token keyword">import</span> wraps
+
+<span class="token keyword">def</span> <span class="token function">run_time</span><span class="token punctuation">(</span>func<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token decorator annotation punctuation">@wraps</span><span class="token punctuation">(</span>func<span class="token punctuation">)</span>                                <span class="token comment"># &lt;- 这里加 wraps(func) 即可</span>
+    <span class="token keyword">def</span> <span class="token function">wrapper</span><span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        start <span class="token operator">=</span> time<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        func<span class="token punctuation">(</span><span class="token punctuation">)</span>                  <span class="token comment"># 函数在这里运行</span>
+        end <span class="token operator">=</span> time<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        cost_time <span class="token operator">=</span> end <span class="token operator">-</span> start
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"func three run time {}"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>cost_time<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> wrapper
+
+<span class="token decorator annotation punctuation">@run_time</span>
+<span class="token keyword">def</span> <span class="token function">fun_one</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">'''
+    func one doc.
+    '''</span>
+    sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    
+fun_one<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>fun_one<span class="token punctuation">.</span>__name__<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>fun_one<span class="token punctuation">.</span>__doc__<span class="token punctuation">)</span>
+
+<span class="token comment"># 输出</span>
+<span class="token comment"># fun_one   </span>
+<span class="token comment"># func one doc.</span></code></pre>
 
 <p>只需要在代码中加入<strong>箭头</strong>所指的一行即可保留函数的元信息。</p>
 
@@ -719,7 +892,7 @@
 
         // we need a <pre> tag workaround.
         // otherwise the text inside "pre" loses all the line breaks!
-        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
             newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
         }
 
@@ -737,7 +910,7 @@
 
 
 <!-- 代码块功能依赖 -->
-<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFunction.js"></script>
 
 <!-- 代码语言 -->
 
@@ -753,6 +926,12 @@
 
 <script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
 
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
@@ -924,7 +1103,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">103.2k</span>&nbsp;字
+                class="white-color">103.7k</span>&nbsp;字
             
             
             

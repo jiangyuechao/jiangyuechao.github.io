@@ -357,7 +357,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    791
+                    790
                 </div>
                 
 
@@ -374,6 +374,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -384,11 +387,51 @@
 
 
 
-<h3 id="Django实现悲观锁"><a href="#Django实现悲观锁" class="headerlink" title="Django实现悲观锁"></a>Django实现悲观锁</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">在Django中使用悲观锁锁定一个对象，需要使用到select<span class="emphasis">_for_</span>update()方法，悲观锁本质上是一个行级锁，能够锁定所有匹配的行，直至事务结束</span><br><span class="line">例如在一个类中写一个post方法，在方法里面写表名.object.select<span class="emphasis">_for_</span>update().get(id=x)再return Response</span><br><span class="line">函数视图，锁定所有符合条件的文章对象列表。</span><br><span class="line"> from django.db import transaction</span><br><span class="line"></span><br><span class="line"> with transaction.atomic():</span><br><span class="line"><span class="code">     entries = Entry.objects.select_for_update().filter(author=request.user)</span></span><br><span class="line"><span class="code">     for entry in entries:</span></span><br><span class="line"><span class="code">         ...</span></span><br><span class="line"><span class="code">一般情况下如果其他事务锁定了相关行，那么本次查询将被阻塞，直到锁被释放。如果不想要使查询阻塞的话，使用select_for_update(nowait=True)。</span></span><br><span class="line"><span class="code"></span></span><br><span class="line">当你同时使用select<span class="emphasis">_for_</span>update与select<span class="emphasis">_related方法时，select_</span>related指定的相关对象也会被锁定。你可以通过select<span class="emphasis">_for_</span>update(of=(...))方法指定需要锁定的关联对象</span><br><span class="line"></span><br><span class="line">注意：</span><br><span class="line">select<span class="emphasis">_for_</span>update方法必须与事务(transaction)同时使用。</span><br><span class="line">MySQL版本要在8.0.1+ 以上才支持 nowait和 of选项</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="Django实现悲观锁"><a href="#Django实现悲观锁" class="headerlink" title="Django实现悲观锁"></a>Django实现悲观锁</h3><pre class="language-markdown" data-language="markdown"><code class="language-markdown">在Django中使用悲观锁锁定一个对象，需要使用到select_for_update()方法，悲观锁本质上是一个行级锁，能够锁定所有匹配的行，直至事务结束
+例如在一个类中写一个post方法，在方法里面写表名.object.select_for_update().get(id=x)再return Response
+函数视图，锁定所有符合条件的文章对象列表。
+ from django.db import transaction
 
-<h3 id="Django实现乐观锁"><a href="#Django实现乐观锁" class="headerlink" title="Django实现乐观锁"></a>Django实现乐观锁</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">乐观锁实现一般使用记录版本号，为数据表增加一个版本标识(version)字段，每次对数据的更新操作成功后都对版本号执行+1操作。每次执行更新操作时都去判断当前版本号是不是该条数据的最新版本号，如果不是说明数据已经同时被修改过了，则丢弃更新，需要重新获取目标对象再进行更新。</span><br><span class="line"></span><br><span class="line">Django项目中实现乐观锁可以借助于django-concurrency这个第三方库, 它可以给模型增加一个version字段，每次执行save操作时会自动给版本号+1。</span><br><span class="line"></span><br><span class="line"> from django.db import models</span><br><span class="line"> from concurrency.fields import IntegerVersionField</span><br><span class="line"></span><br><span class="line"> class ConcurrentModel( models.Model ):</span><br><span class="line"><span class="code">     version = IntegerVersionField( )</span></span><br><span class="line"><span class="code">     name = models.CharField(max_length=100)</span></span><br><span class="line"><span class="code">下例中a和b同时获取了pk=1的模型对象信息，并尝试对其name字段进行修改。由于a.save()方法调用成功以后对象的版本号version已经加1，b再调用b.save()方法时将会报RecordModifiedError的错误，这样避免了a，b同时修改同一对象信息造成数据冲突。</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"> a = ConcurrentModel.objects.get(pk=1)</span><br><span class="line"> a.name = '1'</span><br><span class="line"></span><br><span class="line"> b = ConcurrentModel.objects.get(pk=1)</span><br><span class="line"> b.name = '2'</span><br><span class="line"></span><br><span class="line"> a.save()</span><br><span class="line"> b.save()</span><br></pre></td></tr></tbody></table></figure>
+ with transaction.atomic():
+     entries = Entry.objects.select_for_update().filter(author=request.user)
+     for entry in entries:
+         ...
+一般情况下如果其他事务锁定了相关行，那么本次查询将被阻塞，直到锁被释放。如果不想要使查询阻塞的话，使用select_for_update(nowait=True)。
 
-<h3 id="什么时候该用悲观锁，什么时候该用乐观锁"><a href="#什么时候该用悲观锁，什么时候该用乐观锁" class="headerlink" title="什么时候该用悲观锁，什么时候该用乐观锁"></a>什么时候该用悲观锁，什么时候该用乐观锁</h3><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">并发量：如果并发量不大且不允许脏读，可以使用悲观锁解决并发问题；但如果系统的并发非常大的话,悲观锁定会带来非常大的性能问题, 建议乐观锁。</span><br><span class="line"></span><br><span class="line">响应速度：如果需要非常高的响应速度，建议采用乐观锁方案，成功就执行，不成功就失败，不需要等待其他并发去释放锁。乐观锁并未真正加锁，效率高。</span><br><span class="line"></span><br><span class="line">冲突频率：如果冲突频率非常高，建议采用悲观锁，保证成功率。冲突频率大，选择乐观锁会需要多次重试才能成功，代价比较大。</span><br><span class="line"></span><br><span class="line">重试代价：如果重试代价大，建议采用悲观锁。悲观锁依赖数据库锁，效率低。更新失败的概率比较低。</span><br></pre></td></tr></tbody></table></figure>
+当你同时使用select_for_update与select_related方法时，select_related指定的相关对象也会被锁定。你可以通过select_for_update(of=(...))方法指定需要锁定的关联对象
+
+注意：
+select_for_update方法必须与事务(transaction)同时使用。
+MySQL版本要在8.0.1+ 以上才支持 nowait和 of选项</code></pre>
+
+<h3 id="Django实现乐观锁"><a href="#Django实现乐观锁" class="headerlink" title="Django实现乐观锁"></a>Django实现乐观锁</h3><pre class="language-markdown" data-language="markdown"><code class="language-markdown">乐观锁实现一般使用记录版本号，为数据表增加一个版本标识(version)字段，每次对数据的更新操作成功后都对版本号执行+1操作。每次执行更新操作时都去判断当前版本号是不是该条数据的最新版本号，如果不是说明数据已经同时被修改过了，则丢弃更新，需要重新获取目标对象再进行更新。
+
+Django项目中实现乐观锁可以借助于django-concurrency这个第三方库, 它可以给模型增加一个version字段，每次执行save操作时会自动给版本号+1。
+
+ from django.db import models
+ from concurrency.fields import IntegerVersionField
+
+ class ConcurrentModel( models.Model ):
+     version = IntegerVersionField( )
+     name = models.CharField(max_length=100)
+下例中a和b同时获取了pk=1的模型对象信息，并尝试对其name字段进行修改。由于a.save()方法调用成功以后对象的版本号version已经加1，b再调用b.save()方法时将会报RecordModifiedError的错误，这样避免了a，b同时修改同一对象信息造成数据冲突。
+
+ a = ConcurrentModel.objects.get(pk=1)
+ a.name = '1'
+
+ b = ConcurrentModel.objects.get(pk=1)
+ b.name = '2'
+
+ a.save()
+ b.save()</code></pre>
+
+<h3 id="什么时候该用悲观锁，什么时候该用乐观锁"><a href="#什么时候该用悲观锁，什么时候该用乐观锁" class="headerlink" title="什么时候该用悲观锁，什么时候该用乐观锁"></a>什么时候该用悲观锁，什么时候该用乐观锁</h3><pre class="language-markdown" data-language="markdown"><code class="language-markdown">并发量：如果并发量不大且不允许脏读，可以使用悲观锁解决并发问题；但如果系统的并发非常大的话,悲观锁定会带来非常大的性能问题, 建议乐观锁。
+
+响应速度：如果需要非常高的响应速度，建议采用乐观锁方案，成功就执行，不成功就失败，不需要等待其他并发去释放锁。乐观锁并未真正加锁，效率高。
+
+冲突频率：如果冲突频率非常高，建议采用悲观锁，保证成功率。冲突频率大，选择乐观锁会需要多次重试才能成功，代价比较大。
+
+重试代价：如果重试代价大，建议采用悲观锁。悲观锁依赖数据库锁，效率低。更新失败的概率比较低。</code></pre>
 
 
                 
@@ -649,7 +692,7 @@
 
         // we need a <pre> tag workaround.
         // otherwise the text inside "pre" loses all the line breaks!
-        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
             newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
         }
 
@@ -667,7 +710,7 @@
 
 
 <!-- 代码块功能依赖 -->
-<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFunction.js"></script>
 
 <!-- 代码语言 -->
 
@@ -683,6 +726,12 @@
 
 <script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
 
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
@@ -854,7 +903,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">103.2k</span>&nbsp;字
+                class="white-color">103.7k</span>&nbsp;字
             
             
             

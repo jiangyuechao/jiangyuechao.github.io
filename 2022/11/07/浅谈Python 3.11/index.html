@@ -357,7 +357,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    603
+                    606
                 </div>
                 
 
@@ -374,6 +374,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -387,39 +390,106 @@
 <p>（通过dockerbub中 python官方的测试集进行比对 python:bullseye， docker pull python:bullseye）</p>
 <h3 id="2、更好的错误信息提示"><a href="#2、更好的错误信息提示" class="headerlink" title="2、更好的错误信息提示"></a>2、更好的错误信息提示</h3><p>错误提示信息更加准确</p>
 <p>python 2.7</p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>response[<span class="string">'a'</span>][<span class="string">'b'</span>][<span class="string">'c'</span>][<span class="string">'user'</span>]</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">TypeError: <span class="string">'int'</span> <span class="built_in">object</span> has no attribute <span class="string">'__getitem__'</span></span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> response<span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'b'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'c'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'user'</span><span class="token punctuation">]</span>
+Traceback <span class="token punctuation">(</span>most recent call last<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  File <span class="token string">"&lt;stdin&gt;"</span><span class="token punctuation">,</span> line <span class="token number">1</span><span class="token punctuation">,</span> <span class="token keyword">in</span> <span class="token operator">&lt;</span>module<span class="token operator">&gt;</span>
+TypeError<span class="token punctuation">:</span> <span class="token string">'int'</span> <span class="token builtin">object</span> has no attribute <span class="token string">'__getitem__'</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span></code></pre>
 
 <p>python 3.11</p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>response=<span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>response[<span class="string">'a'</span>][<span class="string">'b'</span>][<span class="string">'c'</span>][<span class="string">'user'</span>]</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">TypeError: <span class="string">'int'</span> <span class="built_in">object</span> <span class="keyword">is</span> <span class="keyword">not</span> subscriptable</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> response<span class="token operator">=</span><span class="token number">1</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> response<span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'b'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'c'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'user'</span><span class="token punctuation">]</span>
+Traceback <span class="token punctuation">(</span>most recent call last<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  File <span class="token string">"&lt;stdin&gt;"</span><span class="token punctuation">,</span> line <span class="token number">1</span><span class="token punctuation">,</span> <span class="token keyword">in</span> <span class="token operator">&lt;</span>module<span class="token operator">&gt;</span>
+TypeError<span class="token punctuation">:</span> <span class="token string">'int'</span> <span class="token builtin">object</span> <span class="token keyword">is</span> <span class="token keyword">not</span> subscriptable
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span></code></pre>
 
 <h3 id="3、新增异常类的add-note方法"><a href="#3、新增异常类的add-note方法" class="headerlink" title="3、新增异常类的add_note方法"></a>3、新增异常类的add_note方法</h3><p>异常类增加了add_note，可以异常增加更多的提示信息</p>
 <p><img src="https://pic2.zhimg.com/80/v2-97a73714ab0fbe0aecb54dbcdf7ba391_1440w.webp" alt="img"></p>
 <p>python 3.11增加add_note方法</p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">raise</span> TypeError(<span class="string">'str'</span>)</span><br><span class="line"><span class="keyword">except</span> TypeError <span class="keyword">as</span> e:</span><br><span class="line">    e.add_note(<span class="string">'类型错了'</span>)</span><br><span class="line">    e.add_note(<span class="string">'该用int'</span>)</span><br><span class="line">    <span class="keyword">raise</span> e</span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">try</span><span class="token punctuation">:</span>
+    <span class="token keyword">raise</span> TypeError<span class="token punctuation">(</span><span class="token string">'str'</span><span class="token punctuation">)</span>
+<span class="token keyword">except</span> TypeError <span class="token keyword">as</span> e<span class="token punctuation">:</span>
+    e<span class="token punctuation">.</span>add_note<span class="token punctuation">(</span><span class="token string">'类型错了'</span><span class="token punctuation">)</span>
+    e<span class="token punctuation">.</span>add_note<span class="token punctuation">(</span><span class="token string">'该用int'</span><span class="token punctuation">)</span>
+    <span class="token keyword">raise</span> e</code></pre>
 
 <p>抛出的异常信息</p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"d:\py311\test.py"</span>, line <span class="number">6</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    <span class="keyword">raise</span> e</span><br><span class="line">  File <span class="string">"d:\py311\test.py"</span>, line <span class="number">2</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    <span class="keyword">raise</span> TypeError(<span class="string">'str'</span>)</span><br><span class="line">TypeError: <span class="built_in">str</span></span><br><span class="line">类型错了</span><br><span class="line">该用<span class="built_in">int</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-python" data-language="python"><code class="language-python">Traceback <span class="token punctuation">(</span>most recent call last<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  File <span class="token string">"d:\py311\test.py"</span><span class="token punctuation">,</span> line <span class="token number">6</span><span class="token punctuation">,</span> <span class="token keyword">in</span> <span class="token operator">&lt;</span>module<span class="token operator">&gt;</span>
+    <span class="token keyword">raise</span> e
+  File <span class="token string">"d:\py311\test.py"</span><span class="token punctuation">,</span> line <span class="token number">2</span><span class="token punctuation">,</span> <span class="token keyword">in</span> <span class="token operator">&lt;</span>module<span class="token operator">&gt;</span>
+    <span class="token keyword">raise</span> TypeError<span class="token punctuation">(</span><span class="token string">'str'</span><span class="token punctuation">)</span>
+TypeError<span class="token punctuation">:</span> <span class="token builtin">str</span>
+类型错了
+该用<span class="token builtin">int</span></code></pre>
 
 <h3 id="4、支持抛出抛出异常组"><a href="#4、支持抛出抛出异常组" class="headerlink" title="4、支持抛出抛出异常组"></a>4、支持抛出抛出异常组</h3><p><strong>异常组</strong>是python3.11 新加的概念，需要使用**except***进行捕获</p>
 <p>特别注意是<strong>异常组</strong>ExceptionGroup，不是异常的组合[exception1，exception2,…]</p>
 <p>异常组的定义</p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">eg1 = ExceptionGroup(<span class="string">"one error"</span>, [ValueError(<span class="number">654</span>)])</span><br><span class="line"></span><br><span class="line">eg2 = ExceptionGroup(<span class="string">"two errors"</span>, [ValueError(<span class="number">654</span>), TypeError(<span class="string">"int"</span>)])</span><br><span class="line">ExceptionGroup(<span class="string">'two errors'</span>, [ValueError(<span class="number">654</span>), TypeError(<span class="string">'int'</span>)])</span><br><span class="line"></span><br><span class="line">eg3 = ExceptionGroup(<span class="string">"no errors"</span>, [])</span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-python" data-language="python"><code class="language-python">eg1 <span class="token operator">=</span> ExceptionGroup<span class="token punctuation">(</span><span class="token string">"one error"</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>ValueError<span class="token punctuation">(</span><span class="token number">654</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+eg2 <span class="token operator">=</span> ExceptionGroup<span class="token punctuation">(</span><span class="token string">"two errors"</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>ValueError<span class="token punctuation">(</span><span class="token number">654</span><span class="token punctuation">)</span><span class="token punctuation">,</span> TypeError<span class="token punctuation">(</span><span class="token string">"int"</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+ExceptionGroup<span class="token punctuation">(</span><span class="token string">'two errors'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>ValueError<span class="token punctuation">(</span><span class="token number">654</span><span class="token punctuation">)</span><span class="token punctuation">,</span> TypeError<span class="token punctuation">(</span><span class="token string">'int'</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+eg3 <span class="token operator">=</span> ExceptionGroup<span class="token punctuation">(</span><span class="token string">"no errors"</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre>
 
 <p>异常组用于处理抛出的多个异常，在之前Python3.11 之前版本，只能处理一个异常</p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">raise</span> ExceptionGroup(</span><br><span class="line">        <span class="string">"group"</span>, [TypeError(<span class="string">"str"</span>), ValueError(<span class="number">654</span>), TypeError(<span class="string">"int"</span>)]</span><br><span class="line">    )</span><br><span class="line"><span class="keyword">except</span>* ValueError <span class="keyword">as</span> eg:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f"Handling ValueError: <span class="subst">{eg.exceptions}</span>"</span>)</span><br><span class="line"><span class="keyword">except</span>* TypeError <span class="keyword">as</span> eg:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f"Handling TypeError: <span class="subst">{eg.exceptions}</span>"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#Handling ValueError: (ValueError(654),)</span></span><br><span class="line"><span class="comment">#Handling TypeError: (TypeError('str'), TypeError('int'))</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">try</span><span class="token punctuation">:</span>
+    <span class="token keyword">raise</span> ExceptionGroup<span class="token punctuation">(</span>
+        <span class="token string">"group"</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>TypeError<span class="token punctuation">(</span><span class="token string">"str"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> ValueError<span class="token punctuation">(</span><span class="token number">654</span><span class="token punctuation">)</span><span class="token punctuation">,</span> TypeError<span class="token punctuation">(</span><span class="token string">"int"</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+    <span class="token punctuation">)</span>
+<span class="token keyword">except</span><span class="token operator">*</span> ValueError <span class="token keyword">as</span> eg<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Handling ValueError: </span><span class="token interpolation"><span class="token punctuation">{</span>eg<span class="token punctuation">.</span>exceptions<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+<span class="token keyword">except</span><span class="token operator">*</span> TypeError <span class="token keyword">as</span> eg<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Handling TypeError: </span><span class="token interpolation"><span class="token punctuation">{</span>eg<span class="token punctuation">.</span>exceptions<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+
+<span class="token comment">#Handling ValueError: (ValueError(654),)</span>
+<span class="token comment">#Handling TypeError: (TypeError('str'), TypeError('int'))</span></code></pre>
 
 <h3 id="5、增加内置支持toml格式解析"><a href="#5、增加内置支持toml格式解析" class="headerlink" title="5、增加内置支持toml格式解析"></a>5、增加内置支持toml格式解析</h3><p>新增toml格式文本解析，支持从文件读取和字符串中读取</p>
 <p>目前python 3.11 内置的文本格式解析已经包括：json、toml、ini、xml，尚不支持的有<strong>yaml</strong></p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tomllib</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">'123.toml'</span>, <span class="string">'rb'</span>) <span class="keyword">as</span> fd:</span><br><span class="line">    data = tomllib.load(fd)</span><br><span class="line"></span><br><span class="line">toml_str = <span class="string">"""</span></span><br><span class="line"><span class="string">[owner]</span></span><br><span class="line"><span class="string">name = "Tom Preston-Werner"</span></span><br><span class="line"><span class="string">dob = 1979-05-27T07:32:00-08:00</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line">data = tomllib.loads(toml_str)</span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> tomllib
+
+<span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">'123.toml'</span><span class="token punctuation">,</span> <span class="token string">'rb'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> fd<span class="token punctuation">:</span>
+    data <span class="token operator">=</span> tomllib<span class="token punctuation">.</span>load<span class="token punctuation">(</span>fd<span class="token punctuation">)</span>
+
+toml_str <span class="token operator">=</span> <span class="token triple-quoted-string string">"""
+[owner]
+name = "Tom Preston-Werner"
+dob = 1979-05-27T07:32:00-08:00
+"""</span>
+
+data <span class="token operator">=</span> tomllib<span class="token punctuation">.</span>loads<span class="token punctuation">(</span>toml_str<span class="token punctuation">)</span></code></pre>
 
 <h3 id="6、更强的类型标注"><a href="#6、更强的类型标注" class="headerlink" title="6、更强的类型标注"></a>6、更强的类型标注</h3><h4 id="（1）LiteralString"><a href="#（1）LiteralString" class="headerlink" title="（1）LiteralString"></a>（1）LiteralString</h4><p>目前，试了vscode 和mypy 没有报错，需要等mypy更新</p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> LiteralString</span><br><span class="line"></span><br><span class="line">user_id = <span class="string">'1'</span></span><br><span class="line">query = <span class="string">f'select * from user where user_id = <span class="subst">{user_id}</span>'</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">test</span>(<span class="params">sql: LiteralString</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">    <span class="built_in">print</span>(sql)</span><br><span class="line"></span><br><span class="line">test(sql=query)</span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> LiteralString
+
+user_id <span class="token operator">=</span> <span class="token string">'1'</span>
+query <span class="token operator">=</span> <span class="token string-interpolation"><span class="token string">f'select * from user where user_id = </span><span class="token interpolation"><span class="token punctuation">{</span>user_id<span class="token punctuation">}</span></span><span class="token string">'</span></span>
+<span class="token keyword">def</span> <span class="token function">test</span><span class="token punctuation">(</span>sql<span class="token punctuation">:</span> LiteralString<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>sql<span class="token punctuation">)</span>
+
+test<span class="token punctuation">(</span>sql<span class="token operator">=</span>query<span class="token punctuation">)</span></code></pre>
 
 <h4 id="（2）TypedDict、NotRequired、Required"><a href="#（2）TypedDict、NotRequired、Required" class="headerlink" title="（2）TypedDict、NotRequired、Required"></a>（2）TypedDict、NotRequired、Required</h4><p>类型字典，非必选属性和必选属性</p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">List</span>, TypedDict, NotRequired, Required</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">User</span>(<span class="title class_ inherited__">TypedDict</span>):</span><br><span class="line">    name: <span class="built_in">str</span></span><br><span class="line">    age: NotRequired[<span class="built_in">int</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Teacher</span>(<span class="title class_ inherited__">TypedDict</span>):</span><br><span class="line">    name: Required[<span class="built_in">str</span>]</span><br><span class="line">    students: NotRequired[<span class="type">List</span>[User]]</span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> List<span class="token punctuation">,</span> TypedDict<span class="token punctuation">,</span> NotRequired<span class="token punctuation">,</span> Required
+
+
+<span class="token keyword">class</span> <span class="token class-name">User</span><span class="token punctuation">(</span>TypedDict<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    name<span class="token punctuation">:</span> <span class="token builtin">str</span>
+    age<span class="token punctuation">:</span> NotRequired<span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Teacher</span><span class="token punctuation">(</span>TypedDict<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    name<span class="token punctuation">:</span> Required<span class="token punctuation">[</span><span class="token builtin">str</span><span class="token punctuation">]</span>
+    students<span class="token punctuation">:</span> NotRequired<span class="token punctuation">[</span>List<span class="token punctuation">[</span>User<span class="token punctuation">]</span><span class="token punctuation">]</span></code></pre>
 
 <h4 id="（3）Self"><a href="#（3）Self" class="headerlink" title="（3）Self"></a>（3）Self</h4><p>表示自身的类型</p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">Any</span>, Self</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Node</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, value: <span class="type">Any</span></span>) -&gt; Self:</span><br><span class="line">        self.value = value</span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> Any<span class="token punctuation">,</span> Self
+
+<span class="token keyword">class</span> <span class="token class-name">Node</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> value<span class="token punctuation">:</span> Any<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> Self<span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>value <span class="token operator">=</span> value</code></pre>
                 
             </div>
             <hr/>
@@ -678,7 +748,7 @@
 
         // we need a <pre> tag workaround.
         // otherwise the text inside "pre" loses all the line breaks!
-        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
             newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
         }
 
@@ -696,7 +766,7 @@
 
 
 <!-- 代码块功能依赖 -->
-<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFunction.js"></script>
 
 <!-- 代码语言 -->
 
@@ -712,6 +782,12 @@
 
 <script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
 
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
@@ -883,7 +959,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">103.2k</span>&nbsp;字
+                class="white-color">103.7k</span>&nbsp;字
             
             
             

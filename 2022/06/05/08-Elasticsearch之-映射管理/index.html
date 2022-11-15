@@ -357,7 +357,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    705
+                    707
                 </div>
                 
 
@@ -373,6 +373,9 @@
         </div>
         <hr class="clearfix">
 
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
         
 
         
@@ -439,15 +442,96 @@
 </tbody></table>
 <h2 id="二-创建索引"><a href="#二-创建索引" class="headerlink" title="二 创建索引"></a>二 创建索引</h2><p>text类型会取出词做倒排索引,keyword不会被分词，原样存储，原样匹配</p>
 <p>mapping类型一旦确定，以后就不能修改了</p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#6.x的版本没问题</span></span><br><span class="line">PUT books</span><br><span class="line">{</span><br><span class="line">  <span class="string">"mappings"</span>: {</span><br><span class="line">    <span class="string">"book"</span>:{</span><br><span class="line">      <span class="string">"properties"</span>:{</span><br><span class="line">        <span class="string">"title"</span>:{</span><br><span class="line">          <span class="string">"type"</span>:<span class="string">"text"</span>,</span><br><span class="line">         	<span class="string">"analyzer"</span>: <span class="string">"ik_max_word"</span></span><br><span class="line">        },</span><br><span class="line">        <span class="string">"price"</span>:{</span><br><span class="line">          <span class="string">"type"</span>:<span class="string">"integer"</span></span><br><span class="line">        },</span><br><span class="line">        <span class="string">"addr"</span>:{</span><br><span class="line">          <span class="string">"type"</span>:<span class="string">"keyword"</span></span><br><span class="line">        },</span><br><span class="line">        <span class="string">"company"</span>:{</span><br><span class="line">          <span class="string">"properties"</span>:{</span><br><span class="line">            <span class="string">"name"</span>:{<span class="string">"type"</span>:<span class="string">"text"</span>},</span><br><span class="line">            <span class="string">"company_addr"</span>:{<span class="string">"type"</span>:<span class="string">"text"</span>},</span><br><span class="line">            <span class="string">"employee_count"</span>:{<span class="string">"type"</span>:<span class="string">"integer"</span>}</span><br><span class="line">          }</span><br><span class="line">        },</span><br><span class="line">        <span class="string">"publish_date"</span>:{<span class="string">"type"</span>:<span class="string">"date"</span>,<span class="string">"format"</span>:<span class="string">"yyy-MM-dd"</span>}</span><br><span class="line">       </span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token comment">#6.x的版本没问题</span>
+PUT books
+<span class="token punctuation">{</span>
+  <span class="token string">"mappings"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"book"</span><span class="token punctuation">:</span><span class="token punctuation">{</span>
+      <span class="token string">"properties"</span><span class="token punctuation">:</span><span class="token punctuation">{</span>
+        <span class="token string">"title"</span><span class="token punctuation">:</span><span class="token punctuation">{</span>
+          <span class="token string">"type"</span><span class="token punctuation">:</span><span class="token string">"text"</span><span class="token punctuation">,</span>
+         	<span class="token string">"analyzer"</span><span class="token punctuation">:</span> <span class="token string">"ik_max_word"</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token string">"price"</span><span class="token punctuation">:</span><span class="token punctuation">{</span>
+          <span class="token string">"type"</span><span class="token punctuation">:</span><span class="token string">"integer"</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token string">"addr"</span><span class="token punctuation">:</span><span class="token punctuation">{</span>
+          <span class="token string">"type"</span><span class="token punctuation">:</span><span class="token string">"keyword"</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token string">"company"</span><span class="token punctuation">:</span><span class="token punctuation">{</span>
+          <span class="token string">"properties"</span><span class="token punctuation">:</span><span class="token punctuation">{</span>
+            <span class="token string">"name"</span><span class="token punctuation">:</span><span class="token punctuation">{</span><span class="token string">"type"</span><span class="token punctuation">:</span><span class="token string">"text"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token string">"company_addr"</span><span class="token punctuation">:</span><span class="token punctuation">{</span><span class="token string">"type"</span><span class="token punctuation">:</span><span class="token string">"text"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token string">"employee_count"</span><span class="token punctuation">:</span><span class="token punctuation">{</span><span class="token string">"type"</span><span class="token punctuation">:</span><span class="token string">"integer"</span><span class="token punctuation">}</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token string">"publish_date"</span><span class="token punctuation">:</span><span class="token punctuation">{</span><span class="token string">"type"</span><span class="token punctuation">:</span><span class="token string">"date"</span><span class="token punctuation">,</span><span class="token string">"format"</span><span class="token punctuation">:</span><span class="token string">"yyy-MM-dd"</span><span class="token punctuation">}</span>
+       
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 
 <p>7.x版本以后</p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">PUT books</span><br><span class="line">{</span><br><span class="line">  <span class="string">"mappings"</span>: {</span><br><span class="line">    <span class="string">"properties"</span>:{</span><br><span class="line">      <span class="string">"title"</span>:{</span><br><span class="line">        <span class="string">"type"</span>:<span class="string">"text"</span>,</span><br><span class="line">        <span class="string">"analyzer"</span>: <span class="string">"ik_max_word"</span></span><br><span class="line">      },</span><br><span class="line">      <span class="string">"price"</span>:{</span><br><span class="line">        <span class="string">"type"</span>:<span class="string">"integer"</span></span><br><span class="line">      },</span><br><span class="line">      <span class="string">"addr"</span>:{</span><br><span class="line">        <span class="string">"type"</span>:<span class="string">"keyword"</span></span><br><span class="line">      },</span><br><span class="line">      <span class="string">"company"</span>:{</span><br><span class="line">        <span class="string">"properties"</span>:{</span><br><span class="line">          <span class="string">"name"</span>:{<span class="string">"type"</span>:<span class="string">"text"</span>},</span><br><span class="line">          <span class="string">"company_addr"</span>:{<span class="string">"type"</span>:<span class="string">"text"</span>},</span><br><span class="line">          <span class="string">"employee_count"</span>:{<span class="string">"type"</span>:<span class="string">"integer"</span>}</span><br><span class="line">        }</span><br><span class="line">      },</span><br><span class="line">      <span class="string">"publish_date"</span>:{<span class="string">"type"</span>:<span class="string">"date"</span>,<span class="string">"format"</span>:<span class="string">"yyy-MM-dd"</span>}</span><br><span class="line">      </span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-python" data-language="python"><code class="language-python">PUT books
+<span class="token punctuation">{</span>
+  <span class="token string">"mappings"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"properties"</span><span class="token punctuation">:</span><span class="token punctuation">{</span>
+      <span class="token string">"title"</span><span class="token punctuation">:</span><span class="token punctuation">{</span>
+        <span class="token string">"type"</span><span class="token punctuation">:</span><span class="token string">"text"</span><span class="token punctuation">,</span>
+        <span class="token string">"analyzer"</span><span class="token punctuation">:</span> <span class="token string">"ik_max_word"</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token string">"price"</span><span class="token punctuation">:</span><span class="token punctuation">{</span>
+        <span class="token string">"type"</span><span class="token punctuation">:</span><span class="token string">"integer"</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token string">"addr"</span><span class="token punctuation">:</span><span class="token punctuation">{</span>
+        <span class="token string">"type"</span><span class="token punctuation">:</span><span class="token string">"keyword"</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token string">"company"</span><span class="token punctuation">:</span><span class="token punctuation">{</span>
+        <span class="token string">"properties"</span><span class="token punctuation">:</span><span class="token punctuation">{</span>
+          <span class="token string">"name"</span><span class="token punctuation">:</span><span class="token punctuation">{</span><span class="token string">"type"</span><span class="token punctuation">:</span><span class="token string">"text"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token string">"company_addr"</span><span class="token punctuation">:</span><span class="token punctuation">{</span><span class="token string">"type"</span><span class="token punctuation">:</span><span class="token string">"text"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token string">"employee_count"</span><span class="token punctuation">:</span><span class="token punctuation">{</span><span class="token string">"type"</span><span class="token punctuation">:</span><span class="token string">"integer"</span><span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token string">"publish_date"</span><span class="token punctuation">:</span><span class="token punctuation">{</span><span class="token string">"type"</span><span class="token punctuation">:</span><span class="token string">"date"</span><span class="token punctuation">,</span><span class="token string">"format"</span><span class="token punctuation">:</span><span class="token string">"yyy-MM-dd"</span><span class="token punctuation">}</span>
+      
+    <span class="token punctuation">}</span>
+    
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 
 <p>插入数据测试：</p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">PUT books/_doc/<span class="number">1</span></span><br><span class="line">{</span><br><span class="line">  <span class="string">"title"</span>:<span class="string">"大头儿子小偷爸爸"</span>,</span><br><span class="line">  <span class="string">"price"</span>:<span class="number">100</span>,  </span><br><span class="line">  <span class="string">"addr"</span>:<span class="string">"北京天安门"</span>,</span><br><span class="line">  <span class="string">"company"</span>:{</span><br><span class="line">    <span class="string">"name"</span>:<span class="string">"我爱北京天安门"</span>,</span><br><span class="line">    <span class="string">"company_addr"</span>:<span class="string">"我的家在东北松花江傻姑娘"</span>,</span><br><span class="line">    <span class="string">"employee_count"</span>:<span class="number">10</span></span><br><span class="line">  },</span><br><span class="line">  <span class="string">"publish_date"</span>:<span class="string">"2019-08-19"</span></span><br><span class="line">}</span><br><span class="line"><span class="comment">#测试数据2</span></span><br><span class="line">PUT books/_doc/<span class="number">2</span></span><br><span class="line">{</span><br><span class="line">  <span class="string">"title"</span>:<span class="string">"白雪公主和十个小矮人"</span>,</span><br><span class="line">  <span class="string">"price"</span>:<span class="string">"99"</span>, <span class="comment">#写字符串会自动转换</span></span><br><span class="line">  <span class="string">"addr"</span>:<span class="string">"黑暗森里"</span>,</span><br><span class="line">  <span class="string">"company"</span>:{</span><br><span class="line">    <span class="string">"name"</span>:<span class="string">"我的家乡在上海"</span>,</span><br><span class="line">    <span class="string">"company_addr"</span>:<span class="string">"朋友一生一起走"</span>,</span><br><span class="line">    <span class="string">"employee_count"</span>:<span class="number">10</span></span><br><span class="line">  },</span><br><span class="line">  <span class="string">"publish_date"</span>:<span class="string">"2018-05-19"</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-python" data-language="python"><code class="language-python">PUT books<span class="token operator">/</span>_doc<span class="token operator">/</span><span class="token number">1</span>
+<span class="token punctuation">{</span>
+  <span class="token string">"title"</span><span class="token punctuation">:</span><span class="token string">"大头儿子小偷爸爸"</span><span class="token punctuation">,</span>
+  <span class="token string">"price"</span><span class="token punctuation">:</span><span class="token number">100</span><span class="token punctuation">,</span>  
+  <span class="token string">"addr"</span><span class="token punctuation">:</span><span class="token string">"北京天安门"</span><span class="token punctuation">,</span>
+  <span class="token string">"company"</span><span class="token punctuation">:</span><span class="token punctuation">{</span>
+    <span class="token string">"name"</span><span class="token punctuation">:</span><span class="token string">"我爱北京天安门"</span><span class="token punctuation">,</span>
+    <span class="token string">"company_addr"</span><span class="token punctuation">:</span><span class="token string">"我的家在东北松花江傻姑娘"</span><span class="token punctuation">,</span>
+    <span class="token string">"employee_count"</span><span class="token punctuation">:</span><span class="token number">10</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string">"publish_date"</span><span class="token punctuation">:</span><span class="token string">"2019-08-19"</span>
+<span class="token punctuation">}</span>
+<span class="token comment">#测试数据2</span>
+PUT books<span class="token operator">/</span>_doc<span class="token operator">/</span><span class="token number">2</span>
+<span class="token punctuation">{</span>
+  <span class="token string">"title"</span><span class="token punctuation">:</span><span class="token string">"白雪公主和十个小矮人"</span><span class="token punctuation">,</span>
+  <span class="token string">"price"</span><span class="token punctuation">:</span><span class="token string">"99"</span><span class="token punctuation">,</span> <span class="token comment">#写字符串会自动转换</span>
+  <span class="token string">"addr"</span><span class="token punctuation">:</span><span class="token string">"黑暗森里"</span><span class="token punctuation">,</span>
+  <span class="token string">"company"</span><span class="token punctuation">:</span><span class="token punctuation">{</span>
+    <span class="token string">"name"</span><span class="token punctuation">:</span><span class="token string">"我的家乡在上海"</span><span class="token punctuation">,</span>
+    <span class="token string">"company_addr"</span><span class="token punctuation">:</span><span class="token string">"朋友一生一起走"</span><span class="token punctuation">,</span>
+    <span class="token string">"employee_count"</span><span class="token punctuation">:</span><span class="token number">10</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string">"publish_date"</span><span class="token punctuation">:</span><span class="token string">"2018-05-19"</span>
+<span class="token punctuation">}</span></code></pre>
 
-<h2 id="三-查看索引"><a href="#三-查看索引" class="headerlink" title="三 查看索引"></a>三 查看索引</h2><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查看books索引的mapping</span></span><br><span class="line">GET books/_mapping</span><br><span class="line"><span class="comment">#获取所有的mapping</span></span><br><span class="line">GET _<span class="built_in">all</span>/_mapping</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="三-查看索引"><a href="#三-查看索引" class="headerlink" title="三 查看索引"></a>三 查看索引</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment">#查看books索引的mapping</span>
+GET books<span class="token operator">/</span>_mapping
+<span class="token comment">#获取所有的mapping</span>
+GET _all<span class="token operator">/</span>_mapping</code></pre>
                 
             </div>
             <hr/>
@@ -706,7 +790,7 @@
 
         // we need a <pre> tag workaround.
         // otherwise the text inside "pre" loses all the line breaks!
-        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
             newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
         }
 
@@ -724,7 +808,7 @@
 
 
 <!-- 代码块功能依赖 -->
-<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFunction.js"></script>
 
 <!-- 代码语言 -->
 
@@ -740,6 +824,12 @@
 
 <script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
 
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
@@ -911,7 +1001,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">103.2k</span>&nbsp;字
+                class="white-color">103.7k</span>&nbsp;字
             
             
             

@@ -357,7 +357,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    722
+                    728
                 </div>
                 
 
@@ -374,6 +374,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -381,13 +384,123 @@
             <div id="articleContent">
                 <span id="more"></span>
 
-<h3 id="django三板斧"><a href="#django三板斧" class="headerlink" title="django三板斧"></a>django三板斧</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># django自动重启的现象叫‘热更新’</span></span><br><span class="line"><span class="comment"># 如果setting.py文件中DEBUG = False，则必须在ALLOWED_HOSTS = []中填写对应ip地址或者*号</span></span><br><span class="line"><span class="number">1.</span> HttpResponse</span><br><span class="line"><span class="number">2.</span> render</span><br><span class="line"><span class="number">3.</span> redirect</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">'123'</span>)</span><br><span class="line">    <span class="comment"># 暂且记忆返回值是字符串类型</span></span><br><span class="line">    <span class="comment"># return HttpResponse('hello django!')  # 返回给浏览器了</span></span><br><span class="line">    ctime = time.strftime(<span class="string">'%Y-%m-%d %X'</span>)</span><br><span class="line">    a = <span class="number">1</span></span><br><span class="line">    b = <span class="number">2</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">locals</span>())</span><br><span class="line">    <span class="comment"># return render(request, 'index.html', {'ctime11111':ctime, 'a':1, 'b':2})</span></span><br><span class="line">    <span class="comment"># return render(request, 'index.html', locals())</span></span><br><span class="line">    <span class="comment"># return redirect('http://www.baidu.com')</span></span><br><span class="line">    <span class="keyword">return</span> redirect(<span class="string">'/admin/'</span>)  <span class="comment"># ip+port/admin 括号内可跟链接地址，直接跳转</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="django三板斧"><a href="#django三板斧" class="headerlink" title="django三板斧"></a>django三板斧</h3><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># django自动重启的现象叫‘热更新’</span>
+<span class="token comment"># 如果setting.py文件中DEBUG = False，则必须在ALLOWED_HOSTS = []中填写对应ip地址或者*号</span>
+<span class="token number">1.</span> HttpResponse
+<span class="token number">2.</span> render
+<span class="token number">3.</span> redirect
 
-<h3 id="静态文件配置"><a href="#静态文件配置" class="headerlink" title="静态文件配置"></a>静态文件配置</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">什么是静态文件</span><br><span class="line">	css, js, jq, bootstrap, img...</span><br><span class="line"> eg:</span><br><span class="line">    以登录功能为例</span><br><span class="line"> <span class="comment"># 静态文件的存储路径一般是static，默认是没有这个文件夹的，所以，需要我们自己手动创建出来这个文件夹</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在static文件夹中还可以继续根据不同的功能进行划分</span></span><br><span class="line">js</span><br><span class="line">css</span><br><span class="line">lib</span><br><span class="line">img</span><br><span class="line"></span><br><span class="line"><span class="comment"># http://127.0.0.1:8000/static/css/bootstrap.min.css不能访问是因为后盾没有开放可访问的路径</span></span><br><span class="line"></span><br><span class="line">{<span class="comment"># 动态引入 #}</span></span><br><span class="line">    {% load static %}</span><br><span class="line">    &lt;link rel=<span class="string">"stylesheet"</span> href=<span class="string">"{% static 'css/bootstrap-theme.min.css'%}"</span>&gt;</span><br><span class="line"></span><br><span class="line">STATIC_URL = <span class="string">'/aaaaa/'</span></span><br><span class="line"></span><br><span class="line">STATICFILES_DIRS = [</span><br><span class="line">    os.path.join(BASE_DIR, <span class="string">'static'</span>),  <span class="comment"># 这样一配置完成，静态路径的根就是static</span></span><br><span class="line">    os.path.join(BASE_DIR, <span class="string">'static1'</span>),  <span class="comment"># 这样一配置完成，静态路径的根就是static</span></span><br><span class="line">    os.path.join(BASE_DIR, <span class="string">'static2'</span>),  <span class="comment"># 这样一配置完成，静态路径的根就是static</span></span><br><span class="line">]</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'123'</span><span class="token punctuation">)</span>
+    <span class="token comment"># 暂且记忆返回值是字符串类型</span>
+    <span class="token comment"># return HttpResponse('hello django!')  # 返回给浏览器了</span>
+    ctime <span class="token operator">=</span> time<span class="token punctuation">.</span>strftime<span class="token punctuation">(</span><span class="token string">'%Y-%m-%d %X'</span><span class="token punctuation">)</span>
+    a <span class="token operator">=</span> <span class="token number">1</span>
+    b <span class="token operator">=</span> <span class="token number">2</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">locals</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token comment"># return render(request, 'index.html', {'ctime11111':ctime, 'a':1, 'b':2})</span>
+    <span class="token comment"># return render(request, 'index.html', locals())</span>
+    <span class="token comment"># return redirect('http://www.baidu.com')</span>
+    <span class="token keyword">return</span> redirect<span class="token punctuation">(</span><span class="token string">'/admin/'</span><span class="token punctuation">)</span>  <span class="token comment"># ip+port/admin 括号内可跟链接地址，直接跳转</span></code></pre>
 
-<h3 id="form表单"><a href="#form表单" class="headerlink" title="form表单"></a>form表单</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=<span class="string">""</span>&gt;</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">	1. 什么都不写，提交到当前页面</span></span><br><span class="line"><span class="string">	2. 全写：https://passport.baidu.com/v2/api/?login</span></span><br><span class="line"><span class="string">	3. 只写后缀</span></span><br><span class="line"><span class="string">		/login/  =&gt; 自动补全ip和端口</span></span><br><span class="line"><span class="string">		http://127.0.0.1:8000/login/</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line">面试题：get和post的区别？</span><br><span class="line">	http://<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8000</span>/login/?a=<span class="number">1</span>&amp;b=<span class="number">2</span>&amp;c=<span class="number">3</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    	get请求：</span></span><br><span class="line"><span class="string">    		1. get没有请求体</span></span><br><span class="line"><span class="string">    		2. 对数据大小的限制是4KB</span></span><br><span class="line"><span class="string">    		3. 不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息</span></span><br><span class="line"><span class="string">    	post请求：</span></span><br><span class="line"><span class="string">    		1. post有请求体</span></span><br><span class="line"><span class="string">    		2. 理论上对数据大小没有限制</span></span><br><span class="line"><span class="string">    		3. 相对安全</span></span><br><span class="line"><span class="string">    '''</span>     </span><br><span class="line">    </span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">	MySQL中可能会出现的安全问题：SQL注入</span></span><br><span class="line"><span class="string">	前端当中可能会出现的安全问题：xss攻击</span></span><br><span class="line"><span class="string">	django中会出现的安全问题：csrf跨站请求</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">login</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="comment"># 1. 如何判断请求方式？</span></span><br><span class="line">    <span class="built_in">print</span>(request)  <span class="comment"># &lt;WSGIRequest: GET '/login/'&gt;</span></span><br><span class="line">    <span class="built_in">print</span>(request.method, <span class="built_in">type</span>(request.method))  <span class="comment"># GET &lt;WSGIRequest: GET '/login/'&gt;</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'POST'</span>:</span><br><span class="line">        <span class="comment">#  2. 如何获取post请求方式的数据？</span></span><br><span class="line">        <span class="comment"># print(request.POST) # QueryDict: {'user': ['ly'], 'password': ['123']}&gt;</span></span><br><span class="line">        <span class="comment"># print(request.POST.get('username')) # ly</span></span><br><span class="line">        <span class="comment"># # get只能拿最后一个值</span></span><br><span class="line">        <span class="comment"># print(request.POST.get('hobby')) # ly</span></span><br><span class="line">        <span class="comment"># print(request.POST.getlist('hobby')) # 拿到所有的值</span></span><br><span class="line">        username = request.POST.get(<span class="string">'username'</span>)</span><br><span class="line">        password = request.POST.get(<span class="string">'password'</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> username == <span class="string">'ly'</span> <span class="keyword">and</span> password ==<span class="string">'123'</span>:</span><br><span class="line">            <span class="keyword">return</span> HttpResponse(<span class="string">'登录成功'</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> HttpResponse(<span class="string">'密码错误'</span>)</span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">'login.html'</span>,  )</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="静态文件配置"><a href="#静态文件配置" class="headerlink" title="静态文件配置"></a>静态文件配置</h3><pre class="language-python" data-language="python"><code class="language-python">什么是静态文件
+	css<span class="token punctuation">,</span> js<span class="token punctuation">,</span> jq<span class="token punctuation">,</span> bootstrap<span class="token punctuation">,</span> img<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+ eg<span class="token punctuation">:</span>
+    以登录功能为例
+ <span class="token comment"># 静态文件的存储路径一般是static，默认是没有这个文件夹的，所以，需要我们自己手动创建出来这个文件夹</span>
 
-<h3 id="django连接mysql"><a href="#django连接mysql" class="headerlink" title="django连接mysql"></a>django连接mysql</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 连接mysql的配置</span></span><br><span class="line">  <span class="string">'default'</span>: {</span><br><span class="line">        <span class="string">'ENGINE'</span>: <span class="string">'django.db.backends.mysql'</span>,</span><br><span class="line">        <span class="string">'NAME'</span>: <span class="string">'db8_3'</span>,</span><br><span class="line">        <span class="string">'HOST'</span>: <span class="string">'127.0.0.1'</span>,</span><br><span class="line">        <span class="string">'PORT'</span>: <span class="number">3306</span>,</span><br><span class="line">        <span class="string">'USER'</span>: <span class="string">'root'</span>,</span><br><span class="line">        <span class="string">'PASSWORD'</span>:<span class="string">'123'</span>,</span><br><span class="line">        <span class="string">'CHARSET'</span>:<span class="string">'utf8'</span></span><br><span class="line">    }</span><br><span class="line">        </span><br><span class="line"><span class="comment"># django默认的操作mysql的模块是MySQLdb</span></span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">	在python3.6版本以下，需要加入下面两句话</span></span><br><span class="line"><span class="string">        需要先安装pymysql</span></span><br><span class="line"><span class="string">        pip3 install pymysql</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        import pymysql</span></span><br><span class="line"><span class="string">        pymysql.install_as_MySQLdb()</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<span class="token comment"># 在static文件夹中还可以继续根据不同的功能进行划分</span>
+js
+css
+lib
+img
+
+<span class="token comment"># http://127.0.0.1:8000/static/css/bootstrap.min.css不能访问是因为后盾没有开放可访问的路径</span>
+
+<span class="token punctuation">{</span><span class="token comment"># 动态引入 #}</span>
+    <span class="token punctuation">{</span><span class="token operator">%</span> load static <span class="token operator">%</span><span class="token punctuation">}</span>
+    <span class="token operator">&lt;</span>link rel<span class="token operator">=</span><span class="token string">"stylesheet"</span> href<span class="token operator">=</span><span class="token string">"{% static 'css/bootstrap-theme.min.css'%}"</span><span class="token operator">&gt;</span>
+
+STATIC_URL <span class="token operator">=</span> <span class="token string">'/aaaaa/'</span>
+
+STATICFILES_DIRS <span class="token operator">=</span> <span class="token punctuation">[</span>
+    os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>BASE_DIR<span class="token punctuation">,</span> <span class="token string">'static'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  <span class="token comment"># 这样一配置完成，静态路径的根就是static</span>
+    os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>BASE_DIR<span class="token punctuation">,</span> <span class="token string">'static1'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  <span class="token comment"># 这样一配置完成，静态路径的根就是static</span>
+    os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>BASE_DIR<span class="token punctuation">,</span> <span class="token string">'static2'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  <span class="token comment"># 这样一配置完成，静态路径的根就是static</span>
+<span class="token punctuation">]</span>
+</code></pre>
+
+<h3 id="form表单"><a href="#form表单" class="headerlink" title="form表单"></a>form表单</h3><pre class="language-python" data-language="python"><code class="language-python"><span class="token operator">&lt;</span>form action<span class="token operator">=</span><span class="token string">""</span><span class="token operator">&gt;</span>
+<span class="token triple-quoted-string string">'''
+	1. 什么都不写，提交到当前页面
+	2. 全写：https://passport.baidu.com/v2/api/?login
+	3. 只写后缀
+		/login/  =&gt; 自动补全ip和端口
+		http://127.0.0.1:8000/login/
+'''</span>
+
+面试题：get和post的区别？
+	http<span class="token punctuation">:</span><span class="token operator">//</span><span class="token number">127.0</span><span class="token number">.0</span><span class="token number">.1</span><span class="token punctuation">:</span><span class="token number">8000</span><span class="token operator">/</span>login<span class="token operator">/</span>?a<span class="token operator">=</span><span class="token number">1</span><span class="token operator">&amp;</span>b<span class="token operator">=</span><span class="token number">2</span><span class="token operator">&amp;</span>c<span class="token operator">=</span><span class="token number">3</span>
+    <span class="token triple-quoted-string string">'''
+    	get请求：
+    		1. get没有请求体
+    		2. 对数据大小的限制是4KB
+    		3. 不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息
+    	post请求：
+    		1. post有请求体
+    		2. 理论上对数据大小没有限制
+    		3. 相对安全
+    '''</span>     
+    
+<span class="token triple-quoted-string string">'''
+	MySQL中可能会出现的安全问题：SQL注入
+	前端当中可能会出现的安全问题：xss攻击
+	django中会出现的安全问题：csrf跨站请求
+'''</span>
+
+
+<span class="token keyword">def</span> <span class="token function">login</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># 1. 如何判断请求方式？</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span>  <span class="token comment"># &lt;WSGIRequest: GET '/login/'&gt;</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span>method<span class="token punctuation">,</span> <span class="token builtin">type</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span>method<span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># GET &lt;WSGIRequest: GET '/login/'&gt;</span>
+    <span class="token keyword">if</span> request<span class="token punctuation">.</span>method <span class="token operator">==</span> <span class="token string">'POST'</span><span class="token punctuation">:</span>
+        <span class="token comment">#  2. 如何获取post请求方式的数据？</span>
+        <span class="token comment"># print(request.POST) # QueryDict: {'user': ['ly'], 'password': ['123']}&gt;</span>
+        <span class="token comment"># print(request.POST.get('username')) # ly</span>
+        <span class="token comment"># # get只能拿最后一个值</span>
+        <span class="token comment"># print(request.POST.get('hobby')) # ly</span>
+        <span class="token comment"># print(request.POST.getlist('hobby')) # 拿到所有的值</span>
+        username <span class="token operator">=</span> request<span class="token punctuation">.</span>POST<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'username'</span><span class="token punctuation">)</span>
+        password <span class="token operator">=</span> request<span class="token punctuation">.</span>POST<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'password'</span><span class="token punctuation">)</span>
+        
+        <span class="token keyword">if</span> username <span class="token operator">==</span> <span class="token string">'ly'</span> <span class="token keyword">and</span> password <span class="token operator">==</span><span class="token string">'123'</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> HttpResponse<span class="token punctuation">(</span><span class="token string">'登录成功'</span><span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> HttpResponse<span class="token punctuation">(</span><span class="token string">'密码错误'</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> render<span class="token punctuation">(</span>request<span class="token punctuation">,</span> <span class="token string">'login.html'</span><span class="token punctuation">,</span>  <span class="token punctuation">)</span></code></pre>
+
+<h3 id="django连接mysql"><a href="#django连接mysql" class="headerlink" title="django连接mysql"></a>django连接mysql</h3><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># 连接mysql的配置</span>
+  <span class="token string">'default'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token string">'ENGINE'</span><span class="token punctuation">:</span> <span class="token string">'django.db.backends.mysql'</span><span class="token punctuation">,</span>
+        <span class="token string">'NAME'</span><span class="token punctuation">:</span> <span class="token string">'db8_3'</span><span class="token punctuation">,</span>
+        <span class="token string">'HOST'</span><span class="token punctuation">:</span> <span class="token string">'127.0.0.1'</span><span class="token punctuation">,</span>
+        <span class="token string">'PORT'</span><span class="token punctuation">:</span> <span class="token number">3306</span><span class="token punctuation">,</span>
+        <span class="token string">'USER'</span><span class="token punctuation">:</span> <span class="token string">'root'</span><span class="token punctuation">,</span>
+        <span class="token string">'PASSWORD'</span><span class="token punctuation">:</span><span class="token string">'123'</span><span class="token punctuation">,</span>
+        <span class="token string">'CHARSET'</span><span class="token punctuation">:</span><span class="token string">'utf8'</span>
+    <span class="token punctuation">}</span>
+        
+<span class="token comment"># django默认的操作mysql的模块是MySQLdb</span>
+
+<span class="token triple-quoted-string string">'''
+	在python3.6版本以下，需要加入下面两句话
+        需要先安装pymysql
+        pip3 install pymysql
+
+        import pymysql
+        pymysql.install_as_MySQLdb()
+'''</span>
+</code></pre>
 
 
 
@@ -662,7 +775,7 @@
 
         // we need a <pre> tag workaround.
         // otherwise the text inside "pre" loses all the line breaks!
-        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
             newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
         }
 
@@ -680,7 +793,7 @@
 
 
 <!-- 代码块功能依赖 -->
-<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFunction.js"></script>
 
 <!-- 代码语言 -->
 
@@ -696,6 +809,12 @@
 
 <script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
 
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
@@ -867,7 +986,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">103.2k</span>&nbsp;字
+                class="white-color">103.7k</span>&nbsp;字
             
             
             

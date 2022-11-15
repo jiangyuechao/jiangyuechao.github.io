@@ -205,7 +205,7 @@
         <div class="brand">
             <div class="title center-align">
                 
-                一生所获，不如一夜星空
+                且听风吟，静待花开
                 
             </div>
 
@@ -372,7 +372,15 @@
                                     
 
 
-必会十三招12345678910111213141516171819202122232425262728293031"""1.all()            所有元素2.filter()         过滤   我们在利用主键字段
+必会十三招"""
+1.all()            所有元素
+
+2.filter()         过滤
+
+   我们在利用主键字段筛选数据时，可以不考虑主键字段叫什么，直接使用pk代替
+   
+3.get()
+4.values
                                 
                             </div>
                             <div class="publish-info">
@@ -434,7 +442,13 @@
                                     
 
 
-JsonResponse类的使用1234567891011121314151617181920212223242526272829303132333435363738394041json格式的数据：进行跨语言数据传输import js
+JsonResponse类的使用
+json格式的数据：进行跨语言数据传输
+
+import json
+'''支持的数据类型：str，list, tuple, dict, set'''
+# 序列化出来的数据是可以看得懂的，就是一个字符串
+
                                 
                             </div>
                             <div class="publish-info">
@@ -495,7 +509,13 @@ JsonResponse类的使用12345678910111213141516171819202122232425262728293031323
                                 
                                     
 
-路由层123456789101112131. 路由匹配, urls.py中# APPEND_SLASH = False 控制django是否自动加斜杠匹配url(r'^testadd/$', views.testadd)# 匹配规则：从
+路由层1. 路由匹配, urls.py中
+
+# APPEND_SLASH = False 控制django是否自动加斜杠匹配
+
+url(r'^testadd/$', views.testadd)
+
+# 匹配规则：从上到下只要正则表达式匹
                                 
                             </div>
                             <div class="publish-info">
@@ -556,7 +576,14 @@ JsonResponse类的使用12345678910111213141516171819202122232425262728293031323
                                 
                                     
 
-ORM的概念1234567891011121314151617181920212223242526272829303132331. 什么是ORM？	关系映射对象    # 不但在python中有，在其他语言中也有2. 特点：	在操作数据
+ORM的概念1. 什么是ORM？
+	关系映射对象
+    # 不但在python中有，在其他语言中也有
+2. 特点：
+	在操作数据库的时候，不用在写原生SQL语句
+    '''相对而言，执行效率低了'''
+3. ORM书写的位置：
+	
                                 
                             </div>
                             <div class="publish-info">
@@ -686,7 +713,10 @@ mysql主从配置的流程大体如图：
                                 
                                     
 
-django三板斧123456789101112131415161718# django自动重启的现象叫‘热更新’# 如果setting.py文件中DEBUG = False，则必须在ALLOWED_HOSTS = []中填写对应ip地
+django三板斧# django自动重启的现象叫‘热更新’
+# 如果setting.py文件中DEBUG = False，则必须在ALLOWED_HOSTS = []中填写对应ip地址或者*号
+1. HttpResponse
+2. r
                                 
                             </div>
                             <div class="publish-info">
@@ -747,7 +777,14 @@ django三板斧123456789101112131415161718# django自动重启的现象叫‘热
                                 
                                     
 
-web应用概念1234567891011121314151617181920212223242526272829http的默认端口号：80https的默认端口号：4431. web应用是什么？	通过浏览器访问的应用都是2. 软件开发模式
+web应用概念http的默认端口号：80
+https的默认端口号：443
+
+1. web应用是什么？
+	通过浏览器访问的应用都是
+2. 软件开发模式：
+	服务端需要具备的特征：24小时对外提供服务
+	C/S：client: 客户端， s
                                 
                             </div>
                             <div class="publish-info">
@@ -879,7 +916,7 @@ web应用概念1234567891011121314151617181920212223242526272829http的默认端
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">103.2k</span>&nbsp;字
+                class="white-color">103.7k</span>&nbsp;字
             
             
             

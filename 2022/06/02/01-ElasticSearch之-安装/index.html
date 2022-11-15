@@ -374,6 +374,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -392,20 +395,44 @@
 <p><strong>Mac安装ElasticSearch</strong></p>
 <h2 id="一-安装JDK环境"><a href="#一-安装JDK环境" class="headerlink" title="一 安装JDK环境"></a>一 安装JDK环境</h2><p>因为ElasticSearch是用Java语言编写的，所以必须安装JDK的环境，并且是JDK 1.8以上，具体操作步骤自行百度</p>
 <p>安装完成查看java版本</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-java" data-language="java"><code class="language-java">java <span class="token operator">-</span>version</code></pre>
 
 <h2 id="二-官网下载最新版本"><a href="#二-官网下载最新版本" class="headerlink" title="二 官网下载最新版本"></a>二 官网下载最新版本</h2><p>下载地址[<a target="_blank" rel="noopener" href="https://www.elastic.co/cn/downloads/elasticsearch],%E9%80%89%E6%8B%A9%E7%9B%B8%E5%BA%94%E7%89%88%E6%9C%AC%E4%B8%8B%E8%BD%BD%E5%8D%B3%E5%8F%AF">https://www.elastic.co/cn/downloads/elasticsearch],选择相应版本下载即可</a></p>
 <p><a target="_blank" rel="noopener" href="https://tva1.sinaimg.cn/large/006tNbRwgy1g9kts83vzbj31o80tsjvo.jpg"><img src="https://s2.loli.net/2022/06/23/hTwf8G7dlv6Y2KD.jpg" alt="image-20191204173716931"></a></p>
 <h2 id="三-下载其他版本"><a href="#三-下载其他版本" class="headerlink" title="三 下载其他版本"></a>三 下载其他版本</h2><p>直接点击<a target="_blank" rel="noopener" href="https://www.elastic.co/cn/downloads/past-releases#elasticsearch">https://www.elastic.co/cn/downloads/past-releases#elasticsearch</a></p>
 <p><a target="_blank" rel="noopener" href="https://tva1.sinaimg.cn/large/006tNbRwgy1g9kttpffz5j31320u0ags.jpg"><img src="https://s2.loli.net/2022/06/23/bJ7CfpaU9RieGI4.jpg" alt="image-20191204173847321"></a></p>
 <h2 id="三-下载完成，启动"><a href="#三-下载完成，启动" class="headerlink" title="三 下载完成，启动"></a>三 下载完成，启动</h2><p>解压文件，切换到解压文件路径下，执行</p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd elasticsearch-&lt;version&gt; <span class="comment">#切换到路径下</span></span><br><span class="line">./<span class="built_in">bin</span>/elasticsearch  <span class="comment">#启动es</span></span><br><span class="line"><span class="comment">#如果你想把 Elasticsearch 作为一个守护进程在后台运行，那么可以在后面添加参数 -d 。</span></span><br><span class="line"><span class="comment">#如果你是在 Windows 上面运行 Elasticseach，你应该运行 bin\elasticsearch.bat 而不是 bin\elasticsearch</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-python" data-language="python"><code class="language-python">cd elasticsearch<span class="token operator">-</span><span class="token operator">&lt;</span>version<span class="token operator">&gt;</span> <span class="token comment">#切换到路径下</span>
+<span class="token punctuation">.</span><span class="token operator">/</span><span class="token builtin">bin</span><span class="token operator">/</span>elasticsearch  <span class="token comment">#启动es</span>
+<span class="token comment">#如果你想把 Elasticsearch 作为一个守护进程在后台运行，那么可以在后面添加参数 -d 。</span>
+<span class="token comment">#如果你是在 Windows 上面运行 Elasticseach，你应该运行 bin\elasticsearch.bat 而不是 bin\elasticsearch</span></code></pre>
 
 <h2 id="四-测试启动是否成功"><a href="#四-测试启动是否成功" class="headerlink" title="四 测试启动是否成功"></a>四 测试启动是否成功</h2><p>在浏览器输入以下地址：<a target="_blank" rel="noopener" href="http://127.0.0.1:9200/">http://127.0.0.1:9200/</a></p>
 <p>即可看到如下内容：</p>
-<figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">{</span></span><br><span class="line">  <span class="attr">"name"</span> <span class="punctuation">:</span> <span class="string">"lqzMacBook.local"</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">"cluster_name"</span> <span class="punctuation">:</span> <span class="string">"elasticsearch"</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">"cluster_uuid"</span> <span class="punctuation">:</span> <span class="string">"G1DFg-u6QdGFvz8Z-XMZqQ"</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">"version"</span> <span class="punctuation">:</span> <span class="punctuation">{</span></span><br><span class="line">    <span class="attr">"number"</span> <span class="punctuation">:</span> <span class="string">"7.5.0"</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">"build_flavor"</span> <span class="punctuation">:</span> <span class="string">"default"</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">"build_type"</span> <span class="punctuation">:</span> <span class="string">"tar"</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">"build_hash"</span> <span class="punctuation">:</span> <span class="string">"e9ccaed468e2fac2275a3761849cbee64b39519f"</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">"build_date"</span> <span class="punctuation">:</span> <span class="string">"2019-11-26T01:06:52.518245Z"</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">"build_snapshot"</span> <span class="punctuation">:</span> <span class="keyword">false</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">"lucene_version"</span> <span class="punctuation">:</span> <span class="string">"8.3.0"</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">"minimum_wire_compatibility_version"</span> <span class="punctuation">:</span> <span class="string">"6.8.0"</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">"minimum_index_compatibility_version"</span> <span class="punctuation">:</span> <span class="string">"6.0.0-beta1"</span></span><br><span class="line">  <span class="punctuation">}</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">"tagline"</span> <span class="punctuation">:</span> <span class="string">"You Know, for Search"</span></span><br><span class="line"><span class="punctuation">}</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-json" data-language="json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"name"</span> <span class="token operator">:</span> <span class="token string">"lqzMacBook.local"</span><span class="token punctuation">,</span>
+  <span class="token property">"cluster_name"</span> <span class="token operator">:</span> <span class="token string">"elasticsearch"</span><span class="token punctuation">,</span>
+  <span class="token property">"cluster_uuid"</span> <span class="token operator">:</span> <span class="token string">"G1DFg-u6QdGFvz8Z-XMZqQ"</span><span class="token punctuation">,</span>
+  <span class="token property">"version"</span> <span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"number"</span> <span class="token operator">:</span> <span class="token string">"7.5.0"</span><span class="token punctuation">,</span>
+    <span class="token property">"build_flavor"</span> <span class="token operator">:</span> <span class="token string">"default"</span><span class="token punctuation">,</span>
+    <span class="token property">"build_type"</span> <span class="token operator">:</span> <span class="token string">"tar"</span><span class="token punctuation">,</span>
+    <span class="token property">"build_hash"</span> <span class="token operator">:</span> <span class="token string">"e9ccaed468e2fac2275a3761849cbee64b39519f"</span><span class="token punctuation">,</span>
+    <span class="token property">"build_date"</span> <span class="token operator">:</span> <span class="token string">"2019-11-26T01:06:52.518245Z"</span><span class="token punctuation">,</span>
+    <span class="token property">"build_snapshot"</span> <span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token property">"lucene_version"</span> <span class="token operator">:</span> <span class="token string">"8.3.0"</span><span class="token punctuation">,</span>
+    <span class="token property">"minimum_wire_compatibility_version"</span> <span class="token operator">:</span> <span class="token string">"6.8.0"</span><span class="token punctuation">,</span>
+    <span class="token property">"minimum_index_compatibility_version"</span> <span class="token operator">:</span> <span class="token string">"6.0.0-beta1"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">"tagline"</span> <span class="token operator">:</span> <span class="token string">"You Know, for Search"</span>
+<span class="token punctuation">}</span></code></pre>
 
-<h2 id="五-关闭es"><a href="#五-关闭es" class="headerlink" title="五 关闭es"></a>五 关闭es</h2><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查看进程</span></span><br><span class="line">ps -ef | grep elastic</span><br><span class="line"><span class="comment">#干掉进程</span></span><br><span class="line">kill -<span class="number">9</span> <span class="number">2382</span>（进程号）</span><br><span class="line"><span class="comment">#以守护进程方式启动es</span></span><br><span class="line">elasticsearch -d</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="五-关闭es"><a href="#五-关闭es" class="headerlink" title="五 关闭es"></a>五 关闭es</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment">#查看进程</span>
+ps <span class="token operator">-</span>ef <span class="token operator">|</span> grep elastic
+<span class="token comment">#干掉进程</span>
+kill <span class="token operator">-</span><span class="token number">9</span> <span class="token number">2382</span>（进程号）
+<span class="token comment">#以守护进程方式启动es</span>
+elasticsearch <span class="token operator">-</span>d</code></pre>
                 
             </div>
             <hr/>
@@ -545,6 +572,55 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
+                <a href="/2022/06/03/02-ElasticSearch%E4%B9%8B-%E6%8F%92%E4%BB%B6%E4%BB%8B%E7%BB%8D/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="ElasticSearch之-插件介绍">
+                        
+                        <span class="card-title">ElasticSearch之-插件介绍</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-03
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/ElasticSearch/" class="post-category">
+                                    ElasticSearch
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/ElasticSearch%E4%B9%8B-%E6%8F%92%E4%BB%B6%E4%BB%8B%E7%BB%8D/">
+                        <span class="chip bg-color">ElasticSearch之-插件介绍</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
                 <a href="/2022/06/02/00-ElasticSearch%E4%B9%8B-%E4%BB%8B%E7%BB%8D/">
                     <div class="card-image">
                         
@@ -561,9 +637,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-02
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-02
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -581,55 +657,6 @@
                     
                     <a href="/tags/ElasticSearch%E4%B9%8B-%E4%BB%8B%E7%BB%8D/">
                         <span class="chip bg-color">ElasticSearch之-介绍</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/11/05/Django%20%E9%AB%98%E5%B9%B6%E5%8F%91%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Django-高并发负载均衡">
-                        
-                        <span class="card-title">Django-高并发负载均衡</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-05
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Django/" class="post-category">
-                                    Django
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Django-%E9%AB%98%E5%B9%B6%E5%8F%91%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">
-                        <span class="chip bg-color">Django-高并发负载均衡</span>
                     </a>
                     
                 </div>
@@ -664,7 +691,7 @@
 
         // we need a <pre> tag workaround.
         // otherwise the text inside "pre" loses all the line breaks!
-        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
             newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
         }
 
@@ -682,7 +709,7 @@
 
 
 <!-- 代码块功能依赖 -->
-<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFunction.js"></script>
 
 <!-- 代码语言 -->
 
@@ -698,6 +725,12 @@
 
 <script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
 
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
@@ -869,7 +902,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">103.2k</span>&nbsp;字
+                class="white-color">103.7k</span>&nbsp;字
             
             
             

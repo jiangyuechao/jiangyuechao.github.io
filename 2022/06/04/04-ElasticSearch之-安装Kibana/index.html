@@ -357,7 +357,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    274
+                    275
                 </div>
                 
 
@@ -373,6 +373,9 @@
         </div>
         <hr class="clearfix">
 
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
         
 
         
@@ -400,10 +403,15 @@
 <h2 id="二-下载Kibana"><a href="#二-下载Kibana" class="headerlink" title="二 下载Kibana"></a>二 下载Kibana</h2><p>到相应地址，下载即可</p>
 <p>解压下载后的文件</p>
 <h2 id="三-修改配置文件"><a href="#三-修改配置文件" class="headerlink" title="三 修改配置文件"></a>三 修改配置文件</h2><p>修改配置文件：vim 安装目录/config/kibana.yml</p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 更多配置信息，详见 https://www.elastic.co/guide/cn/kibana/current/settings.html</span></span><br><span class="line">server.port: <span class="number">5601</span></span><br><span class="line">server.host: <span class="string">"127.0.0.1"</span></span><br><span class="line">server.name: lqz</span><br><span class="line">elasticsearch.hosts: [<span class="string">"http://localhost:9200/"</span>]</span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># 更多配置信息，详见 https://www.elastic.co/guide/cn/kibana/current/settings.html</span>
+server<span class="token punctuation">.</span>port<span class="token punctuation">:</span> <span class="token number">5601</span>
+server<span class="token punctuation">.</span>host<span class="token punctuation">:</span> <span class="token string">"127.0.0.1"</span>
+server<span class="token punctuation">.</span>name<span class="token punctuation">:</span> lqz
+elasticsearch<span class="token punctuation">.</span>hosts<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"http://localhost:9200/"</span><span class="token punctuation">]</span></code></pre>
 
 <h2 id="四-启动"><a href="#四-启动" class="headerlink" title="四 启动"></a>四 启动</h2><p>到安装目录下：</p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./<span class="built_in">bin</span>/kibana</span><br><span class="line"><span class="comment">#正常启动</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token punctuation">.</span><span class="token operator">/</span><span class="token builtin">bin</span><span class="token operator">/</span>kibana
+<span class="token comment">#正常启动</span></code></pre>
 
 <h2 id="六-查看"><a href="#六-查看" class="headerlink" title="六 查看"></a>六 查看</h2><p>在浏览器里访问：<a target="_blank" rel="noopener" href="http://localhost:5601/app/kibana">http://localhost:5601/app/kibana</a></p>
 <p>（如访问不到，尝试删除es中跟kibana相关的索引）</p>
@@ -668,7 +676,7 @@
 
         // we need a <pre> tag workaround.
         // otherwise the text inside "pre" loses all the line breaks!
-        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
             newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
         }
 
@@ -686,7 +694,7 @@
 
 
 <!-- 代码块功能依赖 -->
-<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFunction.js"></script>
 
 <!-- 代码语言 -->
 
@@ -702,6 +710,12 @@
 
 <script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
 
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
@@ -873,7 +887,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">103.2k</span>&nbsp;字
+                class="white-color">103.7k</span>&nbsp;字
             
             
             

@@ -374,6 +374,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -438,10 +441,34 @@
 <h2 id="Redis-Lua-分布式限流"><a href="#Redis-Lua-分布式限流" class="headerlink" title="Redis + Lua 分布式限流"></a>Redis + Lua 分布式限流</h2><p>单机版限流仅能保护自身节点，但无法保护应用依赖的各种服务，并且在进行节点扩容、缩容时也无法准确控制整个服务的请求限制。</p>
 <p>而分布式限流，以集群为维度，可以方便的控制这个集群的请求限制，从而保护下游依赖的各种服务资源。</p>
 <p><strong>分布式限流最关键的是要将限流服务做成原子化</strong>，我们可以借助 Redis 的计数器，Lua 执行的原子性，进行分布式限流，大致的 Lua 脚本代码如下：</p>
-<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> key <span class="operator">=</span> "rate.limit:" .. KEYS[<span class="number">1</span>] <span class="comment">--限流KEY</span></span><br><span class="line"><span class="keyword">local</span> limit <span class="operator">=</span> tonumber(ARGV[<span class="number">1</span>])        <span class="comment">--限流大小</span></span><br><span class="line"><span class="keyword">local</span> <span class="keyword">current</span> <span class="operator">=</span> tonumber(redis.call(<span class="string">'get'</span>, key) <span class="keyword">or</span> "0")</span><br><span class="line">if <span class="keyword">current</span> <span class="operator">+</span> <span class="number">1</span> <span class="operator">&gt;</span> limit <span class="keyword">then</span> <span class="comment">--如果超出限流大小</span></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"><span class="keyword">else</span>  <span class="comment">--请求数+1，并设置1秒过期</span></span><br><span class="line">  redis.call("INCRBY", key,"1")</span><br><span class="line">   redis.call("expire", key,"1")</span><br><span class="line">   <span class="keyword">return</span> <span class="keyword">current</span> <span class="operator">+</span> <span class="number">1</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">复制代码</span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">local</span> <span class="token keyword">key</span> <span class="token operator">=</span> <span class="token string">"rate.limit:"</span> <span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token keyword">KEYS</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token comment">--限流KEY</span>
+<span class="token keyword">local</span> <span class="token keyword">limit</span> <span class="token operator">=</span> tonumber<span class="token punctuation">(</span>ARGV<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>        <span class="token comment">--限流大小</span>
+<span class="token keyword">local</span> <span class="token keyword">current</span> <span class="token operator">=</span> tonumber<span class="token punctuation">(</span>redis<span class="token punctuation">.</span><span class="token keyword">call</span><span class="token punctuation">(</span><span class="token string">'get'</span><span class="token punctuation">,</span> <span class="token keyword">key</span><span class="token punctuation">)</span> <span class="token operator">or</span> <span class="token string">"0"</span><span class="token punctuation">)</span>
+<span class="token keyword">if</span> <span class="token keyword">current</span> <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&gt;</span> <span class="token keyword">limit</span> <span class="token keyword">then</span> <span class="token comment">--如果超出限流大小</span>
+  <span class="token keyword">return</span> <span class="token number">0</span>
+<span class="token keyword">else</span>  <span class="token comment">--请求数+1，并设置1秒过期</span>
+  redis<span class="token punctuation">.</span><span class="token keyword">call</span><span class="token punctuation">(</span><span class="token string">"INCRBY"</span><span class="token punctuation">,</span> <span class="token keyword">key</span><span class="token punctuation">,</span><span class="token string">"1"</span><span class="token punctuation">)</span>
+   redis<span class="token punctuation">.</span><span class="token keyword">call</span><span class="token punctuation">(</span><span class="token string">"expire"</span><span class="token punctuation">,</span> <span class="token keyword">key</span><span class="token punctuation">,</span><span class="token string">"1"</span><span class="token punctuation">)</span>
+   <span class="token keyword">return</span> <span class="token keyword">current</span> <span class="token operator">+</span> <span class="token number">1</span>
+<span class="token keyword">end</span>
+复制代码</code></pre>
 
 <p>限流逻辑（Java 语言）：</p>
-<figure class="highlight ini"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public static boolean accquire() throws IOException, URISyntaxException {</span><br><span class="line">    Jedis <span class="attr">jedis</span> = new Jedis(<span class="string">"127.0.0.1"</span>)<span class="comment">;</span></span><br><span class="line">    File <span class="attr">luaFile</span> = new File(RedisLimitRateWithLUA.class.getResource(<span class="string">"/"</span>).toURI().getPath() + <span class="string">"limit.lua"</span>)<span class="comment">;</span></span><br><span class="line">    String <span class="attr">luaScript</span> = FileUtils.readFileToString(luaFile)<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">    String <span class="attr">key</span> = <span class="string">"ip:"</span> + System.currentTimeMillis()/<span class="number">1000</span><span class="comment">; // 当前秒</span></span><br><span class="line">    String <span class="attr">limit</span> = <span class="string">"5"</span><span class="comment">; // 最大限制</span></span><br><span class="line">    List&lt;String&gt; <span class="attr">keys</span> = new ArrayList&lt;String&gt;()<span class="comment">;</span></span><br><span class="line">    keys.add(key)<span class="comment">;</span></span><br><span class="line">    List&lt;String&gt; <span class="attr">args</span> = new ArrayList&lt;String&gt;()<span class="comment">;</span></span><br><span class="line">    args.add(limit)<span class="comment">;</span></span><br><span class="line">    Long <span class="attr">result</span> = (Long)(jedis.eval(luaScript, keys, args))<span class="comment">; // 执行lua脚本，传入参数</span></span><br><span class="line">    return <span class="attr">result</span> == <span class="number">1</span><span class="comment">;</span></span><br><span class="line">}</span><br><span class="line">复制代码</span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-ini" data-language="ini"><code class="language-ini">public static boolean accquire() throws IOException, URISyntaxException {
+    <span class="token key attr-name">Jedis jedis</span> <span class="token punctuation">=</span> <span class="token value attr-value">new Jedis("127.0.0.1");</span>
+    <span class="token key attr-name">File luaFile</span> <span class="token punctuation">=</span> <span class="token value attr-value">new File(RedisLimitRateWithLUA.class.getResource("/").toURI().getPath() + "limit.lua");</span>
+    <span class="token key attr-name">String luaScript</span> <span class="token punctuation">=</span> <span class="token value attr-value">FileUtils.readFileToString(luaFile);</span>
+
+    <span class="token key attr-name">String key</span> <span class="token punctuation">=</span> <span class="token value attr-value">"ip:" + System.currentTimeMillis()/1000; // 当前秒</span>
+    <span class="token key attr-name">String limit</span> <span class="token punctuation">=</span> <span class="token value attr-value">"5"; // 最大限制</span>
+    <span class="token key attr-name">List&lt;String&gt; keys</span> <span class="token punctuation">=</span> <span class="token value attr-value">new ArrayList&lt;String&gt;();</span>
+    keys.add(key);
+    <span class="token key attr-name">List&lt;String&gt; args</span> <span class="token punctuation">=</span> <span class="token value attr-value">new ArrayList&lt;String&gt;();</span>
+    args.add(limit);
+    <span class="token key attr-name">Long result</span> <span class="token punctuation">=</span> <span class="token value attr-value">(Long)(jedis.eval(luaScript, keys, args)); // 执行lua脚本，传入参数</span>
+    <span class="token key attr-name">return result</span> <span class="token punctuation">=</span><span class="token value attr-value">= 1;</span>
+}
+复制代码</code></pre>
 
 <h2 id="聊聊其它"><a href="#聊聊其它" class="headerlink" title="聊聊其它"></a>聊聊其它</h2><p>上面的限流方式，主要是针对服务器进行限流，<strong>我们也可以对容器进行限流，比如 Tomcat、Nginx 等限流手段。</strong></p>
 <p>Tomcat 可以设置最大线程数（maxThreads），当并发超过最大线程数会排队等待执行；而 Nginx 提供了两种限流手段：一是控制速率，二是控制并发连接数。</p>
@@ -735,7 +762,7 @@
 
         // we need a <pre> tag workaround.
         // otherwise the text inside "pre" loses all the line breaks!
-        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
             newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
         }
 
@@ -753,7 +780,7 @@
 
 
 <!-- 代码块功能依赖 -->
-<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFunction.js"></script>
 
 <!-- 代码语言 -->
 
@@ -769,6 +796,12 @@
 
 <script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
 
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
@@ -940,7 +973,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">103.2k</span>&nbsp;字
+                class="white-color">103.7k</span>&nbsp;字
             
             
             

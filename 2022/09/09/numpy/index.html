@@ -374,6 +374,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -383,21 +386,119 @@
 
 
 
-<h3 id="numpy创建数组的概念"><a href="#numpy创建数组的概念" class="headerlink" title="numpy创建数组的概念"></a>numpy创建数组的概念</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">创建数组的语法结构</span><br><span class="line">	np.array(列表，元祖)</span><br><span class="line">    一维数组</span><br><span class="line">    	np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</span><br><span class="line">        np.array((<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>))</span><br><span class="line">    二维数组</span><br><span class="line">    	np.array([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>],</span><br><span class="line">                 [<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>]])</span><br><span class="line">    三维数组(很少使用)</span><br><span class="line">    	再嵌套一个</span><br><span class="line">        np.array([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>],[<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>],[<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>]])</span><br><span class="line">        元祖形式同上</span><br><span class="line">  总结：numpy中很多数学操作都需要依赖于数组对象      </span><br><span class="line">        </span><br><span class="line">    </span><br><span class="line">  针对numpy数组中的元素</span><br><span class="line">  	  <span class="number">1.</span>数组内的元素必须是同一类型（若定义时出现类型错乱，内部也会自动统一）</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="numpy创建数组的概念"><a href="#numpy创建数组的概念" class="headerlink" title="numpy创建数组的概念"></a>numpy创建数组的概念</h3><pre class="language-python" data-language="python"><code class="language-python">创建数组的语法结构
+	np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>列表，元祖<span class="token punctuation">)</span>
+    一维数组
+    	np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    二维数组
+    	np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                 <span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">,</span><span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    三维数组<span class="token punctuation">(</span>很少使用<span class="token punctuation">)</span>
+    	再嵌套一个
+        np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">,</span><span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token number">9</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token number">11</span><span class="token punctuation">,</span><span class="token number">12</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        元祖形式同上
+  总结：numpy中很多数学操作都需要依赖于数组对象      
+        
+    
+  针对numpy数组中的元素
+  	  <span class="token number">1.</span>数组内的元素必须是同一类型（若定义时出现类型错乱，内部也会自动统一）</code></pre>
 
-<h3 id="numpy中的数据类型"><a href="#numpy中的数据类型" class="headerlink" title="numpy中的数据类型"></a>numpy中的数据类型</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">由于numpy主要是进行数据计算，所以numpy数据类型为数字类型为主</span><br><span class="line"><span class="string">"""为了不和python中数据类型关键字冲突</span></span><br><span class="line"><span class="string">   numpy在所有冲突的关键字后加下划线区分"""</span></span><br><span class="line"><span class="number">1.</span>布尔型：bool_</span><br><span class="line"><span class="number">2.</span>整型：int_,int32，int64</span><br><span class="line">	无符号整型：unint8，unint16，unint32，unint64</span><br><span class="line"><span class="number">3.</span>复数型：complex_,complex32，complex64</span><br><span class="line"><span class="number">4.</span>浮点型：float_,float32，float64</span><br><span class="line"></span><br><span class="line">针对数字类型后面的数字</span><br><span class="line">    int32只能表示（-<span class="number">2</span>**<span class="number">31</span>,<span class="number">2</span>**<span class="number">31</span>-<span class="number">1</span>），因为他只有<span class="number">32</span>个位，只能表示<span class="number">2</span>**<span class="number">32</span>个数，int64同理</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="numpy中的数据类型"><a href="#numpy中的数据类型" class="headerlink" title="numpy中的数据类型"></a>numpy中的数据类型</h3><pre class="language-python" data-language="python"><code class="language-python">由于numpy主要是进行数据计算，所以numpy数据类型为数字类型为主
+<span class="token triple-quoted-string string">"""为了不和python中数据类型关键字冲突
+   numpy在所有冲突的关键字后加下划线区分"""</span>
+<span class="token number">1.</span>布尔型：bool_
+<span class="token number">2.</span>整型：int_<span class="token punctuation">,</span>int32，int64
+	无符号整型：unint8，unint16，unint32，unint64
+<span class="token number">3.</span>复数型：complex_<span class="token punctuation">,</span>complex32，complex64
+<span class="token number">4.</span>浮点型：float_<span class="token punctuation">,</span>float32，float64
 
-<h3 id="numpy常用属性"><a href="#numpy常用属性" class="headerlink" title="numpy常用属性"></a>numpy常用属性</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">T：转置（行列互换）</span><br><span class="line">dtype：类似于python中的<span class="built_in">type</span>，用于查看数据类型</span><br><span class="line">size：统计数组内元素的个数</span><br><span class="line">ndim：数组的维数</span><br><span class="line">shape：获取数组的行、列数</span><br><span class="line">reshape：修改数组行、列数</span><br></pre></td></tr></tbody></table></figure>
+针对数字类型后面的数字
+    int32只能表示（<span class="token operator">-</span><span class="token number">2</span><span class="token operator">**</span><span class="token number">31</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token operator">**</span><span class="token number">31</span><span class="token operator">-</span><span class="token number">1</span>），因为他只有<span class="token number">32</span>个位，只能表示<span class="token number">2</span><span class="token operator">**</span><span class="token number">32</span>个数，int64同理</code></pre>
 
-<h3 id="numpy常用方法"><a href="#numpy常用方法" class="headerlink" title="numpy常用方法"></a>numpy常用方法</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">固定格式：np.常见方法名()</span><br><span class="line"><span class="number">1.</span>array() 创建数组</span><br><span class="line"><span class="number">2.</span>arange() 和<span class="built_in">range</span>使用方法一致，第三个参数为步长</span><br><span class="line"><span class="number">3.</span>linspace() 和arange使用方法一致,区别在于arange顾头不顾尾，                    linspace顾头也顾尾</span><br><span class="line"><span class="number">4.</span>ones((<span class="number">3</span>,<span class="number">4</span>))   创建一个全为<span class="number">0</span>的 <span class="number">3</span>行<span class="number">4</span>列数组</span><br><span class="line"><span class="number">5.</span>zeros((<span class="number">3</span>,<span class="number">4</span>))  创建一个全为<span class="number">0</span>的 <span class="number">3</span>行<span class="number">4</span>列数组</span><br><span class="line"><span class="number">6.</span>vstack((数组<span class="number">1</span>，数组<span class="number">2</span>))  竖向拼接两个数组</span><br><span class="line"><span class="number">7.</span>hstack((数组<span class="number">1</span>，数组<span class="number">2</span>))  水平拼接两个数组</span><br><span class="line"><span class="number">8.</span>shape([<span class="number">0</span>])       读取矩阵的长度 <span class="number">0</span>代表第一维度</span><br><span class="line"><span class="number">9.</span>argmax(t.axis=<span class="number">0</span>) 获取最大值的位置</span><br><span class="line"><span class="number">10.</span>argmin(t.axis=<span class="number">0</span>) 获取最小值的位置</span><br><span class="line"><span class="number">11.</span>eye(<span class="number">3</span>)           创建一个对角线位<span class="number">1</span>的正方形数组</span><br><span class="line"><span class="number">12.</span>empty(<span class="number">10</span>)   根据指定形状和dtype创建空数组（随机值）</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="numpy常用属性"><a href="#numpy常用属性" class="headerlink" title="numpy常用属性"></a>numpy常用属性</h3><pre class="language-python" data-language="python"><code class="language-python">T：转置（行列互换）
+dtype：类似于python中的<span class="token builtin">type</span>，用于查看数据类型
+size：统计数组内元素的个数
+ndim：数组的维数
+shape：获取数组的行、列数
+reshape：修改数组行、列数</code></pre>
 
-<h3 id="numpy的索引与切片"><a href="#numpy的索引与切片" class="headerlink" title="numpy的索引与切片"></a>numpy的索引与切片</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>针对一维数组，索引与切片的使用方式与python中的列表一致</span><br><span class="line"><span class="number">2.</span>针对多维数组，有行索引和列索引</span><br><span class="line">  res=[行索引，列索引]</span><br><span class="line">  res=[行索引，:]  ：代表所有</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="numpy常用方法"><a href="#numpy常用方法" class="headerlink" title="numpy常用方法"></a>numpy常用方法</h3><pre class="language-python" data-language="python"><code class="language-python">固定格式：np<span class="token punctuation">.</span>常见方法名<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token number">1</span><span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">)</span> 创建数组
+<span class="token number">2</span><span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token punctuation">)</span> 和<span class="token builtin">range</span>使用方法一致，第三个参数为步长
+<span class="token number">3</span><span class="token punctuation">.</span>linspace<span class="token punctuation">(</span><span class="token punctuation">)</span> 和arange使用方法一致<span class="token punctuation">,</span>区别在于arange顾头不顾尾，                    linspace顾头也顾尾
+<span class="token number">4</span><span class="token punctuation">.</span>ones<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span>   创建一个全为<span class="token number">0</span>的 <span class="token number">3</span>行<span class="token number">4</span>列数组
+<span class="token number">5</span><span class="token punctuation">.</span>zeros<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  创建一个全为<span class="token number">0</span>的 <span class="token number">3</span>行<span class="token number">4</span>列数组
+<span class="token number">6</span><span class="token punctuation">.</span>vstack<span class="token punctuation">(</span><span class="token punctuation">(</span>数组<span class="token number">1</span>，数组<span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  竖向拼接两个数组
+<span class="token number">7</span><span class="token punctuation">.</span>hstack<span class="token punctuation">(</span><span class="token punctuation">(</span>数组<span class="token number">1</span>，数组<span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  水平拼接两个数组
+<span class="token number">8</span><span class="token punctuation">.</span>shape<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>       读取矩阵的长度 <span class="token number">0</span>代表第一维度
+<span class="token number">9</span><span class="token punctuation">.</span>argmax<span class="token punctuation">(</span>t<span class="token punctuation">.</span>axis<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span> 获取最大值的位置
+<span class="token number">10</span><span class="token punctuation">.</span>argmin<span class="token punctuation">(</span>t<span class="token punctuation">.</span>axis<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span> 获取最小值的位置
+<span class="token number">11</span><span class="token punctuation">.</span>eye<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>           创建一个对角线位<span class="token number">1</span>的正方形数组
+<span class="token number">12</span><span class="token punctuation">.</span>empty<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>   根据指定形状和dtype创建空数组（随机值）</code></pre>
 
-<h3 id="numpy的运算符"><a href="#numpy的运算符" class="headerlink" title="numpy的运算符"></a>numpy的运算符</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">比较运算符</span><br><span class="line">&gt;</span><br><span class="line">    等价于np.greater(arr1,arr2)</span><br><span class="line">    判断arr1的元素是否大于arr2的元素</span><br><span class="line">&gt;=</span><br><span class="line">    等价于np.greater_equal(arr1,arr2)</span><br><span class="line">    判断arr1的元素是否大于等于arr2的元素</span><br><span class="line">&lt;</span><br><span class="line">    等价于np.less(arr1,arr2)</span><br><span class="line">    判断arr1的元素是否小于arr2的元素</span><br><span class="line">&lt;=</span><br><span class="line">    等价于np.less_equal(arr1,arr2)</span><br><span class="line">    判断arr1的元素是否小于等于arr2的元素</span><br><span class="line">==</span><br><span class="line">    等价于np.equal(arr1,arr2)</span><br><span class="line">    判断arr1的元素是否等于arr2的元素</span><br><span class="line">!=</span><br><span class="line">    等价于np.not_equal(arr1,arr2)</span><br><span class="line">    判断arr1的元素是否不等于arr2的元素</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="numpy的索引与切片"><a href="#numpy的索引与切片" class="headerlink" title="numpy的索引与切片"></a>numpy的索引与切片</h3><pre class="language-python" data-language="python"><code class="language-python"><span class="token number">1.</span>针对一维数组，索引与切片的使用方式与python中的列表一致
+<span class="token number">2.</span>针对多维数组，有行索引和列索引
+  res<span class="token operator">=</span><span class="token punctuation">[</span>行索引，列索引<span class="token punctuation">]</span>
+  res<span class="token operator">=</span><span class="token punctuation">[</span>行索引，<span class="token punctuation">:</span><span class="token punctuation">]</span>  ：代表所有</code></pre>
 
-<h3 id="numpy常用函数"><a href="#numpy常用函数" class="headerlink" title="numpy常用函数"></a>numpy常用函数</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 基本函数</span></span><br><span class="line">np.<span class="built_in">round</span>([],decimals=<span class="number">0</span>) </span><br><span class="line">	对各元素四舍五入，decimals代表指定小数点之后的位数</span><br><span class="line">np.sqrt(arr)</span><br><span class="line">	计算各元素的算术平方根</span><br><span class="line">np.square(arr)</span><br><span class="line">	计算各元素的平方值</span><br><span class="line">np.exp(arr)</span><br><span class="line">	计算以e为底数的指数</span><br><span class="line">np.power(arr,a)</span><br><span class="line">	计算各元素的指数</span><br><span class="line">np.log2(arr)</span><br><span class="line">	计算以<span class="number">2</span>为底各元素的对数</span><br><span class="line">np.log10(arr)</span><br><span class="line">	计算以<span class="number">10</span>为底各元素的对数</span><br><span class="line">np.log(arr)</span><br><span class="line">	计算以e为底各元素的对数</span><br><span class="line"></span><br><span class="line"><span class="comment"># 必会常用统计函数</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">其中参数axis用来控制行列</span></span><br><span class="line"><span class="string">axis=1 代表行</span></span><br><span class="line"><span class="string">axis=0 代表列</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">np.<span class="built_in">min</span>(arr.axis)</span><br><span class="line">	按照轴的方向计算最小值</span><br><span class="line">np.<span class="built_in">max</span>(arr.axis)</span><br><span class="line">	按照轴的方向计算最大值</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="numpy的运算符"><a href="#numpy的运算符" class="headerlink" title="numpy的运算符"></a>numpy的运算符</h3><pre class="language-python" data-language="python"><code class="language-python">比较运算符
+<span class="token operator">&gt;</span>
+    等价于np<span class="token punctuation">.</span>greater<span class="token punctuation">(</span>arr1<span class="token punctuation">,</span>arr2<span class="token punctuation">)</span>
+    判断arr1的元素是否大于arr2的元素
+<span class="token operator">&gt;=</span>
+    等价于np<span class="token punctuation">.</span>greater_equal<span class="token punctuation">(</span>arr1<span class="token punctuation">,</span>arr2<span class="token punctuation">)</span>
+    判断arr1的元素是否大于等于arr2的元素
+<span class="token operator">&lt;</span>
+    等价于np<span class="token punctuation">.</span>less<span class="token punctuation">(</span>arr1<span class="token punctuation">,</span>arr2<span class="token punctuation">)</span>
+    判断arr1的元素是否小于arr2的元素
+<span class="token operator">&lt;=</span>
+    等价于np<span class="token punctuation">.</span>less_equal<span class="token punctuation">(</span>arr1<span class="token punctuation">,</span>arr2<span class="token punctuation">)</span>
+    判断arr1的元素是否小于等于arr2的元素
+<span class="token operator">==</span>
+    等价于np<span class="token punctuation">.</span>equal<span class="token punctuation">(</span>arr1<span class="token punctuation">,</span>arr2<span class="token punctuation">)</span>
+    判断arr1的元素是否等于arr2的元素
+<span class="token operator">!=</span>
+    等价于np<span class="token punctuation">.</span>not_equal<span class="token punctuation">(</span>arr1<span class="token punctuation">,</span>arr2<span class="token punctuation">)</span>
+    判断arr1的元素是否不等于arr2的元素</code></pre>
 
-<h3 id="numpy随机数子模块"><a href="#numpy随机数子模块" class="headerlink" title="numpy随机数子模块"></a>numpy随机数子模块</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">numpy中的random子模块</span><br><span class="line">np.random.rand   给定形状产生随即数组（<span class="number">0</span>到<span class="number">1</span>之间的约数）</span><br><span class="line">.randint         给定形状产生随机整数</span><br><span class="line">.choice          给定形状产生随机选择</span><br><span class="line">.shuffle         将序列的所有元素随机排序</span><br><span class="line">.uniform         给定形状产生随即数组（随机均匀分布）</span><br><span class="line">.normal          随机正态分布</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="numpy常用函数"><a href="#numpy常用函数" class="headerlink" title="numpy常用函数"></a>numpy常用函数</h3><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># 基本函数</span>
+np<span class="token punctuation">.</span><span class="token builtin">round</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>decimals<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span> 
+	对各元素四舍五入，decimals代表指定小数点之后的位数
+np<span class="token punctuation">.</span>sqrt<span class="token punctuation">(</span>arr<span class="token punctuation">)</span>
+	计算各元素的算术平方根
+np<span class="token punctuation">.</span>square<span class="token punctuation">(</span>arr<span class="token punctuation">)</span>
+	计算各元素的平方值
+np<span class="token punctuation">.</span>exp<span class="token punctuation">(</span>arr<span class="token punctuation">)</span>
+	计算以e为底数的指数
+np<span class="token punctuation">.</span>power<span class="token punctuation">(</span>arr<span class="token punctuation">,</span>a<span class="token punctuation">)</span>
+	计算各元素的指数
+np<span class="token punctuation">.</span>log2<span class="token punctuation">(</span>arr<span class="token punctuation">)</span>
+	计算以<span class="token number">2</span>为底各元素的对数
+np<span class="token punctuation">.</span>log10<span class="token punctuation">(</span>arr<span class="token punctuation">)</span>
+	计算以<span class="token number">10</span>为底各元素的对数
+np<span class="token punctuation">.</span>log<span class="token punctuation">(</span>arr<span class="token punctuation">)</span>
+	计算以e为底各元素的对数
+
+<span class="token comment"># 必会常用统计函数</span>
+<span class="token triple-quoted-string string">"""
+其中参数axis用来控制行列
+axis=1 代表行
+axis=0 代表列
+"""</span>
+np<span class="token punctuation">.</span><span class="token builtin">min</span><span class="token punctuation">(</span>arr<span class="token punctuation">.</span>axis<span class="token punctuation">)</span>
+	按照轴的方向计算最小值
+np<span class="token punctuation">.</span><span class="token builtin">max</span><span class="token punctuation">(</span>arr<span class="token punctuation">.</span>axis<span class="token punctuation">)</span>
+	按照轴的方向计算最大值
+</code></pre>
+
+<h3 id="numpy随机数子模块"><a href="#numpy随机数子模块" class="headerlink" title="numpy随机数子模块"></a>numpy随机数子模块</h3><pre class="language-python" data-language="python"><code class="language-python">numpy中的random子模块
+np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand   给定形状产生随即数组（<span class="token number">0</span>到<span class="token number">1</span>之间的约数）
+<span class="token punctuation">.</span>randint         给定形状产生随机整数
+<span class="token punctuation">.</span>choice          给定形状产生随机选择
+<span class="token punctuation">.</span>shuffle         将序列的所有元素随机排序
+<span class="token punctuation">.</span>uniform         给定形状产生随即数组（随机均匀分布）
+<span class="token punctuation">.</span>normal          随机正态分布</code></pre>
 
 
 
@@ -700,7 +801,7 @@
 
         // we need a <pre> tag workaround.
         // otherwise the text inside "pre" loses all the line breaks!
-        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
             newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
         }
 
@@ -718,7 +819,7 @@
 
 
 <!-- 代码块功能依赖 -->
-<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFunction.js"></script>
 
 <!-- 代码语言 -->
 
@@ -734,6 +835,12 @@
 
 <script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
 
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
@@ -905,7 +1012,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">103.2k</span>&nbsp;字
+                class="white-color">103.7k</span>&nbsp;字
             
             
             

@@ -374,6 +374,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -418,7 +421,9 @@
 <p>存储过程是编译好、优化过、并且被组织到一个执行规划里、且存储在数据库中的 SQL 语句，是控制流语言的集合，速度当然快。反复执行的动态 SQL，可以使用临时存储过程，该过程（临时表）被放在 Tempdb 中。</p>
 <p>24、当服务器的内存够多时，配制线程数量 = 最大连接数+5，这样能发挥最大的效率；否则使用配制线程数量&lt; 最大连接数，启用 SQL SERVER 的线程池来解决，如果还是数量 = 最大连接数+5，严重的损害服务器的性能。</p>
 <p>25、查询的关联同写的顺序 ：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select a.personMemberID, * from chineseresume a,personmember b where personMemberID = b.referenceid and a.personMemberID = 'JCNPRH39681' （A = B, B = '号码'） </span><br><span class="line">select a.personMemberID, * from chineseresume a,personmember b where a.personMemberID = b.referenceid and a.personMemberID = 'JCNPRH39681' and b.referenceid = 'JCNPRH39681' （A = B, B = '号码', A = '号码'） </span><br><span class="line">select a.personMemberID, * from chineseresume a,personmember b where b.referenceid = 'JCNPRH39681' and a.personMemberID = 'JCNPRH39681' （B = '号码', A = '号码'）</span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">select a.personMemberID, * from chineseresume a,personmember b where personMemberID = b.referenceid and a.personMemberID = 'JCNPRH39681' （A = B, B = '号码'） 
+select a.personMemberID, * from chineseresume a,personmember b where a.personMemberID = b.referenceid and a.personMemberID = 'JCNPRH39681' and b.referenceid = 'JCNPRH39681' （A = B, B = '号码', A = '号码'） 
+select a.personMemberID, * from chineseresume a,personmember b where b.referenceid = 'JCNPRH39681' and a.personMemberID = 'JCNPRH39681' （B = '号码', A = '号码'）</code></pre>
 
 <p><strong>Mysql</strong></p>
 <p>26、尽量使用 EXISTS 代替 select count(1) 来判断是否存在记录。count 函数只有在统计表中所有行数时使用，而且 count(1) 比 count(*) 更有效率。</p>
@@ -432,13 +437,17 @@
 <li>要注意索引的维护，周期性重建索引，重新编译存储过程。</li>
 </ul>
 <p>29、下列 SQL 条件语句中的列都建有恰当的索引，但执行速度却非常慢：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM record WHERE substrINg(card_no, 1, 4) = '5378' --13秒 </span><br><span class="line">SELECT * FROM record WHERE amount/30 &lt; 1000 --11秒 </span><br><span class="line">SELECT * FROM record WHERE convert(char(10), date, 112) = '19991201' --10秒</span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">SELECT * FROM record WHERE substrINg(card_no, 1, 4) = '5378' --13秒 
+SELECT * FROM record WHERE amount/30 &lt; 1000 --11秒 
+SELECT * FROM record WHERE convert(char(10), date, 112) = '19991201' --10秒</code></pre>
 
 <p><strong>Mysql</strong></p>
 <p>分析：</p>
 <p>WHERE 子句中对列的任何操作结果都是在 SQL 运行时逐列计算得到的，因此它不得不进行表搜索，而没有使用该列上面的索引。</p>
 <p>如果这些结果在查询编译时就能得到，那么就可以被 SQL 优化器优化，使用索引，避免表搜索，因此将 SQL 重写成下面这样：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM record WHERE card_no like '5378%' -- &lt; 1秒 </span><br><span class="line">SELECT * FROM record WHERE amount &lt; 1000*30 -- &lt; 1秒 </span><br><span class="line">SELECT * FROM record WHERE date = '1999/12/01' -- &lt; 1秒</span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">SELECT * FROM record WHERE card_no like '5378%' -- &lt; 1秒 
+SELECT * FROM record WHERE amount &lt; 1000*30 -- &lt; 1秒 
+SELECT * FROM record WHERE date = '1999/12/01' -- &lt; 1秒</code></pre>
 
 <p><strong>Mysql</strong></p>
 <p>30、当有一批处理的插入或更新时，用批量插入或批量更新，绝不会一条条记录的去更新。</p>
@@ -448,11 +457,19 @@
 <p>如果有 3 个以上的表连接查询，那就需要选择交叉表（intersection table）作为基础表，交叉表是指那个被其他表所引用的表。</p>
 <p>33、提高 GROUP BY 语句的效率，可以通过将不需要的记录在 GROUP BY 之前过滤掉。下面两个查询返回相同结果，但第二个明显就快了许多。</p>
 <p>低效：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT JOB, AVG(SAL) </span><br><span class="line">FROM EMP </span><br><span class="line">GROUP BY JOB </span><br><span class="line">HAVING JOB = 'PRESIDENT' </span><br><span class="line">OR JOB = 'MANAGER' </span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">SELECT JOB, AVG(SAL) 
+FROM EMP 
+GROUP BY JOB 
+HAVING JOB = 'PRESIDENT' 
+OR JOB = 'MANAGER' </code></pre>
 
 <p><strong>Mysql</strong></p>
 <p>高效：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT JOB, AVG(SAL) </span><br><span class="line">FROM EMP</span><br><span class="line">WHERE JOB = 'PRESIDENT' </span><br><span class="line">OR JOB = 'MANAGER' </span><br><span class="line">GROUP BY JOB</span><br></pre></td></tr></tbody></table></figure>
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">SELECT JOB, AVG(SAL) 
+FROM EMP
+WHERE JOB = 'PRESIDENT' 
+OR JOB = 'MANAGER' 
+GROUP BY JOB</code></pre>
 
 <p><strong>Mysql</strong></p>
 <p>34、SQL 语句用大写，因为 Oracle 总是先解析 SQL 语句，把小写的字母转换成大写的再执行。</p>
@@ -794,7 +811,7 @@
 
         // we need a <pre> tag workaround.
         // otherwise the text inside "pre" loses all the line breaks!
-        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
             newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
         }
 
@@ -812,7 +829,7 @@
 
 
 <!-- 代码块功能依赖 -->
-<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFunction.js"></script>
 
 <!-- 代码语言 -->
 
@@ -828,6 +845,12 @@
 
 <script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
 
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
@@ -999,7 +1022,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">103.2k</span>&nbsp;字
+                class="white-color">103.7k</span>&nbsp;字
             
             
             

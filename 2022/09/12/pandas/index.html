@@ -374,6 +374,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -386,19 +389,121 @@
 
 
 
-<h3 id="pandas处理缺失数据"><a href="#pandas处理缺失数据" class="headerlink" title="pandas处理缺失数据"></a>pandas处理缺失数据</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">dropna()    过滤掉值为NaN的行</span><br><span class="line">fillna()    填充缺失数据</span><br><span class="line">isnull()    返回布尔数组</span><br><span class="line">notnull()   返回布尔数组</span><br><span class="line"></span><br><span class="line">补充</span><br><span class="line">	对数据进行处理返回一个新的结果，原数据不变，如果想要直接影响原数据需要参数inplace=Ture</span><br><span class="line">    </span><br><span class="line">数组名.iloc[<span class="number">0</span>]根据行索引取值</span><br><span class="line">数组名.loc[<span class="number">2</span>]根据左侧标签名取值</span><br><span class="line">删除操作<span class="keyword">del</span>时 无法使用上述两个方法</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="pandas处理缺失数据"><a href="#pandas处理缺失数据" class="headerlink" title="pandas处理缺失数据"></a>pandas处理缺失数据</h3><pre class="language-python" data-language="python"><code class="language-python">dropna<span class="token punctuation">(</span><span class="token punctuation">)</span>    过滤掉值为NaN的行
+fillna<span class="token punctuation">(</span><span class="token punctuation">)</span>    填充缺失数据
+isnull<span class="token punctuation">(</span><span class="token punctuation">)</span>    返回布尔数组
+notnull<span class="token punctuation">(</span><span class="token punctuation">)</span>   返回布尔数组
 
-<h3 id="pandas小例题"><a href="#pandas小例题" class="headerlink" title="pandas小例题"></a>pandas小例题</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>读取excel文件</span><br><span class="line">	直接使用pd.read_xxx(<span class="string">'文件名'</span>) </span><br><span class="line">    前提是notebook和数据源文件在同一级目录，否则使用绝对路径</span><br><span class="line">    </span><br><span class="line"><span class="number">2.</span>读取excel文件的指定行数据</span><br><span class="line">	data = pd.read_xxx(<span class="string">"某招聘网站数据.csv"</span>,nrows = <span class="number">20</span>)</span><br><span class="line">    	nrows=<span class="number">20</span> 代表文件的前<span class="number">20</span>行</span><br><span class="line">    data = pd.read_xxx(<span class="string">"某招聘网站数据.csv"</span>,skiprows = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">21</span>)])</span><br><span class="line">    	skiprows  代表跳过文件的指定行</span><br><span class="line">        </span><br><span class="line"><span class="number">3.</span>读取当前目录下 某招聘网站数据.csv 文件的 positionId、positionName、salary 列</span><br><span class="line">	data = pd.read_csv(<span class="string">"某招聘网站数据.csv"</span>,usecols = [<span class="string">'positionId'</span>,<span class="string">'positionName'</span>,<span class="string">'salary'</span>])</span><br><span class="line">    	</span><br><span class="line"><span class="number">4.</span>读取当前目录下 某招聘网站数据.csv 文件，并在读取时将 positionId 设置为索引列</span><br><span class="line">	data = pd.read_csv(<span class="string">'某招聘网站数据.csv'</span>,index_col=[<span class="string">'positionId'</span>])</span><br><span class="line">    </span><br><span class="line"><span class="number">5.</span>读取当前目录下 某招聘网站数据.csv 文件的 positionId、positionName、salary 列，并将标题设置为 ID、岗位名称、薪资</span><br><span class="line">	data = pd.read_csv(<span class="string">'某招聘网站数据.csv'</span>, usecols=[<span class="number">0</span>,<span class="number">1</span>,<span class="number">17</span>],header = <span class="number">0</span>,names=[<span class="string">'ID'</span>,<span class="string">'岗位名称'</span>,<span class="string">'薪资'</span>])</span><br><span class="line">    </span><br><span class="line"><span class="number">6.</span>读取当前目录下 某招聘网站数据.csv 文件，并不将缺失值标记为 NA</span><br><span class="line">	data = pd.read_csv(<span class="string">'某招聘网站数据.csv'</span>, keep_default_na=<span class="literal">False</span>)</span><br><span class="line">    </span><br><span class="line"><span class="number">7.</span>读取当前目录下 某招聘网站数据.csv 文件，并将[]标记为缺失值</span><br><span class="line">	data = pd.read_csv(<span class="string">'某招聘网站数据.csv'</span>,na_values=[<span class="string">'[]'</span>])</span><br><span class="line">    </span><br><span class="line"><span class="number">8.</span>读取当前目录下 某招聘网站数据.csv 文件，但不处理缺失值</span><br><span class="line">	data = pd.read_csv(<span class="string">"某招聘网站数据.csv"</span>,na_filter=<span class="literal">False</span>)</span><br><span class="line">    </span><br><span class="line"><span class="number">9.</span>读取当前目录下 某招聘网站数据.csv 文件，并将 positionId,companyId 设置为字符串格式</span><br><span class="line">	data = pd.read_csv(<span class="string">"某招聘网站数据.csv"</span>, dtype={<span class="string">'positionId'</span>: <span class="built_in">str</span>,<span class="string">'companyId'</span>:<span class="built_in">str</span>}) </span><br></pre></td></tr></tbody></table></figure>
+补充
+	对数据进行处理返回一个新的结果，原数据不变，如果想要直接影响原数据需要参数inplace<span class="token operator">=</span>Ture
+    
+数组名<span class="token punctuation">.</span>iloc<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>根据行索引取值
+数组名<span class="token punctuation">.</span>loc<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span>根据左侧标签名取值
+删除操作<span class="token keyword">del</span>时 无法使用上述两个方法</code></pre>
 
-<h3 id="pandas文本文件读取"><a href="#pandas文本文件读取" class="headerlink" title="pandas文本文件读取"></a>pandas文本文件读取</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">pd.read_xxx(filepath_or_buffer,sep=<span class="string">','</span>,header=<span class="string">'infer'</span>,names=<span class="literal">None</span>,usecols=<span class="literal">None</span>,skiprows=<span class="literal">None</span>,skipfooter=<span class="literal">None</span>,converters=<span class="literal">None</span>,encoding=<span class="literal">None</span>)</span><br><span class="line"><span class="comment"># 参数说明</span></span><br><span class="line">filepath_or_buffer：指定txt文件或csv文件所在的具体路径</span><br><span class="line">sep：指定原数据集中各字段的分隔符，默认为<span class="string">'，'</span></span><br><span class="line">header：是否需要将原数据集中的第一行作为表头，默认将第一行用作字段名称</span><br><span class="line">        如果原数据没有表头，需要将该参数设置为<span class="literal">None</span></span><br><span class="line">names：如果原数据集中没有字段，可以通过该参数在数据读取时给数据框添加具体的表头</span><br><span class="line">usecols：指定需要读取原数据中的哪些变量名</span><br><span class="line">skiprows：数据读取时，指定需要跳过原数据集中开头的行数</span><br><span class="line">          有些表格开头是有几行文字说明的，读取时需要跳过</span><br><span class="line">skipfooter：数据读取时，指定需要跳过原数据集中的末尾行数</span><br><span class="line">converters：用于数据类型的转换(以字典的形式指定)</span><br><span class="line">encoding：若文件有中文，指定编码</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="pandas小例题"><a href="#pandas小例题" class="headerlink" title="pandas小例题"></a>pandas小例题</h3><pre class="language-python" data-language="python"><code class="language-python"><span class="token number">1.</span>读取excel文件
+	直接使用pd<span class="token punctuation">.</span>read_xxx<span class="token punctuation">(</span><span class="token string">'文件名'</span><span class="token punctuation">)</span> 
+    前提是notebook和数据源文件在同一级目录，否则使用绝对路径
+    
+<span class="token number">2.</span>读取excel文件的指定行数据
+	data <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_xxx<span class="token punctuation">(</span><span class="token string">"某招聘网站数据.csv"</span><span class="token punctuation">,</span>nrows <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">)</span>
+    	nrows<span class="token operator">=</span><span class="token number">20</span> 代表文件的前<span class="token number">20</span>行
+    data <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_xxx<span class="token punctuation">(</span><span class="token string">"某招聘网站数据.csv"</span><span class="token punctuation">,</span>skiprows <span class="token operator">=</span> <span class="token punctuation">[</span>i <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">21</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    	skiprows  代表跳过文件的指定行
+        
+<span class="token number">3.</span>读取当前目录下 某招聘网站数据<span class="token punctuation">.</span>csv 文件的 positionId、positionName、salary 列
+	data <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span><span class="token string">"某招聘网站数据.csv"</span><span class="token punctuation">,</span>usecols <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'positionId'</span><span class="token punctuation">,</span><span class="token string">'positionName'</span><span class="token punctuation">,</span><span class="token string">'salary'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    	
+<span class="token number">4.</span>读取当前目录下 某招聘网站数据<span class="token punctuation">.</span>csv 文件，并在读取时将 positionId 设置为索引列
+	data <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span><span class="token string">'某招聘网站数据.csv'</span><span class="token punctuation">,</span>index_col<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'positionId'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    
+<span class="token number">5.</span>读取当前目录下 某招聘网站数据<span class="token punctuation">.</span>csv 文件的 positionId、positionName、salary 列，并将标题设置为 ID、岗位名称、薪资
+	data <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span><span class="token string">'某招聘网站数据.csv'</span><span class="token punctuation">,</span> usecols<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">17</span><span class="token punctuation">]</span><span class="token punctuation">,</span>header <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>names<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'ID'</span><span class="token punctuation">,</span><span class="token string">'岗位名称'</span><span class="token punctuation">,</span><span class="token string">'薪资'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    
+<span class="token number">6.</span>读取当前目录下 某招聘网站数据<span class="token punctuation">.</span>csv 文件，并不将缺失值标记为 NA
+	data <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span><span class="token string">'某招聘网站数据.csv'</span><span class="token punctuation">,</span> keep_default_na<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+    
+<span class="token number">7.</span>读取当前目录下 某招聘网站数据<span class="token punctuation">.</span>csv 文件，并将<span class="token punctuation">[</span><span class="token punctuation">]</span>标记为缺失值
+	data <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span><span class="token string">'某招聘网站数据.csv'</span><span class="token punctuation">,</span>na_values<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'[]'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    
+<span class="token number">8.</span>读取当前目录下 某招聘网站数据<span class="token punctuation">.</span>csv 文件，但不处理缺失值
+	data <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span><span class="token string">"某招聘网站数据.csv"</span><span class="token punctuation">,</span>na_filter<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+    
+<span class="token number">9.</span>读取当前目录下 某招聘网站数据<span class="token punctuation">.</span>csv 文件，并将 positionId<span class="token punctuation">,</span>companyId 设置为字符串格式
+	data <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span><span class="token string">"某招聘网站数据.csv"</span><span class="token punctuation">,</span> dtype<span class="token operator">=</span><span class="token punctuation">{</span><span class="token string">'positionId'</span><span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">,</span><span class="token string">'companyId'</span><span class="token punctuation">:</span><span class="token builtin">str</span><span class="token punctuation">}</span><span class="token punctuation">)</span> </code></pre>
 
-<h3 id="pandas-Excel文件读取"><a href="#pandas-Excel文件读取" class="headerlink" title="pandas Excel文件读取"></a>pandas Excel文件读取</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">pd.read_execl(io,sheetname=<span class="number">0</span>,header=<span class="number">0</span>,skiprows=<span class="literal">None</span>,skip_footer=<span class="number">0</span>,index_col=<span class="literal">None</span>,names=<span class="literal">None</span>,na_values=<span class="literal">None</span>,thousands=<span class="literal">None</span>,convert_float=<span class="literal">True</span>)</span><br><span class="line"><span class="comment"># 参数说明</span></span><br><span class="line">io：指定电子表格的具体路径</span><br><span class="line">sheetname：指定需要读取电子表格中的第几个sheet，既可以传递整数也可以传递具体的sheet名称</span><br><span class="line">header：是否需要将数据集的第一行用作表头，默认为是需要的</span><br><span class="line">skiprows：读取数据时，指定跳过的开始行数</span><br><span class="line">skip_footer：读取数据时，指定跳过的末尾行数</span><br><span class="line">index_col：指定哪些列用作数据框的行索引(标签)</span><br><span class="line">na_values：指定原始数据集中哪些特殊值代表了缺失值</span><br><span class="line">thousands：指定原始数据集中的千分位符</span><br><span class="line">convert_float：默认将所有的数值型字段转换为浮点型字段</span><br><span class="line">converters：通过字典的形式，指定某些列需要转换的形式 {<span class="string">'序号'</span>:<span class="built_in">str</span>}</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="pandas文本文件读取"><a href="#pandas文本文件读取" class="headerlink" title="pandas文本文件读取"></a>pandas文本文件读取</h3><pre class="language-python" data-language="python"><code class="language-python">pd<span class="token punctuation">.</span>read_xxx<span class="token punctuation">(</span>filepath_or_buffer<span class="token punctuation">,</span>sep<span class="token operator">=</span><span class="token string">','</span><span class="token punctuation">,</span>header<span class="token operator">=</span><span class="token string">'infer'</span><span class="token punctuation">,</span>names<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span>usecols<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span>skiprows<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span>skipfooter<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span>converters<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span>encoding<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span>
+<span class="token comment"># 参数说明</span>
+filepath_or_buffer：指定txt文件或csv文件所在的具体路径
+sep：指定原数据集中各字段的分隔符，默认为<span class="token string">'，'</span>
+header：是否需要将原数据集中的第一行作为表头，默认将第一行用作字段名称
+        如果原数据没有表头，需要将该参数设置为<span class="token boolean">None</span>
+names：如果原数据集中没有字段，可以通过该参数在数据读取时给数据框添加具体的表头
+usecols：指定需要读取原数据中的哪些变量名
+skiprows：数据读取时，指定需要跳过原数据集中开头的行数
+          有些表格开头是有几行文字说明的，读取时需要跳过
+skipfooter：数据读取时，指定需要跳过原数据集中的末尾行数
+converters：用于数据类型的转换<span class="token punctuation">(</span>以字典的形式指定<span class="token punctuation">)</span>
+encoding：若文件有中文，指定编码</code></pre>
 
-<h3 id="pandas读取MySQL数据"><a href="#pandas读取MySQL数据" class="headerlink" title="pandas读取MySQL数据"></a>pandas读取MySQL数据</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pymysql</span><br><span class="line">conn = pymysql.connect(</span><br><span class="line">	host=<span class="string">'127.0.0.1'</span>,</span><br><span class="line">    port=<span class="number">3306</span>,</span><br><span class="line">    user=<span class="string">''</span>,</span><br><span class="line">    password=<span class="string">''</span>,</span><br><span class="line">    db=<span class="string">''</span>,</span><br><span class="line">    charset=<span class="string">'utf8'</span>,</span><br><span class="line">    autocommit=<span class="literal">True</span></span><br><span class="line">)</span><br><span class="line">res = pd.read_sql(<span class="string">'select * from user'</span>,con=conn)</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="pandas-Excel文件读取"><a href="#pandas-Excel文件读取" class="headerlink" title="pandas Excel文件读取"></a>pandas Excel文件读取</h3><pre class="language-python" data-language="python"><code class="language-python">pd<span class="token punctuation">.</span>read_execl<span class="token punctuation">(</span>io<span class="token punctuation">,</span>sheetname<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>header<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>skiprows<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span>skip_footer<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>index_col<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span>names<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span>na_values<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span>thousands<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span>convert_float<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+<span class="token comment"># 参数说明</span>
+io：指定电子表格的具体路径
+sheetname：指定需要读取电子表格中的第几个sheet，既可以传递整数也可以传递具体的sheet名称
+header：是否需要将数据集的第一行用作表头，默认为是需要的
+skiprows：读取数据时，指定跳过的开始行数
+skip_footer：读取数据时，指定跳过的末尾行数
+index_col：指定哪些列用作数据框的行索引<span class="token punctuation">(</span>标签<span class="token punctuation">)</span>
+na_values：指定原始数据集中哪些特殊值代表了缺失值
+thousands：指定原始数据集中的千分位符
+convert_float：默认将所有的数值型字段转换为浮点型字段
+converters：通过字典的形式，指定某些列需要转换的形式 <span class="token punctuation">{</span><span class="token string">'序号'</span><span class="token punctuation">:</span><span class="token builtin">str</span><span class="token punctuation">}</span></code></pre>
 
-<h3 id="pandas常用方法"><a href="#pandas常用方法" class="headerlink" title="pandas常用方法"></a>pandas常用方法</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">df.index  读索引</span><br><span class="line">df.columns  读列字段</span><br><span class="line">df.values  获取数据</span><br><span class="line">df.shape   获取表格的行数与列数，结果是元祖</span><br><span class="line">df。dtypes  获取列字段名称存储的数据类型</span><br><span class="line">df.describe  统计描述</span><br><span class="line">	默认只会统计数字类型的数据，非数字类型统计需要加参数include</span><br><span class="line">    sec_buildings.describe(include=<span class="string">'object'</span>)</span><br><span class="line">df.head()  取头部多条数据，默认读取<span class="number">5</span>条</span><br><span class="line">df.tail()  取尾部多条数据，默认读取<span class="number">5</span>条</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">在Dataframe中  字符串类型统一都叫做object</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="pandas读取MySQL数据"><a href="#pandas读取MySQL数据" class="headerlink" title="pandas读取MySQL数据"></a>pandas读取MySQL数据</h3><pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> pymysql
+conn <span class="token operator">=</span> pymysql<span class="token punctuation">.</span>connect<span class="token punctuation">(</span>
+	host<span class="token operator">=</span><span class="token string">'127.0.0.1'</span><span class="token punctuation">,</span>
+    port<span class="token operator">=</span><span class="token number">3306</span><span class="token punctuation">,</span>
+    user<span class="token operator">=</span><span class="token string">''</span><span class="token punctuation">,</span>
+    password<span class="token operator">=</span><span class="token string">''</span><span class="token punctuation">,</span>
+    db<span class="token operator">=</span><span class="token string">''</span><span class="token punctuation">,</span>
+    charset<span class="token operator">=</span><span class="token string">'utf8'</span><span class="token punctuation">,</span>
+    autocommit<span class="token operator">=</span><span class="token boolean">True</span>
+<span class="token punctuation">)</span>
+res <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_sql<span class="token punctuation">(</span><span class="token string">'select * from user'</span><span class="token punctuation">,</span>con<span class="token operator">=</span>conn<span class="token punctuation">)</span></code></pre>
 
-<h3 id="pandas行列操作"><a href="#pandas行列操作" class="headerlink" title="pandas行列操作"></a>pandas行列操作</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">df.rename(column={<span class="string">'旧列名称'</span>:<span class="string">'薪列名称'</span>},inplace=<span class="literal">True</span>)  修改列名称  inplace=<span class="literal">True</span>修改原数据</span><br><span class="line">添加列字段</span><br><span class="line">df[<span class="string">'列字段名'</span>]=’字段所属内容‘   有则获取字段数据，无则添加</span><br><span class="line">自定义插入位置</span><br><span class="line">df.insert(<span class="number">3</span>,<span class="string">'新列名称'</span>,<span class="string">'新列数据'</span>)  <span class="number">3</span> 要插入的索引位置</span><br><span class="line">删除列字段</span><br><span class="line">df.drop(column=<span class="string">'字段名'</span>,axis=<span class="number">1</span>)</span><br><span class="line">添加行</span><br><span class="line">df.append(df1)</span><br><span class="line">获取多列数据</span><br><span class="line">df[[<span class="string">'1'</span>,<span class="string">'2'</span>]]</span><br><span class="line">过滤数据 返回布尔值</span><br><span class="line">df[<span class="string">'字段名'</span>]==<span class="string">'过滤的条件'</span></span><br><span class="line">df[df[<span class="string">'字段名'</span>]==<span class="string">'过滤的条件'</span>]  布尔选择器</span><br><span class="line">多个条件</span><br><span class="line">(df[<span class="string">'字段名'</span>]==<span class="string">'过滤的条件'</span>) &amp; (df[<span class="string">'字段名'</span>]==<span class="string">'过滤的条件'</span>)</span><br><span class="line">获取品牌是众泰并且Dischange是国<span class="number">4</span>的数据的品牌、name、New_price</span><br><span class="line">df.loc[(df[<span class="string">'Dischange'</span>]==<span class="string">'国4'</span>) &amp; (df[<span class="string">'品牌'</span>]== <span class="string">'众泰'</span>),[<span class="string">'品牌'</span>,<span class="string">'Name'</span>,<span class="string">'New_price'</span>]]</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="pandas常用方法"><a href="#pandas常用方法" class="headerlink" title="pandas常用方法"></a>pandas常用方法</h3><pre class="language-python" data-language="python"><code class="language-python">df<span class="token punctuation">.</span>index  读索引
+df<span class="token punctuation">.</span>columns  读列字段
+df<span class="token punctuation">.</span>values  获取数据
+df<span class="token punctuation">.</span>shape   获取表格的行数与列数，结果是元祖
+df。dtypes  获取列字段名称存储的数据类型
+df<span class="token punctuation">.</span>describe  统计描述
+	默认只会统计数字类型的数据，非数字类型统计需要加参数include
+    sec_buildings<span class="token punctuation">.</span>describe<span class="token punctuation">(</span>include<span class="token operator">=</span><span class="token string">'object'</span><span class="token punctuation">)</span>
+df<span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span>  取头部多条数据，默认读取<span class="token number">5</span>条
+df<span class="token punctuation">.</span>tail<span class="token punctuation">(</span><span class="token punctuation">)</span>  取尾部多条数据，默认读取<span class="token number">5</span>条
+<span class="token triple-quoted-string string">'''
+在Dataframe中  字符串类型统一都叫做object
+'''</span>
+</code></pre>
+
+<h3 id="pandas行列操作"><a href="#pandas行列操作" class="headerlink" title="pandas行列操作"></a>pandas行列操作</h3><pre class="language-python" data-language="python"><code class="language-python">df<span class="token punctuation">.</span>rename<span class="token punctuation">(</span>column<span class="token operator">=</span><span class="token punctuation">{</span><span class="token string">'旧列名称'</span><span class="token punctuation">:</span><span class="token string">'薪列名称'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>inplace<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>  修改列名称  inplace<span class="token operator">=</span><span class="token boolean">True</span>修改原数据
+添加列字段
+df<span class="token punctuation">[</span><span class="token string">'列字段名'</span><span class="token punctuation">]</span><span class="token operator">=</span>’字段所属内容‘   有则获取字段数据，无则添加
+自定义插入位置
+df<span class="token punctuation">.</span>insert<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token string">'新列名称'</span><span class="token punctuation">,</span><span class="token string">'新列数据'</span><span class="token punctuation">)</span>  <span class="token number">3</span> 要插入的索引位置
+删除列字段
+df<span class="token punctuation">.</span>drop<span class="token punctuation">(</span>column<span class="token operator">=</span><span class="token string">'字段名'</span><span class="token punctuation">,</span>axis<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+添加行
+df<span class="token punctuation">.</span>append<span class="token punctuation">(</span>df1<span class="token punctuation">)</span>
+获取多列数据
+df<span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">'1'</span><span class="token punctuation">,</span><span class="token string">'2'</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+过滤数据 返回布尔值
+df<span class="token punctuation">[</span><span class="token string">'字段名'</span><span class="token punctuation">]</span><span class="token operator">==</span><span class="token string">'过滤的条件'</span>
+df<span class="token punctuation">[</span>df<span class="token punctuation">[</span><span class="token string">'字段名'</span><span class="token punctuation">]</span><span class="token operator">==</span><span class="token string">'过滤的条件'</span><span class="token punctuation">]</span>  布尔选择器
+多个条件
+<span class="token punctuation">(</span>df<span class="token punctuation">[</span><span class="token string">'字段名'</span><span class="token punctuation">]</span><span class="token operator">==</span><span class="token string">'过滤的条件'</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token punctuation">(</span>df<span class="token punctuation">[</span><span class="token string">'字段名'</span><span class="token punctuation">]</span><span class="token operator">==</span><span class="token string">'过滤的条件'</span><span class="token punctuation">)</span>
+获取品牌是众泰并且Dischange是国<span class="token number">4</span>的数据的品牌、name、New_price
+df<span class="token punctuation">.</span>loc<span class="token punctuation">[</span><span class="token punctuation">(</span>df<span class="token punctuation">[</span><span class="token string">'Dischange'</span><span class="token punctuation">]</span><span class="token operator">==</span><span class="token string">'国4'</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token punctuation">(</span>df<span class="token punctuation">[</span><span class="token string">'品牌'</span><span class="token punctuation">]</span><span class="token operator">==</span> <span class="token string">'众泰'</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token string">'品牌'</span><span class="token punctuation">,</span><span class="token string">'Name'</span><span class="token punctuation">,</span><span class="token string">'New_price'</span><span class="token punctuation">]</span><span class="token punctuation">]</span></code></pre>
 
 
                 
@@ -659,7 +764,7 @@
 
         // we need a <pre> tag workaround.
         // otherwise the text inside "pre" loses all the line breaks!
-        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
             newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
         }
 
@@ -677,7 +782,7 @@
 
 
 <!-- 代码块功能依赖 -->
-<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFunction.js"></script>
 
 <!-- 代码语言 -->
 
@@ -693,6 +798,12 @@
 
 <script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
 
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
@@ -864,7 +975,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">103.2k</span>&nbsp;字
+                class="white-color">103.7k</span>&nbsp;字
             
             
             

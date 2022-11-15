@@ -374,6 +374,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -432,7 +435,11 @@
 <p>尽管我们可以随意的新增或者忽略某个字段，但是，每个字段的类型非常重要，比如一个年龄字段类型，可以是字符串也可以是整型。因为elasticsearch会保存字段和类型之间的映射及其他的设置。这种映射具体到每个映射的每种类型（<strong>详见扩展阅读：17-扩展阅读-删除映射类型.md</strong>），这也是为什么在elasticsearch中，类型有时候也称为映射类型。</p>
 <h5 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h5><p>类型是文档的逻辑容器，就像关系型数据库一样，表格是行的容器。<br>类型中对于字段的定义称为映射，比如<code>name</code>映射为字符串类型。<br>我们说文档是无模式的，它们不需要拥有映射中所定义的所有字段，比如新增一个字段，那么elasticsearch是怎么做的呢？elasticsearch会自动的将新字段加入映射，但是这个字段的不确定它是什么类型，elasticsearch就开始猜，如果这个值是18，那么elasticsearch会认为它是整型。<br>但是elasticsearch也可能猜不对，所以最安全的方式就是提前定义好所需要的映射，这点跟关系型数据库殊途同归了，先定义好字段，然后再使用，别整什么幺蛾子。后面在讨论更多关于映射的东西。</p>
 <h5 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h5><p>索引是映射类型的容器，elasticsearch中的索引是一个非常大的文档集合。索引存储了映射类型的字段和其他设置。然后它们被存储到了各个分片上了。</p>
-<h4 id="2-7-ES物理设计"><a href="#2-7-ES物理设计" class="headerlink" title="2.7 ES物理设计"></a>2.7 ES物理设计</h4><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">一个集群包含至少一个节点，而一个节点就是一个elasticsearch进程。节点内可以有多个索引。</span><br><span class="line">默认的，如果你创建一个索引，那么这个索引将会有<span class="number">5</span>个分片（primary shard，又称主分片）构成，而每个分片又有一个副本（replica shard，又称复制分片），这样，就有了<span class="number">10</span>个分片。</span><br><span class="line">那么这个索引是如何存储在集群中的呢？</span><br><span class="line">图中有<span class="number">3</span>个节点的集群，可以看到主分片和对应的复制分片都不会在同一个节点内，这样有利于某个节点挂掉了，数据也不至于丢失。</span><br><span class="line">实际上，一个分片是一个Lucene索引，一个包含倒排索引的文件目录，倒排索引的结构使得elasticsearch在不扫描全部文档的情况下，就能告诉你哪些文档包含特定的关键字</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="2-7-ES物理设计"><a href="#2-7-ES物理设计" class="headerlink" title="2.7 ES物理设计"></a>2.7 ES物理设计</h4><pre class="language-python" data-language="python"><code class="language-python">一个集群包含至少一个节点，而一个节点就是一个elasticsearch进程。节点内可以有多个索引。
+默认的，如果你创建一个索引，那么这个索引将会有<span class="token number">5</span>个分片（primary shard，又称主分片）构成，而每个分片又有一个副本（replica shard，又称复制分片），这样，就有了<span class="token number">10</span>个分片。
+那么这个索引是如何存储在集群中的呢？
+图中有<span class="token number">3</span>个节点的集群，可以看到主分片和对应的复制分片都不会在同一个节点内，这样有利于某个节点挂掉了，数据也不至于丢失。
+实际上，一个分片是一个Lucene索引，一个包含倒排索引的文件目录，倒排索引的结构使得elasticsearch在不扫描全部文档的情况下，就能告诉你哪些文档包含特定的关键字</code></pre>
 
 <p><a target="_blank" rel="noopener" href="https://tva1.sinaimg.cn/large/007S8ZIlly1gdtrx2qan1j31880d6t9k.jpg"><img src="https://s2.loli.net/2022/06/23/5FNTveazkbqg3Qj.jpg" alt="image-20200306181921343"></a></p>
 <h3 id="2-6-ELK是什么"><a href="#2-6-ELK是什么" class="headerlink" title="2.6 ELK是什么"></a>2.6 ELK是什么</h3><p>ELK=elasticsearch+Logstash+kibana<br>elasticsearch：后台分布式存储以及全文检索<br>logstash: 日志加工、“搬运工”<br>kibana：数据可视化展示。<br>ELK架构为数据分布式存储、可视化查询和日志解析创建了一个功能强大的管理链。 三者相互配合，取长补短，共同完成分布式大数据处理工作。</p>
@@ -587,55 +594,6 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/06/03/02-ElasticSearch%E4%B9%8B-%E6%8F%92%E4%BB%B6%E4%BB%8B%E7%BB%8D/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="ElasticSearch之-插件介绍">
-                        
-                        <span class="card-title">ElasticSearch之-插件介绍</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-03
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/ElasticSearch/" class="post-category">
-                                    ElasticSearch
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/ElasticSearch%E4%B9%8B-%E6%8F%92%E4%BB%B6%E4%BB%8B%E7%BB%8D/">
-                        <span class="chip bg-color">ElasticSearch之-插件介绍</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
                 <a href="/2022/06/02/01-ElasticSearch%E4%B9%8B-%E5%AE%89%E8%A3%85/">
                     <div class="card-image">
                         
@@ -652,9 +610,9 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-02
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-02
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -672,6 +630,55 @@
                     
                     <a href="/tags/ElasticSearch%E4%B9%8B-%E5%AE%89%E8%A3%85/">
                         <span class="chip bg-color">ElasticSearch之-安装</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/11/05/Django%20%E9%AB%98%E5%B9%B6%E5%8F%91%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Django-高并发负载均衡">
+                        
+                        <span class="card-title">Django-高并发负载均衡</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-05
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Django/" class="post-category">
+                                    Django
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Django-%E9%AB%98%E5%B9%B6%E5%8F%91%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">
+                        <span class="chip bg-color">Django-高并发负载均衡</span>
                     </a>
                     
                 </div>
@@ -706,7 +713,7 @@
 
         // we need a <pre> tag workaround.
         // otherwise the text inside "pre" loses all the line breaks!
-        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
             newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
         }
 
@@ -724,7 +731,7 @@
 
 
 <!-- 代码块功能依赖 -->
-<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFunction.js"></script>
 
 <!-- 代码语言 -->
 
@@ -740,6 +747,12 @@
 
 <script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
 
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
@@ -911,7 +924,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">103.2k</span>&nbsp;字
+                class="white-color">103.7k</span>&nbsp;字
             
             
             
