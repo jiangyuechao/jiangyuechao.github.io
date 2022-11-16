@@ -382,7 +382,8 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <span id="more"></span>
+                <p>concurrent模块</p>
+<span id="more"></span>
 
 <h3 id="关于concurrent模块"><a href="#关于concurrent模块" class="headerlink" title="关于concurrent模块"></a>关于concurrent模块</h3><p>今天来讲下 python 的另外一个自带库 concurrent 。<br>concurrent 是在 Python3.2 中引入的，只用几行代码就可以编写出线程池/进程池。<br>计算型任务效率和 mutiprocessing.pool 提供的 poll 和 ThreadPoll 相比不分伯仲，而且在 IO 型任务由于引入了 Future 的概念效率要高数倍。<br>而threading的话还要自己维护相关的队列防止死锁，代码的可读性也会下降，相反 concurrent 提供的线程池却非常的便捷，不用自己操心死锁以及编写线程池代码，由于异步的概念 IO 型任务也更有优势<br>concurrent 主要提供了 ThreadPoolExecutor 和 ProcessPoolExecutor 。一个多线程，一个多进程。但 concurrent 本质上都是对 threading 和 mutiprocessing 的封装。看它的源码可以知道，所以最底层并没有异步。<br>ThreadPoolExecutor 自己提供了任务队列，不需要自己写了。而所谓的线程池，它只是简单的比较当前的 threads 数量和定义的 max_workers 的大小，小于 max_workers 就允许任务创建线程执行任务</p>
 <h3 id="创建线程池"><a href="#创建线程池" class="headerlink" title="创建线程池"></a>创建线程池</h3><p>通过 ThreadPoolExecutor 类创建线程池对象，max_workers 设置最大运行线程数数。<br>使用 ThreadPoolExecutor 的好处是不用担心线程死锁问题，让多线程编程更简洁<br>from concurrent import futures<br>pool = futures.ThreadPoolExecutor(max_workers = 2)</p>
@@ -878,7 +879,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">103.7k</span>&nbsp;字
+                class="white-color">103.8k</span>&nbsp;字
             
             
             
