@@ -404,31 +404,6 @@
     
     
     <entry>
-      <title>ElasticSearch-安装Kibana</title>
-      <link href="/2022/06/04/04-ElasticSearch%E4%B9%8B-%E5%AE%89%E8%A3%85Kibana/"/>
-      <url>/2022/06/04/04-ElasticSearch%E4%B9%8B-%E5%AE%89%E8%A3%85Kibana/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>ElasticSearch玩转kibana</p><span id="more"></span><p><strong>04-ElasticSearch之-安装Kibana</strong></p><h2 id="一-Kibana介绍"><a href="#一-Kibana介绍" class="headerlink" title="一 Kibana介绍"></a>一 Kibana介绍</h2><p>Kibana 是一款开源的数据分析和可视化平台，它是 Elastic Stack 成员之一，设计用于和 Elasticsearch 协作。</p><p>您可以使用 Kibana 对 Elasticsearch 索引中的数据进行搜索、查看、交互操作。</p><p>可以很方便的利用图表、表格及地图对数据进行多元化的分析和呈现</p><p>详情可见用户手册：</p><p><a href="https://www.elastic.co/guide/cn/kibana/current/index.html">https://www.elastic.co/guide/cn/kibana/current/index.html</a></p><p>注意跟Elasticsearch版本兼容情况，详情见：</p><p><a href="https://www.elastic.co/cn/support/matrix#matrix_compatibility">https://www.elastic.co/cn/support/matrix#matrix_compatibility</a></p><p>下载地址为：</p><p><a href="https://www.elastic.co/cn/downloads/past-releases">https://www.elastic.co/cn/downloads/past-releases</a></p><h2 id="二-下载Kibana"><a href="#二-下载Kibana" class="headerlink" title="二 下载Kibana"></a>二 下载Kibana</h2><p>到相应地址，下载即可</p><p>解压下载后的文件</p><h2 id="三-修改配置文件"><a href="#三-修改配置文件" class="headerlink" title="三 修改配置文件"></a>三 修改配置文件</h2><p>修改配置文件：vim 安装目录/config/kibana.yml</p><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># 更多配置信息，详见 https://www.elastic.co/guide/cn/kibana/current/settings.html</span>server<span class="token punctuation">.</span>port<span class="token punctuation">:</span> <span class="token number">5601</span>server<span class="token punctuation">.</span>host<span class="token punctuation">:</span> <span class="token string">"127.0.0.1"</span>server<span class="token punctuation">.</span>name<span class="token punctuation">:</span> lqzelasticsearch<span class="token punctuation">.</span>hosts<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"http://localhost:9200/"</span><span class="token punctuation">]</span></code></pre><h2 id="四-启动"><a href="#四-启动" class="headerlink" title="四 启动"></a>四 启动</h2><p>到安装目录下：</p><pre class="language-python" data-language="python"><code class="language-python"><span class="token punctuation">.</span><span class="token operator">/</span><span class="token builtin">bin</span><span class="token operator">/</span>kibana<span class="token comment">#正常启动</span></code></pre><h2 id="六-查看"><a href="#六-查看" class="headerlink" title="六 查看"></a>六 查看</h2><p>在浏览器里访问：<a href="http://localhost:5601/app/kibana">http://localhost:5601/app/kibana</a></p><p>（如访问不到，尝试删除es中跟kibana相关的索引）</p><p>选择Dev Tools</p><p><a href="https://tva1.sinaimg.cn/large/006tNbRwgy1g9kzwehg9oj30u010wn00.jpg"><img src="https://s2.loli.net/2022/06/23/OtHl7kc3pSAaWKo.jpg" alt="image-20191204210857615"></a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> ElasticSearch </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> ElasticSearch-安装Kibana </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>ElasticSearch-head</title>
       <link href="/2022/06/04/03-ElasticSearch%E4%B9%8B-ElasticSearch-head/"/>
       <url>/2022/06/04/03-ElasticSearch%E4%B9%8B-ElasticSearch-head/</url>
@@ -446,6 +421,31 @@
         <tags>
             
             <tag> ElasticSearch-head </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ElasticSearch-安装Kibana</title>
+      <link href="/2022/06/04/04-ElasticSearch%E4%B9%8B-%E5%AE%89%E8%A3%85Kibana/"/>
+      <url>/2022/06/04/04-ElasticSearch%E4%B9%8B-%E5%AE%89%E8%A3%85Kibana/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>ElasticSearch玩转kibana</p><span id="more"></span><p><strong>04-ElasticSearch之-安装Kibana</strong></p><h2 id="一-Kibana介绍"><a href="#一-Kibana介绍" class="headerlink" title="一 Kibana介绍"></a>一 Kibana介绍</h2><p>Kibana 是一款开源的数据分析和可视化平台，它是 Elastic Stack 成员之一，设计用于和 Elasticsearch 协作。</p><p>您可以使用 Kibana 对 Elasticsearch 索引中的数据进行搜索、查看、交互操作。</p><p>可以很方便的利用图表、表格及地图对数据进行多元化的分析和呈现</p><p>详情可见用户手册：</p><p><a href="https://www.elastic.co/guide/cn/kibana/current/index.html">https://www.elastic.co/guide/cn/kibana/current/index.html</a></p><p>注意跟Elasticsearch版本兼容情况，详情见：</p><p><a href="https://www.elastic.co/cn/support/matrix#matrix_compatibility">https://www.elastic.co/cn/support/matrix#matrix_compatibility</a></p><p>下载地址为：</p><p><a href="https://www.elastic.co/cn/downloads/past-releases">https://www.elastic.co/cn/downloads/past-releases</a></p><h2 id="二-下载Kibana"><a href="#二-下载Kibana" class="headerlink" title="二 下载Kibana"></a>二 下载Kibana</h2><p>到相应地址，下载即可</p><p>解压下载后的文件</p><h2 id="三-修改配置文件"><a href="#三-修改配置文件" class="headerlink" title="三 修改配置文件"></a>三 修改配置文件</h2><p>修改配置文件：vim 安装目录/config/kibana.yml</p><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># 更多配置信息，详见 https://www.elastic.co/guide/cn/kibana/current/settings.html</span>server<span class="token punctuation">.</span>port<span class="token punctuation">:</span> <span class="token number">5601</span>server<span class="token punctuation">.</span>host<span class="token punctuation">:</span> <span class="token string">"127.0.0.1"</span>server<span class="token punctuation">.</span>name<span class="token punctuation">:</span> lqzelasticsearch<span class="token punctuation">.</span>hosts<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"http://localhost:9200/"</span><span class="token punctuation">]</span></code></pre><h2 id="四-启动"><a href="#四-启动" class="headerlink" title="四 启动"></a>四 启动</h2><p>到安装目录下：</p><pre class="language-python" data-language="python"><code class="language-python"><span class="token punctuation">.</span><span class="token operator">/</span><span class="token builtin">bin</span><span class="token operator">/</span>kibana<span class="token comment">#正常启动</span></code></pre><h2 id="六-查看"><a href="#六-查看" class="headerlink" title="六 查看"></a>六 查看</h2><p>在浏览器里访问：<a href="http://localhost:5601/app/kibana">http://localhost:5601/app/kibana</a></p><p>（如访问不到，尝试删除es中跟kibana相关的索引）</p><p>选择Dev Tools</p><p><a href="https://tva1.sinaimg.cn/large/006tNbRwgy1g9kzwehg9oj30u010wn00.jpg"><img src="https://s2.loli.net/2022/06/23/OtHl7kc3pSAaWKo.jpg" alt="image-20191204210857615"></a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> ElasticSearch </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ElasticSearch-安装Kibana </tag>
             
         </tags>
       
