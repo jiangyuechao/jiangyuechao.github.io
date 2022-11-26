@@ -404,31 +404,6 @@
     
     
     <entry>
-      <title>ElasticSearch-head</title>
-      <link href="/2022/06/04/03-ElasticSearch%E4%B9%8B-ElasticSearch-head/"/>
-      <url>/2022/06/04/03-ElasticSearch%E4%B9%8B-ElasticSearch-head/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>ElasticSearch-head插件</p><span id="more"></span><p><strong>03-ElasticSearch之-ElasticSearch-head</strong></p><h2 id="安装ElasticSearch插件"><a href="#安装ElasticSearch插件" class="headerlink" title="安装ElasticSearch插件"></a>安装ElasticSearch插件</h2><h2 id="一-Head插件介绍"><a href="#一-Head插件介绍" class="headerlink" title="一 Head插件介绍"></a>一 Head插件介绍</h2><p>elasticsearch-head是elasticsearch的一款可视化工具，依赖于node.js ，所以需要先安装node.js</p><h2 id="二-安装Node-js"><a href="#二-安装Node-js" class="headerlink" title="二 安装Node.js"></a>二 安装Node.js</h2><p>详情见文章【安装nodejs】</p><h2 id="三-安装Grunt"><a href="#三-安装Grunt" class="headerlink" title="三 安装Grunt"></a>三 安装Grunt</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment">#Grunt是基于Node.js的项目构建工具。它可以自动运行你所设定的任务 </span>npm install grunt <span class="token operator">-</span>g</code></pre><h2 id="四-下载Head"><a href="#四-下载Head" class="headerlink" title="四 下载Head"></a>四 下载Head</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment">#地址：&lt;https://github.com/mobz/elasticsearch-head&gt;，可以用git下载，或者下载zip</span><span class="token comment"># 解压后切换到目录下</span>cd elasticsearch<span class="token operator">-</span>head<span class="token comment"># 通过npm安装依赖</span>npm install<span class="token comment">#启动</span>npm run start<span class="token comment">#在浏览器里打开</span>http<span class="token punctuation">:</span><span class="token operator">//</span>localhost<span class="token punctuation">:</span><span class="token number">9100</span><span class="token operator">/</span></code></pre><h2 id="五-配置跨域"><a href="#五-配置跨域" class="headerlink" title="五 配置跨域"></a>五 配置跨域</h2><p>修改 Elasticsearch 安装目录中config 文件夹下 elasticsearch.yml 文件，加入下面两行：</p><p>添加配置时，：后必须空格，不然启动闪退</p><pre class="language-python" data-language="python"><code class="language-python">http<span class="token punctuation">.</span>cors<span class="token punctuation">.</span>enabled<span class="token punctuation">:</span> truehttp<span class="token punctuation">.</span>cors<span class="token punctuation">.</span>allow<span class="token operator">-</span>origin<span class="token punctuation">:</span> <span class="token string">"*"</span></code></pre><h2 id="六-查看"><a href="#六-查看" class="headerlink" title="六 查看"></a>六 查看</h2><p>看到如下效果表示成功</p><p><a href="https://tva1.sinaimg.cn/large/006tNbRwgy1g9kvxi7jh0j31e40dq0vp.jpg"><img src="https://s2.loli.net/2022/06/23/kFQldDH5x6yXJac.jpg" alt="image-20191204185137497"></a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> ElasticSearch </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> ElasticSearch-head </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>ElasticSearch-安装Kibana</title>
       <link href="/2022/06/04/04-ElasticSearch%E4%B9%8B-%E5%AE%89%E8%A3%85Kibana/"/>
       <url>/2022/06/04/04-ElasticSearch%E4%B9%8B-%E5%AE%89%E8%A3%85Kibana/</url>
@@ -446,6 +421,31 @@
         <tags>
             
             <tag> ElasticSearch-安装Kibana </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ElasticSearch-head</title>
+      <link href="/2022/06/04/03-ElasticSearch%E4%B9%8B-ElasticSearch-head/"/>
+      <url>/2022/06/04/03-ElasticSearch%E4%B9%8B-ElasticSearch-head/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>ElasticSearch-head插件</p><span id="more"></span><p><strong>03-ElasticSearch之-ElasticSearch-head</strong></p><h2 id="安装ElasticSearch插件"><a href="#安装ElasticSearch插件" class="headerlink" title="安装ElasticSearch插件"></a>安装ElasticSearch插件</h2><h2 id="一-Head插件介绍"><a href="#一-Head插件介绍" class="headerlink" title="一 Head插件介绍"></a>一 Head插件介绍</h2><p>elasticsearch-head是elasticsearch的一款可视化工具，依赖于node.js ，所以需要先安装node.js</p><h2 id="二-安装Node-js"><a href="#二-安装Node-js" class="headerlink" title="二 安装Node.js"></a>二 安装Node.js</h2><p>详情见文章【安装nodejs】</p><h2 id="三-安装Grunt"><a href="#三-安装Grunt" class="headerlink" title="三 安装Grunt"></a>三 安装Grunt</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment">#Grunt是基于Node.js的项目构建工具。它可以自动运行你所设定的任务 </span>npm install grunt <span class="token operator">-</span>g</code></pre><h2 id="四-下载Head"><a href="#四-下载Head" class="headerlink" title="四 下载Head"></a>四 下载Head</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment">#地址：&lt;https://github.com/mobz/elasticsearch-head&gt;，可以用git下载，或者下载zip</span><span class="token comment"># 解压后切换到目录下</span>cd elasticsearch<span class="token operator">-</span>head<span class="token comment"># 通过npm安装依赖</span>npm install<span class="token comment">#启动</span>npm run start<span class="token comment">#在浏览器里打开</span>http<span class="token punctuation">:</span><span class="token operator">//</span>localhost<span class="token punctuation">:</span><span class="token number">9100</span><span class="token operator">/</span></code></pre><h2 id="五-配置跨域"><a href="#五-配置跨域" class="headerlink" title="五 配置跨域"></a>五 配置跨域</h2><p>修改 Elasticsearch 安装目录中config 文件夹下 elasticsearch.yml 文件，加入下面两行：</p><p>添加配置时，：后必须空格，不然启动闪退</p><pre class="language-python" data-language="python"><code class="language-python">http<span class="token punctuation">.</span>cors<span class="token punctuation">.</span>enabled<span class="token punctuation">:</span> truehttp<span class="token punctuation">.</span>cors<span class="token punctuation">.</span>allow<span class="token operator">-</span>origin<span class="token punctuation">:</span> <span class="token string">"*"</span></code></pre><h2 id="六-查看"><a href="#六-查看" class="headerlink" title="六 查看"></a>六 查看</h2><p>看到如下效果表示成功</p><p><a href="https://tva1.sinaimg.cn/large/006tNbRwgy1g9kvxi7jh0j31e40dq0vp.jpg"><img src="https://s2.loli.net/2022/06/23/kFQldDH5x6yXJac.jpg" alt="image-20191204185137497"></a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> ElasticSearch </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ElasticSearch-head </tag>
             
         </tags>
       
@@ -504,31 +504,6 @@
     
     
     <entry>
-      <title>ElasticSearch之-安装</title>
-      <link href="/2022/06/02/01-ElasticSearch%E4%B9%8B-%E5%AE%89%E8%A3%85/"/>
-      <url>/2022/06/02/01-ElasticSearch%E4%B9%8B-%E5%AE%89%E8%A3%85/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>ElasticSearch安装</p><span id="more"></span><p><strong>01-ElasticSearch之-安装</strong></p><p><strong>Mac安装ElasticSearch</strong></p><h2 id="一-安装JDK环境"><a href="#一-安装JDK环境" class="headerlink" title="一 安装JDK环境"></a>一 安装JDK环境</h2><p>因为ElasticSearch是用Java语言编写的，所以必须安装JDK的环境，并且是JDK 1.8以上，具体操作步骤自行百度</p><p>安装完成查看java版本</p><pre class="language-java" data-language="java"><code class="language-java">java <span class="token operator">-</span>version</code></pre><h2 id="二-官网下载最新版本"><a href="#二-官网下载最新版本" class="headerlink" title="二 官网下载最新版本"></a>二 官网下载最新版本</h2><p>下载地址[<a href="https://www.elastic.co/cn/downloads/elasticsearch],%E9%80%89%E6%8B%A9%E7%9B%B8%E5%BA%94%E7%89%88%E6%9C%AC%E4%B8%8B%E8%BD%BD%E5%8D%B3%E5%8F%AF">https://www.elastic.co/cn/downloads/elasticsearch],选择相应版本下载即可</a></p><p><a href="https://tva1.sinaimg.cn/large/006tNbRwgy1g9kts83vzbj31o80tsjvo.jpg"><img src="https://s2.loli.net/2022/06/23/hTwf8G7dlv6Y2KD.jpg" alt="image-20191204173716931"></a></p><h2 id="三-下载其他版本"><a href="#三-下载其他版本" class="headerlink" title="三 下载其他版本"></a>三 下载其他版本</h2><p>直接点击<a href="https://www.elastic.co/cn/downloads/past-releases#elasticsearch">https://www.elastic.co/cn/downloads/past-releases#elasticsearch</a></p><p><a href="https://tva1.sinaimg.cn/large/006tNbRwgy1g9kttpffz5j31320u0ags.jpg"><img src="https://s2.loli.net/2022/06/23/bJ7CfpaU9RieGI4.jpg" alt="image-20191204173847321"></a></p><h2 id="三-下载完成，启动"><a href="#三-下载完成，启动" class="headerlink" title="三 下载完成，启动"></a>三 下载完成，启动</h2><p>解压文件，切换到解压文件路径下，执行</p><pre class="language-python" data-language="python"><code class="language-python">cd elasticsearch<span class="token operator">-</span><span class="token operator">&lt;</span>version<span class="token operator">&gt;</span> <span class="token comment">#切换到路径下</span><span class="token punctuation">.</span><span class="token operator">/</span><span class="token builtin">bin</span><span class="token operator">/</span>elasticsearch  <span class="token comment">#启动es</span><span class="token comment">#如果你想把 Elasticsearch 作为一个守护进程在后台运行，那么可以在后面添加参数 -d 。</span><span class="token comment">#如果你是在 Windows 上面运行 Elasticseach，你应该运行 bin\elasticsearch.bat 而不是 bin\elasticsearch</span></code></pre><h2 id="四-测试启动是否成功"><a href="#四-测试启动是否成功" class="headerlink" title="四 测试启动是否成功"></a>四 测试启动是否成功</h2><p>在浏览器输入以下地址：<a href="http://127.0.0.1:9200/">http://127.0.0.1:9200/</a></p><p>即可看到如下内容：</p><pre class="language-json" data-language="json"><code class="language-json"><span class="token punctuation">{</span>  <span class="token property">"name"</span> <span class="token operator">:</span> <span class="token string">"lqzMacBook.local"</span><span class="token punctuation">,</span>  <span class="token property">"cluster_name"</span> <span class="token operator">:</span> <span class="token string">"elasticsearch"</span><span class="token punctuation">,</span>  <span class="token property">"cluster_uuid"</span> <span class="token operator">:</span> <span class="token string">"G1DFg-u6QdGFvz8Z-XMZqQ"</span><span class="token punctuation">,</span>  <span class="token property">"version"</span> <span class="token operator">:</span> <span class="token punctuation">{</span>    <span class="token property">"number"</span> <span class="token operator">:</span> <span class="token string">"7.5.0"</span><span class="token punctuation">,</span>    <span class="token property">"build_flavor"</span> <span class="token operator">:</span> <span class="token string">"default"</span><span class="token punctuation">,</span>    <span class="token property">"build_type"</span> <span class="token operator">:</span> <span class="token string">"tar"</span><span class="token punctuation">,</span>    <span class="token property">"build_hash"</span> <span class="token operator">:</span> <span class="token string">"e9ccaed468e2fac2275a3761849cbee64b39519f"</span><span class="token punctuation">,</span>    <span class="token property">"build_date"</span> <span class="token operator">:</span> <span class="token string">"2019-11-26T01:06:52.518245Z"</span><span class="token punctuation">,</span>    <span class="token property">"build_snapshot"</span> <span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>    <span class="token property">"lucene_version"</span> <span class="token operator">:</span> <span class="token string">"8.3.0"</span><span class="token punctuation">,</span>    <span class="token property">"minimum_wire_compatibility_version"</span> <span class="token operator">:</span> <span class="token string">"6.8.0"</span><span class="token punctuation">,</span>    <span class="token property">"minimum_index_compatibility_version"</span> <span class="token operator">:</span> <span class="token string">"6.0.0-beta1"</span>  <span class="token punctuation">}</span><span class="token punctuation">,</span>  <span class="token property">"tagline"</span> <span class="token operator">:</span> <span class="token string">"You Know, for Search"</span><span class="token punctuation">}</span></code></pre><h2 id="五-关闭es"><a href="#五-关闭es" class="headerlink" title="五 关闭es"></a>五 关闭es</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment">#查看进程</span>ps <span class="token operator">-</span>ef <span class="token operator">|</span> grep elastic<span class="token comment">#干掉进程</span>kill <span class="token operator">-</span><span class="token number">9</span> <span class="token number">2382</span>（进程号）<span class="token comment">#以守护进程方式启动es</span>elasticsearch <span class="token operator">-</span>d</code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> ElasticSearch </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> ElasticSearch之-安装 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>ElasticSearch之-介绍</title>
       <link href="/2022/06/02/00-ElasticSearch%E4%B9%8B-%E4%BB%8B%E7%BB%8D/"/>
       <url>/2022/06/02/00-ElasticSearch%E4%B9%8B-%E4%BB%8B%E7%BB%8D/</url>
@@ -546,6 +521,31 @@
         <tags>
             
             <tag> ElasticSearch之-介绍 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ElasticSearch之-安装</title>
+      <link href="/2022/06/02/01-ElasticSearch%E4%B9%8B-%E5%AE%89%E8%A3%85/"/>
+      <url>/2022/06/02/01-ElasticSearch%E4%B9%8B-%E5%AE%89%E8%A3%85/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>ElasticSearch安装</p><span id="more"></span><p><strong>01-ElasticSearch之-安装</strong></p><p><strong>Mac安装ElasticSearch</strong></p><h2 id="一-安装JDK环境"><a href="#一-安装JDK环境" class="headerlink" title="一 安装JDK环境"></a>一 安装JDK环境</h2><p>因为ElasticSearch是用Java语言编写的，所以必须安装JDK的环境，并且是JDK 1.8以上，具体操作步骤自行百度</p><p>安装完成查看java版本</p><pre class="language-java" data-language="java"><code class="language-java">java <span class="token operator">-</span>version</code></pre><h2 id="二-官网下载最新版本"><a href="#二-官网下载最新版本" class="headerlink" title="二 官网下载最新版本"></a>二 官网下载最新版本</h2><p>下载地址[<a href="https://www.elastic.co/cn/downloads/elasticsearch],%E9%80%89%E6%8B%A9%E7%9B%B8%E5%BA%94%E7%89%88%E6%9C%AC%E4%B8%8B%E8%BD%BD%E5%8D%B3%E5%8F%AF">https://www.elastic.co/cn/downloads/elasticsearch],选择相应版本下载即可</a></p><p><a href="https://tva1.sinaimg.cn/large/006tNbRwgy1g9kts83vzbj31o80tsjvo.jpg"><img src="https://s2.loli.net/2022/06/23/hTwf8G7dlv6Y2KD.jpg" alt="image-20191204173716931"></a></p><h2 id="三-下载其他版本"><a href="#三-下载其他版本" class="headerlink" title="三 下载其他版本"></a>三 下载其他版本</h2><p>直接点击<a href="https://www.elastic.co/cn/downloads/past-releases#elasticsearch">https://www.elastic.co/cn/downloads/past-releases#elasticsearch</a></p><p><a href="https://tva1.sinaimg.cn/large/006tNbRwgy1g9kttpffz5j31320u0ags.jpg"><img src="https://s2.loli.net/2022/06/23/bJ7CfpaU9RieGI4.jpg" alt="image-20191204173847321"></a></p><h2 id="三-下载完成，启动"><a href="#三-下载完成，启动" class="headerlink" title="三 下载完成，启动"></a>三 下载完成，启动</h2><p>解压文件，切换到解压文件路径下，执行</p><pre class="language-python" data-language="python"><code class="language-python">cd elasticsearch<span class="token operator">-</span><span class="token operator">&lt;</span>version<span class="token operator">&gt;</span> <span class="token comment">#切换到路径下</span><span class="token punctuation">.</span><span class="token operator">/</span><span class="token builtin">bin</span><span class="token operator">/</span>elasticsearch  <span class="token comment">#启动es</span><span class="token comment">#如果你想把 Elasticsearch 作为一个守护进程在后台运行，那么可以在后面添加参数 -d 。</span><span class="token comment">#如果你是在 Windows 上面运行 Elasticseach，你应该运行 bin\elasticsearch.bat 而不是 bin\elasticsearch</span></code></pre><h2 id="四-测试启动是否成功"><a href="#四-测试启动是否成功" class="headerlink" title="四 测试启动是否成功"></a>四 测试启动是否成功</h2><p>在浏览器输入以下地址：<a href="http://127.0.0.1:9200/">http://127.0.0.1:9200/</a></p><p>即可看到如下内容：</p><pre class="language-json" data-language="json"><code class="language-json"><span class="token punctuation">{</span>  <span class="token property">"name"</span> <span class="token operator">:</span> <span class="token string">"lqzMacBook.local"</span><span class="token punctuation">,</span>  <span class="token property">"cluster_name"</span> <span class="token operator">:</span> <span class="token string">"elasticsearch"</span><span class="token punctuation">,</span>  <span class="token property">"cluster_uuid"</span> <span class="token operator">:</span> <span class="token string">"G1DFg-u6QdGFvz8Z-XMZqQ"</span><span class="token punctuation">,</span>  <span class="token property">"version"</span> <span class="token operator">:</span> <span class="token punctuation">{</span>    <span class="token property">"number"</span> <span class="token operator">:</span> <span class="token string">"7.5.0"</span><span class="token punctuation">,</span>    <span class="token property">"build_flavor"</span> <span class="token operator">:</span> <span class="token string">"default"</span><span class="token punctuation">,</span>    <span class="token property">"build_type"</span> <span class="token operator">:</span> <span class="token string">"tar"</span><span class="token punctuation">,</span>    <span class="token property">"build_hash"</span> <span class="token operator">:</span> <span class="token string">"e9ccaed468e2fac2275a3761849cbee64b39519f"</span><span class="token punctuation">,</span>    <span class="token property">"build_date"</span> <span class="token operator">:</span> <span class="token string">"2019-11-26T01:06:52.518245Z"</span><span class="token punctuation">,</span>    <span class="token property">"build_snapshot"</span> <span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>    <span class="token property">"lucene_version"</span> <span class="token operator">:</span> <span class="token string">"8.3.0"</span><span class="token punctuation">,</span>    <span class="token property">"minimum_wire_compatibility_version"</span> <span class="token operator">:</span> <span class="token string">"6.8.0"</span><span class="token punctuation">,</span>    <span class="token property">"minimum_index_compatibility_version"</span> <span class="token operator">:</span> <span class="token string">"6.0.0-beta1"</span>  <span class="token punctuation">}</span><span class="token punctuation">,</span>  <span class="token property">"tagline"</span> <span class="token operator">:</span> <span class="token string">"You Know, for Search"</span><span class="token punctuation">}</span></code></pre><h2 id="五-关闭es"><a href="#五-关闭es" class="headerlink" title="五 关闭es"></a>五 关闭es</h2><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment">#查看进程</span>ps <span class="token operator">-</span>ef <span class="token operator">|</span> grep elastic<span class="token comment">#干掉进程</span>kill <span class="token operator">-</span><span class="token number">9</span> <span class="token number">2382</span>（进程号）<span class="token comment">#以守护进程方式启动es</span>elasticsearch <span class="token operator">-</span>d</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> ElasticSearch </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ElasticSearch之-安装 </tag>
             
         </tags>
       
