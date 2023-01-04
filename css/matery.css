@@ -594,6 +594,7 @@ header .go-back i {
     line-height: 1.2em;
     margin-bottom: 20px;
     position: relative;
+	color: pink;
 }
 
 .bg-cover .description {
